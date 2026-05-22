@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AVIJIT MEDICARE</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        :root {
+            --primary: #0A5C48;
+            --primary-light: #12b981;
+            --secondary: #0284c7;
+            --dark: #062c25;
+            --text: #1f2937;
+            --text-muted: #6b7280;
+            --white: #ffffff;
+            --bg-soft: #f2fbf7;
+            --danger: #dc2626;
+            --success: #16a34a;
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 26px;
+            --radius-xl: 34px;
+            --shadow-soft: 0 20px 60px rgba(10, 92, 72, 0.16);
+            --shadow-card: 0 25px 80px rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(18, 185, 129, 0.18), transparent 32%),
+                radial-gradient(circle at 90% 15%, rgba(2, 132, 199, 0.18), transparent 30%),
+                linear-gradient(135deg, #eefbf6 0%, #f8fcff 50%, #e8f7ff 100%);
+            overflow-x: hidden;
+            color: var(--text);
+        }
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(2px);
+            opacity: 0.55;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::before {
+            width: 260px;
+            height: 260px;
+            background: rgba(18, 185, 129, 0.22);
+            top: -70px;
+            left: -70px;
+            animation: floatBlob 8s ease-in-out infinite;
+        }
+
+        body::after {
+            width: 340px;
+            height: 340px;
+            background: rgba(2, 132, 199, 0.16);
+            right: -120px;
+            bottom: -120px;
+            animation: floatBlob 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes floatBlob {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(18px, -16px) scale(1.05);
+            }
+        }
+
+        .auth-page {
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+        }
+
+        .auth-layout {
+            width: 100%;
+            max-width: 1180px;
+            min-height: 690px;
+            display: grid;
+            grid-template-columns: 1.08fr 0.92fr;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.78);
+            box-shadow: var(--shadow-card);
+            position: relative;
+        }
+
+        .auth-left {
+            position: relative;
+            padding: 56px;
+            color: white;
+            overflow: hidden;
+            background:
+                linear-gradient(135deg, rgba(10, 92, 72, 0.94), rgba(3, 105, 161, 0.90)),
+                url("images/about_us.png");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .auth-left::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.16), transparent 28%),
+                linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.20));
+            z-index: 1;
+        }
+
+        .auth-left::after {
+            content: "";
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            right: -160px;
+            top: -130px;
+            background: rgba(255, 255, 255, 0.10);
+            z-index: 1;
+        }
+
+        .auth-left-inner {
+            position: relative;
+            z-index: 5;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: white;
+            margin-bottom: 4rem;
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo i {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: white;
+        }
+
+        .trust-badge {
+            width: fit-content;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.13);
+            border: 1px solid rgba(255, 255, 255, 0.20);
+            backdrop-filter: blur(10px);
+            margin-bottom: 22px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .auth-title {
+            color: white;
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            margin: 0 0 1.4rem;
+            line-height: 1.05;
+            letter-spacing: -1.5px;
+        }
+
+        .auth-desc {
+            font-size: 1.15rem;
+            opacity: 0.86;
+            max-width: 84%;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .auth-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: auto;
+            padding-top: 40px;
+        }
+
+        .stat-card {
+            padding: 18px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(12px);
+        }
+
+        .stat-card h3 {
+            color: white;
+            margin: 0 0 6px;
+            font-size: 1.6rem;
+        }
+
+        .stat-card span {
+            font-size: 0.82rem;
+            opacity: 0.78;
+        }
+
+        .benefit-list {
+            display: grid;
+            gap: 14px;
+            margin-top: 34px;
+            max-width: 520px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.11);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(12px);
+        }
+
+        .benefit-item i {
+            color: #9ff0ce;
+            font-size: 1.15rem;
+        }
+
+        .benefit-item span {
+            font-weight: 700;
+            color: white;
+            font-size: 0.94rem;
+        }
+
+        .auth-right {
+            position: relative;
+            background: rgba(255, 255, 255, 0.94);
+            padding: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auth-form-container {
+            width: 100%;
+            max-width: 430px;
+            position: relative;
+        }
+
+        .form-top-icon {
+            width: 68px;
+            height: 68px;
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(10, 92, 72, 0.10), rgba(18, 185, 129, 0.16));
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 22px;
+            box-shadow: 0 12px 30px rgba(10, 92, 72, 0.12);
+        }
+
+        .form-heading {
+            margin-bottom: 28px;
+        }
+
+        .form-heading h2 {
+            font-size: clamp(2rem, 4vw, 2.7rem);
+            line-height: 1.1;
+            margin: 0 0 10px;
+            letter-spacing: -1px;
+            color: var(--dark);
+        }
+
+        .form-heading p {
+            margin: 0;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .auth-alert {
+            display: none;
+            padding: 14px 16px;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            animation: alertPop 0.25s ease;
+        }
+
+        @keyframes alertPop {
+            from {
+                transform: translateY(-6px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .auth-alert.error {
+            display: block;
+            background: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+        }
+
+        .auth-alert.success {
+            display: block;
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 18px;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 17px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            z-index: 2;
+            font-size: 1rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            height: 58px;
+            border: 1px solid #d9eee6;
+            background: #f8fcfa;
+            border-radius: 16px;
+            padding: 20px 48px 8px 48px;
+            outline: none;
+            color: var(--text);
+            font-size: 0.98rem;
+            font-weight: 600;
+            transition: 0.25s ease;
+        }
+
+        .input-group label {
+            position: absolute;
+            left: 48px;
+            top: 18px;
+            color: #7b8b86;
+            pointer-events: none;
+            font-size: 0.95rem;
+            transition: 0.22s ease;
+            background: transparent;
+        }
+
+        .input-group input:focus,
+        .input-group input:not(:placeholder-shown) {
+            background: white;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 4px rgba(18, 185, 129, 0.10);
+        }
+
+        .input-group input:focus+label,
+        .input-group input:not(:placeholder-shown)+label {
+            top: 8px;
+            font-size: 0.72rem;
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            color: #6b7280;
+            cursor: pointer;
+            font-size: 1rem;
+            z-index: 3;
+            padding: 6px;
+        }
+
+        .password-toggle:hover {
+            color: var(--primary);
+        }
+
+        .form-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 4px 0 26px;
+        }
+
+        .remember-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .remember-label input {
+            width: 17px;
+            height: 17px;
+            accent-color: var(--primary);
+        }
+
+        .forgot-link,
+        .create-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 800;
+        }
+
+        .forgot-link:hover,
+        .create-link:hover {
+            text-decoration: underline;
+        }
+
+        .btn-login {
+            width: 100%;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 1rem;
+            min-height: 58px;
+            border-radius: 16px;
+            font-size: 1.05rem;
+            font-weight: 900;
+            color: white;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            box-shadow: 0 16px 34px rgba(10, 92, 72, 0.25);
+            transition: 0.28s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 22px 44px rgba(10, 92, 72, 0.32);
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 26px 0 20px;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: #e5eee9;
+        }
+
+        .quick-login-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .quick-btn {
+            border: 1px solid #dbeee6;
+            background: white;
+            border-radius: 14px;
+            padding: 13px 12px;
+            cursor: pointer;
+            font-weight: 800;
+            color: var(--text);
+            transition: 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .quick-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary-light);
+            box-shadow: 0 12px 25px rgba(10, 92, 72, 0.10);
+        }
+
+        .signup-text {
+            text-align: center;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        .secure-note {
+            margin-top: 20px;
+            padding: 14px 16px;
+            border-radius: 16px;
+            background: #f0fdf4;
+            border: 1px dashed #86efac;
+            color: #166534;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.9rem;
+            line-height: 1.55;
+            font-weight: 650;
+        }
+
+        .secure-note i {
+            margin-top: 3px;
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.75s ease both;
+        }
+
+        .delay-1 {
+            animation-delay: 0.12s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.24s;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(18px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 980px) {
+            .auth-layout {
+                grid-template-columns: 1fr;
+                max-width: 560px;
+                min-height: auto;
+            }
+
+            .auth-left {
+                display: none;
+            }
+
+            .auth-right {
+                padding: 38px 26px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .auth-page {
+                padding: 16px;
+            }
+
+            .auth-right {
+                padding: 30px 18px;
+            }
+
+            .quick-login-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-options {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .input-group input {
+                height: 56px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="auth-page">
+        <div class="auth-layout">
+
+            <!-- Left Side: Branding & Visuals -->
+            <div class="auth-left">
+                <div class="auth-left-inner">
+
+                    <a href="index.html" class="logo">
+                        <i class="fa-solid fa-notes-medical"></i>
+                        <span>AVIJIT <span style="font-weight: 300;">MEDICARE</span></span>
+                    </a>
+
+                    <div class="trust-badge animate-slide-up">
+                        <i class="fa-solid fa-shield-heart"></i>
+                        Trusted Healthcare Login
+                    </div>
+
+                    <h1 class="auth-title animate-slide-up">
+                        Healthcare,<br>Reimagined.
+                    </h1>
+
+                    <p class="auth-desc animate-slide-up delay-1">
+                        Manage prescriptions, consult top doctors, track orders, and order genuine medicines from one
+                        secure healthcare platform.
+                    </p>
+
+                    <div class="benefit-list animate-slide-up delay-2">
+                        <div class="benefit-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>100% genuine medicines from verified distributors</span>
+                        </div>
+
+                        <div class="benefit-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>Prescription upload, monthly refill and stock alerts</span>
+                        </div>
+
+                        <div class="benefit-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>Doctor consultation, WhatsApp support and fast delivery</span>
+                        </div>
+                    </div>
+
+                    <div class="auth-stats animate-slide-up delay-2">
+                        <div class="stat-card">
+                            <h3>10+</h3>
+                            <span>Years Trust</span>
+                        </div>
+
+                        <div class="stat-card">
+                            <h3>24/7</h3>
+                            <span>Support</span>
+                        </div>
+
+                        <div class="stat-card">
+                            <h3>4.9/5</h3>
+                            <span>User Rating</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Right Side: Login Form -->
+            <div class="auth-right">
+                <div class="auth-form-container animate-slide-up delay-1">
+
+                    <div class="form-top-icon">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+
+                    <div class="form-heading">
+                        <h2>Welcome back</h2>
+                        <p>Enter your registered email and password to access Avijit Medicare.</p>
+                    </div>
+
+                    <div id="loginAlert" class="auth-alert"></div>
+
+                    <form id="loginForm" autocomplete="off">
+
+                        <div class="input-group">
+                            <i class="fa-solid fa-envelope input-icon"></i>
+                            <input type="email" id="loginEmail" placeholder=" " required>
+                            <label for="loginEmail">Email address</label>
+                        </div>
+
+                        <div class="input-group">
+                            <i class="fa-solid fa-lock input-icon"></i>
+                            <input type="password" id="loginPassword" placeholder=" " required>
+                            <label for="loginPassword">Password</label>
+
+                            <button type="button" class="password-toggle" id="passwordToggle"
+                                aria-label="Show password">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="remember-label">
+                                <input type="checkbox" id="rememberMe">
+                                Remember me
+                            </label>
+
+                            <a href="forgot-password.html" class="forgot-link">
+                                Forgot password?
+                            </a>
+                        </div>
+
+                        <button type="submit" class="btn-login" id="loginBtn">
+                            <span>Sign In</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                        <div class="divider">or continue with</div>
+
+                        <div class="quick-login-grid">
+                            <button type="button" class="quick-btn">
+                                <i class="fa-brands fa-google"></i>
+                                Google
+                            </button>
+
+                            <button type="button" class="quick-btn">
+                                <i class="fa-solid fa-mobile-screen"></i>
+                                OTP Login
+                            </button>
+                        </div>
+
+                        <p class="signup-text">
+                            Don't have an account?
+                            <a href="register.html" class="create-link">Create one now</a>
+                        </p>
+
+                        <div class="secure-note">
+                            <i class="fa-solid fa-lock"></i>
+                            <span>
+                                Frontend demo login: first register your account, then use the same email and password
+                                here.
+                            </span>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // If already logged in, go to home
+        if (localStorage.getItem("avijit_logged_in") === "true") {
+            window.location.href = "index.html";
+        }
+
+        const loginForm = document.getElementById("loginForm");
+        const loginAlert = document.getElementById("loginAlert");
+        const loginBtn = document.getElementById("loginBtn");
+        const passwordToggle = document.getElementById("passwordToggle");
+        const loginPassword = document.getElementById("loginPassword");
+
+        // Password show/hide
+        passwordToggle.addEventListener("click", function () {
+            const icon = passwordToggle.querySelector("i");
+
+            if (loginPassword.type === "password") {
+                loginPassword.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+                passwordToggle.setAttribute("aria-label", "Hide password");
+            } else {
+                loginPassword.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+                passwordToggle.setAttribute("aria-label", "Show password");
+            }
+        });
+
+        loginForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById("loginEmail").value.trim();
+            const password = document.getElementById("loginPassword").value.trim();
+            const savedUser = JSON.parse(localStorage.getItem("avijit_user"));
+
+            loginAlert.className = "auth-alert";
+            loginAlert.innerText = "";
+
+            if (!email || !password) {
+                loginAlert.className = "auth-alert error";
+                loginAlert.innerText = "Please enter email and password.";
+                return;
+            }
+
+            if (!savedUser) {
+                loginAlert.className = "auth-alert error";
+                loginAlert.innerText = "No account found. Please create account first.";
+                return;
+            }
+
+            if (email === savedUser.email && password === savedUser.password) {
+                localStorage.setItem("avijit_logged_in", "true");
+                localStorage.setItem("avijit_current_user", JSON.stringify(savedUser));
+
+                loginAlert.className = "auth-alert success";
+                loginAlert.innerText = "Login successful. Redirecting...";
+
+                loginBtn.disabled = true;
+                loginBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Signing in...</span>';
+
+                setTimeout(function () {
+                    window.location.href = "index.html";
+                }, 850);
+            } else {
+                loginAlert.className = "auth-alert error";
+                loginAlert.innerText = "Invalid email or password.";
+            }
+        });
+    </script>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - AVIJIT MEDICARE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .admin-layout { display: flex; min-height: 100vh; }
+        .admin-sidebar { width: 280px; background: var(--surface); border-right: 1px solid var(--border); padding: 1.5rem; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+        .admin-main { flex: 1; padding: 2rem; background: var(--bg); overflow-y: auto;}
+        .admin-link { display: flex; align-items: center; gap: 1rem; padding: 1rem; color: var(--text-main); border-radius: var(--radius-md); margin-bottom: 0.5rem; font-weight: 500;}
+        .admin-link:hover, .admin-link.active { background: var(--primary); color: white; }
+        .stat-card { padding: 1.5rem; border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-sm); border: 1px solid var(--border); }
+        .stat-title { font-size: 0.9rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .stat-value { font-size: 2rem; font-weight: 800; color: var(--text-main); }
+    </style>
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Admin Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="logo mb-8" style="font-size: 1.25rem;"><i class="fa-solid fa-user-shield"></i> <span>AVIJIT ADMIN</span></div>
+            
+            <a href="admin-dashboard.html" class="admin-link active"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+            <a href="orders.html" class="admin-link"><i class="fa-solid fa-box"></i> Order Management</a>
+            <a href="manage-medicines.html" class="admin-link"><i class="fa-solid fa-pills"></i> Inventory</a>
+            
+            <h4 class="text-muted mt-6 mb-2" style="font-size: 0.8rem; text-transform: uppercase;">Advanced (Client Req)</h4>
+            <a href="stock-alerts.html" class="admin-link text-warning"><i class="fa-solid fa-triangle-exclamation"></i> Stock Alerts</a>
+            <a href="repeat-customers.html" class="admin-link"><i class="fa-solid fa-users"></i> Monthly Buyers</a>
+            <a href="notifications.html" class="admin-link"><i class="fa-solid fa-envelope"></i> Email Logs</a>
+            
+            <a href="index.html" class="admin-link mt-8" style="color: var(--danger);"><i class="fa-solid fa-sign-out"></i> Exit Admin</a>
+        </aside>
+
+        <!-- Admin Main Content -->
+        <main class="admin-main">
+            <div class="flex justify-between items-center mb-8">
+                <h2>Admin Overview</h2>
+                <div class="flex gap-4">
+                    <button class="icon-btn" id="theme-toggle"><i class="fa-solid fa-moon"></i></button>
+                    <div class="flex items-center gap-2"><div style="width:40px;height:40px;border-radius:50%;background:var(--primary);color:white;display:flex;align-items:center;justify-content:center;font-weight:bold;">A</div></div>
+                </div>
+            </div>
+
+            <!-- Analytics Cards -->
+            <div class="grid grid-cols-4 gap-6 mb-8">
+                <div class="stat-card">
+                    <div class="stat-title">Total Sales (Today)</div>
+                    <div class="stat-value text-primary">₹12,450</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Active Orders</div>
+                    <div class="stat-value">45</div>
+                </div>
+                <div class="stat-card" style="border-left: 4px solid var(--danger);">
+                    <div class="stat-title text-danger">Low Stock Alerts</div>
+                    <div class="stat-value">8</div>
+                </div>
+                <div class="stat-card" style="border-left: 4px solid var(--success);">
+                    <div class="stat-title text-success">Active Subscriptions</div>
+                    <div class="stat-value">124</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6">
+                <!-- Recent Orders -->
+                <div class="card" style="padding: 1.5rem;">
+                    <div class="flex justify-between mb-4">
+                        <h3>Recent Orders</h3>
+                        <a href="orders.html" class="btn btn-ghost" style="padding: 0;">View All</a>
+                    </div>
+                    <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+                        <tr style="border-bottom: 1px solid var(--border);"><th style="padding: 0.5rem;">ID</th><th style="padding: 0.5rem;">User</th><th style="padding: 0.5rem;">Status</th></tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 0.5rem;">#ORD-123</td><td style="padding: 0.5rem;">Rahul S.</td><td style="padding: 0.5rem;"><span class="badge badge-warning">Pending</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 0.5rem;">#ORD-124</td><td style="padding: 0.5rem;">Priya M.</td><td style="padding: 0.5rem;"><span class="badge badge-success">Delivered</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Stock Alerts Preview -->
+                <div class="card" style="padding: 1.5rem;">
+                    <div class="flex justify-between mb-4">
+                        <h3>Critical Stock Alerts</h3>
+                        <a href="stock-alerts.html" class="btn btn-ghost text-danger" style="padding: 0;">Manage</a>
+                    </div>
+                    <div class="flex items-center justify-between p-2 mb-2" style="background: #fee2e2; border-radius: var(--radius-sm);">
+                        <div><strong>Amoxicillin 250mg</strong> <span class="text-muted" style="font-size: 0.8rem;">(SKU: AMX-250)</span></div>
+                        <span class="badge badge-danger">Out of Stock</span>
+                    </div>
+                    <div class="flex items-center justify-between p-2" style="background: #fef3c7; border-radius: var(--radius-sm);">
+                        <div><strong>Cough Syrup 100ml</strong> <span class="text-muted" style="font-size: 0.8rem;">(SKU: CS-100)</span></div>
+                        <span class="badge badge-warning">Only 9 Left</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        if (localStorage.getItem("avijit_logged_in") !== "true") {
+            window.location.href = "login.html";
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - AVIJIT MEDICARE</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css?v=33">
+    <link rel="stylesheet" href="css/about.css?v=9">
+</head>
+
+<body>
+
+    <!-- TOP HEADER -->
+    <div class="top-header">
+        <div class="container flex justify-between items-center">
+
+            <a href="index.html" class="logo-box">
+                <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i></div>
+                <div class="logo-text-group">
+                    <span class="logo-text">Avijit Medicare</span>
+                    <span class="logo-sub">TRUSTED PHARMACY</span>
+                </div>
+            </a>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search medicines, doctors, products...">
+            </div>
+
+            <div class="top-actions">
+                <div class="square-icon"><i class="fa-regular fa-bell"></i></div>
+                <div class="square-icon"><i class="fa-regular fa-heart"></i></div>
+                <a href="cart.html" class="square-icon" style="position: relative;">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span
+                        style="position: absolute; top:-5px; right:-5px; background:red; color:white; font-size:9px; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center;">2</span>
+                </a>
+
+                <div class="action-links">
+                    <span id="welcomeUser" class="register-link"></span>
+                    <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary"
+                        style="border-radius: 4px;">
+                        Logout
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- NAV HEADER -->
+    <div class="nav-header">
+        <div class="container flex justify-between items-center" style="position: relative;">
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link active">About Us</a>
+                <a href="medicines.html" class="nav-link">Medicine</a>
+                <a href="doctors.html" class="nav-link">Doctors</a>
+                <a href="track-order.html" class="nav-link">Order</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- PAGE HERO (PREMIUM DARK GLASS THEME) -->
+    <section class="about-page-hero">
+        <div class="container">
+            <div class="about-grid">
+
+                <!-- Left Content -->
+                <div class="about-content">
+                    <div class="hero-tag" data-aos="fade-down">INDIA'S TRUSTED PHARMACY</div>
+
+                    <h1 class="hero-title" data-aos="fade-right" data-aos-delay="100">
+                        About <br><span>Avijit Medicare</span>
+                    </h1>
+
+                    <h4 class="hero-subtitle" data-aos="fade-right" data-aos-delay="200">
+                        Your Health, Delivered With Care
+                    </h4>
+
+                    <p class="hero-text" data-aos="fade-right" data-aos-delay="300">
+                        Since 2003, Avijit Medicare has been the cornerstone of trust for thousands of families across
+                        Odisha. We believe that access to genuine medicine and expert healthcare is a fundamental right.
+                        Today, we bring 100% authentic medicines, doctor consultations, and superfast delivery together
+                        on one platform.
+                    </p>
+
+                    <div class="hero-buttons" data-aos="fade-up" data-aos-delay="400">
+                        <a href="medicines.html" class="btn btn-primary btn-pill">Order Medicines</a>
+                        <a href="contact.html" class="btn btn-outline-white btn-pill">Contact Us</a>
+                    </div>
+                </div>
+
+                <!-- Right Image -->
+                <div class="about-image-wrapper" data-aos="fade-left" data-aos-duration="1200">
+                    <div class="glass-image-container">
+                        <img src="images/about_us.png" alt="Avijit Medicare Pharmacy" class="premium-img"
+                            onerror="this.src='https://images.unsplash.com/photo-1586015555751-63bb77f4322a?q=80&w=2070&auto=format&fit=crop'">
+                    </div>
+
+                    <!-- Floating Sub Card 1 -->
+                    <div class="glass-card premium-float" data-aos="zoom-in" data-aos-delay="800"
+                        style="display: flex; align-items: center; gap: 1rem; padding: 1.15rem; width: 240px; border-radius: 16px;">
+                        <div class="glass-icon-sm"
+                            style="background: #22c55e; width: 46px; height: 46px; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <div>
+                            <div class="glass-title"
+                                style="color: white; font-size: 0.95rem; font-weight: 800; margin-bottom: 0.15rem;">100%
+                                Genuine</div>
+                            <div class="glass-desc" style="color: rgba(255, 255, 255, 0.72); font-size: 0.75rem;">
+                                Verified Medicines</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PREMIUM MISSION & VISION SECTION (3D GLOW) -->
+    <section class="mv-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Our <span>Purpose</span></h2>
+                <p
+                    style="margin-top: 1rem; color: rgba(255,255,255,0.7); max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Driven by excellence and dedicated to improving the healthcare standards across the community.</p>
+            </div>
+
+            <div class="mv-grid">
+                <div class="mv-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="mv-icon"><i class="fa-solid fa-bullseye"></i></div>
+                    <h3>Our Mission</h3>
+                    <p>To provide 100% genuine medicines and world-class healthcare services directly to your doorstep
+                        with uncompromised speed and quality.</p>
+                </div>
+                <div class="mv-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mv-icon"><i class="fa-solid fa-eye"></i></div>
+                    <h3>Our Vision</h3>
+                    <p>To be the most trusted and comprehensive digital healthcare platform in India, integrating
+                        pharmacy, diagnostics, and consultations seamlessly.</p>
+                </div>
+                <div class="mv-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="mv-icon"><i class="fa-solid fa-heart"></i></div>
+                    <h3>Our Values</h3>
+                    <p>Integrity, transparency, and patient-first care form the core of Avijit Medicare. We do not
+                        compromise on the quality of our service.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREMIUM STATS SECTION -->
+    <section class="stats-section">
+        <div class="container stats-grid">
+            <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+                <h3 class="counter" data-target="50">0</h3>
+                <p>K+ Happy Patients</p>
+            </div>
+            <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+                <h3 class="counter" data-target="15">0</h3>
+                <p>K+ Products</p>
+            </div>
+            <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+                <h3 class="counter" data-target="500">0</h3>
+                <p>+ Expert Doctors</p>
+            </div>
+            <div class="stat-item" data-aos="zoom-in" data-aos-delay="400">
+                <h3 class="counter" data-target="30">0</h3>
+                <p>Mins Delivery</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREMIUM ZIGZAG TIMELINE SECTION -->
+    <section class="timeline-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Our <span>Journey</span></h2>
+                <p
+                    style="margin-top: 1rem; color: rgba(255,255,255,0.7); max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Two decades of commitment towards revolutionizing healthcare access in India.</p>
+            </div>
+
+            <div class="timeline-container">
+                <div class="timeline-row" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <span class="timeline-year">2003</span>
+                        <h4>The Foundation</h4>
+                        <p>Opened our first brick-and-mortar pharmacy in Baleswar with a vision to provide authentic
+                            medicines and 24/7 care.</p>
+                    </div>
+                </div>
+                <div class="timeline-row" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <span class="timeline-year">2010</span>
+                        <h4>City Expansion</h4>
+                        <p>Expanded our footprint to 5 key locations across the district, introducing rapid services for
+                            medical emergencies.</p>
+                    </div>
+                </div>
+                <div class="timeline-row" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <span class="timeline-year">2020</span>
+                        <h4>Digital Pivot</h4>
+                        <p>Launched online medicine delivery to support the community securely during the pandemic,
+                            ensuring no one missed a dose.</p>
+                    </div>
+                </div>
+                <div class="timeline-row" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <span class="timeline-year">2026</span>
+                        <h4>Unified Platform</h4>
+                        <p>Avijit Medicare transforms into a complete platform offering medicines, doctors, lab tests,
+                            and comprehensive health tracking.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREMIUM EXPERT TEAM SECTION -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Our Expert <span>Medical Team</span></h2>
+                <p
+                    style="margin-top: 1rem; color: rgba(255,255,255,0.7); max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Professional, highly-qualified healthcare experts dedicated to your well-being.</p>
+            </div>
+
+            <div class="team-grid">
+                <!-- Team Member 1 -->
+                <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="team-img-wrapper">
+                        <img src="images/NIROD.jpeg" alt="Dr. Nirod" class="team-img">
+                        <div class="team-overlay">
+                            <a href="#" class="team-social"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" class="team-social"><i class="fa-solid fa-envelope"></i></a>
+                            <a href="#" class="team-social"><i class="fa-solid fa-phone"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h4>Dr. Nirod</h4>
+                        <p>Chief Pharmacist</p>
+                        <div class="team-desc">Over 15 years of experience in pharmaceutical sciences and patient care.
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member 2 -->
+                <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="team-img-wrapper">
+                        <img src="images/LORESH.jpeg" alt="Dr. Loresh" class="team-img">
+                        <div class="team-overlay">
+                            <a href="#" class="team-social"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" class="team-social"><i class="fa-solid fa-envelope"></i></a>
+                            <a href="#" class="team-social"><i class="fa-solid fa-phone"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h4>Dr. Loresh</h4>
+                        <p>Medical Director</p>
+                        <div class="team-desc">Expert in clinical diagnostics and healthcare management operations.
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member 3 -->
+                <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="team-img-wrapper">
+                        <img src="images/LAPU1.jpeg" alt="Dr. Lapu" class="team-img">
+                        <div class="team-overlay">
+                            <a href="#" class="team-social"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" class="team-social"><i class="fa-solid fa-envelope"></i></a>
+                            <a href="#" class="team-social"><i class="fa-solid fa-phone"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h4>Dr. Lapu</h4>
+                        <p>Senior Advisor</p>
+                        <div class="team-desc">Specialized in holistic care and preventive medical treatments.</div>
+                    </div>
+                </div>
+                <!-- Team Member 4 -->
+                <div class="team-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="team-img-wrapper">
+                        <img src="images/KHIROD1.jpeg" alt="Dr. Khirod" class="team-img">
+                        <div class="team-overlay">
+                            <a href="#" class="team-social"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" class="team-social"><i class="fa-solid fa-envelope"></i></a>
+                            <a href="#" class="team-social"><i class="fa-solid fa-phone"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h4>Dr. Khirod</h4>
+                        <p>Lead Pharmacist</p>
+                        <div class="team-desc">Dedicated to ensuring the highest quality of prescription distributions.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREMIUM TESTIMONIALS SECTION -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Patient <span>Testimonials</span></h2>
+                <p
+                    style="margin-top: 1rem; color: rgba(255,255,255,0.7); max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Don't just take our word for it. Hear what our community has to say about our services.</p>
+            </div>
+
+            <div class="reviews-grid">
+                <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fa-solid fa-quote-right quote-icon"></i>
+                    <div class="review-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">"Avijit Medicare delivered my father's heart medication within 30 minutes in
+                        the middle of the night. Absolute lifesavers. The packaging was pristine and highly
+                        professional."</p>
+                    <div class="review-author">
+                        <img src="images/NIROD.jpeg" alt="Rajesh Kumar" class="author-img">
+                        <div class="author-info">
+                            <h4>Rajesh Kumar</h4>
+                            <p>Verified Customer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-solid fa-quote-right quote-icon"></i>
+                    <div class="review-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="review-text">"The e-consultation feature with Dr. Elena was seamless. She gave me detailed
+                        advice and the prescribed medicines arrived at my door before our call even ended!"</p>
+                    <div class="review-author">
+                        <img src="images/KHIROD1.jpeg" alt="Anita Sharma" class="author-img">
+                        <div class="author-info">
+                            <h4>Anita Sharma</h4>
+                            <p>Verified Patient</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fa-solid fa-quote-right quote-icon"></i>
+                    <div class="review-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">"I love how premium the entire experience feels. From the packaging to the
+                        expert team checking up on me. This is the future of digital healthcare in India."</p>
+                    <div class="review-author">
+                        <img src="images/LAPU1.jpeg" alt="Vikram Das" class="author-img">
+                        <div class="author-info">
+                            <h4>Vikram Das</h4>
+                            <p>Verified Customer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREMIUM PARTNERS SECTION -->
+    <section class="partners-section">
+        <div class="container">
+            <h3 data-aos="fade-up">Trusted By Industry Leaders & Globally Certified</h3>
+            <div class="partners-marquee-container">
+                <div class="partners-grid">
+                    <!-- Original 10 Items -->
+                    <div class="partner-logo"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/ISO_Logo_%28Red_square%29.svg/250px-ISO_Logo_%28Red_square%29.svg.png"
+                            alt="ISO 9001"></div>
+                    <div class="partner-logo"><img
+                            src="https://upload.wikimedia.org/wikipedia/en/thumb/5/50/Sun_Pharma_logo.svg/250px-Sun_Pharma_logo.svg.png"
+                            alt="SunPharma"></div>
+                    <div class="partner-logo"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Cipla_logo.svg/250px-Cipla_logo.svg.png"
+                            alt="Cipla"></div>
+                    <div class="partner-logo"><img
+                            src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/Apollo_Hospitals_Logo.svg/250px-Apollo_Hospitals_Logo.svg.png"
+                            alt="Apollo"></div>
+                    <div class="partner-logo"><img
+                            src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/FSSAI_logo.png/250px-FSSAI_logo.png"
+                            alt="FSSAI"></div>
+                    <div class="partner-logo"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Pfizer_logo.svg/250px-Pfizer_logo.svg.png"
+                            alt="Pfizer"></div>
+                    <div class="partner-logo"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/World_Health_Organization_Logo.svg/250px-World_Health_Organization_Logo.svg.png"
+                            alt="WHO"></div>
+                    <div class="partner-logo"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/JNJ_Logo_New.svg/250px-JNJ_Logo_New.svg.png"
+                            alt="J&J"></div>
+                    <div class="partner-logo"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Logo_Bayer.svg/250px-Logo_Bayer.svg.png"
+                            alt="Bayer"></div>
+                    <div class="partner-logo"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Novartis-Logo-2023.svg/250px-Novartis-Logo-2023.svg.png"
+                            alt="Novartis"></div>
+
+                    <!-- Duplicated 10 Items for Seamless Marquee -->
+                    <div class="partner-logo"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/ISO_Logo_%28Red_square%29.svg/250px-ISO_Logo_%28Red_square%29.svg.png"
+                            alt="ISO 9001"></div>
+                    <div class="partner-logo"><img
+                            src="https://upload.wikimedia.org/wikipedia/en/thumb/5/50/Sun_Pharma_logo.svg/250px-Sun_Pharma_logo.svg.png"
+                            alt="SunPharma"></div>
+                    <div class="partner-logo"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Cipla_logo.svg/250px-Cipla_logo.svg.png"
+                            alt="Cipla"></div>
+                    <div class="partner-logo"><img
+                            src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/Apollo_Hospitals_Logo.svg/250px-Apollo_Hospitals_Logo.svg.png"
+                            alt="Apollo"></div>
+                    <div class="partner-logo"><img
+                            src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/FSSAI_logo.png/250px-FSSAI_logo.png"
+                            alt="FSSAI"></div>
+                    <div class="partner-logo"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Pfizer_logo.svg/250px-Pfizer_logo.svg.png"
+                            alt="Pfizer"></div>
+                    <div class="partner-logo"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/World_Health_Organization_Logo.svg/250px-World_Health_Organization_Logo.svg.png"
+                            alt="WHO"></div>
+                    <div class="partner-logo"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/JNJ_Logo_New.svg/250px-JNJ_Logo_New.svg.png"
+                            alt="J&J"></div>
+                    <div class="partner-logo"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Logo_Bayer.svg/250px-Logo_Bayer.svg.png"
+                            alt="Bayer"></div>
+                    <div class="partner-logo"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Novartis-Logo-2023.svg/250px-Novartis-Logo-2023.svg.png"
+                            alt="Novartis"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREMIUM CTA BANNER -->
+    <section class="container" style="margin: 6rem auto;" data-aos="zoom-in">
+        <div
+            style="background: linear-gradient(135deg, #05221c 0%, var(--dark-green-1) 100%); border-radius: 24px; padding: 5rem 2rem; text-align: center; border: 1px solid rgba(248,181,0,0.3); box-shadow: 0 30px 60px rgba(0,0,0,0.2); position: relative; overflow: hidden;">
+            <div
+                style="position: absolute; top: -50px; left: -50px; width: 150px; height: 150px; background: var(--mint); filter: blur(60px); opacity: 0.2;">
+            </div>
+            <div
+                style="position: absolute; bottom: -50px; right: -50px; width: 150px; height: 150px; background: var(--gold-dark); filter: blur(60px); opacity: 0.2;">
+            </div>
+
+            <h2
+                style="font-family: var(--font-serif); font-size: 3rem; color: white; margin-bottom: 1rem; position: relative; z-index: 1;">
+                Experience the Best Healthcare</h2>
+            <p
+                style="color: rgba(255,255,255,0.7); margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 1.1rem; line-height: 1.8; position: relative; z-index: 1;">
+                Join the Avijit Medicare family today and take control of your well-being with premium, trusted
+                services.</p>
+            <a href="register.html" class="btn btn-pill"
+                style="position: relative; z-index: 1; padding: 1rem 3rem; font-size: 1rem; background: var(--gold-gradient); color: var(--dark-green-1); font-weight: 800; box-shadow: 0 10px 20px rgba(248,181,0,0.3);">Create
+                Free Account</a>
+        </div>
+    </section>
+
+    <!-- FOOTER (Exact Match to Index.html) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="logo-box" style="margin-bottom: 1rem;">
+                        <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white;"></i></div>
+                        <div class="logo-text-group">
+                            <span class="logo-text" style="color: white;">Avijit Medicare</span>
+                            <span class="logo-sub" style="color: rgba(255,255,255,0.6);">TRUSTED PHARMACY</span>
+                        </div>
+                    </div>
+                    <p>Your trusted partner for genuine medicines, expert doctors, and fast doorstep delivery across
+                        Odisha. Quality healthcare, simplified.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="medicines.html">Medicine</a></li>
+                        <li><a href="doctors.html">Doctors</a></li>
+                        <li><a href="track-order.html">Order</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Contact Info</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <li
+                            style="display: flex; gap: 15px; align-items: flex-start; color: rgba(255,255,255,0.7); margin: 0; line-height: 1.6;">
+                            <i class="fa-solid fa-location-dot"
+                                style="margin-top: 4px; color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                            <span>Avijit Medicare, Soro Square,<br>Baleswar, Odisha 756045</span>
+                        </li>
+                        <li
+                            style="display: flex; gap: 15px; align-items: center; color: rgba(255,255,255,0.7); margin: 0;">
+                            <i class="fa-solid fa-phone"
+                                style="color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                            <span>+91 9556532388</span>
+                        </li>
+                        <li
+                            style="display: flex; gap: 15px; align-items: center; color: rgba(255,255,255,0.7); margin: 0;">
+                            <i class="fa-solid fa-envelope"
+                                style="color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                            <span>support@avijitmedicare.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>&copy; 2026 Avijit Medicare. All rights reserved. Made with care in Odisha, India.</div>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Refund Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- SCRIPTS -->
+    <script>
+        /* ===============================
+           AOS INIT
+        =============================== */
+        AOS.init({
+            duration: 900,
+            easing: 'ease-out-cubic',
+            once: true,
+            mirror: false,
+            offset: 50
+        });
+
+        /* ===============================
+           AUTH & NAVBAR
+        =============================== */
+        const currentUser = JSON.parse(localStorage.getItem("avijit_current_user"));
+        if (currentUser && document.getElementById("welcomeUser")) {
+            document.getElementById("welcomeUser").innerText = "Hi, " + currentUser.fname;
+        }
+
+        function logoutUser() {
+            localStorage.removeItem("avijit_logged_in");
+            localStorage.removeItem("avijit_current_user");
+            window.location.href = "login.html";
+        }
+
+        window.addEventListener("scroll", function () {
+            const nav = document.querySelector(".nav-header");
+            if (nav) {
+                if (window.scrollY > 10) nav.classList.add("scrolled");
+                else nav.classList.remove("scrolled");
+            }
+        });
+
+        /* ===============================
+           NUMBER COUNTER
+        =============================== */
+        const counters = document.querySelectorAll(".counter");
+        let counterStarted = false;
+
+        function startCounters() {
+            if (counterStarted) return;
+            counterStarted = true;
+
+            counters.forEach(counter => {
+                counter.innerText = "0";
+
+                const updateCount = () => {
+                    const target = Number(counter.getAttribute("data-target"));
+                    const count = Number(counter.innerText);
+                    const inc = Math.max(1, Math.ceil(target / 45));
+
+                    if (count < target) {
+                        counter.innerText = Math.min(target, count + inc);
+                        setTimeout(updateCount, 35);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        }
+
+        // Trigger Counter on Scroll using Observer
+        const statsSection = document.querySelector(".stats-section");
+        if (statsSection) {
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    startCounters();
+                    observer.disconnect();
+                }
+            }, { threshold: 0.5 });
+            observer.observe(statsSection);
+        }
+    </script>
+
+    <!-- Floating Contact Buttons -->
+    <div class="floating-contact">
+        <a href="tel:+917855870349" class="float-btn call-float" title="Call +91 7855870349">
+            <i class="fa-solid fa-phone"></i>
+        </a>
+        <a href="https://wa.me/919971286110?text=Hello%20Avijit%20Medicare%2C%20I%20need%20help%20with%20medicine%20order."
+            target="_blank" class="float-btn wa-float" title="WhatsApp +91 9971286110">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
+
+</body>
+
+</html>

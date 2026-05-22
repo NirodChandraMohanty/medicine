@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Order - AVIJIT MEDICARE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .tracking-timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+        .tracking-step {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        .tracking-step::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--border);
+            border: 3px solid var(--surface);
+            box-shadow: 0 0 0 2px var(--border);
+            z-index: 2;
+        }
+        .tracking-step.active::before {
+            background: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+        .tracking-step.completed::before {
+            background: var(--success);
+            box-shadow: 0 0 0 2px var(--success);
+        }
+        .tracking-timeline::after {
+            content: '';
+            position: absolute;
+            left: -1.3rem;
+            top: 10px;
+            bottom: 20px;
+            width: 2px;
+            background: var(--border);
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container navbar">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-notes-medical"></i>
+                <span>AVIJIT <span>MEDICARE</span></span>
+            </a>
+            <div class="header-actions">
+                <a href="my-orders.html" class="nav-link">My Orders</a>
+                <button class="icon-btn" id="theme-toggle"><i class="fa-solid fa-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container" style="max-width: 800px; padding: 4rem 1rem;">
+        <h2 style="margin-bottom: 1rem;">Track Order <span class="text-primary">#ORD-98765432</span></h2>
+        
+        <div class="card" style="padding: 2rem;">
+            <div class="flex justify-between" style="border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+                <div>
+                    <p class="text-muted" style="font-size: 0.9rem;">Estimated Delivery</p>
+                    <h3 style="margin: 0; color: var(--success);">Tomorrow, 9:00 PM</h3>
+                </div>
+                <div style="text-align: right;">
+                    <p class="text-muted" style="font-size: 0.9rem;">Courier Partner</p>
+                    <h3 style="margin: 0;">ExpressMed</h3>
+                </div>
+            </div>
+
+            <div class="tracking-timeline">
+                <div class="tracking-step completed">
+                    <h4 style="margin: 0;">Order Placed</h4>
+                    <p class="text-muted" style="font-size: 0.9rem;">Today, 10:30 AM</p>
+                </div>
+                <div class="tracking-step active">
+                    <h4 style="margin: 0; color: var(--primary);">Packed & Ready</h4>
+                    <p class="text-muted" style="font-size: 0.9rem;">Today, 11:45 AM - Preparing for dispatch</p>
+                </div>
+                <div class="tracking-step">
+                    <h4 style="margin: 0; color: var(--text-muted);">Out for Delivery</h4>
+                </div>
+                <div class="tracking-step">
+                    <h4 style="margin: 0; color: var(--text-muted);">Delivered</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>

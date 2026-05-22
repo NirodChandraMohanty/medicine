@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Medicines - AVIJIT MEDICARE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .shop-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 4rem;
+        }
+        @media (max-width: 992px) {
+            .shop-layout { grid-template-columns: 1fr; }
+            .sidebar { display: none; /* In a real app, this would be a toggle drawer */ }
+        }
+        .sidebar {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            height: fit-content;
+        }
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+        .filter-group h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+        .filter-item input {
+            cursor: pointer;
+        }
+        
+        .product-card {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .product-image {
+            height: 180px;
+            background: var(--bg);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 3rem;
+        }
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+        .page-header {
+            background: var(--primary-light);
+            padding: 3rem 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="header">
+        <div class="container navbar">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-notes-medical"></i>
+                <span>AVIJIT <span>MEDICARE</span></span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="medicines.html" class="nav-link active">Medicines</a>
+                <a href="offers.html" class="nav-link">Offers</a>
+                <a href="doctors.html" class="nav-link">Consult Doctor</a>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-btn" id="theme-toggle" title="Toggle Dark Mode"><i class="fa-solid fa-moon"></i></button>
+                <a href="cart.html" class="icon-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="login.html" class="btn btn-outline" style="padding: 0.4rem 1rem;">Login</a>
+                <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1 style="margin: 0;">Explore Medicines</h1>
+            <p class="text-muted mt-2">10,000+ authentic medicines available for delivery</p>
+        </div>
+    </div>
+
+    <div class="container shop-layout">
+        <!-- Sidebar Filters -->
+        <aside class="sidebar">
+            <div class="filter-group">
+                <h3>Categories</h3>
+                <label class="filter-item"><input type="checkbox" checked> All Medicines</label>
+                <label class="filter-item"><input type="checkbox"> Prescription</label>
+                <label class="filter-item"><input type="checkbox"> Vitamins & Supplements</label>
+                <label class="filter-item"><input type="checkbox"> Baby Care</label>
+                <label class="filter-item"><input type="checkbox"> Personal Care</label>
+            </div>
+            
+            <div class="filter-group">
+                <h3>Price Range</h3>
+                <label class="filter-item"><input type="radio" name="price"> Under ₹100</label>
+                <label class="filter-item"><input type="radio" name="price"> ₹100 - ₹500</label>
+                <label class="filter-item"><input type="radio" name="price"> ₹500 - ₹1000</label>
+                <label class="filter-item"><input type="radio" name="price"> Over ₹1000</label>
+            </div>
+            
+            <button class="btn btn-primary w-full">Apply Filters</button>
+        </aside>
+
+        <!-- Product Grid -->
+        <main>
+            <div class="flex justify-between items-center mb-6">
+                <p class="text-muted">Showing 1-9 of 145 products</p>
+                <select class="form-control" style="width: 200px;">
+                    <option>Sort by Popularity</option>
+                    <option>Price: Low to High</option>
+                    <option>Price: High to Low</option>
+                    <option>New Arrivals</option>
+                </select>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6">
+                <!-- Product Card (Repeat multiple times for demo) -->
+                <div class="card product-card">
+                    <a href="medicine-details.html">
+                        <div class="product-image"><i class="fa-solid fa-pills"></i></div>
+                    </a>
+                    <span class="badge badge-success" style="align-self: flex-start;">In Stock</span>
+                    <a href="medicine-details.html"><h3 class="mt-2" style="font-size: 1.1rem;">Paracetamol 500mg</h3></a>
+                    <p class="text-muted" style="font-size: 0.9rem;">Pain Relief Tablet</p>
+                    <div class="product-price">₹45.00</div>
+                    <button class="btn btn-outline w-full mt-auto" style="padding: 0.5rem;">Add to Cart</button>
+                </div>
+                
+                <div class="card product-card">
+                    <a href="medicine-details.html">
+                        <div class="product-image"><i class="fa-solid fa-bottle-droplet"></i></div>
+                    </a>
+                    <span class="badge badge-warning" style="align-self: flex-start;">Only 9 left</span>
+                    <a href="medicine-details.html"><h3 class="mt-2" style="font-size: 1.1rem;">Cough Syrup 100ml</h3></a>
+                    <p class="text-muted" style="font-size: 0.9rem;">Dry Cough</p>
+                    <div class="product-price">₹120.00</div>
+                    <button class="btn btn-outline w-full mt-auto" style="padding: 0.5rem;">Add to Cart</button>
+                </div>
+
+                <div class="card product-card">
+                    <a href="medicine-details.html">
+                        <div class="product-image"><i class="fa-solid fa-tablets"></i></div>
+                    </a>
+                    <span class="badge badge-success" style="align-self: flex-start;">In Stock</span>
+                    <a href="medicine-details.html"><h3 class="mt-2" style="font-size: 1.1rem;">Vitamin D3</h3></a>
+                    <p class="text-muted" style="font-size: 0.9rem;">Bone Health</p>
+                    <div class="product-price">₹150.00</div>
+                    <button class="btn btn-outline w-full mt-auto" style="padding: 0.5rem;">Add to Cart</button>
+                </div>
+                
+                <!-- Add more as needed to simulate a full store -->
+                <div class="card product-card">
+                    <a href="medicine-details.html">
+                        <div class="product-image"><i class="fa-solid fa-prescription-bottle-medical"></i></div>
+                    </a>
+                    <span class="badge badge-danger" style="align-self: flex-start;">Out of Stock</span>
+                    <a href="medicine-details.html"><h3 class="mt-2" style="font-size: 1.1rem;">Azithromycin 500mg</h3></a>
+                    <p class="text-muted" style="font-size: 0.9rem;">Antibiotic (Rx)</p>
+                    <div class="product-price" style="color: var(--text-muted);">₹75.00</div>
+                    <button class="btn btn-ghost w-full mt-auto" style="padding: 0.5rem; background: var(--border); cursor: not-allowed;" disabled>Out of Stock</button>
+                </div>
+                
+                <div class="card product-card">
+                    <a href="medicine-details.html">
+                        <div class="product-image"><i class="fa-solid fa-kit-medical"></i></div>
+                    </a>
+                    <span class="badge badge-success" style="align-self: flex-start;">In Stock</span>
+                    <a href="medicine-details.html"><h3 class="mt-2" style="font-size: 1.1rem;">First Aid Kit Basic</h3></a>
+                    <p class="text-muted" style="font-size: 0.9rem;">Emergency Needs</p>
+                    <div class="product-price">₹450.00</div>
+                    <button class="btn btn-outline w-full mt-auto" style="padding: 0.5rem;">Add to Cart</button>
+                </div>
+                
+                <div class="card product-card">
+                    <a href="medicine-details.html">
+                        <div class="product-image"><i class="fa-solid fa-pump-medical"></i></div>
+                    </a>
+                    <span class="badge badge-success" style="align-self: flex-start;">In Stock</span>
+                    <a href="medicine-details.html"><h3 class="mt-2" style="font-size: 1.1rem;">Hand Sanitizer 500ml</h3></a>
+                    <p class="text-muted" style="font-size: 0.9rem;">Alcohol Based</p>
+                    <div class="product-price">₹99.00</div>
+                    <button class="btn btn-outline w-full mt-auto" style="padding: 0.5rem;">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="flex justify-center mt-8 gap-2">
+                <button class="btn btn-primary" style="padding: 0.5rem 1rem;">1</button>
+                <button class="btn btn-outline" style="padding: 0.5rem 1rem;">2</button>
+                <button class="btn btn-outline" style="padding: 0.5rem 1rem;">3</button>
+                <button class="btn btn-ghost" style="padding: 0.5rem 1rem;">Next</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p class="text-muted">&copy; 2026 AVIJIT MEDICARE.</p>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>

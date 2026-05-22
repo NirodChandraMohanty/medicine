@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AVIJIT MEDICARE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .dashboard-layout { display: grid; grid-template-columns: 250px 1fr; gap: 2rem; margin: 2rem 0; }
+        @media (max-width: 992px) { .dashboard-layout { grid-template-columns: 1fr; } .sidebar { display: none; } }
+        .sidebar { background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border); padding: 1rem 0; height: fit-content; }
+        .sidebar-link { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.5rem; color: var(--text-main); transition: var(--transition); }
+        .sidebar-link:hover, .sidebar-link.active { background: var(--primary-light); color: var(--primary); border-left: 4px solid var(--primary); }
+        .stat-card { display: flex; align-items: center; gap: 1rem; padding: 1.5rem; }
+        .stat-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container navbar">
+            <a href="index.html" class="logo"><i class="fa-solid fa-notes-medical"></i><span>AVIJIT <span>MEDICARE</span></span></a>
+            <div class="header-actions">
+                <button class="icon-btn" id="theme-toggle"><i class="fa-solid fa-moon"></i></button>
+                <div class="flex items-center gap-2"><i class="fa-solid fa-circle-user text-primary" style="font-size: 1.5rem;"></i> <strong>Rahul S.</strong></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container dashboard-layout">
+        <!-- Dashboard Sidebar -->
+        <aside class="sidebar">
+            <a href="dashboard.html" class="sidebar-link active"><i class="fa-solid fa-table-columns"></i> Overview</a>
+            <a href="my-orders.html" class="sidebar-link"><i class="fa-solid fa-box"></i> My Orders</a>
+            <a href="subscriptions.html" class="sidebar-link"><i class="fa-solid fa-repeat"></i> Subscriptions</a>
+            <a href="prescriptions.html" class="sidebar-link"><i class="fa-solid fa-file-prescription"></i> Prescriptions</a>
+            <a href="wishlist.html" class="sidebar-link"><i class="fa-solid fa-heart"></i> Wishlist</a>
+            <a href="profile.html" class="sidebar-link"><i class="fa-solid fa-gear"></i> Settings</a>
+            <a href="index.html" class="sidebar-link text-danger mt-8"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <h2 class="mb-6">Welcome back, Rahul!</h2>
+            
+            <div class="grid grid-cols-3 gap-6 mb-8">
+                <div class="card stat-card">
+                    <div class="stat-icon" style="background: #dbeafe; color: var(--secondary);"><i class="fa-solid fa-box"></i></div>
+                    <div><h3 class="m-0">12</h3><p class="text-muted m-0">Total Orders</p></div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon" style="background: var(--primary-light); color: var(--primary);"><i class="fa-solid fa-repeat"></i></div>
+                    <div><h3 class="m-0">2</h3><p class="text-muted m-0">Active Subs</p></div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon" style="background: #fee2e2; color: var(--danger);"><i class="fa-solid fa-heart"></i></div>
+                    <div><h3 class="m-0">5</h3><p class="text-muted m-0">Wishlist Items</p></div>
+                </div>
+            </div>
+
+            <div class="card" style="padding: 1.5rem;">
+                <div class="flex justify-between items-center mb-4">
+                    <h3>Recent Orders</h3>
+                    <a href="my-orders.html" class="btn btn-ghost">View All</a>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                        <tr style="border-bottom: 2px solid var(--border);">
+                            <th style="padding: 1rem;">Order ID</th>
+                            <th style="padding: 1rem;">Date</th>
+                            <th style="padding: 1rem;">Status</th>
+                            <th style="padding: 1rem;">Total</th>
+                            <th style="padding: 1rem;">Action</th>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 1rem;">#ORD-98765432</td>
+                            <td style="padding: 1rem;">Oct 24, 2026</td>
+                            <td style="padding: 1rem;"><span class="badge badge-warning">Processing</span></td>
+                            <td style="padding: 1rem;">₹250.00</td>
+                            <td style="padding: 1rem;"><a href="track-order.html" class="btn btn-outline" style="padding: 0.25rem 0.75rem;">Track</a></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 1rem;">#ORD-12345678</td>
+                            <td style="padding: 1rem;">Sep 15, 2026</td>
+                            <td style="padding: 1rem;"><span class="badge badge-success">Delivered</span></td>
+                            <td style="padding: 1rem;">₹890.00</td>
+                            <td style="padding: 1rem;"><button class="btn btn-outline" style="padding: 0.25rem 0.75rem;">Reorder</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>

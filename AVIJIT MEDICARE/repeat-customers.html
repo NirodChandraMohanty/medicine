@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repeat Customers - Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .admin-layout { display: flex; min-height: 100vh; }
+        .admin-sidebar { width: 280px; background: var(--surface); border-right: 1px solid var(--border); padding: 1.5rem; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+        .admin-main { flex: 1; padding: 2rem; background: var(--bg); overflow-y: auto;}
+        .admin-link { display: flex; align-items: center; gap: 1rem; padding: 1rem; color: var(--text-main); border-radius: var(--radius-md); margin-bottom: 0.5rem; font-weight: 500;}
+        .admin-link:hover, .admin-link.active { background: var(--primary); color: white; }
+    </style>
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="logo mb-8" style="font-size: 1.25rem;"><i class="fa-solid fa-user-shield"></i> <span>AVIJIT ADMIN</span></div>
+            <a href="admin-dashboard.html" class="admin-link"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+            <a href="orders.html" class="admin-link"><i class="fa-solid fa-box"></i> Order Management</a>
+            <a href="manage-medicines.html" class="admin-link"><i class="fa-solid fa-pills"></i> Inventory</a>
+            <h4 class="text-muted mt-6 mb-2" style="font-size: 0.8rem; text-transform: uppercase;">Advanced (Client Req)</h4>
+            <a href="stock-alerts.html" class="admin-link"><i class="fa-solid fa-triangle-exclamation"></i> Stock Alerts</a>
+            <a href="repeat-customers.html" class="admin-link active"><i class="fa-solid fa-users"></i> Monthly Buyers</a>
+            <a href="notifications.html" class="admin-link"><i class="fa-solid fa-envelope"></i> Email Logs</a>
+            <a href="index.html" class="admin-link mt-8" style="color: var(--danger);"><i class="fa-solid fa-sign-out"></i> Exit Admin</a>
+        </aside>
+
+        <main class="admin-main">
+            <div class="flex justify-between items-center mb-6">
+                <h2>Monthly Repeat Buyers Tracker</h2>
+                <div class="card" style="padding: 0.5rem 1rem; color: var(--success); font-weight: bold;">
+                    Total Subscribers: 124
+                </div>
+            </div>
+
+            <div class="card" style="padding: 1.5rem;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <tr style="border-bottom: 2px solid var(--border); color: var(--text-muted);">
+                        <th style="padding: 1rem;">Customer Info</th>
+                        <th style="padding: 1rem;">Subscribed Medicine</th>
+                        <th style="padding: 1rem;">Frequency</th>
+                        <th style="padding: 1rem;">Next Order Date</th>
+                        <th style="padding: 1rem;">Action</th>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding: 1rem;">
+                            <strong>Rahul Sharma</strong><br>
+                            <span class="text-muted" style="font-size:0.8rem;">rahul@email.com</span>
+                        </td>
+                        <td style="padding: 1rem;">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-pills text-primary"></i> <strong>Diabetes Care Pack</strong>
+                            </div>
+                        </td>
+                        <td style="padding: 1rem;"><span class="badge badge-success">Every 1st of Month</span></td>
+                        <td style="padding: 1rem;">Nov 1, 2026</td>
+                        <td style="padding: 1rem;"><button class="btn btn-outline" style="padding: 0.4rem 1rem;">View Details</button></td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding: 1rem;">
+                            <strong>Amit Patel</strong><br>
+                            <span class="text-muted" style="font-size:0.8rem;">amit.p@email.com</span>
+                        </td>
+                        <td style="padding: 1rem;">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-heart-pulse text-primary"></i> <strong>BP Medicine Pack</strong>
+                            </div>
+                        </td>
+                        <td style="padding: 1rem;"><span class="badge badge-success">Every 15th of Month</span></td>
+                        <td style="padding: 1rem;">Nov 15, 2026</td>
+                        <td style="padding: 1rem;"><button class="btn btn-outline" style="padding: 0.4rem 1rem;">View Details</button></td>
+                    </tr>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>

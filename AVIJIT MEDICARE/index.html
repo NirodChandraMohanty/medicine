@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        if (localStorage.getItem("avijit_logged_in") !== "true") {
+            window.location.href = "login.html";
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVIJIT MEDICARE - Trusted Pharmacy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css?v=35">
+</head>
+
+<body>
+
+    <!-- TOP HEADER -->
+    <div class="top-header">
+        <div class="container flex justify-between items-center">
+
+            <a href="index.html" class="logo-box">
+                <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i></div>
+                <div class="logo-text-group">
+                    <span class="logo-text">Avijit Medicare</span>
+                    <span class="logo-sub">TRUSTED PHARMACY</span>
+                </div>
+            </a>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search medicines, doctors, products...">
+            </div>
+
+            <div class="top-actions">
+                <div class="square-icon"><i class="fa-regular fa-bell"></i></div>
+                <div class="square-icon"><i class="fa-regular fa-heart"></i></div>
+                <a href="cart.html" class="square-icon" style="position: relative;">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span
+                        style="position: absolute; top:-5px; right:-5px; background:red; color:white; font-size:9px; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center;">2</span>
+                </a>
+
+                <div class="action-links">
+                    <span id="welcomeUser" class="register-link"></span>
+                    <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary"
+                        style="border-radius: 4px;">
+                        Logout
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- NAV HEADER -->
+    <div class="nav-header">
+        <div class="container flex justify-between items-center" style="position: relative;">
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="medicines.html" class="nav-link">Medicine</a>
+                <a href="doctors.html" class="nav-link">Doctors</a>
+                <a href="track-order.html" class="nav-link">Order</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <!-- Background Decorative Shapes -->
+        <div class="hero-bg-shape shape-1"></div>
+        <div class="hero-bg-shape shape-2"></div>
+        <div class="hero-bg-shape shape-3"></div>
+
+        <div class="container hero-content">
+
+            <!-- LEFT SIDE CONTENT -->
+            <div class="hero-left">
+
+                <!-- HERO SLIDE 1 -->
+                <div class="hero-slide active">
+                    <div class="hero-tag">INDIA'S TRUSTED PHARMACY SINCE 2003</div>
+
+                    <h1>
+                        Your Health,<br>
+                        <span>Delivered</span><br>
+                        With Care
+                    </h1>
+
+                    <p>
+                        Genuine medicines, verified doctors, and fast doorstep delivery — all under one trusted roof.
+                        Your wellness is our mission.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="medicines.html" class="btn btn-white btn-pill">
+                            Order Medicines
+                        </a>
+
+                        <a href="doctors.html" class="btn btn-outline-white btn-pill">
+                            Consult a Doctor
+                        </a>
+                    </div>
+                </div>
+
+                <!-- HERO SLIDE 2 -->
+                <div class="hero-slide">
+                    <div class="hero-tag">MONTHLY MEDICINE REFILL SUPPORT</div>
+
+                    <h1>
+                        Never Miss<br>
+                        <span>Your Monthly</span><br>
+                        Medicines
+                    </h1>
+
+                    <p>
+                        Track repeat medicines, manage monthly refills, and get reminders before your essential
+                        medicines
+                        run out. Perfect for regular patients and family care.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="subscriptions.html" class="btn btn-white btn-pill">
+                            Start Subscription
+                        </a>
+
+                        <a href="track-order.html" class="btn btn-outline-white btn-pill">
+                            Track Order
+                        </a>
+                    </div>
+                </div>
+
+                <!-- HERO SLIDE 3 -->
+                <div class="hero-slide">
+                    <div class="hero-tag">DOCTOR CONSULTATION + PHARMACY</div>
+
+                    <h1>
+                        Consult Doctors<br>
+                        <span>And Order</span><br>
+                        Medicines
+                    </h1>
+
+                    <p>
+                        Book appointments, chat with experts, upload prescriptions and order medicines from a single
+                        healthcare platform built for modern patients.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="doctors.html" class="btn btn-white btn-pill">
+                            Find Doctors
+                        </a>
+
+                        <a href="prescriptions.html" class="btn btn-outline-white btn-pill">
+                            Upload Prescription
+                        </a>
+                    </div>
+                </div>
+
+                <!-- HERO STATS -->
+                <div class="hero-stats">
+                    <div class="stat-box">
+                        <h3><span class="counter" data-target="50">0</span>K+</h3>
+                        <p>Happy Patients</p>
+                    </div>
+
+                    <div class="stat-box">
+                        <h3><span class="counter" data-target="30">0</span>min</h3>
+                        <p>Delivery Time</p>
+                    </div>
+
+                    <div class="stat-box">
+                        <h3><span class="counter" data-target="500">0</span>+</h3>
+                        <p>Medicines</p>
+                    </div>
+
+                    <div class="stat-box">
+                        <h3><span class="counter" data-target="100">0</span>%</h3>
+                        <p>Genuine</p>
+                    </div>
+                </div>
+
+                <!-- HERO SLIDER CONTROLS -->
+                <div class="hero-slider-controls">
+                    <button type="button" class="hero-arrow" id="heroPrev" aria-label="Previous slide">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+
+                    <div class="hero-dots">
+                        <button type="button" class="hero-dot active" data-slide="0" aria-label="Slide 1"></button>
+                        <button type="button" class="hero-dot" data-slide="1" aria-label="Slide 2"></button>
+                        <button type="button" class="hero-dot" data-slide="2" aria-label="Slide 3"></button>
+                    </div>
+
+                    <button type="button" class="hero-arrow" id="heroNext" aria-label="Next slide">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- RIGHT SIDE GLASS CARD ANIMATION -->
+            <div class="hero-graphics">
+
+                <!-- Glow Orbs -->
+                <div class="glow-orb orb-1"></div>
+                <div class="glow-orb orb-2"></div>
+
+                <!-- VISUAL SLIDE 1 -->
+                <div class="hero-visual-slide active">
+
+                    <!-- Main Card -->
+                    <div class="glass-card float-main">
+                        <div class="glass-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+
+                        <h4>100% Genuine</h4>
+                        <p>Verified Medicines</p>
+                    </div>
+
+                    <!-- Sub Card 1 -->
+                    <div class="glass-card float-sub-1">
+                        <div class="glass-icon-sm" style="background: var(--accent-orange);">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+
+                        <div>
+                            <div class="glass-title">Fast Delivery</div>
+                            <div class="glass-desc">Within 30 Minutes</div>
+                        </div>
+                    </div>
+
+                    <!-- Sub Card 2 -->
+                    <div class="glass-card float-sub-2">
+                        <div class="glass-icon-sm" style="background: var(--mint); color: var(--primary-dark);">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+
+                        <div>
+                            <div class="glass-title">Expert Doctors</div>
+                            <div class="glass-desc">24/7 Available</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- VISUAL SLIDE 2 -->
+                <div class="hero-visual-slide">
+
+                    <!-- Main Card -->
+                    <div class="glass-card float-main">
+                        <div class="glass-icon">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+
+                        <h4>Monthly Refills</h4>
+                        <p>Never Miss Medicine</p>
+                    </div>
+
+                    <!-- Sub Card 1 -->
+                    <div class="glass-card float-sub-1">
+                        <div class="glass-icon-sm" style="background: #6366f1;">
+                            <i class="fa-solid fa-repeat"></i>
+                        </div>
+
+                        <div>
+                            <div class="glass-title">Repeat Orders</div>
+                            <div class="glass-desc">Auto Monthly Tracking</div>
+                        </div>
+                    </div>
+
+                    <!-- Sub Card 2 -->
+                    <div class="glass-card float-sub-2">
+                        <div class="glass-icon-sm" style="background: #f97316;">
+                            <i class="fa-solid fa-bell"></i>
+                        </div>
+
+                        <div>
+                            <div class="glass-title">Refill Alert</div>
+                            <div class="glass-desc">Before Stock Ends</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- VISUAL SLIDE 3 -->
+                <div class="hero-visual-slide">
+
+                    <!-- Main Card -->
+                    <div class="glass-card float-main">
+                        <div class="glass-icon">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+
+                        <h4>Doctor Consult</h4>
+                        <p>Online Health Support</p>
+                    </div>
+
+                    <!-- Sub Card 1 -->
+                    <div class="glass-card float-sub-1">
+                        <div class="glass-icon-sm" style="background: #22c55e;">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+
+                        <div>
+                            <div class="glass-title">Live Chat</div>
+                            <div class="glass-desc">Talk With Experts</div>
+                        </div>
+                    </div>
+
+                    <!-- Sub Card 2 -->
+                    <div class="glass-card float-sub-2">
+                        <div class="glass-icon-sm" style="background: #0ea5e9;">
+                            <i class="fa-solid fa-file-prescription"></i>
+                        </div>
+
+                        <div>
+                            <div class="glass-title">Prescription</div>
+                            <div class="glass-desc">Upload & Order</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <div class="features-strip">
+        <div class="marquee-track">
+
+            <!-- Feature 1 -->
+            <div class="feature-item">
+                <div class="feature-icon" style="background:#ccfbf1; color:#0d9488;">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <div>
+                    <h4>Express Delivery</h4>
+                    <p>Within 30 minutes</p>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="feature-item">
+                <div class="feature-icon" style="background:#fee2e2; color:#dc2626;">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                    <h4>100% Genuine</h4>
+                    <p>Verified distributors</p>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="feature-item">
+                <div class="feature-icon" style="background:#e0e7ff; color:#4f46e5;">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <div>
+                    <h4>24/7 Support</h4>
+                    <p>Expert pharmacists</p>
+                </div>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="feature-item">
+                <div class="feature-icon" style="background:#ffedd5; color:#ea580c;">
+                    <i class="fa-solid fa-rotate-left"></i>
+                </div>
+                <div>
+                    <h4>Easy Returns</h4>
+                    <p>7-day hassle-free</p>
+                </div>
+            </div>
+
+            <!-- Feature 5 -->
+            <div class="feature-item">
+                <div class="feature-icon" style="background:#dcfce7; color:#16a34a;">
+                    <i class="fa-solid fa-user-doctor"></i>
+                </div>
+                <div>
+                    <h4>Doctor Consult</h4>
+                    <p>Online appointment</p>
+                </div>
+            </div>
+
+            <!-- Feature 6 -->
+            <div class="feature-item">
+                <div class="feature-icon" style="background:#fef3c7; color:#d97706;">
+                    <i class="fa-solid fa-prescription-bottle-medical"></i>
+                </div>
+                <div>
+                    <h4>Prescription Upload</h4>
+                    <p>Order with prescription</p>
+                </div>
+            </div>
+
+            <!-- Feature 7 -->
+            <div class="feature-item">
+                <div class="feature-icon" style="background:#fce7f3; color:#db2777;">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <div>
+                    <h4>Wishlist</h4>
+                    <p>Save medicines</p>
+                </div>
+            </div>
+
+            <!-- Feature 8 -->
+            <div class="feature-item">
+                <div class="feature-icon" style="background:#e0f2fe; color:#0284c7;">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div>
+                    <h4>Pincode Check</h4>
+                    <p>Check delivery area</p>
+                </div>
+            </div>
+
+            <!-- Feature 9 -->
+            <div class="feature-item">
+                <div class="feature-icon" style="background:#ede9fe; color:#7c3aed;">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <div>
+                    <h4>Monthly Refill</h4>
+                    <p>Auto medicine reminder</p>
+                </div>
+            </div>
+
+            <!-- Feature 10 -->
+            <div class="feature-item">
+                <div class="feature-icon" style="background:#cffafe; color:#0891b2;">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <div>
+                    <h4>Stock Updates</h4>
+                    <p>Live availability</p>
+                </div>
+            </div>
+
+            <!-- Feature 11 -->
+            <div class="feature-item">
+                <div class="feature-icon" style="background:#fae8ff; color:#c026d3;">
+                    <i class="fa-solid fa-bell"></i>
+                </div>
+                <div>
+                    <h4>Smart Alerts</h4>
+                    <p>Low stock notifications</p>
+                </div>
+            </div>
+
+            <!-- Feature 12 -->
+            <div class="feature-item">
+                <div class="feature-icon" style="background:#ecfccb; color:#65a30d;">
+                    <i class="fa-solid fa-credit-card"></i>
+                </div>
+                <div>
+                    <h4>Secure Payment</h4>
+                    <p>Safe checkout</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ABOUT US SECTION -->
+    <section class="container" style="padding: 5rem 0;">
+        <div class="about-grid">
+            <div class="about-content">
+                <div class="section-header" style="margin: 0 0 1.5rem 0;">
+                    <h2>About <span>Avijit Medicare</span></h2>
+                </div>
+
+                <h4 style="color: var(--primary); margin-bottom: 1rem; font-weight: 600; font-size: 1.2rem;">
+                    Your Most Trusted Healthcare Partner in Odisha
+                </h4>
+
+                <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 2.5rem;">
+                    At Avijit Medicare, we believe that access to genuine medicine and expert healthcare is a
+                    fundamental right. With a legacy of over 15 years, we have been serving the community with 100%
+                    authentic medicines, superfast delivery, and compassionate care.
+                </p>
+
+                <div class="about-features">
+                    <div class="about-feature-item">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div>
+                            <h5>100% Genuine Medicines</h5>
+                            <p>Sourced directly from verified manufacturers.</p>
+                        </div>
+                    </div>
+
+                    <div class="about-feature-item">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <div>
+                            <h5>Superfast Delivery</h5>
+                            <p>Get your orders delivered right to your doorstep.</p>
+                        </div>
+                    </div>
+
+                    <div class="about-feature-item">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+                        <div>
+                            <h5>Expert Consultations</h5>
+                            <p>Connect with top-rated specialist doctors easily.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Correct Redirect Button -->
+                <a href="about.html" class="btn btn-primary"
+                    style="border-radius: 8px; padding: 0.8rem 2rem; font-weight: 600; margin-top: 1rem; display: inline-flex; align-items: center; gap: 8px; text-decoration: none;">
+                    Know More About Us
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="about-image-wrapper">
+                <div class="about-img-main"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+                    <img src="images/about_us.png" alt="Avijit Medicare Pharmacy"
+                        style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease;">
+                </div>
+
+                <div class="about-experience-card">
+                    <div class="exp-number">10+</div>
+                    <div class="exp-text">Years of<br>Excellence</div>
+                </div>
+
+                <div class="about-blob"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOT OFFERS -->
+    <section class="container">
+        <div class="section-header">
+            <h2>Hot <span>Offers</span></h2>
+            <a href="offers.html" class="view-all">All offers</a>
+        </div>
+
+        <div class="offers-grid">
+            <div class="offer-card offer-1">
+                <i class="fa-solid fa-pills bg-icon"></i>
+                <div class="blob"></div>
+                <span class="badge-offer" style="background: white; color: var(--primary-dark);">LIMITED TIME</span>
+                <h3>Monsoon Mega<br>Health Sale</h3>
+                <p style="font-size: 0.9rem; opacity: 0.9; margin: 0;">On all prescription & OTC medicines</p>
+                <div class="discount">30%<span style="font-size: 1.5rem; font-weight: 400;"> OFF</span></div>
+                <p style="font-size: 0.8rem; opacity: 0.8; margin-bottom: 2rem;">Valid till end of this month</p>
+                <button class="btn btn-white"
+                    style="align-self: flex-start; border-radius: 8px; font-weight: 700; padding: 0.8rem 1.5rem;">Shop
+                    Now <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i></button>
+            </div>
+
+            <div class="offer-card offer-sm offer-2">
+                <i class="fa-solid fa-droplet bg-icon-sm"></i>
+                <span class="badge-offer" style="background: #fee2e2; color: #ef4444;">DIABETES CARE</span>
+                <h3>Diabetes Medicines</h3>
+                <p>Top brands for your daily care</p>
+                <div class="discount" style="color: var(--accent-orange);">25%<span
+                        style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">*</span></div>
+                <p style="font-size: 0.75rem; font-weight: 600;">OFF on Glycomet, Galvus Met</p>
+                <button class="btn btn-orange" style="align-self: flex-start; border-radius: 8px; font-weight: 600;"><i
+                        class="fa-solid fa-cart-plus" style="margin-right: 5px;"></i> Shop Now</button>
+            </div>
+
+            <div class="offer-card offer-sm offer-3">
+                <i class="fa-solid fa-heart-pulse bg-icon-sm"></i>
+                <span class="badge-offer" style="background: #fef3c7; color: #d97706;">CARDIAC CARE</span>
+                <h3>Cardiac Medicines</h3>
+                <p>Premium care for your heart health</p>
+                <div class="discount" style="color: var(--accent-yellow);">20%<span
+                        style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">*</span></div>
+                <p style="font-size: 0.75rem; font-weight: 600;">OFF on Telma, Concor</p>
+                <button class="btn btn-yellow" style="align-self: flex-start; border-radius: 8px; font-weight: 600;"><i
+                        class="fa-solid fa-cart-plus" style="margin-right: 5px;"></i> Shop Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- POPULAR MEDICINES -->
+    <section class="container">
+        <div class="section-header">
+            <h2>Popular <span>Medicines</span></h2>
+            <a href="medicines.html" class="view-all">View all</a>
+        </div>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-badges">
+                    <span class="badge-offer" style="background: #ef4444; color: white;">SALE</span>
+                    <i class="fa-regular fa-square" style="color: var(--border);"></i>
+                </div>
+                <div class="product-img"><i class="fa-solid fa-pills" style="color: #fbbf24; font-size: 2.5rem;"></i>
+                </div>
+                <div class="product-tag">PAINKILLER</div>
+                <h3>Dolo 650 Tablet</h3>
+                <div class="product-desc">Paracetamol · 15 tabs</div>
+                <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star-half"></i> <span style="color:var(--text-muted);">(2.4k)</span></div>
+                <div class="product-bottom">
+                    <div><span class="product-price">₹32</span><span class="product-mrp">₹40</span></div>
+                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-badges">
+                    <span class="badge-offer" style="background: #10b981; color: white;">NEW</span>
+                    <i class="fa-regular fa-square" style="color: var(--border);"></i>
+                </div>
+                <div class="product-img"><i class="fa-solid fa-tablets" style="color: #60a5fa; font-size: 2.5rem;"></i>
+                </div>
+                <div class="product-tag">ANTIBIOTIC</div>
+                <h3>Azithral 500 Tablet</h3>
+                <div class="product-desc">Azithromycin · 5 tabs</div>
+                <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                    <span style="color:var(--text-muted);">(850)</span>
+                </div>
+                <div class="product-bottom">
+                    <div><span class="product-price">₹119</span><span class="product-mrp">₹132</span></div>
+                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-badges">
+                    <span class="badge-offer" style="background: #ef4444; color: white;">HOT</span>
+                    <i class="fa-regular fa-square" style="color: var(--border);"></i>
+                </div>
+                <div class="product-img"><i class="fa-solid fa-capsules" style="color: #fca5a5; font-size: 2.5rem;"></i>
+                </div>
+                <div class="product-tag">ANTACID</div>
+                <h3>Pan 40 Tablet</h3>
+                <div class="product-desc">Pantoprazole · 15 tabs</div>
+                <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <span style="color:var(--text-muted);">(1.2k)</span>
+                </div>
+                <div class="product-bottom">
+                    <div><span class="product-price">₹135</span><span class="product-mrp">₹155</span></div>
+                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-badges">
+                    <span class="badge-offer" style="background: #ef4444; color: white;">SALE</span>
+                    <i class="fa-regular fa-square" style="color: var(--border);"></i>
+                </div>
+                <div class="product-img"><i class="fa-solid fa-pills" style="color: #a855f7; font-size: 2.5rem;"></i>
+                </div>
+                <div class="product-tag">ANTI-ALLERGIC</div>
+                <h3>Montek LC Tablet</h3>
+                <div class="product-desc">Montelukast + Levocetirizine · 10 tabs</div>
+                <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star-half"></i> <span style="color:var(--text-muted);">(3.2k)</span></div>
+                <div class="product-bottom">
+                    <div><span class="product-price">₹189</span><span class="product-mrp">₹210</span></div>
+                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR EXPERT DOCTORS -->
+    <section class="container">
+        <div class="section-header">
+            <h2>Our Expert <span>Doctors</span></h2>
+            <a href="doctors.html" class="view-all">All doctors</a>
+        </div>
+
+        <div class="doctor-grid">
+            <div class="doctor-card">
+                <div class="doc-avatar">👨‍⚕️</div>
+                <h3>Dr. Rajesh Kumar</h3>
+                <div class="doc-spec">General Physician</div>
+                <div class="doc-rating">4.9 · 1.2k reviews</div>
+                <div class="doc-price">₹299 / consultation</div>
+                <button class="btn-doc">Book Appointment</button>
+            </div>
+            <div class="doctor-card">
+                <div class="doc-avatar">👩‍⚕️</div>
+                <h3>Dr. Priya Sharma</h3>
+                <div class="doc-spec">Dermatologist</div>
+                <div class="doc-rating">4.8 · 856 reviews</div>
+                <div class="doc-price">₹499 / consultation</div>
+                <button class="btn-doc">Book Appointment</button>
+            </div>
+            <div class="doctor-card">
+                <div class="doc-avatar">👨‍⚕️</div>
+                <h3>Dr. Anand Patel</h3>
+                <div class="doc-spec">Cardiologist</div>
+                <div class="doc-rating">4.9 · 2.1k reviews</div>
+                <div class="doc-price">₹799 / consultation</div>
+                <button class="btn-doc">Book Appointment</button>
+            </div>
+            <div class="doctor-card">
+                <div class="doc-avatar">👩‍⚕️</div>
+                <h3>Dr. Sunita Devi</h3>
+                <div class="doc-spec">Gynaecologist</div>
+                <div class="doc-rating">4.7 · 945 reviews</div>
+                <div class="doc-price">₹599 / consultation</div>
+                <button class="btn-doc">Book Appointment</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- HEALTH TIPS & BLOGS -->
+    <section class="container">
+        <div class="section-header">
+            <h2>Health <span>Tips & Blogs</span></h2>
+            <a href="blog.html" class="view-all">Read all</a>
+        </div>
+
+        <div class="blog-grid">
+            <div class="blog-card">
+                <div class="blog-img">
+                    <img src="images/blog_1.png" alt="Nutrition Blog">
+                    <div class="blog-date">12 May 2024</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-tag tag-nutrition">NUTRITION</div>
+                    <h3>Top 10 Foods That Boost Your Immunity Naturally</h3>
+                    <p>Discover everyday superfoods that strengthen your body's natural defense system.</p>
+                    <a href="blog.html" class="blog-read-more">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-img">
+                    <img src="images/blog_2.png" alt="Wellness Blog">
+                    <div class="blog-date">10 May 2024</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-tag tag-wellness">WELLNESS</div>
+                    <h3>How Daily Meditation Reduces Stress & Blood Pressure</h3>
+                    <p>Clinical studies confirm 10 minutes of mindfulness daily improves cardiovascular health.</p>
+                    <a href="blog.html" class="blog-read-more">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-img">
+                    <img src="images/blog_3.png" alt="Hydration Blog">
+                    <div class="blog-date">05 May 2024</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-tag tag-hydration">HYDRATION</div>
+                    <h3>Why You Should Drink 8 Glasses of Water Every Day</h3>
+                    <p>Proper hydration improves energy, digestion, skin health and organ function.</p>
+                    <a href="blog.html" class="blog-read-more">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-img">
+                    <img src="images/blog_4.png" alt="Supplements Blog">
+                    <div class="blog-date">02 May 2024</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-tag tag-supplements">SUPPLEMENTS</div>
+                    <h3>The Truth About Daily Multi-Vitamins for Adults</h3>
+                    <p>An expert breakdown of which supplements actually work and what you should avoid.</p>
+                    <a href="blog.html" class="blog-read-more">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRACK ORDER -->
+    <section class="track-section">
+        <div class="container track-grid">
+            <div>
+                <h2>Track Your Order<br>in Real Time</h2>
+                <p>Know exactly where your medicine is — from our pharmacy to your door. Enter your order ID below and
+                    get live updates.</p>
+                <div class="track-input">
+                    <input type="text" placeholder="Enter Order ID e.g. AM-2024-00123">
+                    <button class="btn btn-white" style="border-radius: 4px;">Track Now</button>
+                </div>
+            </div>
+            <div class="track-animation-container">
+                <div class="radar-pulse"></div>
+                <div class="radar-pulse delay-1"></div>
+                <div class="radar-pulse delay-2"></div>
+
+                <div class="track-vehicle">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+
+                <div class="orbit-icon orbit-1"><i class="fa-solid fa-box"></i></div>
+                <div class="orbit-icon orbit-2"><i class="fa-solid fa-location-dot"></i></div>
+                <div class="orbit-icon orbit-3"><i class="fa-solid fa-check"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="container" style="padding: 5rem 0;">
+        <div class="section-header" style="text-align: center; justify-content: center; margin-bottom: 3rem;">
+            <h2>What Our <span>Patients Say</span></h2>
+        </div>
+
+        <div class="testimonial-wrapper">
+            <div class="testimonial-track">
+                <!-- Group 1 -->
+                <div class="testimonial-group">
+                    <div class="testimonial-card">
+                        <div class="test-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p>"The best pharmacy experience I've had in Bhubaneswar. Medicines are always genuine, and
+                            the 30-minute delivery is a lifesaver during emergencies!"</p>
+                        <div class="test-user">
+                            <div class="test-avatar">SR</div>
+                            <div>
+                                <h4>Satyajit Mohanty</h4>
+                                <span>Verified Buyer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="test-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p>"Booking a doctor consultation was incredibly easy. Dr. Rajesh Kumar was very patient and
+                            explained everything perfectly. Highly recommended platform!"</p>
+                        <div class="test-user">
+                            <div class="test-avatar" style="background: var(--accent-orange);">PM</div>
+                            <div>
+                                <h4>Nirod Chandra Mohanty</h4>
+                                <span>Consulted Doctor</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="test-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <p>"Avijit Medicare offers great discounts on my monthly diabetic medicines. Their radar
+                            tracking feature is just amazing and feels so premium!"</p>
+                        <div class="test-user">
+                            <div class="test-avatar" style="background: var(--accent-yellow);">AP</div>
+                            <div>
+                                <h4>Rudra Ray</h4>
+                                <span>Regular Customer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="test-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p>"Fastest delivery in town! Got my prescription medicines within 20 minutes right at my
+                            doorstep. The packaging was also very secure and neat."</p>
+                        <div class="test-user">
+                            <div class="test-avatar" style="background: #10b981;">RD</div>
+                            <div>
+                                <h4>Khirod Mohanty</h4>
+                                <span>Verified Buyer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="test-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p>"The lab tests were done at home smoothly. Excellent staff behavior and prompt reports. I
+                            highly trust Avijit Medicare for my family's health."</p>
+                        <div class="test-user">
+                            <div class="test-avatar" style="background: #8b5cf6;">SS</div>
+                            <div>
+                                <h4>Alaka Mohanty</h4>
+                                <span>Health Checkup</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group 2 (Duplicate for seamless loop) -->
+                <div class="testimonial-group">
+                    <div class="testimonial-card">
+                        <div class="test-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p>"The best pharmacy experience I've had in Bhubaneswar. Medicines are always genuine, and
+                            the 30-minute delivery is a lifesaver during emergencies!"</p>
+                        <div class="test-user">
+                            <div class="test-avatar">SR</div>
+                            <div>
+                                <h4>Suraj Das</h4>
+                                <span>Verified Buyer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="test-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p>"Booking a doctor consultation was incredibly easy. Dr. Rajesh Kumar was very patient and
+                            explained everything perfectly. Highly recommended platform!"</p>
+                        <div class="test-user">
+                            <div class="test-avatar" style="background: var(--accent-orange);">PM</div>
+                            <div>
+                                <h4>Elina Mohanty</h4>
+                                <span>Consulted Doctor</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="test-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <p>"Avijit Medicare offers great discounts on my monthly diabetic medicines. Their radar
+                            tracking feature is just amazing and feels so premium!"</p>
+                        <div class="test-user">
+                            <div class="test-avatar" style="background: var(--accent-yellow);">AP</div>
+                            <div>
+                                <h4>Loresh Dash</h4>
+                                <span>Regular Customer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="test-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p>"Fastest delivery in town! Got my prescription medicines within 20 minutes right at my
+                            doorstep. The packaging was also very secure and neat."</p>
+                        <div class="test-user">
+                            <div class="test-avatar" style="background: #10b981;">RD</div>
+                            <div>
+                                <h4>Rakesh Dash</h4>
+                                <span>Verified Buyer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="test-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p>"The lab tests were done at home smoothly. Excellent staff behavior and prompt reports. I
+                            highly trust Avijit Medicare for my family's health."</p>
+                        <div class="test-user">
+                            <div class="test-avatar" style="background: #8b5cf6;">SS</div>
+                            <div>
+                                <h4>Neheru Shaoo</h4>
+                                <span>Health Checkup</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="logo-box" style="margin-bottom: 1rem;">
+                        <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white;"></i></div>
+                        <div class="logo-text-group">
+                            <span class="logo-text" style="color: white;">Avijit Medicare</span>
+                            <span class="logo-sub" style="color: rgba(255,255,255,0.6);">TRUSTED PHARMACY</span>
+                        </div>
+                    </div>
+                    <p>Your trusted partner for genuine medicines, expert doctors, and fast doorstep delivery across
+                        Odisha. Quality healthcare, simplified.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="medicines.html">Medicine</a></li>
+                        <li><a href="doctors.html">Doctors</a></li>
+                        <li><a href="track-order.html">Order</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Contact Info</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <li
+                            style="display: flex; gap: 15px; align-items: flex-start; color: rgba(255,255,255,0.7); margin: 0; line-height: 1.6;">
+                            <i class="fa-solid fa-location-dot"
+                                style="margin-top: 4px; color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                            <span>Avijit Medicare, Soro Square,<br>Baleswar, Odisha 756045</span>
+                        </li>
+                        <li
+                            style="display: flex; gap: 15px; align-items: center; color: rgba(255,255,255,0.7); margin: 0;">
+                            <i class="fa-solid fa-phone"
+                                style="color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                            <span>+91 9556532388</span>
+                        </li>
+                        <li
+                            style="display: flex; gap: 15px; align-items: center; color: rgba(255,255,255,0.7); margin: 0;">
+                            <i class="fa-solid fa-envelope"
+                                style="color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                            <span>support@avijitmedicare.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>&copy; 2026 Avijit Medicare. All rights reserved. Made with care in Odisha, India.</div>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Refund Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky Navbar + Counter + Auth + Hero Slider Script -->
+    <script>
+        /* ===============================
+           AUTH CHECK
+           Login na thile index.html open haba nahi
+        =============================== */
+        if (localStorage.getItem("avijit_logged_in") !== "true") {
+            window.location.href = "login.html";
+        }
+
+        /* ===============================
+           WELCOME USER SHOW
+           Header re Hi, UserName show kariba
+        =============================== */
+        const currentUser = JSON.parse(localStorage.getItem("avijit_current_user"));
+
+        if (currentUser && document.getElementById("welcomeUser")) {
+            document.getElementById("welcomeUser").innerText = "Hi, " + currentUser.fname;
+        }
+
+        /* ===============================
+           LOGOUT FUNCTION
+        =============================== */
+        function logoutUser() {
+            localStorage.removeItem("avijit_logged_in");
+            localStorage.removeItem("avijit_current_user");
+            window.location.href = "login.html";
+        }
+
+        /* ===============================
+           STICKY NAVBAR SCRIPT
+        =============================== */
+        window.addEventListener("scroll", function () {
+            const nav = document.querySelector(".nav-header");
+
+            if (nav) {
+                if (window.scrollY > 10) {
+                    nav.classList.add("scrolled");
+                } else {
+                    nav.classList.remove("scrolled");
+                }
+            }
+        });
+
+        /* ===============================
+           NUMBER COUNTER ANIMATION
+           Counter only once run haba
+        =============================== */
+        const counters = document.querySelectorAll(".counter");
+        let counterStarted = false;
+
+        function startCounters() {
+            if (counterStarted) return;
+            counterStarted = true;
+
+            counters.forEach(counter => {
+                counter.innerText = "0";
+
+                const updateCount = () => {
+                    const target = Number(counter.getAttribute("data-target"));
+                    const count = Number(counter.innerText);
+                    const inc = Math.max(1, Math.ceil(target / 45));
+
+                    if (count < target) {
+                        counter.innerText = Math.min(target, count + inc);
+                        setTimeout(updateCount, 35);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+
+                updateCount();
+            });
+        }
+
+        if (counters.length) {
+            setTimeout(startCounters, 250);
+        }
+
+        /* ===============================
+           HERO SLIDER AUTO CHANGE
+           Left text + Right glass card animation
+           4 sec pare slide change haba
+        =============================== */
+        const heroSlides = document.querySelectorAll(".hero-slide");
+        const heroVisualSlides = document.querySelectorAll(".hero-visual-slide");
+        const heroDots = document.querySelectorAll(".hero-dot");
+        const heroPrev = document.getElementById("heroPrev");
+        const heroNext = document.getElementById("heroNext");
+
+        let currentHeroSlide = 0;
+        let heroInterval = null;
+        const heroSlideTime = 4000;
+
+        function showHeroSlide(index) {
+            if (!heroSlides.length || !heroVisualSlides.length || !heroDots.length) return;
+
+            if (index < 0) {
+                index = heroSlides.length - 1;
+            }
+
+            if (index >= heroSlides.length) {
+                index = 0;
+            }
+
+            heroSlides.forEach(slide => slide.classList.remove("active"));
+            heroVisualSlides.forEach(slide => slide.classList.remove("active"));
+            heroDots.forEach(dot => dot.classList.remove("active"));
+
+            currentHeroSlide = index;
+
+            heroSlides[currentHeroSlide].classList.add("active");
+            heroVisualSlides[currentHeroSlide].classList.add("active");
+            heroDots[currentHeroSlide].classList.add("active");
+        }
+
+        function nextHeroSlide() {
+            showHeroSlide(currentHeroSlide + 1);
+        }
+
+        function prevHeroSlide() {
+            showHeroSlide(currentHeroSlide - 1);
+        }
+
+        function startHeroAutoSlide() {
+            if (!heroSlides.length) return;
+
+            stopHeroAutoSlide();
+            heroInterval = setInterval(nextHeroSlide, heroSlideTime);
+        }
+
+        function stopHeroAutoSlide() {
+            if (heroInterval) {
+                clearInterval(heroInterval);
+                heroInterval = null;
+            }
+        }
+
+        function resetHeroAutoSlide() {
+            stopHeroAutoSlide();
+            startHeroAutoSlide();
+        }
+
+        if (heroNext) {
+            heroNext.addEventListener("click", function () {
+                nextHeroSlide();
+                resetHeroAutoSlide();
+            });
+        }
+
+        if (heroPrev) {
+            heroPrev.addEventListener("click", function () {
+                prevHeroSlide();
+                resetHeroAutoSlide();
+            });
+        }
+
+        heroDots.forEach(dot => {
+            dot.addEventListener("click", function () {
+                const index = Number(this.getAttribute("data-slide"));
+                showHeroSlide(index);
+                resetHeroAutoSlide();
+            });
+        });
+
+        /* Mouse hover kale slider pause haba */
+        const heroSection = document.querySelector(".hero");
+
+        if (heroSection) {
+            heroSection.addEventListener("mouseenter", stopHeroAutoSlide);
+            heroSection.addEventListener("mouseleave", startHeroAutoSlide);
+        }
+
+        /* Browser tab inactive hele interval stop, active hele start */
+        document.addEventListener("visibilitychange", function () {
+            if (document.hidden) {
+                stopHeroAutoSlide();
+            } else {
+                startHeroAutoSlide();
+            }
+        });
+
+        /* Initial active slide set */
+        showHeroSlide(0);
+        startHeroAutoSlide();
+    </script>
+
+    <!-- Floating Contact Buttons -->
+    <div class="floating-contact">
+
+        <!-- Call Button -->
+        <a href="tel:+917855870349" class="float-btn call-float" title="Call +91 7855870349">
+            <i class="fa-solid fa-phone"></i>
+        </a>
+
+        <!-- WhatsApp Button With Message -->
+        <a href="https://wa.me/919971286110?text=Hello%20Avijit%20Medicare%2C%20I%20need%20help%20with%20medicine%20order."
+            target="_blank" class="float-btn wa-float" title="WhatsApp +91 9971286110">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+
+    </div>
+</body>
+
+</html>

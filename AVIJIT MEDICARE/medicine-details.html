@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paracetamol 500mg - AVIJIT MEDICARE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .product-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 2rem;
+            margin-bottom: 4rem;
+        }
+        @media (max-width: 992px) {
+            .product-detail-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+        .product-image-large {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10rem;
+            color: var(--primary);
+        }
+        .stock-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--warning);
+            color: #fff;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .stock-badge.in-stock { background: var(--success); }
+        .stock-badge.out-of-stock { background: var(--danger); }
+        
+        .price-huge {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+        
+        .pincode-checker {
+            background: var(--bg);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            border: 1px dashed var(--border);
+            margin: 2rem 0;
+        }
+        .pincode-checker .flex {
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .info-tabs {
+            margin-top: 3rem;
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+        }
+        
+        .criteria-box {
+            background: var(--primary-light);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .qty-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: var(--surface);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        .qty-input {
+            width: 60px;
+            height: 40px;
+            text-align: center;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 1.1rem;
+            background: var(--surface);
+            color: var(--text-main);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container navbar">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-notes-medical"></i>
+                <span>AVIJIT <span>MEDICARE</span></span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="medicines.html" class="nav-link active">Medicines</a>
+                <a href="offers.html" class="nav-link">Offers</a>
+                <a href="doctors.html" class="nav-link">Consult Doctor</a>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-btn" id="theme-toggle" title="Toggle Dark Mode"><i class="fa-solid fa-moon"></i></button>
+                <a href="cart.html" class="icon-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container" style="padding-top: 2rem; color: var(--text-muted);">
+        <a href="index.html">Home</a> / <a href="medicines.html">Medicines</a> / <span>Paracetamol 500mg</span>
+    </div>
+
+    <!-- Product Details -->
+    <div class="container product-detail-grid">
+        <!-- Left: Image -->
+        <div class="product-image-large">
+            <i class="fa-solid fa-pills"></i>
+        </div>
+
+        <!-- Right: Details -->
+        <div>
+            <!-- Client Requested Feature: Stock System showing "Only 9 left" -->
+            <div class="stock-badge"><i class="fa-solid fa-triangle-exclamation"></i> Only 9 left in stock</div>
+            
+            <h1 style="margin-bottom: 0.5rem;">Paracetamol 500mg Tablet</h1>
+            <p class="text-muted" style="font-size: 1.1rem;">By HealthPharm Inc.</p>
+            
+            <div class="price-huge">₹45.00 <span style="font-size: 1rem; color: var(--text-muted); font-weight: normal;">(Strip of 10)</span></div>
+            
+            <!-- Client Requested Feature: Criteria -->
+            <div class="criteria-box">
+                <h4 style="margin:0; color: var(--primary-dark);"><i class="fa-solid fa-file-prescription"></i> Criteria: No Prescription Required</h4>
+                <p style="margin: 0; font-size: 0.9rem; margin-top: 5px;">This is an OTC (Over-The-Counter) medicine. Safe to buy without a doctor's slip.</p>
+            </div>
+
+            <!-- Client Requested Feature: Pincode Check -->
+            <div class="pincode-checker">
+                <h4 style="margin:0;"><i class="fa-solid fa-location-dot"></i> Check Delivery Availability</h4>
+                <div class="flex">
+                    <input type="text" class="form-control" placeholder="Enter PIN Code" maxlength="6" id="pincode-input">
+                    <button class="btn btn-outline" onclick="checkPincode()">Check</button>
+                </div>
+                <p id="pincode-result" class="mt-2" style="font-size: 0.9rem; display: none;"></p>
+            </div>
+
+            <div class="quantity-control">
+                <span>Quantity:</span>
+                <button class="qty-btn" onclick="document.getElementById('qty').value--">-</button>
+                <input type="number" id="qty" class="qty-input" value="1" min="1" max="9">
+                <button class="qty-btn" onclick="document.getElementById('qty').value++">+</button>
+            </div>
+
+            <div class="flex gap-4" style="margin-top: 2rem;">
+                <button class="btn btn-primary" style="flex: 1; font-size: 1.2rem; padding: 1rem;"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                <!-- Client Requested Feature: Wishlist -->
+                <button class="btn btn-outline" style="font-size: 1.2rem; padding: 1rem;" title="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+            </div>
+            
+            <button class="btn w-full mt-4" style="background: var(--secondary); color: white; padding: 1rem;"><i class="fa-solid fa-bolt"></i> Subscribe & Save 10% (Monthly Reorder)</button>
+
+            <!-- Client Requested Feature: Uses & Info -->
+            <div class="info-tabs">
+                <h3 style="border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">Uses & Information</h3>
+                
+                <h4 class="text-primary"><i class="fa-solid fa-notes-medical"></i> Uses</h4>
+                <p class="mb-4">Paracetamol 500mg Tablet is a common painkiller used to treat aches and pains. It can also be used to reduce a high temperature (fever). It is safely used to treat headaches, period pain, toothache, backache, osteoarthritis, or cold/flu symptoms.</p>
+
+                <h4 class="text-primary"><i class="fa-solid fa-triangle-exclamation"></i> Side Effects</h4>
+                <p class="mb-4">Most people do not experience any side effects if taken correctly. However, rare side effects may include nausea, stomach pain, or allergic reactions (rash).</p>
+
+                <h4 class="text-primary"><i class="fa-solid fa-clock"></i> How to use</h4>
+                <p>Take this medicine in the dose and duration as advised by your doctor. Swallow it as a whole. Do not chew, crush or break it. Can be taken with or without food.</p>
+            </div>
+            
+            <!-- Client Requested Feature: Reviews -->
+            <div class="info-tabs">
+                <h3 style="border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">User Reviews</h3>
+                <div class="mb-4">
+                    <div class="flex justify-between">
+                        <strong><i class="fa-solid fa-user"></i> Rahul Sharma</strong>
+                        <span style="color: var(--warning);"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half"></i></span>
+                    </div>
+                    <p class="text-muted mt-2">Genuine product. Delivered in 2 hours via express delivery. Very satisfied with AVIJIT MEDICARE!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p class="text-muted">&copy; 2026 AVIJIT MEDICARE.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        function checkPincode() {
+            const input = document.getElementById('pincode-input').value;
+            const res = document.getElementById('pincode-result');
+            res.style.display = 'block';
+            if(input.length === 6) {
+                res.innerHTML = `<span style="color: var(--success);"><i class="fa-solid fa-check-circle"></i> Delivery available to ${input}. ETA: Tomorrow by 9 PM.</span>`;
+            } else {
+                res.innerHTML = `<span style="color: var(--danger);"><i class="fa-solid fa-times-circle"></i> Please enter a valid 6-digit PIN code.</span>`;
+            }
+        }
+    </script>
+</body>
+</html>

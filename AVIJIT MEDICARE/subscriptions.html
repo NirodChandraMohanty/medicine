@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Subscriptions - AVIJIT MEDICARE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .dashboard-layout { display: grid; grid-template-columns: 250px 1fr; gap: 2rem; margin: 2rem 0; }
+        @media (max-width: 992px) { .dashboard-layout { grid-template-columns: 1fr; } .sidebar { display: none; } }
+        .sidebar { background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border); padding: 1rem 0; height: fit-content; }
+        .sidebar-link { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.5rem; color: var(--text-main); transition: var(--transition); }
+        .sidebar-link:hover, .sidebar-link.active { background: var(--primary-light); color: var(--primary); border-left: 4px solid var(--primary); }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container navbar">
+            <a href="index.html" class="logo"><i class="fa-solid fa-notes-medical"></i><span>AVIJIT <span>MEDICARE</span></span></a>
+            <div class="header-actions">
+                <button class="icon-btn" id="theme-toggle"><i class="fa-solid fa-moon"></i></button>
+                <div class="flex items-center gap-2"><i class="fa-solid fa-circle-user text-primary" style="font-size: 1.5rem;"></i> <strong>Rahul S.</strong></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container dashboard-layout">
+        <aside class="sidebar">
+            <a href="dashboard.html" class="sidebar-link"><i class="fa-solid fa-table-columns"></i> Overview</a>
+            <a href="my-orders.html" class="sidebar-link"><i class="fa-solid fa-box"></i> My Orders</a>
+            <a href="subscriptions.html" class="sidebar-link active"><i class="fa-solid fa-repeat"></i> Subscriptions</a>
+            <a href="prescriptions.html" class="sidebar-link"><i class="fa-solid fa-file-prescription"></i> Prescriptions</a>
+            <a href="wishlist.html" class="sidebar-link"><i class="fa-solid fa-heart"></i> Wishlist</a>
+            <a href="profile.html" class="sidebar-link"><i class="fa-solid fa-gear"></i> Settings</a>
+        </aside>
+
+        <main>
+            <div class="flex justify-between items-center mb-6">
+                <h2>Monthly Subscriptions</h2>
+                <a href="medicines.html" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add New</a>
+            </div>
+
+            <div class="card mb-4" style="padding: 1.5rem; border-left: 4px solid var(--success);">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-4">
+                        <div style="font-size: 2rem; color: var(--primary);"><i class="fa-solid fa-pills"></i></div>
+                        <div>
+                            <h3 class="m-0">Diabetes Care Pack (Metformin 500mg)</h3>
+                            <p class="text-muted m-0">Qty: 2 | Auto-renews on 1st of every month</p>
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <span class="badge badge-success mb-2">Active</span>
+                        <div class="font-bold">₹350.00 / month</div>
+                    </div>
+                </div>
+                <div class="flex gap-2 mt-4 pt-4" style="border-top: 1px solid var(--border);">
+                    <button class="btn btn-outline" style="padding: 0.5rem 1rem;">Edit Quantity</button>
+                    <button class="btn btn-outline text-danger" style="padding: 0.5rem 1rem;">Pause Subscription</button>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="padding: 1.5rem; border-left: 4px solid var(--warning);">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-4">
+                        <div style="font-size: 2rem; color: var(--text-muted);"><i class="fa-solid fa-heart-pulse"></i></div>
+                        <div>
+                            <h3 class="m-0">Multivitamin Daily Pack</h3>
+                            <p class="text-muted m-0">Qty: 1 | Auto-renews on 15th of every month</p>
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <span class="badge badge-warning mb-2">Paused</span>
+                        <div class="font-bold">₹299.00 / month</div>
+                    </div>
+                </div>
+                <div class="flex gap-2 mt-4 pt-4" style="border-top: 1px solid var(--border);">
+                    <button class="btn btn-primary" style="padding: 0.5rem 1rem;">Resume</button>
+                    <button class="btn btn-outline text-danger" style="padding: 0.5rem 1rem;">Cancel</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>
