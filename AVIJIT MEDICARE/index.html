@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AVIJIT MEDICARE - Trusted Pharmacy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css?v=35">
+    <link rel="stylesheet" href="css/style.css?v=45">
 </head>
 
 <body>
@@ -48,6 +48,14 @@
                         Logout
                     </a>
                 </div>
+
+                <!-- Mobile Menu & Search Toggles -->
+                <button class="mobile-search-toggle" id="mobileSearchToggle" aria-label="Toggle Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
 
         </div>
@@ -1250,7 +1258,91 @@
         /* Initial active slide set */
         showHeroSlide(0);
         startHeroAutoSlide();
+
+        /* ==========================================================================
+           MOBILE MENU DRAWER & SEARCH TOGGLE SCRIPT
+           ========================================================================== */
+        document.addEventListener("DOMContentLoaded", function () {
+            const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+            const drawerClose = document.getElementById("drawerClose");
+            const mobileMenuDrawer = document.getElementById("mobileMenuDrawer");
+            const drawerOverlay = document.getElementById("drawerOverlay");
+            const mobileSearchToggle = document.getElementById("mobileSearchToggle");
+            const searchContainer = document.querySelector(".search-container");
+
+            if (mobileMenuToggle && mobileMenuDrawer && drawerOverlay) {
+                mobileMenuToggle.addEventListener("click", () => {
+                    mobileMenuDrawer.classList.add("active");
+                    drawerOverlay.classList.add("active");
+                    document.body.style.overflow = "hidden"; // Prevent background scroll
+                });
+            }
+
+            if (drawerClose && mobileMenuDrawer && drawerOverlay) {
+                drawerClose.addEventListener("click", () => {
+                    mobileMenuDrawer.classList.remove("active");
+                    drawerOverlay.classList.remove("active");
+                    document.body.style.overflow = "";
+                });
+            }
+
+            if (drawerOverlay && mobileMenuDrawer) {
+                drawerOverlay.addEventListener("click", () => {
+                    mobileMenuDrawer.classList.remove("active");
+                    drawerOverlay.classList.remove("active");
+                    document.body.style.overflow = "";
+                });
+            }
+
+            if (mobileSearchToggle && searchContainer) {
+                mobileSearchToggle.addEventListener("click", () => {
+                    searchContainer.classList.toggle("mobile-active");
+                });
+            }
+
+            // Welcome user in mobile menu
+            if (typeof currentUser !== 'undefined' && currentUser && document.getElementById("welcomeUserMobile")) {
+                document.getElementById("welcomeUserMobile").innerText = "Hi, " + currentUser.fname;
+            } else {
+                const storedUser = JSON.parse(localStorage.getItem("avijit_current_user"));
+                if (storedUser && document.getElementById("welcomeUserMobile")) {
+                    document.getElementById("welcomeUserMobile").innerText = "Hi, " + storedUser.fname;
+                }
+            }
+        });
     </script>
+
+    <!-- MOBILE DRAWER MENU OVERLAY -->
+    <div class="mobile-menu-drawer" id="mobileMenuDrawer">
+        <div class="drawer-header">
+            <a href="index.html" class="logo-box">
+                <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i></div>
+                <div class="logo-text-group">
+                    <span class="logo-text" style="color: white;">Avijit Medicare</span>
+                    <span class="logo-sub" style="color: var(--text-muted);">TRUSTED PHARMACY</span>
+                </div>
+            </a>
+            <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-body">
+            <nav class="drawer-links">
+                <a href="index.html" class="drawer-link active"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="about.html" class="drawer-link"><i class="fa-solid fa-circle-info"></i> About Us</a>
+                <a href="medicines.html" class="drawer-link"><i class="fa-solid fa-pills"></i> Medicine</a>
+                <a href="doctors.html" class="drawer-link"><i class="fa-solid fa-user-doctor"></i> Doctors</a>
+                <a href="track-order.html" class="drawer-link"><i class="fa-solid fa-truck-fast"></i> Order</a>
+                <a href="contact.html" class="drawer-link"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+            </nav>
+            
+            <div class="drawer-footer">
+                <span id="welcomeUserMobile" class="register-link" style="display: block; margin-bottom: 1rem; color: white;"></span>
+                <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary w-full" style="border-radius: 8px;">
+                    <i class="fa-solid fa-right-from-bracket" style="margin-right: 8px;"></i> Logout
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="drawer-overlay" id="drawerOverlay"></div>
 
     <!-- Floating Contact Buttons -->
     <div class="floating-contact">
