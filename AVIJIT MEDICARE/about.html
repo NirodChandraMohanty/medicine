@@ -19,7 +19,7 @@
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="css/style.css?v=33">
-    <link rel="stylesheet" href="css/about.css?v=9">
+    <link rel="stylesheet" href="css/about.css?v=12">
 </head>
 
 <body>
@@ -105,26 +105,47 @@
                     </div>
                 </div>
 
-                <!-- Right Image -->
+                <!-- Right Image (3D Floating Collage Redesign) -->
                 <div class="about-image-wrapper" data-aos="fade-left" data-aos-duration="1200">
+                    <!-- Glowing Back Orb -->
+                    <div class="about-glow-orb"></div>
+
+                    <!-- Main Image Frame -->
                     <div class="glass-image-container">
                         <img src="images/about_us.png" alt="Avijit Medicare Pharmacy" class="premium-img"
                             onerror="this.src='https://images.unsplash.com/photo-1586015555751-63bb77f4322a?q=80&w=2070&auto=format&fit=crop'">
                     </div>
 
-                    <!-- Floating Sub Card 1 -->
-                    <div class="glass-card premium-float" data-aos="zoom-in" data-aos-delay="800"
-                        style="display: flex; align-items: center; gap: 1rem; padding: 1.15rem; width: 240px; border-radius: 16px;">
-                        <div class="glass-icon-sm"
-                            style="background: #22c55e; width: 46px; height: 46px; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">
-                            <i class="fa-solid fa-check"></i>
+                    <!-- Floating Card 1: 15+ Years (Bottom Left) -->
+                    <div class="premium-float-card float-left-card" data-aos="zoom-in" data-aos-delay="600">
+                        <div class="glass-icon-circle">
+                            <i class="fa-solid fa-heart-pulse"></i>
                         </div>
                         <div>
-                            <div class="glass-title"
-                                style="color: white; font-size: 0.95rem; font-weight: 800; margin-bottom: 0.15rem;">100%
-                                Genuine</div>
-                            <div class="glass-desc" style="color: rgba(255, 255, 255, 0.72); font-size: 0.75rem;">
-                                Verified Medicines</div>
+                            <div class="card-num">15+ Years</div>
+                            <div class="card-lbl">Trusted Excellence</div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Card 2: 100% Genuine (Top Right) -->
+                    <div class="premium-float-card float-right-card" data-aos="zoom-in" data-aos-delay="800">
+                        <div class="glass-icon-circle mint-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div>
+                            <div class="card-num">100% Genuine</div>
+                            <div class="card-lbl">Verified Pharmacy</div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Card 3: Superfast (Bottom Right) -->
+                    <div class="premium-float-card float-center-card" data-aos="zoom-in" data-aos-delay="1000">
+                        <div class="glass-icon-circle gold-icon">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+                        <div>
+                            <div class="card-num">Superfast</div>
+                            <div class="card-lbl">Home Delivery</div>
                         </div>
                     </div>
                 </div>
@@ -133,36 +154,166 @@
         </div>
     </section>
 
-    <!-- PREMIUM MISSION & VISION SECTION (3D GLOW) -->
+    <!-- PREMIUM PURPOSE & COMPASS SECTION (INTERACTIVE STAGE) -->
     <section class="mv-section">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2>Our <span>Purpose</span></h2>
-                <p
-                    style="margin-top: 1rem; color: rgba(255,255,255,0.7); max-width: 600px; margin-left: auto; margin-right: auto;">
+                <p style="margin-top: 1rem; color: rgba(255,255,255,0.7); max-width: 600px; margin-left: auto; margin-right: auto;">
                     Driven by excellence and dedicated to improving the healthcare standards across the community.</p>
             </div>
 
-            <div class="mv-grid">
-                <div class="mv-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="mv-icon"><i class="fa-solid fa-bullseye"></i></div>
-                    <h3>Our Mission</h3>
-                    <p>To provide 100% genuine medicines and world-class healthcare services directly to your doorstep
-                        with uncompromised speed and quality.</p>
+            <div class="purpose-stage-grid">
+                <!-- Left Column: Sticky Tab Navigation -->
+                <div class="purpose-nav-col" data-aos="fade-right">
+                    <button class="purpose-tab-btn active" onclick="switchPurpose(this, 'mission')">
+                        <div class="tab-indicator"></div>
+                        <div class="tab-icon-box mission-icon"><i class="fa-solid fa-bullseye"></i></div>
+                        <div class="tab-info" style="text-align: left;">
+                            <span class="tab-label">01. Our Mission</span>
+                            <span class="tab-title">Delivering Genuine Care</span>
+                        </div>
+                    </button>
+
+                    <button class="purpose-tab-btn" onclick="switchPurpose(this, 'vision')">
+                        <div class="tab-indicator"></div>
+                        <div class="tab-icon-box vision-icon"><i class="fa-solid fa-eye"></i></div>
+                        <div class="tab-info" style="text-align: left;">
+                            <span class="tab-label">02. Our Vision</span>
+                            <span class="tab-title">Pioneering Digital Care</span>
+                        </div>
+                    </button>
+
+                    <button class="purpose-tab-btn" onclick="switchPurpose(this, 'values')">
+                        <div class="tab-indicator"></div>
+                        <div class="tab-icon-box values-icon"><i class="fa-solid fa-heart"></i></div>
+                        <div class="tab-info" style="text-align: left;">
+                            <span class="tab-label">03. Our Values</span>
+                            <span class="tab-title">Patient-First Integrity</span>
+                        </div>
+                    </button>
                 </div>
-                <div class="mv-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="mv-icon"><i class="fa-solid fa-eye"></i></div>
-                    <h3>Our Vision</h3>
-                    <p>To be the most trusted and comprehensive digital healthcare platform in India, integrating
-                        pharmacy, diagnostics, and consultations seamlessly.</p>
-                </div>
-                <div class="mv-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="mv-icon"><i class="fa-solid fa-heart"></i></div>
-                    <h3>Our Values</h3>
-                    <p>Integrity, transparency, and patient-first care form the core of Avijit Medicare. We do not
-                        compromise on the quality of our service.</p>
+
+                <!-- Right Column: Presentational Display Stage -->
+                <div class="purpose-content-col" data-aos="fade-left">
+                    <div class="purpose-display-stage">
+                        <!-- Glow Stage Backdrop -->
+                        <div class="stage-glow-blob"></div>
+
+                        <!-- MISSION PANEL -->
+                        <div id="purpose-mission" class="purpose-panel active">
+                            <div class="panel-header">
+                                <div class="panel-icon mission-icon"><i class="fa-solid fa-bullseye"></i></div>
+                                <h2>Our Mission</h2>
+                            </div>
+                            <p class="panel-desc">To provide 100% genuine medicines and world-class healthcare services directly to your doorstep with uncompromised speed, absolute transparency, and clinical excellence.</p>
+                            <div class="panel-bullet-grid">
+                                <div class="bullet-item">
+                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
+                                    <span>100% Genuine Medicines</span>
+                                </div>
+                                <div class="bullet-item">
+                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
+                                    <span>Superfast Home Delivery</span>
+                                </div>
+                                <div class="bullet-item">
+                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
+                                    <span>Compassionate Assistance</span>
+                                </div>
+                                <div class="bullet-item">
+                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
+                                    <span>Affordable & Honest Pricing</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- VISION PANEL -->
+                        <div id="purpose-vision" class="purpose-panel">
+                            <div class="panel-header">
+                                <div class="panel-icon vision-icon"><i class="fa-solid fa-eye"></i></div>
+                                <h2>Our Vision</h2>
+                            </div>
+                            <p class="panel-desc">To build the most comprehensive, trusted, and unified digital healthcare platform in India, integrating pharmacy, diagnostic services, and expert consultations seamlessly.</p>
+                            <div class="panel-bullet-grid">
+                                <div class="bullet-item">
+                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
+                                    <span>Unified Digital Pharmacy</span>
+                                </div>
+                                <div class="bullet-item">
+                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
+                                    <span>24/7 Virtual Consultation</span>
+                                </div>
+                                <div class="bullet-item">
+                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
+                                    <span>AI Diagnostics Booking</span>
+                                </div>
+                                <div class="bullet-item">
+                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
+                                    <span>Empowering Rural Access</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- VALUES PANEL -->
+                        <div id="purpose-values" class="purpose-panel">
+                            <div class="panel-header">
+                                <div class="panel-icon values-icon"><i class="fa-solid fa-heart"></i></div>
+                                <h2>Our Values</h2>
+                            </div>
+                            <p class="panel-desc">Integrity, patient-first empathy, and transparent clinical standards are the unshakeable foundation of Avijit Medicare. We do not compromise on care.</p>
+                            <div class="panel-bullet-grid">
+                                <div class="bullet-item">
+                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
+                                    <span>Empathy & Genuine Care</span>
+                                </div>
+                                <div class="bullet-item">
+                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
+                                    <span>Absolute Honesty & Integrity</span>
+                                </div>
+                                <div class="bullet-item">
+                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
+                                    <span>Uncompromising Standards</span>
+                                </div>
+                                <div class="bullet-item">
+                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
+                                    <span>Community Trust First</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
+
+            <!-- Standalone JS Switcher -->
+            <script>
+                function switchPurpose(btnElement, tabId) {
+                    // Remove active classes
+                    document.querySelectorAll('.purpose-tab-btn').forEach(btn => btn.classList.remove('active'));
+                    document.querySelectorAll('.purpose-panel').forEach(panel => panel.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    btnElement.classList.add('active');
+                    
+                    // Add active class to target panel
+                    const targetPanel = document.getElementById('purpose-' + tabId);
+                    if (targetPanel) {
+                        targetPanel.classList.add('active');
+                    }
+                    
+                    // Update back-glow color dynamically based on theme
+                    const glowBlob = document.querySelector('.stage-glow-blob');
+                    if (glowBlob) {
+                        if (tabId === 'mission') {
+                            glowBlob.style.background = 'radial-gradient(circle, rgba(26, 188, 156, 0.15) 0%, transparent 70%)';
+                        } else if (tabId === 'vision') {
+                            glowBlob.style.background = 'radial-gradient(circle, rgba(248, 181, 0, 0.15) 0%, transparent 70%)';
+                        } else if (tabId === 'values') {
+                            glowBlob.style.background = 'radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, transparent 70%)';
+                        }
+                    }
+                }
+            </script>
         </div>
     </section>
 

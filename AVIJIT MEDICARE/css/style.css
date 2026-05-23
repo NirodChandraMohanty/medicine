@@ -2162,7 +2162,8 @@ ul {
 
 /* Mobile Navigation Toggle Buttons */
 .mobile-menu-toggle,
-.mobile-search-toggle {
+.mobile-search-toggle,
+.mobile-logout-btn {
     display: none;
     background: transparent;
     border: 1px solid var(--border);
@@ -2178,10 +2179,11 @@ ul {
 }
 
 .mobile-menu-toggle:hover,
-.mobile-search-toggle:hover {
-    color: var(--primary-dark);
-    border-color: var(--primary-dark);
-    background: var(--primary-light);
+.mobile-search-toggle:hover,
+.mobile-logout-btn:hover {
+    color: #ef4444;
+    border-color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
 }
 
 /* Mobile Drawer Overlay */
@@ -2356,7 +2358,8 @@ ul {
 
     /* Display Action Toggles */
     .mobile-menu-toggle,
-    .mobile-search-toggle {
+    .mobile-search-toggle,
+    .mobile-logout-btn {
         display: flex;
     }
 
@@ -2574,24 +2577,22 @@ ul {
         justify-content: center;
     }
 
-    /* Swipeable native layout for testimonials */
+    /* Continuous infinite scroll layout for testimonials on mobile */
     .testimonial-wrapper {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+        overflow: hidden !important;
         padding-bottom: 1.5rem;
-        cursor: grab;
     }
     
     .testimonial-track {
         display: flex;
         width: max-content;
-        gap: 1rem;
-        animation: none !important; /* Stop auto loop scroll to allow natural swipe on mobile */
+        gap: 1.25rem;
+        animation: scrollTestimonials 30s linear infinite !important; /* Restore infinite loop scrolling */
     }
     
     .testimonial-group {
         display: flex;
-        gap: 1rem;
+        gap: 1.25rem;
         padding-right: 0;
     }
     

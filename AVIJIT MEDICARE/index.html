@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AVIJIT MEDICARE - Trusted Pharmacy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css?v=45">
+    <link rel="stylesheet" href="css/style.css?v=47">
 </head>
 
 <body>
@@ -48,6 +48,11 @@
                         Logout
                     </a>
                 </div>
+
+                <!-- Mobile Logout Icon Button -->
+                <button class="mobile-logout-btn" onclick="logoutUser()" aria-label="Logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
 
                 <!-- Mobile Menu & Search Toggles -->
                 <button class="mobile-search-toggle" id="mobileSearchToggle" aria-label="Toggle Search">
@@ -1301,12 +1306,15 @@
             }
 
             // Welcome user in mobile menu
-            if (typeof currentUser !== 'undefined' && currentUser && document.getElementById("welcomeUserMobile")) {
-                document.getElementById("welcomeUserMobile").innerText = "Hi, " + currentUser.fname;
-            } else {
-                const storedUser = JSON.parse(localStorage.getItem("avijit_current_user"));
-                if (storedUser && document.getElementById("welcomeUserMobile")) {
-                    document.getElementById("welcomeUserMobile").innerText = "Hi, " + storedUser.fname;
+            const storedUser = JSON.parse(localStorage.getItem("avijit_current_user"));
+            if (storedUser) {
+                if (document.getElementById("welcomeUserMobile")) {
+                    document.getElementById("welcomeUserMobile").innerText = storedUser.fname + " " + (storedUser.lname || "");
+                }
+                if (document.getElementById("mobileAvatarInitials")) {
+                    const initials = (storedUser.fname ? storedUser.fname.charAt(0).toUpperCase() : "") + 
+                                     (storedUser.lname ? storedUser.lname.charAt(0).toUpperCase() : "");
+                    document.getElementById("mobileAvatarInitials").innerText = initials || "U";
                 }
             }
         });
@@ -1324,6 +1332,18 @@
             </a>
             <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
         </div>
+
+        <!-- Premium Mobile Profile Banner -->
+        <div class="drawer-profile" style="background: rgba(248, 181, 0, 0.05); padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary-dark); display: flex; align-items: center; justify-content: center; color: var(--bg-light); font-weight: 700; font-size: 1.1rem; border: 2px solid rgba(248, 181, 0, 0.3);" id="mobileAvatarInitials">
+                U
+            </div>
+            <div style="display: flex; flex-direction: column;">
+                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;">Welcome back,</span>
+                <span id="welcomeUserMobile" style="font-size: 0.95rem; color: white; font-weight: 700; margin-top: 2px;">Guest User</span>
+            </div>
+        </div>
+
         <div class="drawer-body">
             <nav class="drawer-links">
                 <a href="index.html" class="drawer-link active"><i class="fa-solid fa-house"></i> Home</a>
@@ -1335,7 +1355,6 @@
             </nav>
             
             <div class="drawer-footer">
-                <span id="welcomeUserMobile" class="register-link" style="display: block; margin-bottom: 1rem; color: white;"></span>
                 <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary w-full" style="border-radius: 8px;">
                     <i class="fa-solid fa-right-from-bracket" style="margin-right: 8px;"></i> Logout
                 </a>
