@@ -19,7 +19,7 @@
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="css/style.css?v=33">
-    <link rel="stylesheet" href="css/about.css?v=12">
+    <link rel="stylesheet" href="css/about.css?v=16">
 </head>
 
 <body>
@@ -159,159 +159,97 @@
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2>Our <span>Purpose</span></h2>
-                <p style="margin-top: 1rem; color: rgba(255,255,255,0.7); max-width: 600px; margin-left: auto; margin-right: auto;">
+                <p
+                    style="margin-top: 1rem; color: rgba(255,255,255,0.7); max-width: 600px; margin-left: auto; margin-right: auto;">
                     Driven by excellence and dedicated to improving the healthcare standards across the community.</p>
             </div>
 
-            <div class="purpose-stage-grid">
-                <!-- Left Column: Sticky Tab Navigation -->
-                <div class="purpose-nav-col" data-aos="fade-right">
-                    <button class="purpose-tab-btn active" onclick="switchPurpose(this, 'mission')">
-                        <div class="tab-indicator"></div>
-                        <div class="tab-icon-box mission-icon"><i class="fa-solid fa-bullseye"></i></div>
-                        <div class="tab-info" style="text-align: left;">
-                            <span class="tab-label">01. Our Mission</span>
-                            <span class="tab-title">Delivering Genuine Care</span>
-                        </div>
-                    </button>
-
-                    <button class="purpose-tab-btn" onclick="switchPurpose(this, 'vision')">
-                        <div class="tab-indicator"></div>
-                        <div class="tab-icon-box vision-icon"><i class="fa-solid fa-eye"></i></div>
-                        <div class="tab-info" style="text-align: left;">
-                            <span class="tab-label">02. Our Vision</span>
-                            <span class="tab-title">Pioneering Digital Care</span>
-                        </div>
-                    </button>
-
-                    <button class="purpose-tab-btn" onclick="switchPurpose(this, 'values')">
-                        <div class="tab-indicator"></div>
-                        <div class="tab-icon-box values-icon"><i class="fa-solid fa-heart"></i></div>
-                        <div class="tab-info" style="text-align: left;">
-                            <span class="tab-label">03. Our Values</span>
-                            <span class="tab-title">Patient-First Integrity</span>
-                        </div>
-                    </button>
+            <div class="advanced-accordion-container" data-aos="zoom-in" data-aos-delay="100">
+                <!-- MISSION PANEL -->
+                <div class="acc-panel active" onclick="activatePanel(this)">
+                    <video class="acc-bg-video" autoplay loop muted playsinline
+                        poster="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80">
+                        <source src="videos/mission.mp4" type="video/mp4">
+                    </video>
+                    <div class="acc-overlay"></div>
+                    <div class="acc-vertical-title">
+                        <div class="acc-icon"><i class="fa-solid fa-bullseye"></i></div>
+                        <h3>Mission</h3>
+                    </div>
+                    <div class="acc-content">
+                        <div class="acc-icon-large"><i class="fa-solid fa-bullseye"></i></div>
+                        <h2>Our Mission</h2>
+                        <h3>Delivering Genuine Care</h3>
+                        <p>To provide 100% genuine medicines and world-class healthcare services directly to your
+                            doorstep with uncompromised speed, absolute transparency, and clinical excellence.</p>
+                        <ul class="acc-bullets">
+                            <li><i class="fa-solid fa-check"></i> 100% Genuine Medicines</li>
+                            <li><i class="fa-solid fa-check"></i> Superfast Delivery</li>
+                            <li><i class="fa-solid fa-check"></i> Honest Pricing</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <!-- Right Column: Presentational Display Stage -->
-                <div class="purpose-content-col" data-aos="fade-left">
-                    <div class="purpose-display-stage">
-                        <!-- Glow Stage Backdrop -->
-                        <div class="stage-glow-blob"></div>
+                <!-- VISION PANEL -->
+                <div class="acc-panel" onclick="activatePanel(this)">
+                    <video class="acc-bg-video" autoplay loop muted playsinline
+                        poster="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80">
+                        <source src="videos/vision.mp4" type="video/mp4">
+                    </video>
+                    <div class="acc-overlay"></div>
+                    <div class="acc-vertical-title">
+                        <div class="acc-icon"><i class="fa-solid fa-eye"></i></div>
+                        <h3>Vision</h3>
+                    </div>
+                    <div class="acc-content">
+                        <div class="acc-icon-large"><i class="fa-solid fa-eye"></i></div>
+                        <h2>Our Vision</h2>
+                        <h3>Pioneering Digital Care</h3>
+                        <p>To build the most comprehensive, trusted, and unified digital healthcare platform in India,
+                            integrating pharmacy, diagnostic services, and expert consultations seamlessly.</p>
+                        <ul class="acc-bullets">
+                            <li><i class="fa-solid fa-check"></i> Unified Digital Pharmacy</li>
+                            <li><i class="fa-solid fa-check"></i> 24/7 Virtual Consultation</li>
+                            <li><i class="fa-solid fa-check"></i> AI Diagnostics Booking</li>
+                        </ul>
+                    </div>
+                </div>
 
-                        <!-- MISSION PANEL -->
-                        <div id="purpose-mission" class="purpose-panel active">
-                            <div class="panel-header">
-                                <div class="panel-icon mission-icon"><i class="fa-solid fa-bullseye"></i></div>
-                                <h2>Our Mission</h2>
-                            </div>
-                            <p class="panel-desc">To provide 100% genuine medicines and world-class healthcare services directly to your doorstep with uncompromised speed, absolute transparency, and clinical excellence.</p>
-                            <div class="panel-bullet-grid">
-                                <div class="bullet-item">
-                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
-                                    <span>100% Genuine Medicines</span>
-                                </div>
-                                <div class="bullet-item">
-                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
-                                    <span>Superfast Home Delivery</span>
-                                </div>
-                                <div class="bullet-item">
-                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
-                                    <span>Compassionate Assistance</span>
-                                </div>
-                                <div class="bullet-item">
-                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
-                                    <span>Affordable & Honest Pricing</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- VISION PANEL -->
-                        <div id="purpose-vision" class="purpose-panel">
-                            <div class="panel-header">
-                                <div class="panel-icon vision-icon"><i class="fa-solid fa-eye"></i></div>
-                                <h2>Our Vision</h2>
-                            </div>
-                            <p class="panel-desc">To build the most comprehensive, trusted, and unified digital healthcare platform in India, integrating pharmacy, diagnostic services, and expert consultations seamlessly.</p>
-                            <div class="panel-bullet-grid">
-                                <div class="bullet-item">
-                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
-                                    <span>Unified Digital Pharmacy</span>
-                                </div>
-                                <div class="bullet-item">
-                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
-                                    <span>24/7 Virtual Consultation</span>
-                                </div>
-                                <div class="bullet-item">
-                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
-                                    <span>AI Diagnostics Booking</span>
-                                </div>
-                                <div class="bullet-item">
-                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
-                                    <span>Empowering Rural Access</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- VALUES PANEL -->
-                        <div id="purpose-values" class="purpose-panel">
-                            <div class="panel-header">
-                                <div class="panel-icon values-icon"><i class="fa-solid fa-heart"></i></div>
-                                <h2>Our Values</h2>
-                            </div>
-                            <p class="panel-desc">Integrity, patient-first empathy, and transparent clinical standards are the unshakeable foundation of Avijit Medicare. We do not compromise on care.</p>
-                            <div class="panel-bullet-grid">
-                                <div class="bullet-item">
-                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
-                                    <span>Empathy & Genuine Care</span>
-                                </div>
-                                <div class="bullet-item">
-                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
-                                    <span>Absolute Honesty & Integrity</span>
-                                </div>
-                                <div class="bullet-item">
-                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
-                                    <span>Uncompromising Standards</span>
-                                </div>
-                                <div class="bullet-item">
-                                    <i class="fa-solid fa-circle-check bullet-icon"></i>
-                                    <span>Community Trust First</span>
-                                </div>
-                            </div>
-                        </div>
-
+                <!-- VALUES PANEL -->
+                <div class="acc-panel" onclick="activatePanel(this)">
+                    <video class="acc-bg-video" autoplay loop muted playsinline
+                        poster="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=1200&q=80">
+                        <source src="videos/values.mp4" type="video/mp4">
+                    </video>
+                    <div class="acc-overlay"></div>
+                    <div class="acc-vertical-title">
+                        <div class="acc-icon"><i class="fa-solid fa-heart"></i></div>
+                        <h3>Values</h3>
+                    </div>
+                    <div class="acc-content">
+                        <div class="acc-icon-large"><i class="fa-solid fa-heart"></i></div>
+                        <h2>Our Values</h2>
+                        <h3>Patient-First Integrity</h3>
+                        <p>Integrity, patient-first empathy, and transparent clinical standards are the unshakeable
+                            foundation of Avijit Medicare. We do not compromise on care.</p>
+                        <ul class="acc-bullets">
+                            <li><i class="fa-solid fa-check"></i> Empathy & Genuine Care</li>
+                            <li><i class="fa-solid fa-check"></i> Absolute Honesty</li>
+                            <li><i class="fa-solid fa-check"></i> Community Trust First</li>
+                        </ul>
                     </div>
                 </div>
             </div>
 
-            <!-- Standalone JS Switcher -->
+            <!-- Interactive JS -->
             <script>
-                function switchPurpose(btnElement, tabId) {
-                    // Remove active classes
-                    document.querySelectorAll('.purpose-tab-btn').forEach(btn => btn.classList.remove('active'));
-                    document.querySelectorAll('.purpose-panel').forEach(panel => panel.classList.remove('active'));
-                    
-                    // Add active class to clicked button
-                    btnElement.classList.add('active');
-                    
-                    // Add active class to target panel
-                    const targetPanel = document.getElementById('purpose-' + tabId);
-                    if (targetPanel) {
-                        targetPanel.classList.add('active');
-                    }
-                    
-                    // Update back-glow color dynamically based on theme
-                    const glowBlob = document.querySelector('.stage-glow-blob');
-                    if (glowBlob) {
-                        if (tabId === 'mission') {
-                            glowBlob.style.background = 'radial-gradient(circle, rgba(26, 188, 156, 0.15) 0%, transparent 70%)';
-                        } else if (tabId === 'vision') {
-                            glowBlob.style.background = 'radial-gradient(circle, rgba(248, 181, 0, 0.15) 0%, transparent 70%)';
-                        } else if (tabId === 'values') {
-                            glowBlob.style.background = 'radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, transparent 70%)';
-                        }
-                    }
+                function activatePanel(element) {
+                    // Remove active from all panels
+                    document.querySelectorAll('.acc-panel').forEach(panel => {
+                        panel.classList.remove('active');
+                    });
+                    // Add active to clicked panel
+                    element.classList.add('active');
                 }
             </script>
         </div>
@@ -473,9 +411,7 @@
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2>Patient <span>Testimonials</span></h2>
-                <p
-                    style="margin-top: 1rem; color: rgba(255,255,255,0.7); max-width: 600px; margin-left: auto; margin-right: auto;">
-                    Don't just take our word for it. Hear what our community has to say about our services.</p>
+
             </div>
 
             <div class="reviews-grid">
