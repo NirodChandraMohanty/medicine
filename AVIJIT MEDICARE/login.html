@@ -623,10 +623,153 @@
                 height: 56px;
             }
         }
+
+        /* --- ULTRA PREMIUM RELOADER --- */
+        .page-loader-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(2, 26, 20, 0.98) 0%, rgba(6, 44, 37, 0.98) 100%);
+            backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+            z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .page-loader-overlay.active { opacity: 1; visibility: visible; }
+
+        .loader-brand {
+            position: absolute; top: 40px; display: flex; align-items: center; gap: 12px;
+            color: white; font-size: 1.5rem; font-weight: 800; letter-spacing: 1px;
+            animation: fadeInDown 1s ease both;
+        }
+        .loader-brand i { color: #00ffcc; font-size: 1.8rem; filter: drop-shadow(0 0 10px #00ffcc); }
+
+        /* Advanced 3D Core Loader */
+        .loader-core {
+            position: relative; width: 220px; height: 220px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 60px;
+        }
+        
+        /* Spinning Outer Hexagons/Rings */
+        .orbit-ring {
+            position: absolute; border-radius: 50%;
+            border: 2px solid transparent; 
+        }
+        .orbit-ring.ring-1 {
+            width: 100%; height: 100%; border-top-color: #00ffcc; border-bottom-color: #00ffcc;
+            animation: spinOrbit 3s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+            filter: drop-shadow(0 0 10px #00ffcc);
+        }
+        .orbit-ring.ring-2 {
+            width: 160px; height: 160px; border-left-color: #00d2ff; border-right-color: #00d2ff;
+            animation: spinOrbit reverse 2s linear infinite;
+            filter: drop-shadow(0 0 10px #00d2ff);
+        }
+        .orbit-ring.ring-3 {
+            width: 120px; height: 120px; border: 1px dashed rgba(255, 255, 255, 0.3);
+            animation: spinOrbit 8s linear infinite;
+        }
+        
+        /* Central Glowing Element */
+        .core-center {
+            width: 70px; height: 70px; background: rgba(0, 255, 204, 0.05);
+            border: 2px solid rgba(0, 255, 204, 0.4); border-radius: 18px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 40px rgba(0, 255, 204, 0.3), inset 0 0 20px rgba(0, 255, 204, 0.2);
+            animation: pulseCore 2s ease-in-out infinite alternate;
+            backdrop-filter: blur(10px); transform: rotate(45deg);
+        }
+        .core-center i {
+            color: #00ffcc; font-size: 2.2rem; transform: rotate(-45deg);
+            filter: drop-shadow(0 0 15px #00ffcc);
+            animation: heartbeat 1.5s infinite;
+        }
+
+        /* Scanning Line */
+        .scan-line {
+            position: absolute; width: 300px; height: 3px; background: #00ffcc;
+            box-shadow: 0 0 25px 8px rgba(0, 255, 204, 0.5);
+            border-radius: 50%; z-index: 10; opacity: 0.8;
+            animation: scanMove 2.5s ease-in-out infinite alternate;
+        }
+
+        /* Advanced Typography */
+        .loader-text-box {
+            text-align: center; position: relative;
+        }
+        .loader-status {
+            color: #00ffcc; font-size: 1.3rem; font-weight: 800; letter-spacing: 5px;
+            text-transform: uppercase; margin-bottom: 12px;
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+        .loader-subtext {
+            color: rgba(255,255,255,0.5); font-size: 0.95rem; letter-spacing: 2px;
+            font-family: monospace; display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .loader-subtext::after {
+            content: ''; display: inline-block; width: 12px; height: 12px;
+            border-radius: 50%; background: #00ffcc;
+            box-shadow: 0 0 10px #00ffcc; animation: textBlink 1s infinite;
+        }
+
+        @keyframes spinOrbit {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes pulseCore {
+            0% { transform: rotate(45deg) scale(0.9); box-shadow: 0 0 20px rgba(0, 255, 204, 0.2); }
+            100% { transform: rotate(45deg) scale(1.15); box-shadow: 0 0 60px rgba(0, 255, 204, 0.7); }
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: rotate(-45deg) scale(1); }
+            15% { transform: rotate(-45deg) scale(1.2); }
+            30% { transform: rotate(-45deg) scale(1); }
+            45% { transform: rotate(-45deg) scale(1.2); }
+            60% { transform: rotate(-45deg) scale(1); }
+        }
+        @keyframes scanMove {
+            0% { top: -40px; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 240px; opacity: 0; }
+        }
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 10px rgba(0, 255, 204, 0.2); opacity: 0.8; }
+            100% { text-shadow: 0 0 30px rgba(0, 255, 204, 0.8), 0 0 50px rgba(0, 255, 204, 0.4); opacity: 1; }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 
 <body>
+
+    <!-- FULL PAGE RELOADER (Hidden by default) -->
+    <div id="pageLoader" class="page-loader-overlay">
+        <div class="loader-brand">
+            <i class="fa-solid fa-leaf"></i> AVIJIT MEDICARE
+        </div>
+        
+        <div class="loader-core">
+            <!-- Scanning Line -->
+            <div class="scan-line"></div>
+            
+            <!-- Outer Rings -->
+            <div class="orbit-ring ring-1"></div>
+            <div class="orbit-ring ring-2"></div>
+            <div class="orbit-ring ring-3"></div>
+            
+            <!-- Center Core -->
+            <div class="core-center">
+                <i class="fa-solid fa-staff-snake"></i>
+            </div>
+        </div>
+
+        <div class="loader-text-box">
+            <div class="loader-status">Authorizing</div>
+            <div class="loader-subtext">Establishing Secure Connection</div>
+        </div>
+    </div>
 
     <main class="auth-page">
         <div class="auth-layout">
@@ -837,9 +980,13 @@
                 loginBtn.disabled = true;
                 loginBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Signing in...</span>';
 
+                // Show the ultra-premium reloader
+                const pageLoader = document.getElementById('pageLoader');
+                pageLoader.classList.add('active');
+
                 setTimeout(function () {
                     window.location.href = "index.html";
-                }, 850);
+                }, 3500); // Increased to 3.5s to fully showcase the advanced animation
             } else {
                 loginAlert.className = "auth-alert error";
                 loginAlert.innerText = "Invalid email or password.";

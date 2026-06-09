@@ -1,227 +1,1015 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
+
 <head>
+    <script>
+        if (localStorage.getItem("avijit_logged_in") !== "true") {
+            window.location.href = "login.html";
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paracetamol 500mg - AVIJIT MEDICARE</title>
+    <title>AVIJIT MEDICARE - Complete Medicine Directory</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Global Theme Stylesheet -->
+    <link rel="stylesheet" href="css/style.css?v=52">
+    <!-- About Page Stylesheet for Header Compatibility -->
+    <link rel="stylesheet" href="css/about.css?v=17">
+
     <style>
-        .product-detail-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-top: 2rem;
-            margin-bottom: 4rem;
-        }
-        @media (max-width: 992px) {
-            .product-detail-grid { grid-template-columns: 1fr; gap: 2rem; }
-        }
-        .product-image-large {
-            background: var(--surface);
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border);
-            height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10rem;
-            color: var(--primary);
-        }
-        .stock-badge {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: var(--warning);
-            color: #fff;
-            border-radius: var(--radius-md);
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        .stock-badge.in-stock { background: var(--success); }
-        .stock-badge.out-of-stock { background: var(--danger); }
+        /* ==========================================================================
+           FULL DIRECTORY SPECIFIC STYLES
+           ========================================================================== */
         
-        .price-huge {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin: 1rem 0;
-        }
-        
-        .pincode-checker {
-            background: var(--bg);
-            padding: 1.5rem;
-            border-radius: var(--radius-md);
-            border: 1px dashed var(--border);
-            margin: 2rem 0;
-        }
-        .pincode-checker .flex {
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .info-tabs {
-            margin-top: 3rem;
-            border-top: 1px solid var(--border);
-            padding-top: 2rem;
-        }
-        
-        .criteria-box {
-            background: var(--primary-light);
-            padding: 1rem;
-            border-radius: var(--radius-md);
-            margin-bottom: 1rem;
-            border-left: 4px solid var(--primary);
+        :root {
+            --neon-green: #00ffcc;
+            --neon-gold: #ffea00;
+            --glass-bg: rgba(2, 26, 20, 0.6); 
+            --glass-border: rgba(26, 188, 156, 0.2);
         }
 
-        .quantity-control {
-            display: flex;
+        body {
+            background-color: var(--bg-dark); /* Matches Global Theme */
+            color: white;
+        }
+
+        /* --- UNIFIED PREMIUM HEADINGS --- */
+        .directory-hero-title, .section-heading {
+            font-size: clamp(2.5rem, 6vw, 4rem) !important;
+            font-family: var(--font-serif) !important;
+            color: white !important; 
+            margin-bottom: 2rem !important; 
+            line-height: 1.2 !important; 
+            font-weight: 800 !important;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+            -webkit-text-stroke: 0 !important;
+            text-shadow: none !important;
+        }
+        .directory-hero-title span, .section-heading span {
+            background: linear-gradient(135deg, var(--neon-green), #00d2ff) !important;
+            -webkit-background-clip: text !important; 
+            -webkit-text-fill-color: transparent !important;
+            position: relative !important; 
+            display: inline-block !important;
+            -webkit-text-stroke: 0 !important;
+            text-shadow: none !important;
+        }
+
+        /* --- SPLIT LAYOUT PREMIUM HERO --- */
+        .directory-hero-v2 {
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #021a14 100%);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(0, 255, 204, 0.2);
+        }
+        
+        /* Animated Tech Grid Background */
+        .hero-tech-grid {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 204, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 204, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 0; opacity: 0.5;
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+        }
+
+        .hero-v2-container {
+            position: relative; z-index: 10;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
             align-items: center;
-            gap: 1rem;
-            margin: 1.5rem 0;
         }
-        .qty-btn {
-            width: 40px;
-            height: 40px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            background: var(--surface);
-            font-size: 1.2rem;
-            cursor: pointer;
+
+        /* Left Content */
+        .hero-v2-content h1 {
+            font-size: clamp(3rem, 5vw, 4.5rem) !important;
+            font-family: var(--font-serif) !important;
+            color: white !important; line-height: 1.1 !important; margin-bottom: 1.5rem !important;
+            text-transform: none !important; letter-spacing: normal !important;
         }
-        .qty-input {
-            width: 60px;
-            height: 40px;
-            text-align: center;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            font-size: 1.1rem;
-            background: var(--surface);
-            color: var(--text-main);
+        .hero-v2-content h1 span {
+            background: linear-gradient(135deg, var(--neon-green), #00d2ff) !important;
+            -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important;
+        }
+        .hero-v2-content p {
+            font-size: 1.2rem; color: rgba(255,255,255,0.7); margin-bottom: 2.5rem; line-height: 1.6;
+        }
+
+        /* Search Bar */
+        .hero-v2-search {
+            display: flex; background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(0, 255, 204, 0.2); border-radius: 50px;
+            padding: 8px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            transition: all 0.4s ease; margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .hero-v2-search:focus-within {
+            border-color: var(--neon-green);
+            box-shadow: 0 15px 40px rgba(0, 255, 204, 0.2);
+            background: rgba(255,255,255,0.06);
+        }
+        .hero-v2-search input {
+            flex-grow: 1; background: transparent; border: none; color: white;
+            padding: 0 25px; font-size: 1.1rem; outline: none;
+        }
+        .hero-v2-search input::placeholder { color: rgba(255,255,255,0.4); }
+        .hero-v2-search button {
+            background: var(--neon-green); color: #01110d; border: none;
+            padding: 15px 35px; border-radius: 40px; font-weight: 800; font-size: 1rem;
+            cursor: pointer; transition: all 0.3s; text-transform: uppercase;
+        }
+        .hero-v2-search button:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.6); transform: scale(1.05);
+        }
+
+        /* Quick Filters */
+        .hero-v2-filters {
+            display: flex; gap: 12px; flex-wrap: wrap;
+        }
+        .hero-v2-filters .chip {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.8); padding: 8px 20px; border-radius: 50px; font-size: 0.9rem;
+            cursor: pointer; transition: all 0.3s;
+        }
+        .hero-v2-filters .chip:hover, .hero-v2-filters .chip.active {
+            background: rgba(0, 255, 204, 0.1); border-color: var(--neon-green); color: var(--neon-green);
+            transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 255, 204, 0.1);
+        }
+
+        /* Right Graphic 3D */
+        .hero-v2-graphic {
+            position: relative; display: flex; justify-content: center; align-items: center;
+            height: 400px;
+        }
+        
+        .hologram-ring {
+            position: absolute; border-radius: 50%;
+            border: 2px dashed rgba(0, 255, 204, 0.3);
+            animation: spin 20s linear infinite;
+        }
+        .hologram-ring.ring-1 { width: 350px; height: 350px; border-top-color: var(--neon-green); }
+        .hologram-ring.ring-2 { width: 250px; height: 250px; border: 2px solid rgba(0, 210, 255, 0.2); border-left-color: #00d2ff; animation-direction: reverse; animation-duration: 15s; }
+        
+        .floating-card-group {
+            position: relative; z-index: 2;
+        }
+        .glass-badge {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 20px;
+            padding: 20px; display: flex; align-items: center; gap: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            animation: floatBadge 6s ease-in-out infinite;
+            position: absolute;
+        }
+        .glass-badge.badge-main {
+            position: relative; padding: 25px 35px; border-color: rgba(0, 255, 204, 0.4);
+            box-shadow: 0 20px 50px rgba(0, 255, 204, 0.15); border-radius: 30px;
+        }
+        .glass-badge.badge-main i { font-size: 3.5rem; color: var(--neon-green); }
+        .glass-badge.badge-main .text strong { font-size: 1.6rem; color: white; display: block; font-weight: 800; margin-bottom: 5px; }
+        .glass-badge.badge-main .text span { color: rgba(255,255,255,0.7); font-size: 1rem; }
+
+        .glass-badge.badge-small-1 {
+            top: -50px; right: -60px; padding: 15px 25px; animation-delay: -2s;
+        }
+        .glass-badge.badge-small-2 {
+            bottom: -40px; left: -70px; padding: 15px 25px; animation-delay: -4s;
+        }
+        .glass-badge i { font-size: 1.8rem; color: #00d2ff; }
+        .glass-badge span { font-weight: 700; color: white; font-size: 1.1rem; }
+
+        @keyframes floatBadge {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        @media (max-width: 992px) {
+            .hero-v2-container { grid-template-columns: 1fr; text-align: center; gap: 60px; }
+            .hero-v2-content h1 { font-size: 2.8rem !important; }
+            .hero-v2-filters { justify-content: center; }
+            .hero-v2-search { flex-direction: column; padding: 5px; border-radius: 20px; }
+            .hero-v2-search input { padding: 15px; text-align: center; }
+            .hero-v2-search button { border-radius: 15px; width: 100%; }
+        }
+        @media (max-width: 768px) {
+            .directory-hero-v2 { padding: 140px 0 60px; }
+            .hero-v2-graphic { height: 300px; transform: scale(0.85); }
+        }
+
+        /* --- FULL PRODUCT GRID --- */
+        .full-directory-section {
+            padding: 5rem 0 10rem;
+        }
+        .product-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px;
+        }
+        
+        /* Advanced Product Card */
+        .product-card {
+            background: linear-gradient(145deg, rgba(2, 26, 20, 0.6) 0%, rgba(0, 0, 0, 0.4) 100%);
+            border: 1px solid rgba(0, 255, 204, 0.1); border-radius: 24px;
+            overflow: hidden; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex; flex-direction: column; position: relative;
+            z-index: 1;
+        }
+        .product-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            border-radius: 24px; opacity: 0; z-index: -1;
+            box-shadow: 0 0 40px rgba(0, 255, 204, 0.3);
+            transition: opacity 0.5s ease; pointer-events: none;
+        }
+        .product-card:hover::before { opacity: 1; }
+        .product-card:hover {
+            transform: translateY(-15px);
+            border-color: rgba(0, 255, 204, 0.6);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+        }
+        
+        .product-img-wrapper {
+            width: 100%; height: 200px; position: relative; overflow: hidden;
+            background: rgba(0,0,0,0.2);
+        }
+        .product-img-wrapper img {
+            width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;
+        }
+        .product-card:hover .product-img-wrapper img { transform: scale(1.1); }
+        
+        /* --- ADVANCED HOVER OVERLAY --- */
+        .product-details-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(2, 26, 20, 0.95) 0%, rgba(6, 44, 37, 0.98) 100%);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            padding: 25px 20px;
+            display: flex; flex-direction: column; justify-content: flex-start;
+            opacity: 0; visibility: hidden;
+            transform: translateY(100%);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10;
+            border-radius: 24px;
+            border: 1px solid var(--neon-green);
+        }
+        .product-card:hover .product-details-overlay {
+            opacity: 1; visibility: visible; transform: translateY(0);
+        }
+        .overlay-header {
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 255, 204, 0.2); padding-bottom: 15px;
+        }
+        .overlay-header h4 { color: var(--neon-green); font-size: 1.3rem; font-weight: 800; line-height: 1.2; }
+        .overlay-header i { font-size: 1.5rem; color: #00d2ff; }
+        
+        .detail-item { margin-bottom: 15px; }
+        .detail-item strong { color: white; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        .detail-item strong i { color: #00d2ff; font-size: 1rem; }
+        .detail-item p { color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.5; }
+        
+        .overlay-action { margin-top: auto; }
+        
+        .stock-badge {
+            position: absolute; top: 15px; right: 15px;
+            background: rgba(0, 255, 204, 0.2); border: 1px solid var(--neon-green); color: var(--neon-green);
+            padding: 5px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; backdrop-filter: blur(10px);
+        }
+        .stock-badge.low {
+            background: rgba(248, 181, 0, 0.2); border-color: var(--neon-gold); color: var(--neon-gold);
+        }
+
+        .product-info { padding: 25px 20px; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-category {
+            color: rgba(255,255,255,0.5); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
+        }
+        .product-title {
+            font-size: 1.4rem; font-weight: 700; color: white; margin-bottom: 5px; font-family: var(--font-serif);
+        }
+        .product-dose { color: var(--neon-green); font-size: 0.9rem; margin-bottom: 15px; font-weight: 500; }
+        
+        .product-price-row {
+            display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; margin-bottom: 20px;
+        }
+        .product-price { font-size: 1.6rem; font-weight: 800; color: white; display: flex; align-items: center; gap: 5px; }
+        .product-price small { font-size: 0.9rem; color: rgba(255,255,255,0.4); text-decoration: line-through; font-weight: 400; }
+
+        .btn-add-cart {
+            width: 100%; padding: 12px; border-radius: 12px; border: 1px solid rgba(0, 255, 204, 0.3);
+            background: rgba(0, 255, 204, 0.05); color: var(--neon-green); font-size: 1rem; font-weight: 700;
+            text-transform: uppercase; cursor: pointer; transition: all 0.3s; display: flex; justify-content: center; align-items: center; gap: 10px;
+        }
+        .product-card:hover .btn-add-cart {
+            background: var(--neon-green); color: #01110d; border-color: var(--neon-green);
+        }
+
+        /* --- PAGINATION --- */
+        .pagination-container {
+            display: flex; justify-content: center; align-items: center; gap: 10px;
+            margin-top: 50px; flex-wrap: wrap;
+        }
+        .pagination-btn {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(0, 255, 204, 0.2);
+            color: white; width: 40px; height: 40px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; cursor: pointer; transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .pagination-btn:hover:not(:disabled) {
+            background: rgba(0, 255, 204, 0.1); border-color: var(--neon-green);
+            transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0, 255, 204, 0.2);
+        }
+        .pagination-btn.active {
+            background: var(--neon-green); color: #01110d; border-color: var(--neon-green);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+        }
+        .pagination-btn:disabled {
+            opacity: 0.3; cursor: not-allowed;
+        }
+
+        /* --- RESPONSIVENESS --- */
+        @media (max-width: 992px) {
+            .advanced-search-container { flex-direction: column; padding: 5px; border-radius: 20px; }
+            .search-input { padding: 15px 20px; text-align: center; }
+            .search-btn { width: 100%; border-radius: 15px; }
+        }
+        @media (max-width: 768px) {
+            .directory-hero { padding: 120px 0 60px; }
+            .product-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+        }
+
+        /* --- STICKY GLASSMORPHISM HEADER --- */
+        .site-header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+        body { padding-top: 130px; } /* Prevent layout jump */
+
+        .site-header.scrolled {
+            background: rgba(2, 20, 15, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-bottom: 1px solid rgba(0, 255, 204, 0.2);
+        }
+        .site-header.scrolled .top-header {
+            padding: 5px 0; /* Shrink slightly on scroll */
+        }
+        .site-header.scrolled .nav-header {
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        @media (max-width: 768px) {
+            body { padding-top: 80px; } /* Mobile header is shorter */
         }
     </style>
 </head>
+
 <body>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="container navbar">
-            <a href="index.html" class="logo">
-                <i class="fa-solid fa-notes-medical"></i>
-                <span>AVIJIT <span>MEDICARE</span></span>
+    <header id="main-header" class="site-header">
+    <!-- TOP HEADER -->
+    <div class="top-header">
+        <div class="container flex justify-between items-center">
+
+            <a href="index.html" class="logo-box">
+                <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i></div>
+                <div class="logo-text-group">
+                    <span class="logo-text">Avijit Medicare</span>
+                    <span class="logo-sub">TRUSTED PHARMACY</span>
+                </div>
             </a>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search medicines, doctors, products...">
+            </div>
+
+            <div class="top-actions">
+                <div class="square-icon"><i class="fa-regular fa-bell"></i></div>
+                <div class="square-icon"><i class="fa-regular fa-heart"></i></div>
+                <a href="cart.html" class="square-icon" style="position: relative;">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span
+                        style="position: absolute; top:-5px; right:-5px; background:red; color:white; font-size:9px; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center;">2</span>
+                </a>
+
+                <div class="action-links">
+                    <span id="welcomeUser" class="register-link"></span>
+                    <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary"
+                        style="border-radius: 4px;">
+                        Logout
+                    </a>
+                </div>
+
+                <!-- Mobile Logout Icon Button -->
+                <button class="mobile-logout-btn" onclick="logoutUser()" aria-label="Logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+
+                <!-- Mobile Menu & Search Toggles -->
+                <button class="mobile-search-toggle" id="mobileSearchToggle" aria-label="Toggle Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- NAV HEADER -->
+    <div class="nav-header">
+        <div class="container flex justify-between items-center" style="position: relative;">
             <nav class="nav-links">
                 <a href="index.html" class="nav-link">Home</a>
-                <a href="medicines.html" class="nav-link active">Medicines</a>
-                <a href="offers.html" class="nav-link">Offers</a>
-                <a href="doctors.html" class="nav-link">Consult Doctor</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="medicines.html" class="nav-link active">Medicine</a>
+                <a href="doctors.html" class="nav-link">Doctors</a>
+                <a href="track-order.html" class="nav-link">Order</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
             </nav>
-            <div class="header-actions">
-                <button class="icon-btn" id="theme-toggle" title="Toggle Dark Mode"><i class="fa-solid fa-moon"></i></button>
-                <a href="cart.html" class="icon-btn"><i class="fa-solid fa-cart-shopping"></i></a>
-            </div>
         </div>
+    </div>
     </header>
 
-    <!-- Breadcrumb -->
-    <div class="container" style="padding-top: 2rem; color: var(--text-muted);">
-        <a href="index.html">Home</a> / <a href="medicines.html">Medicines</a> / <span>Paracetamol 500mg</span>
-    </div>
+    <!-- DIRECTORY HERO V2 (Split Layout Premium) -->
+    <section class="directory-hero-v2">
+        <!-- Animated Tech Background Grid -->
+        <div class="hero-tech-grid"></div>
 
-    <!-- Product Details -->
-    <div class="container product-detail-grid">
-        <!-- Left: Image -->
-        <div class="product-image-large">
-            <i class="fa-solid fa-pills"></i>
-        </div>
-
-        <!-- Right: Details -->
-        <div>
-            <!-- Client Requested Feature: Stock System showing "Only 9 left" -->
-            <div class="stock-badge"><i class="fa-solid fa-triangle-exclamation"></i> Only 9 left in stock</div>
+        <div class="container hero-v2-container">
             
-            <h1 style="margin-bottom: 0.5rem;">Paracetamol 500mg Tablet</h1>
-            <p class="text-muted" style="font-size: 1.1rem;">By HealthPharm Inc.</p>
-            
-            <div class="price-huge">₹45.00 <span style="font-size: 1rem; color: var(--text-muted); font-weight: normal;">(Strip of 10)</span></div>
-            
-            <!-- Client Requested Feature: Criteria -->
-            <div class="criteria-box">
-                <h4 style="margin:0; color: var(--primary-dark);"><i class="fa-solid fa-file-prescription"></i> Criteria: No Prescription Required</h4>
-                <p style="margin: 0; font-size: 0.9rem; margin-top: 5px;">This is an OTC (Over-The-Counter) medicine. Safe to buy without a doctor's slip.</p>
-            </div>
-
-            <!-- Client Requested Feature: Pincode Check -->
-            <div class="pincode-checker">
-                <h4 style="margin:0;"><i class="fa-solid fa-location-dot"></i> Check Delivery Availability</h4>
-                <div class="flex">
-                    <input type="text" class="form-control" placeholder="Enter PIN Code" maxlength="6" id="pincode-input">
-                    <button class="btn btn-outline" onclick="checkPincode()">Check</button>
-                </div>
-                <p id="pincode-result" class="mt-2" style="font-size: 0.9rem; display: none;"></p>
-            </div>
-
-            <div class="quantity-control">
-                <span>Quantity:</span>
-                <button class="qty-btn" onclick="document.getElementById('qty').value--">-</button>
-                <input type="number" id="qty" class="qty-input" value="1" min="1" max="9">
-                <button class="qty-btn" onclick="document.getElementById('qty').value++">+</button>
-            </div>
-
-            <div class="flex gap-4" style="margin-top: 2rem;">
-                <button class="btn btn-primary" style="flex: 1; font-size: 1.2rem; padding: 1rem;"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
-                <!-- Client Requested Feature: Wishlist -->
-                <button class="btn btn-outline" style="font-size: 1.2rem; padding: 1rem;" title="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
-            </div>
-            
-            <button class="btn w-full mt-4" style="background: var(--secondary); color: white; padding: 1rem;"><i class="fa-solid fa-bolt"></i> Subscribe & Save 10% (Monthly Reorder)</button>
-
-            <!-- Client Requested Feature: Uses & Info -->
-            <div class="info-tabs">
-                <h3 style="border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">Uses & Information</h3>
+            <!-- Left Side: Content & Search -->
+            <div class="hero-v2-content" data-aos="fade-right">
+                <h1>Your Complete<br><span>Digital Pharmacy</span></h1>
+                <p>Explore our vast collection of genuine medicines, supplements, and healthcare products delivered straight to your door with real-time tracking.</p>
                 
-                <h4 class="text-primary"><i class="fa-solid fa-notes-medical"></i> Uses</h4>
-                <p class="mb-4">Paracetamol 500mg Tablet is a common painkiller used to treat aches and pains. It can also be used to reduce a high temperature (fever). It is safely used to treat headaches, period pain, toothache, backache, osteoarthritis, or cold/flu symptoms.</p>
-
-                <h4 class="text-primary"><i class="fa-solid fa-triangle-exclamation"></i> Side Effects</h4>
-                <p class="mb-4">Most people do not experience any side effects if taken correctly. However, rare side effects may include nausea, stomach pain, or allergic reactions (rash).</p>
-
-                <h4 class="text-primary"><i class="fa-solid fa-clock"></i> How to use</h4>
-                <p>Take this medicine in the dose and duration as advised by your doctor. Swallow it as a whole. Do not chew, crush or break it. Can be taken with or without food.</p>
-            </div>
-            
-            <!-- Client Requested Feature: Reviews -->
-            <div class="info-tabs">
-                <h3 style="border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">User Reviews</h3>
-                <div class="mb-4">
-                    <div class="flex justify-between">
-                        <strong><i class="fa-solid fa-user"></i> Rahul Sharma</strong>
-                        <span style="color: var(--warning);"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half"></i></span>
-                    </div>
-                    <p class="text-muted mt-2">Genuine product. Delivered in 2 hours via express delivery. Very satisfied with AVIJIT MEDICARE!</p>
+                <div class="hero-v2-search" data-aos="fade-up" data-aos-delay="100">
+                    <input type="text" id="medicineSearchInput" placeholder="Search by medicine name, brand, or composition...">
+                    <button id="medicineSearchBtn"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+                </div>
+                
+                <div class="hero-v2-filters" data-aos="fade-up" data-aos-delay="200">
+                    <div class="chip active">All</div>
+                    <div class="chip">Tablets</div>
+                    <div class="chip">Syrups</div>
+                    <div class="chip">Vitamins</div>
+                    <div class="chip">Ayurvedic</div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Footer -->
+            <!-- Right Side: 3D Holographic Graphic -->
+            <div class="hero-v2-graphic" data-aos="fade-left" data-aos-delay="200">
+                <!-- Hologram Rings -->
+                <div class="hologram-ring ring-1"></div>
+                <div class="hologram-ring ring-2"></div>
+                
+                <!-- Floating Glass Cards -->
+                <div class="floating-card-group">
+                    <div class="glass-badge badge-small-1">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <span>Express Delivery</span>
+                    </div>
+                    
+                    <div class="glass-badge badge-main">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <div class="text">
+                            <strong>100% Genuine</strong>
+                            <span>Verified Medicines</span>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-badge badge-small-2">
+                        <i class="fa-solid fa-user-doctor"></i>
+                        <span>Expert Consult</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FULL PRODUCT GRID -->
+    <section class="full-directory-section container">
+        <div class="product-grid" id="dynamicProductGrid">
+            <!-- Cards will be dynamically injected here via JavaScript -->
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination-container" id="paginationContainer">
+            <!-- Pagination buttons will be dynamically injected here via JavaScript -->
+        </div>
+    </section>
+
+    <!-- FOOTER (Exact Match to Index.html) -->
     <footer class="footer">
-        <div class="container text-center">
-            <p class="text-muted">&copy; 2026 AVIJIT MEDICARE.</p>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="logo-box" style="margin-bottom: 1rem;">
+                        <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white;"></i></div>
+                        <div class="logo-text-group">
+                            <span class="logo-text" style="color: white;">Avijit Medicare</span>
+                            <span class="logo-sub" style="color: rgba(255,255,255,0.6);">TRUSTED PHARMACY</span>
+                        </div>
+                    </div>
+                    <p>Your trusted partner for genuine medicines, expert doctors, and fast doorstep delivery across
+                        Odisha. Quality healthcare, simplified.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="medicines.html">Medicine</a></li>
+                        <li><a href="doctors.html">Doctors</a></li>
+                        <li><a href="track-order.html">Order</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Contact Info</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <li
+                            style="display: flex; gap: 15px; align-items: flex-start; color: rgba(255,255,255,0.7); margin: 0; line-height: 1.6;">
+                            <i class="fa-solid fa-location-dot"
+                                style="margin-top: 4px; color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                            <span>Avijit Medicare, Soro Square,<br>Baleswar, Odisha 756045</span>
+                        </li>
+                        <li
+                            style="display: flex; gap: 15px; align-items: center; color: rgba(255,255,255,0.7); margin: 0;">
+                            <i class="fa-solid fa-phone"
+                                style="color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                            <span>+91 9556532388</span>
+                        </li>
+                        <li
+                            style="display: flex; gap: 15px; align-items: center; color: rgba(255,255,255,0.7); margin: 0;">
+                            <i class="fa-solid fa-envelope"
+                                style="color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                            <span>support@avijitmedicare.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>&copy; 2026 Avijit Medicare. All rights reserved. Made with care in Odisha, India.</div>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Refund Policy</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <!-- MOBILE DRAWER MENU -->
+    <div class="mobile-menu-drawer" id="mobileMenuDrawer">
+        <div class="drawer-header">
+            <a href="index.html" class="logo-box">
+                <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i></div>
+                <div class="logo-text-group">
+                    <span class="logo-text" style="color: white;">Avijit Medicare</span>
+                    <span class="logo-sub" style="color: var(--text-muted);">TRUSTED PHARMACY</span>
+                </div>
+            </a>
+            <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="drawer-profile" style="background: rgba(248, 181, 0, 0.05); padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary-dark); display: flex; align-items: center; justify-content: center; color: var(--bg-light); font-weight: 700; font-size: 1.1rem; border: 2px solid rgba(248, 181, 0, 0.3);" id="mobileAvatarInitials">
+                U
+            </div>
+            <div style="display: flex; flex-direction: column;">
+                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;">Welcome back,</span>
+                <span id="welcomeUserMobile" style="font-size: 0.95rem; color: white; font-weight: 700; margin-top: 2px;">Guest User</span>
+            </div>
+        </div>
+
+        <div class="drawer-body">
+            <nav class="drawer-links">
+                <a href="index.html" class="drawer-link"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="about.html" class="drawer-link"><i class="fa-solid fa-circle-info"></i> About Us</a>
+                <a href="medicines.html" class="drawer-link active"><i class="fa-solid fa-pills"></i> Medicine</a>
+                <a href="doctors.html" class="drawer-link"><i class="fa-solid fa-user-doctor"></i> Doctors</a>
+                <a href="track-order.html" class="drawer-link"><i class="fa-solid fa-truck-fast"></i> Order</a>
+                <a href="contact.html" class="drawer-link"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+            </nav>
+            
+            <div class="drawer-footer">
+                <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary w-full" style="border-radius: 8px;">
+                    <i class="fa-solid fa-right-from-bracket" style="margin-right: 8px;"></i> Logout
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <!-- AOS JS for Global Consistency -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        function checkPincode() {
-            const input = document.getElementById('pincode-input').value;
-            const res = document.getElementById('pincode-result');
-            res.style.display = 'block';
-            if(input.length === 6) {
-                res.innerHTML = `<span style="color: var(--success);"><i class="fa-solid fa-check-circle"></i> Delivery available to ${input}. ETA: Tomorrow by 9 PM.</span>`;
-            } else {
-                res.innerHTML = `<span style="color: var(--danger);"><i class="fa-solid fa-times-circle"></i> Please enter a valid 6-digit PIN code.</span>`;
+        document.addEventListener("DOMContentLoaded", function () {
+            // Initialize AOS Animations
+            AOS.init({
+                once: true,
+                offset: 50,
+                duration: 800,
+            });
+
+            // Auth logic
+            const currentUser = JSON.parse(localStorage.getItem("avijit_current_user"));
+            if (currentUser && document.getElementById("welcomeUser")) {
+                document.getElementById("welcomeUser").innerText = "Hi, " + currentUser.fname;
             }
+
+            // Mobile Menu
+            const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+            const mobileMenuDrawer = document.getElementById("mobileMenuDrawer");
+            const drawerClose = document.getElementById("drawerClose");
+            const drawerOverlay = document.getElementById("drawerOverlay");
+            const mobileSearchToggle = document.getElementById("mobileSearchToggle");
+            const searchContainer = document.getElementById("searchContainer");
+
+            if (mobileMenuToggle && mobileMenuDrawer) {
+                mobileMenuToggle.addEventListener("click", () => {
+                    mobileMenuDrawer.classList.add("active");
+                    drawerOverlay.classList.add("active");
+                    document.body.style.overflow = "hidden";
+                });
+            }
+
+            if (drawerClose && mobileMenuDrawer) {
+                drawerClose.addEventListener("click", () => {
+                    mobileMenuDrawer.classList.remove("active");
+                    drawerOverlay.classList.remove("active");
+                    document.body.style.overflow = "";
+                });
+            }
+
+            if (drawerOverlay && mobileMenuDrawer) {
+                drawerOverlay.addEventListener("click", () => {
+                    mobileMenuDrawer.classList.remove("active");
+                    drawerOverlay.classList.remove("active");
+                    document.body.style.overflow = "";
+                });
+            }
+
+            if (mobileSearchToggle && searchContainer) {
+                mobileSearchToggle.addEventListener("click", () => {
+                    searchContainer.classList.toggle("mobile-active");
+                });
+            }
+
+            // Welcome user in mobile menu
+            if (currentUser) {
+                if (document.getElementById("welcomeUserMobile")) {
+                    document.getElementById("welcomeUserMobile").innerText = currentUser.fname + " " + (currentUser.lname || "");
+                }
+                if (document.getElementById("mobileAvatarInitials")) {
+                    const initials = (currentUser.fname ? currentUser.fname.charAt(0).toUpperCase() : "") + 
+                                     (currentUser.lname ? currentUser.lname.charAt(0).toUpperCase() : "");
+                    document.getElementById("mobileAvatarInitials").innerText = initials || "U";
+                }
+            }
+        });
+
+        // Sticky Header Glassmorphism Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        function logoutUser() {
+            localStorage.removeItem("avijit_logged_in");
+            localStorage.removeItem("avijit_current_user");
+            window.location.href = "login.html";
         }
+
+        // Dynamic 100 Medicine Rendering & Pagination System
+        document.addEventListener("DOMContentLoaded", function() {
+            // 1. Generate 100 Unique Medicines
+            const categories = [
+                { name: "Fever & Pain", img: "images/medicines/paracetamol.png" },
+                { name: "Antibiotic", img: "images/medicines/antibiotic.png" },
+                { name: "Acidity", img: "images/medicines/stomach.png" },
+                { name: "Vitamins", img: "images/medicines/vitamins.png" },
+                { name: "Cough & Cold", img: "images/medicines/syrup.png" },
+                { name: "Ayurvedic", img: "images/medicines/ayurvedic.png" },
+                { name: "Diabetes Care", img: "images/medicines/paracetamol.png" },
+                { name: "First Aid", img: "images/medicines/antibiotic.png" },
+                { name: "Cardiac Care", img: "images/medicines/paracetamol.png" },
+                { name: "Neurology", img: "images/medicines/vitamins.png" }
+            ];
+            
+            const prefixes = ["Oxy", "Para", "Azi", "Pan", "Zin", "Cor", "Gly", "Sav", "Neu", "Cardio", "Derma", "Livo", "Gastro", "Pulmo", "Ortho"];
+            const suffixes = ["mol", "thral", "top", "covit", "rex", "met", "lon", "bion", "pril", "care", "zole", "cet", "fen", "xine", "plus"];
+            const dosages = ["500mg", "650mg", "40mg", "100ml", "Syrup", "Ointment", "Drops", "10mg", "200mg", "Inhaler"];
+
+            const allMedicines = [];
+            
+            // Seed with known existing ones first
+            const predefined = [
+                { title: "Dolo 650", dose: "Paracetamol 650mg", price: 30, oldPrice: 35, category: "Fever & Pain", img: "images/medicines/paracetamol.png", stock: "In Stock", use: "Relieves high fever and body ache.", when: "After meals", desc: "India's most trusted paracetamol brand for fast relief." },
+                { title: "Azithral 500", dose: "Azithromycin 500mg", price: 120, oldPrice: 135, category: "Antibiotic", img: "images/medicines/antibiotic.png", stock: "In Stock", use: "Treats bacterial infections.", when: "Once daily for 3 days", desc: "Broad-spectrum antibiotic for throat and lung infections." },
+                { title: "Pan 40", dose: "Pantoprazole 40mg", price: 150, oldPrice: 165, category: "Acidity", img: "images/medicines/stomach.png", stock: "In Stock", use: "Reduces stomach acid and heartburn.", when: "Empty stomach in morning", desc: "Effective proton pump inhibitor for gastric relief." },
+                { title: "Zincovit", dose: "Multivitamin Syrup", price: 145, oldPrice: 160, category: "Vitamins", img: "images/medicines/vitamins.png", stock: "Low Stock", use: "Boosts immunity and daily energy.", when: "Twice daily after food", desc: "Essential multi-vitamins and minerals supplement." },
+                { title: "Corex DX", dose: "Cough Suppressant", price: 110, oldPrice: 125, category: "Cough & Cold", img: "images/medicines/syrup.png", stock: "In Stock", use: "Provides relief from dry cough.", when: "Before bedtime", desc: "Non-drowsy formula for immediate throat soothing." },
+                { title: "Himalaya Liv.52", dose: "Liver Care 100 Tabs", price: 180, oldPrice: 200, category: "Ayurvedic", img: "images/medicines/ayurvedic.png", stock: "In Stock", use: "Natural remedy for liver detox.", when: "Twice daily before meals", desc: "Trusted ayurvedic supplement for hepatoprotection." },
+                { title: "Glycomet-GP 1", dose: "Metformin 500mg", price: 135, oldPrice: 150, category: "Diabetes Care", img: "images/medicines/paracetamol.png", stock: "In Stock", use: "Regulates blood sugar levels.", when: "With meals", desc: "Standard anti-diabetic medication." },
+                { title: "Savlon Antiseptic", dose: "Liquid 100ml", price: 45, oldPrice: 55, category: "First Aid", img: "images/medicines/antibiotic.png", stock: "Low Stock", use: "Prevents infection in cuts.", when: "Apply externally", desc: "Clinically proven antiseptic wash." }
+            ];
+            
+            allMedicines.push(...predefined);
+
+            // Generate the rest to reach 100 exactly
+            const useMap = {
+                "Fever & Pain": "Relieves high fever and body ache.",
+                "Antibiotic": "Treats bacterial infections effectively.",
+                "Acidity": "Reduces stomach acid and heartburn.",
+                "Vitamins": "Boosts immunity and provides daily energy.",
+                "Cough & Cold": "Provides relief from dry and wet cough.",
+                "Ayurvedic": "Natural remedy for holistic healing.",
+                "Diabetes Care": "Regulates and maintains blood sugar levels.",
+                "First Aid": "Prevents infection in cuts and minor wounds.",
+                "Cardiac Care": "Supports heart health and blood pressure.",
+                "Neurology": "Enhances nerve function and brain health."
+            };
+            const whenList = ["After meals", "Before meals", "Empty stomach in morning", "Before bedtime", "Twice daily after food", "As directed by physician"];
+
+            while (allMedicines.length < 100) {
+                const cat = categories[Math.floor(Math.random() * categories.length)];
+                const pref = prefixes[Math.floor(Math.random() * prefixes.length)];
+                const suff = suffixes[Math.floor(Math.random() * suffixes.length)];
+                const dose = dosages[Math.floor(Math.random() * dosages.length)];
+                const price = Math.floor(Math.random() * 500) + 20;
+                
+                const title = pref + suff + (Math.random() > 0.5 ? " " + (Math.floor(Math.random() * 50) * 10) : "");
+                
+                // Ensure uniqueness by title
+                if (!allMedicines.find(m => m.title === title)) {
+                    allMedicines.push({
+                        title: title,
+                        dose: dose,
+                        price: price,
+                        oldPrice: price + Math.floor(Math.random() * 50) + 10,
+                        category: cat.name,
+                        img: cat.img,
+                        stock: Math.random() > 0.8 ? "Low Stock" : "In Stock",
+                        use: useMap[cat.name],
+                        when: whenList[Math.floor(Math.random() * whenList.length)],
+                        desc: `Premium quality ${cat.name} medication. Clinically tested for fast and effective results.`
+                    });
+                }
+            }
+
+            // 2. Pagination State
+            let filteredMedicines = [...allMedicines]; // Holds search results
+            const itemsPerPage = 9;
+            let currentPage = 1;
+
+            const gridContainer = document.getElementById("dynamicProductGrid");
+            const paginationContainer = document.getElementById("paginationContainer");
+            const searchInput = document.getElementById("medicineSearchInput");
+
+            // 3. Render Grid Function
+            function renderGrid(page) {
+                gridContainer.innerHTML = "";
+                
+                const startIndex = (page - 1) * itemsPerPage;
+                const endIndex = startIndex + itemsPerPage;
+                const currentItems = filteredMedicines.slice(startIndex, endIndex);
+
+                if (currentItems.length === 0) {
+                    gridContainer.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: white; padding: 50px;"><h3>No medicines found matching your search.</h3></div>`;
+                    return;
+                }
+
+                currentItems.forEach((med) => {
+                    const stockClass = med.stock === "Low Stock" ? "stock-badge low" : "stock-badge";
+                    
+                    const cardHTML = `
+                        <div class="product-card">
+                            <div class="product-img-wrapper">
+                                <div class="${stockClass}">${med.stock}</div>
+                                <img src="${med.img}" alt="${med.title}">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">${med.category}</div>
+                                <h3 class="product-title">${med.title}</h3>
+                                <div class="product-dose">${med.dose}</div>
+                                <div class="product-price-row">
+                                    <div class="product-price">₹${med.price} <small>₹${med.oldPrice}</small></div>
+                                </div>
+                                <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                            </div>
+                            
+                            <!-- Detailed Hover Overlay -->
+                            <div class="product-details-overlay">
+                                <div class="overlay-header">
+                                    <h4>${med.title}</h4>
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </div>
+                                <div class="detail-item">
+                                    <strong><i class="fa-solid fa-virus"></i> Diseases & Use</strong>
+                                    <p>${med.use}</p>
+                                </div>
+                                <div class="detail-item">
+                                    <strong><i class="fa-solid fa-clock"></i> When to Take</strong>
+                                    <p>${med.when}</p>
+                                </div>
+                                <div class="detail-item">
+                                    <strong><i class="fa-solid fa-file-medical"></i> Description</strong>
+                                    <p>${med.desc}</p>
+                                </div>
+                                <div class="overlay-action">
+                                    <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Quick Add ₹${med.price}</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    gridContainer.insertAdjacentHTML('beforeend', cardHTML);
+                });
+            }
+
+            // 4. Render Pagination Function
+            function renderPagination() {
+                paginationContainer.innerHTML = "";
+                const totalPages = Math.ceil(filteredMedicines.length / itemsPerPage);
+
+                if (totalPages <= 1) return; // Hide pagination if only 1 page
+
+                // Previous Button
+                const prevBtn = document.createElement("button");
+                prevBtn.className = "pagination-btn";
+                prevBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+                prevBtn.disabled = currentPage === 1;
+                prevBtn.onclick = () => {
+                    if (currentPage > 1) {
+                        currentPage--;
+                        updateView();
+                    }
+                };
+                paginationContainer.appendChild(prevBtn);
+
+                // Page Numbers
+                let startPage = Math.max(1, currentPage - 2);
+                let endPage = Math.min(totalPages, currentPage + 2);
+
+                if (startPage > 1) {
+                    paginationContainer.appendChild(createPageBtn(1));
+                    if (startPage > 2) {
+                        const dots = document.createElement("span");
+                        dots.style.color = "white";
+                        dots.innerText = "...";
+                        paginationContainer.appendChild(dots);
+                    }
+                }
+
+                for (let i = startPage; i <= endPage; i++) {
+                    paginationContainer.appendChild(createPageBtn(i));
+                }
+
+                if (endPage < totalPages) {
+                    if (endPage < totalPages - 1) {
+                        const dots = document.createElement("span");
+                        dots.style.color = "white";
+                        dots.innerText = "...";
+                        paginationContainer.appendChild(dots);
+                    }
+                    paginationContainer.appendChild(createPageBtn(totalPages));
+                }
+
+                // Next Button
+                const nextBtn = document.createElement("button");
+                nextBtn.className = "pagination-btn";
+                nextBtn.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+                nextBtn.disabled = currentPage === totalPages;
+                nextBtn.onclick = () => {
+                    if (currentPage < totalPages) {
+                        currentPage++;
+                        updateView();
+                    }
+                };
+                paginationContainer.appendChild(nextBtn);
+            }
+
+            function createPageBtn(pageNumber) {
+                const btn = document.createElement("button");
+                btn.className = `pagination-btn ${pageNumber === currentPage ? 'active' : ''}`;
+                btn.innerText = pageNumber;
+                btn.onclick = () => {
+                    currentPage = pageNumber;
+                    updateView();
+                };
+                return btn;
+            }
+
+            function updateView() {
+                renderGrid(currentPage);
+                renderPagination();
+                // Optional: Scroll back to top of grid when page changes
+                if(currentPage > 1) {
+                    const target = document.querySelector(".full-directory-section");
+                    if (target) {
+                        const headerOffset = 150;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                    }
+                }
+            }
+
+            // 5. Connect Search Filter & Chips to the Data Array
+            const filterChips = document.querySelectorAll(".hero-v2-filters .chip");
+            
+            function applyFilters() {
+                const query = searchInput ? searchInput.value.toLowerCase().trim() : "";
+                let activeChip = "All";
+                
+                filterChips.forEach(chip => {
+                    if(chip.classList.contains("active")) {
+                        activeChip = chip.innerText.trim();
+                    }
+                });
+
+                filteredMedicines = allMedicines.filter(med => {
+                    // 1. Text Search Match
+                    const searchMatch = 
+                        med.title.toLowerCase().includes(query) || 
+                        med.category.toLowerCase().includes(query) ||
+                        med.dose.toLowerCase().includes(query);
+                    
+                    if (!searchMatch) return false;
+
+                    // 2. Chip Filter Match
+                    if (activeChip === "All") return true;
+                    if (activeChip === "Tablets") return med.dose.toLowerCase().includes("mg") || med.dose.toLowerCase().includes("tabs");
+                    if (activeChip === "Syrups") return med.dose.toLowerCase().includes("syrup");
+                    if (activeChip === "Vitamins") return med.category.toLowerCase().includes("vitamins");
+                    if (activeChip === "Ayurvedic") return med.category.toLowerCase().includes("ayurvedic");
+                    
+                    return true;
+                });
+
+                currentPage = 1; // Reset to page 1 on new filter
+                updateView();
+            }
+
+            // Bind Search Input
+            if (searchInput) {
+                searchInput.addEventListener("input", applyFilters);
+            }
+
+            // Bind Chips
+            filterChips.forEach(chip => {
+                chip.addEventListener("click", function() {
+                    // Remove active from all
+                    filterChips.forEach(c => c.classList.remove("active"));
+                    // Add active to clicked
+                    this.classList.add("active");
+                    // Apply filters
+                    applyFilters();
+                });
+            });
+
+            // Trigger Initial Render of 100 items
+            updateView();
+        });
     </script>
+    <!-- Floating Contact Buttons -->
+    <div class="floating-contact">
+        <a href="tel:+917855870349" class="float-btn call-float" title="Call +91 7855870349">
+            <i class="fa-solid fa-phone"></i>
+        </a>
+        <a href="https://wa.me/919971286110?text=Hello%20Avijit%20Medicare%2C%20I%20need%20help%20with%20medicine%20order."
+            target="_blank" class="float-btn wa-float" title="WhatsApp +91 9971286110">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
+
 </body>
 </html>
