@@ -1,6 +1,27 @@
 /* AVIJIT MEDICARE - EXACT SCREENSHOT MATCH */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
+/* Global Custom Scrollbar */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(248, 181, 0, 0.35) #031410;
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #031410;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(248, 181, 0, 0.3);
+    border-radius: 5px;
+    border: 2px solid #031410;
+    transition: background 0.3s;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #f8b500;
+}
+
 :root {
     /* Premium Dark Theme Matching About Us */
     --primary-dark: #f8b500; /* Replaced dark green with Gold for contrast */
@@ -2113,47 +2134,69 @@ ul {
 /* Floating Contact Buttons */
 .floating-contact {
     position: fixed;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    bottom: 30px;
+    right: 30px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     z-index: 1000;
 }
-
 .float-btn {
-    width: 50px;
-    height: 50px;
-    color: #FFF;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-    border-radius: 8px 0 0 8px;
-    box-shadow: -2px 4px 10px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
     text-decoration: none;
 }
-
-.wa-float {
-    background-color: #25d366;
+.float-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid white;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
 }
-
-.wa-float:hover {
-    background-color: #20b858;
-    width: 60px;
-    color: #FFF;
+.float-btn:hover::before {
+    opacity: 0.3;
+    transform: scale(1);
 }
-
+.float-btn:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+    color: white;
+}
 .call-float {
-    background-color: var(--primary-dark);
+    background: linear-gradient(135deg, var(--primary-dark), #e0a300);
+    color: #031410 !important;
+}
+.call-float:hover {
+    color: #031410 !important;
+}
+.wa-float {
+    background: linear-gradient(135deg, #25d366, #128c7e);
 }
 
-.call-float:hover {
-    background-color: var(--primary);
-    width: 60px;
-    color: #FFF;
+/* Mobile responsive adjustments for floating contact buttons */
+@media (max-width: 768px) {
+    .floating-contact {
+        bottom: 20px;
+        right: 20px;
+        gap: 10px;
+    }
+    .float-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
 }
 
 /* ==========================================================================
