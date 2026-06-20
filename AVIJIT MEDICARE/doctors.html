@@ -19,6 +19,7 @@
     
     <!-- Main Style -->
     <link rel="stylesheet" href="css/style.css?v=48">
+    <link rel="stylesheet" href="css/about.css?v=17">
     
     <style>
         :root {
@@ -121,7 +122,7 @@
         /* --- FILTERS SECTION --- */
         .filter-section {
             max-width: 1200px;
-            margin: 0 auto 3rem;
+            margin: 5rem auto 3rem;
             padding: 0 20px;
         }
         .filter-card {
@@ -1420,14 +1421,79 @@
 
     <!-- ================== MAIN CONTENT ================== -->
     
-    <!-- Hero Section -->
-    <section class="doctors-hero">
-        <div class="bg-orb orb-1"></div>
-        <div class="bg-orb orb-2"></div>
-        <div class="bg-orb orb-3"></div>
-        <div class="container" data-aos="fade-up">
-            <h1 class="doctors-title">Consult Online <span>Doctors</span></h1>
-            <p class="doctors-subtitle">Consult with certified medical specialists for secure video, audio, or chat sessions right from the comfort of your home.</p>
+    <!-- PAGE HERO (PREMIUM DARK GLASS THEME - Matching About & Medicine Pages) -->
+    <section class="about-page-hero">
+        <div class="container">
+            <div class="about-grid">
+
+                <!-- Left Content -->
+                <div class="about-content">
+                    <div class="hero-tag" data-aos="fade-down">24/7 VIRTUAL CONSULTATION</div>
+
+                    <h1 class="hero-title" data-aos="fade-right" data-aos-delay="100">
+                        Consult Online <br><span>Specialist Doctors</span>
+                    </h1>
+
+                    <h4 class="hero-subtitle" data-aos="fade-right" data-aos-delay="200">
+                        Secure Video, Audio & Chat Sessions
+                    </h4>
+
+                    <p class="hero-text" data-aos="fade-right" data-aos-delay="300">
+                        Connect with certified medical experts across multiple specialties from the comfort of your home. Get instant prescriptions, treatment plans, and continuous medical support under our interactive virtual care console.
+                    </p>
+
+                    <div class="hero-buttons" data-aos="fade-up" data-aos-delay="400">
+                        <a href="#specialtyFilter" class="btn btn-primary btn-pill">Find Specialists</a>
+                        <a href="#ai-matcher" class="btn btn-outline-white btn-pill">AI Diagnostic</a>
+                    </div>
+                </div>
+
+                <!-- Right Image (3D Floating Collage Redesign) -->
+                <div class="about-image-wrapper" data-aos="fade-left" data-aos-duration="1200">
+                    <!-- Glowing Back Orb -->
+                    <div class="about-glow-orb"></div>
+
+                    <!-- Main Image Frame -->
+                    <div class="glass-image-container">
+                        <img src="images/blog_3.png" alt="Consult Online Doctors" class="premium-img"
+                            onerror="this.src='https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop'">
+                    </div>
+
+                    <!-- Floating Badge 1: Verified Experts (Bottom Left) -->
+                    <div class="premium-float-card float-left-card" data-aos="zoom-in" data-aos-delay="600">
+                        <div class="glass-icon-circle">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <div>
+                            <div class="card-num">Verified Experts</div>
+                            <div class="card-lbl">100% Certified</div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Badge 2: Virtual Clinic (Top Right) -->
+                    <div class="premium-float-card float-right-card" data-aos="zoom-in" data-aos-delay="800">
+                        <div class="glass-icon-circle mint-icon">
+                            <i class="fa-solid fa-video"></i>
+                        </div>
+                        <div>
+                            <div class="card-num">Virtual Clinic</div>
+                            <div class="card-lbl">HD Video & Chat</div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Badge 3: Quick Connect (Bottom Right) -->
+                    <div class="premium-float-card float-center-card" data-aos="zoom-in" data-aos-delay="1000">
+                        <div class="glass-icon-circle gold-icon">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <div>
+                            <div class="card-num">Quick Connect</div>
+                            <div class="card-lbl">&lt; 15 Mins Wait</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
@@ -1650,7 +1716,7 @@
     </section>
 
     <!-- AI Symptom Matcher Section -->
-    <section class="ai-matcher-section" data-aos="fade-up">
+    <section id="ai-matcher" class="ai-matcher-section" data-aos="fade-up">
         <h2 class="ai-matcher-title">AI Doctor Finder & <span>Symptom Matcher</span></h2>
         <div class="ai-matcher-dashboard">
             <div class="matcher-left">
