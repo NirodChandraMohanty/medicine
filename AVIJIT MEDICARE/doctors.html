@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script>
         if (localStorage.getItem("avijit_logged_in") !== "true") {
@@ -9,23 +10,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consult Doctors - AVIJIT MEDICARE</title>
-    
+
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+
     <!-- Main Style -->
     <link rel="stylesheet" href="css/style.css?v=48">
     <link rel="stylesheet" href="css/about.css?v=17">
-    
+
     <style>
         :root {
-            --primary-dark: #f8b500; /* Gold */
+            --primary-dark: #f8b500;
+            /* Gold */
             --primary: #d49a00;
-            --primary-light: rgba(248, 181, 0, 0.1); 
+            --primary-light: rgba(248, 181, 0, 0.1);
             --mint: #1abc9c;
             --accent-orange: #f06a42;
             --bg-dark: #031410;
@@ -36,12 +39,44 @@
         }
 
         /* Sticky Header */
-        .site-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; transition: all 0.4s ease; background: transparent; }
-        body { padding-top: 130px; background-color: var(--bg-dark) !important; color: var(--text-main) !important; overflow-x: hidden; }
-        .site-header.scrolled { background: rgba(2, 20, 15, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-bottom: 1px solid rgba(0, 255, 204, 0.2); }
-        .site-header.scrolled .top-header { padding: 5px 0; }
-        .site-header.scrolled .nav-header { border-top: 1px solid rgba(255,255,255,0.05); }
-        @media (max-width: 768px) { body { padding-top: 80px; } }
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        body {
+            padding-top: 130px;
+            background-color: var(--bg-dark) !important;
+            color: var(--text-main) !important;
+            overflow-x: hidden;
+        }
+
+        .site-header.scrolled {
+            background: rgba(2, 20, 15, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        .site-header.scrolled .top-header {
+            padding: 5px 0;
+        }
+
+        .site-header.scrolled .nav-header {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 80px;
+            }
+        }
 
         /* --- DOCTORS HERO SECTION --- */
         .doctors-hero {
@@ -50,7 +85,7 @@
             text-align: center;
             overflow: hidden;
         }
-        
+
         /* Floating background orbs */
         .bg-orb {
             position: absolute;
@@ -61,6 +96,7 @@
             pointer-events: none;
             animation: pulse-orb 8s ease-in-out infinite alternate;
         }
+
         .orb-1 {
             width: 300px;
             height: 300px;
@@ -68,6 +104,7 @@
             top: 5%;
             left: 10%;
         }
+
         .orb-2 {
             width: 250px;
             height: 250px;
@@ -76,6 +113,7 @@
             right: 15%;
             animation-delay: -3s;
         }
+
         .orb-3 {
             width: 200px;
             height: 200px;
@@ -84,10 +122,22 @@
             right: 45%;
             animation-delay: -5s;
         }
+
         @keyframes pulse-orb {
-            0% { transform: scale(1) translate(0, 0); opacity: 0.12; }
-            50% { transform: scale(1.15) translate(15px, -15px); opacity: 0.2; }
-            100% { transform: scale(0.9) translate(-15px, 15px); opacity: 0.12; }
+            0% {
+                transform: scale(1) translate(0, 0);
+                opacity: 0.12;
+            }
+
+            50% {
+                transform: scale(1.15) translate(15px, -15px);
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: scale(0.9) translate(-15px, 15px);
+                opacity: 0.12;
+            }
         }
 
         .doctors-title {
@@ -100,23 +150,32 @@
             -webkit-text-fill-color: transparent;
             animation: fadeInUp 0.8s ease forwards;
         }
-        .doctors-title span { 
-            color: var(--primary-dark); 
-            -webkit-text-fill-color: var(--primary-dark); 
+
+        .doctors-title span {
+            color: var(--primary-dark);
+            -webkit-text-fill-color: var(--primary-dark);
             text-shadow: 0 0 25px rgba(248, 181, 0, 0.3);
         }
+
         .doctors-subtitle {
-            font-size: 1.2rem; 
-            color: rgba(255,255,255,0.7); 
-            max-width: 650px; 
-            margin: 0 auto; 
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 650px;
+            margin: 0 auto;
             line-height: 1.6;
             animation: fadeInUp 1s ease forwards;
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* --- FILTERS SECTION --- */
@@ -125,6 +184,7 @@
             margin: 5rem auto 3rem;
             padding: 0 20px;
         }
+
         .filter-card {
             background: var(--bg-card);
             backdrop-filter: blur(25px);
@@ -132,16 +192,18 @@
             border: 1px solid var(--border-color);
             border-radius: 20px;
             padding: 1.75rem 2rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             display: grid;
             grid-template-columns: 1.5fr 1fr 1fr;
             gap: 1.5rem;
             align-items: center;
         }
+
         .search-box-custom {
             position: relative;
             width: 100%;
         }
+
         .search-box-custom i {
             position: absolute;
             left: 1.25rem;
@@ -150,6 +212,7 @@
             color: var(--text-muted);
             font-size: 1.1rem;
         }
+
         .search-input-custom {
             width: 100%;
             background: rgba(255, 255, 255, 0.03);
@@ -160,12 +223,14 @@
             font-size: 0.95rem;
             transition: all 0.3s;
         }
+
         .search-input-custom:focus {
             outline: none;
             border-color: var(--primary-dark);
             box-shadow: 0 0 15px rgba(248, 181, 0, 0.1);
             background: rgba(248, 181, 0, 0.02);
         }
+
         .select-custom {
             width: 100%;
             background: rgba(255, 255, 255, 0.03);
@@ -182,15 +247,18 @@
             background-repeat: no-repeat;
             background-position: right 1rem center;
         }
+
         .select-custom:focus {
             outline: none;
             border-color: var(--primary-dark);
             background-color: #031410;
         }
+
         .select-custom option {
             background-color: #031410;
             color: white;
         }
+
         .toggle-box-custom {
             display: flex;
             align-items: center;
@@ -199,6 +267,7 @@
             cursor: pointer;
             user-select: none;
         }
+
         .toggle-switch {
             position: relative;
             width: 50px;
@@ -207,6 +276,7 @@
             border-radius: 100px;
             transition: background-color 0.3s;
         }
+
         .toggle-switch::after {
             content: '';
             position: absolute;
@@ -218,13 +288,16 @@
             background-color: white;
             transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
+
         .toggle-box-custom.active .toggle-switch {
             background-color: var(--mint);
         }
+
         .toggle-box-custom.active .toggle-switch::after {
             left: 27px;
             background-color: #031410;
         }
+
         .toggle-label {
             font-size: 0.95rem;
             color: rgba(255, 255, 255, 0.85);
@@ -237,11 +310,13 @@
             margin: 0 auto 6rem;
             padding: 0 20px;
         }
+
         .doctors-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
         }
+
         .doctor-card-premium {
             background: linear-gradient(135deg, rgba(5, 34, 28, 0.45) 0%, rgba(3, 20, 16, 0.6) 100%);
             backdrop-filter: blur(25px);
@@ -249,7 +324,7 @@
             border: 1px solid rgba(0, 255, 204, 0.12);
             border-radius: 24px;
             padding: 2.5rem 2rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -259,21 +334,25 @@
             align-items: center;
             z-index: 1;
         }
+
         .doctor-card-premium::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 4px;
             background: linear-gradient(90deg, var(--primary-dark), var(--mint));
             opacity: 0.3;
             transition: all 0.4s ease;
             z-index: 2;
         }
+
         .doctor-card-premium::after {
             content: '';
             position: absolute;
             inset: 0;
-            background-image: 
+            background-image:
                 linear-gradient(rgba(0, 255, 204, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 255, 204, 0.03) 1px, transparent 1px);
             background-size: 20px 20px;
@@ -282,14 +361,17 @@
             z-index: 0;
             pointer-events: none;
         }
+
         .doctor-card-premium:hover::after {
             opacity: 0.8;
         }
+
         .doctor-card-premium:hover::before {
             opacity: 1;
             height: 6px;
             box-shadow: 0 2px 15px rgba(248, 181, 0, 0.4);
         }
+
         .doctor-card-premium:hover {
             transform: translateY(-10px) scale(1.02);
             border-color: rgba(0, 255, 204, 0.4);
@@ -304,6 +386,7 @@
             margin-bottom: 1.75rem;
             z-index: 1;
         }
+
         .doctor-avatar-wrapper::before {
             content: '';
             position: absolute;
@@ -313,12 +396,14 @@
             animation: radarRotation 15s linear infinite;
             transition: all 0.4s ease;
         }
+
         .doctor-card-premium:hover .doctor-avatar-wrapper::before {
             border-color: var(--primary-dark);
             border-style: solid;
             box-shadow: 0 0 15px rgba(248, 181, 0, 0.25);
             animation-duration: 6s;
         }
+
         .doctor-avatar-container {
             width: 100%;
             height: 100%;
@@ -334,6 +419,7 @@
             box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.01);
             overflow: hidden;
         }
+
         .doctor-avatar-img {
             width: 100%;
             height: 100%;
@@ -341,15 +427,18 @@
             object-fit: cover;
             transition: all 0.4s ease;
         }
+
         .doctor-card-premium:hover .doctor-avatar-img {
             transform: scale(1.1);
         }
+
         .doctor-card-premium:hover .doctor-avatar-container {
             border-color: var(--primary-dark);
             box-shadow: 0 0 25px rgba(248, 181, 0, 0.35), inset 0 0 15px rgba(248, 181, 0, 0.1);
             color: #031410;
             background: var(--primary-dark);
         }
+
         .doctor-status-badge {
             position: absolute;
             bottom: 2px;
@@ -357,10 +446,10 @@
             background: #031410;
             border-radius: 50%;
             padding: 3px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 2;
         }
-        
+
         .live-pulse {
             width: 12px;
             height: 12px;
@@ -369,6 +458,7 @@
             position: relative;
             display: block;
         }
+
         .live-pulse::after {
             content: '';
             position: absolute;
@@ -377,16 +467,25 @@
             border-radius: 50%;
             animation: pulse-ring 1.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
         }
+
         .live-pulse.offline {
             background-color: #8c9795;
         }
+
         .live-pulse.offline::after {
             display: none;
         }
-        
+
         @keyframes pulse-ring {
-            0% { transform: scale(0.5); opacity: 1; }
-            100% { transform: scale(1.8); opacity: 0; }
+            0% {
+                transform: scale(0.5);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1.8);
+                opacity: 0;
+            }
         }
 
         .doctor-name {
@@ -398,10 +497,12 @@
             transition: all 0.3s ease;
             z-index: 1;
         }
+
         .doctor-card-premium:hover .doctor-name {
             color: var(--primary-dark);
             text-shadow: 0 0 15px rgba(248, 181, 0, 0.3);
         }
+
         .doctor-specialty {
             font-size: 0.95rem;
             color: var(--mint);
@@ -412,11 +513,12 @@
             letter-spacing: 0.5px;
             text-transform: uppercase;
         }
+
         .doctor-card-premium:hover .doctor-specialty {
             color: white;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
-        
+
         .doctor-rating {
             display: flex;
             align-items: center;
@@ -430,37 +532,43 @@
             transition: all 0.3s ease;
             z-index: 1;
         }
+
         .doctor-rating i {
             color: var(--primary-dark);
             transition: transform 0.3s ease;
         }
+
         .doctor-card-premium:hover .doctor-rating {
             background: rgba(26, 188, 156, 0.08);
             border-color: rgba(26, 188, 156, 0.2);
             box-shadow: 0 0 15px rgba(26, 188, 156, 0.1);
         }
+
         .doctor-card-premium:hover .doctor-rating i {
             transform: scale(1.2) rotate(35deg);
         }
-        
+
         /* Stats blocks */
         .doctor-stats {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
             width: 100%;
-            border-top: 1px solid rgba(255,255,255,0.06);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
             padding-top: 1.25rem;
             margin-bottom: 1.75rem;
             z-index: 1;
             transition: all 0.3s ease;
         }
+
         .doctor-card-premium:hover .doctor-stats {
             border-color: rgba(26, 188, 156, 0.15);
         }
+
         .stat-item {
             text-align: center;
         }
+
         .stat-val {
             font-size: 1.15rem;
             font-weight: 800;
@@ -468,10 +576,12 @@
             margin-bottom: 2px;
             transition: all 0.3s ease;
         }
+
         .doctor-card-premium:hover .stat-val {
             color: var(--mint);
             transform: scale(1.08);
         }
+
         .stat-label {
             font-size: 0.72rem;
             color: var(--text-muted);
@@ -479,6 +589,7 @@
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
         }
+
         .doctor-card-premium:hover .stat-label {
             color: rgba(255, 255, 255, 0.6);
         }
@@ -490,6 +601,7 @@
             margin-top: auto;
             z-index: 1;
         }
+
         .btn-doc-chat {
             flex: 1;
             background: rgba(255, 255, 255, 0.02);
@@ -507,6 +619,7 @@
             gap: 6px;
             text-decoration: none;
         }
+
         .btn-doc-chat:hover {
             background: rgba(26, 188, 156, 0.08);
             border-color: var(--mint);
@@ -514,7 +627,7 @@
             box-shadow: 0 8px 20px rgba(26, 188, 156, 0.25);
             transform: translateY(-3px);
         }
-        
+
         .btn-doc-consult {
             flex: 1.2;
             background: var(--primary-dark);
@@ -531,6 +644,7 @@
             justify-content: center;
             gap: 6px;
         }
+
         .btn-doc-consult:hover {
             background: var(--mint);
             color: var(--bg-dark);
@@ -545,6 +659,7 @@
             padding: 0 20px;
             text-align: center;
         }
+
         .ai-matcher-title {
             font-size: clamp(2.2rem, 4.5vw, 3.2rem);
             font-weight: 800;
@@ -554,11 +669,13 @@
             -webkit-text-fill-color: transparent;
             letter-spacing: -0.5px;
         }
+
         .ai-matcher-title span {
             color: var(--primary-dark);
             -webkit-text-fill-color: var(--primary-dark);
             text-shadow: 0 0 25px rgba(248, 181, 0, 0.3);
         }
+
         .ai-matcher-dashboard {
             background: rgba(4, 25, 20, 0.75);
             border: 1px solid rgba(0, 255, 204, 0.2);
@@ -566,7 +683,7 @@
             padding: 3.5rem;
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 0 40px rgba(26, 188, 156, 0.05);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 0 40px rgba(26, 188, 156, 0.05);
             display: grid;
             grid-template-columns: 1.15fr 0.85fr;
             gap: 4rem;
@@ -574,6 +691,7 @@
             position: relative;
             overflow: hidden;
         }
+
         .ai-matcher-dashboard::before {
             content: '';
             position: absolute;
@@ -585,6 +703,7 @@
             border-radius: 50%;
             pointer-events: none;
         }
+
         .ai-matcher-dashboard::after {
             content: '';
             position: absolute;
@@ -596,7 +715,7 @@
             border-radius: 50%;
             pointer-events: none;
         }
-        
+
         .matcher-left h3 {
             font-size: clamp(1.6rem, 3.5vw, 2rem);
             font-weight: 850;
@@ -607,17 +726,20 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
         .matcher-left p {
             font-size: 1.05rem;
             color: rgba(255, 255, 255, 0.65);
             line-height: 1.6;
             margin-bottom: 2.5rem;
         }
+
         .symptom-tags-container {
             display: flex;
             flex-wrap: wrap;
             gap: 14px;
         }
+
         .symptom-tag {
             background: rgba(5, 34, 28, 0.5);
             border: 1px solid rgba(0, 255, 204, 0.15);
@@ -633,6 +755,7 @@
             gap: 8px;
             user-select: none;
         }
+
         .symptom-tag:hover {
             border-color: var(--primary-dark);
             background: rgba(248, 181, 0, 0.08);
@@ -640,6 +763,7 @@
             transform: scale(1.06) translateY(-3px);
             box-shadow: 0 8px 20px rgba(248, 181, 0, 0.2);
         }
+
         .symptom-tag.active {
             background: var(--primary-dark);
             border-color: var(--primary-dark);
@@ -655,6 +779,7 @@
             justify-content: center;
             width: 100%;
         }
+
         .scanner-hologram-card {
             position: relative;
             background: linear-gradient(180deg, rgba(3, 22, 18, 0.8) 0%, rgba(2, 13, 10, 0.95) 100%);
@@ -663,17 +788,19 @@
             padding: 2.5rem 2rem;
             width: 100%;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 30px rgba(26, 188, 156, 0.05);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(26, 188, 156, 0.05);
             transition: all 0.4s ease;
         }
+
         .scanner-hologram-card.active-scanning {
             border-color: var(--primary-dark);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 30px rgba(248, 181, 0, 0.15);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(248, 181, 0, 0.15);
         }
-        
+
         .scanner-grid-overlay {
-            position: absolute; inset: 0;
-            background-image: 
+            position: absolute;
+            inset: 0;
+            background-image:
                 linear-gradient(rgba(26, 188, 156, 0.04) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(26, 188, 156, 0.04) 1px, transparent 1px);
             background-size: 15px 15px;
@@ -681,7 +808,7 @@
             pointer-events: none;
             z-index: 1;
         }
-        
+
         /* Sonar Radar Wave styling */
         .radar-box {
             position: relative;
@@ -693,6 +820,7 @@
             justify-content: center;
             z-index: 2;
         }
+
         .radar-circle-bg {
             position: absolute;
             inset: 0;
@@ -701,6 +829,7 @@
             background: rgba(26, 188, 156, 0.02);
             pointer-events: none;
         }
+
         .radar-circle-mid {
             position: absolute;
             inset: 20px;
@@ -708,6 +837,7 @@
             border: 1px dashed rgba(26, 188, 156, 0.25);
             pointer-events: none;
         }
+
         .radar-circle-inner {
             position: absolute;
             inset: 40px;
@@ -715,6 +845,7 @@
             border: 1px solid rgba(26, 188, 156, 0.35);
             pointer-events: none;
         }
+
         .radar-sonar-sweep {
             position: absolute;
             inset: 0;
@@ -724,13 +855,20 @@
             opacity: 0;
             z-index: 1;
         }
+
         .radar-sonar-sweep.active {
             opacity: 1;
             animation: radarRotation 2s linear infinite;
         }
+
         @keyframes radarRotation {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .scanner-hud-status {
@@ -739,6 +877,7 @@
             z-index: 3;
             margin-top: 1rem;
         }
+
         .scanner-hud-title {
             font-size: 0.72rem;
             font-weight: 800;
@@ -751,6 +890,7 @@
             justify-content: center;
             gap: 6px;
         }
+
         .scanner-hud-title span.pulse-dot {
             width: 8px;
             height: 8px;
@@ -759,14 +899,23 @@
             display: inline-block;
             box-shadow: 0 0 10px var(--mint);
         }
+
         .scanner-hud-title span.pulse-dot.scanning {
             background-color: var(--primary-dark);
             box-shadow: 0 0 10px var(--primary-dark);
             animation: pulseFast 0.8s infinite alternate;
         }
+
         @keyframes pulseFast {
-            0% { opacity: 0.3; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1.2); }
+            0% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
         }
 
         .scanner-hud-message {
@@ -778,7 +927,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         }
 
         /* Heartbeat ECG Waveform */
@@ -791,13 +940,16 @@
             opacity: 0.5;
             transition: opacity 0.3s;
         }
+
         .ecg-box.active {
             opacity: 1;
         }
+
         .ecg-wave-svg {
             width: 100%;
             height: 100%;
         }
+
         .ecg-path {
             stroke: var(--mint);
             stroke-width: 2.5;
@@ -807,12 +959,16 @@
             stroke-dasharray: 1000;
             stroke-dashoffset: 1000;
         }
+
         .ecg-path.animating {
             animation: drawEcg 2s linear infinite;
             stroke: var(--primary-dark);
         }
+
         @keyframes drawEcg {
-            to { stroke-dashoffset: 0; }
+            to {
+                stroke-dashoffset: 0;
+            }
         }
 
         /* Scanner Digital Terminal Metrics Grid */
@@ -826,6 +982,7 @@
             position: relative;
             z-index: 2;
         }
+
         .terminal-col {
             background: rgba(255, 255, 255, 0.015);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -833,6 +990,7 @@
             border-radius: 8px;
             text-align: center;
         }
+
         .terminal-lbl {
             font-size: 0.65rem;
             color: var(--text-muted);
@@ -840,15 +998,18 @@
             letter-spacing: 0.8px;
             margin-bottom: 2px;
         }
+
         .terminal-val {
             font-size: 0.9rem;
             font-weight: 800;
             color: white;
             font-family: monospace;
         }
+
         .terminal-val.neon-green {
             color: var(--mint);
         }
+
         .terminal-val.neon-gold {
             color: var(--primary-dark);
         }
@@ -860,13 +1021,14 @@
             transform: translateY(-15px) scale(1.05) !important;
             z-index: 10;
         }
+
         .doctor-card-premium.ai-highlighted::after {
-            background-image: 
+            background-image:
                 linear-gradient(rgba(248, 181, 0, 0.06) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(248, 181, 0, 0.06) 1px, transparent 1px) !important;
             opacity: 0.95 !important;
         }
-        
+
         .ai-match-badge {
             position: absolute;
             top: 18px;
@@ -886,15 +1048,25 @@
             box-shadow: 0 8px 20px rgba(248, 181, 0, 0.4);
             animation: pulseBadge 1.2s infinite alternate;
         }
+
         @keyframes pulseBadge {
-            0% { transform: scale(0.95); opacity: 0.9; }
-            100% { transform: scale(1.05); opacity: 1; }
+            0% {
+                transform: scale(0.95);
+                opacity: 0.9;
+            }
+
+            100% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
         }
 
         /* Scan Line sweep animation overlay */
         .scan-line {
             position: absolute;
-            left: 0; right: 0; top: 0;
+            left: 0;
+            right: 0;
+            top: 0;
             height: 3px;
             background: linear-gradient(90deg, transparent 10%, #fff 50%, transparent 90%);
             box-shadow: 0 0 20px 8px rgba(26, 188, 156, 0.5);
@@ -902,6 +1074,7 @@
             z-index: 4;
             pointer-events: none;
         }
+
         .scan-line.scanning-gold {
             box-shadow: 0 0 20px 8px rgba(248, 181, 0, 0.6);
             opacity: 1;
@@ -909,8 +1082,13 @@
         }
 
         @keyframes scanSweeper {
-            0% { top: 0%; }
-            100% { top: 100%; }
+            0% {
+                top: 0%;
+            }
+
+            100% {
+                top: 100%;
+            }
         }
 
         @media (max-width: 992px) {
@@ -920,21 +1098,26 @@
                 padding: 3rem 2rem;
             }
         }
+
         @media (max-width: 576px) {
             .ai-matcher-dashboard {
                 padding: 2.25rem 1.25rem;
             }
+
             .symptom-tag {
                 padding: 0.75rem 1.25rem;
                 font-size: 0.88rem;
             }
+
             .scanner-hologram-card {
                 padding: 2rem 1.25rem;
             }
+
             .scanner-terminal-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .scanner-terminal-grid > div:last-child {
+
+            .scanner-terminal-grid>div:last-child {
                 grid-column: span 2;
             }
         }
@@ -955,10 +1138,12 @@
             justify-content: center;
             padding: 20px;
         }
+
         .modal-overlay.active {
             opacity: 1;
             pointer-events: auto;
         }
+
         .modal-card {
             background: #031410;
             border: 1px solid var(--border-color);
@@ -966,22 +1151,27 @@
             width: 100%;
             max-width: 500px;
             padding: 2.5rem;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
             position: relative;
             transform: translateY(30px);
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             overflow: hidden;
         }
+
         .modal-overlay.active .modal-card {
             transform: translateY(0);
         }
+
         .modal-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 4px;
             background: linear-gradient(90deg, var(--primary-dark), var(--mint));
         }
+
         .modal-close-btn {
             position: absolute;
             top: 1.5rem;
@@ -993,9 +1183,11 @@
             cursor: pointer;
             transition: color 0.3s;
         }
+
         .modal-close-btn:hover {
             color: white;
         }
+
         .modal-title {
             font-size: clamp(1.5rem, 3vw, 1.8rem);
             font-weight: 800;
@@ -1003,15 +1195,17 @@
             margin-bottom: 0.5rem;
             letter-spacing: -0.5px;
         }
+
         .modal-subtitle {
             font-size: 0.95rem;
             color: var(--text-muted);
             margin-bottom: 2rem;
         }
-        
+
         .form-group-modal {
             margin-bottom: 1.5rem;
         }
+
         .form-group-modal label {
             display: block;
             font-size: 0.85rem;
@@ -1021,6 +1215,7 @@
             letter-spacing: 0.5px;
             margin-bottom: 0.5rem;
         }
+
         .form-control-modal {
             width: 100%;
             background: rgba(255, 255, 255, 0.02);
@@ -1031,17 +1226,20 @@
             font-size: 0.95rem;
             transition: all 0.3s;
         }
+
         .form-control-modal:focus {
             outline: none;
             border-color: var(--primary-dark);
             background: rgba(248, 181, 0, 0.02);
         }
+
         .form-control-modal[readonly] {
-            background: rgba(255,255,255,0.01);
-            color: rgba(255,255,255,0.6);
-            border-color: rgba(255,255,255,0.03);
+            background: rgba(255, 255, 255, 0.01);
+            color: rgba(255, 255, 255, 0.6);
+            border-color: rgba(255, 255, 255, 0.03);
             cursor: not-allowed;
         }
+
         .btn-modal-submit {
             background: var(--primary-dark);
             color: var(--bg-dark);
@@ -1059,6 +1257,7 @@
             gap: 10px;
             margin-top: 2rem;
         }
+
         .btn-modal-submit:hover {
             background: var(--mint);
             color: var(--bg-dark);
@@ -1089,19 +1288,23 @@
             max-width: 90%;
             width: 450px;
         }
+
         .toast-notification.active {
             transform: translateX(-50%) translateY(0);
             opacity: 1;
             pointer-events: auto;
         }
+
         .toast-notification.success {
             border-color: rgba(26, 188, 156, 0.4);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(26, 188, 156, 0.15);
         }
+
         .toast-notification.error {
             border-color: rgba(240, 106, 66, 0.4);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(240, 106, 66, 0.15);
         }
+
         .toast-icon {
             font-size: 1.5rem;
             display: flex;
@@ -1109,25 +1312,31 @@
             justify-content: center;
             flex-shrink: 0;
         }
+
         .toast-notification.success .toast-icon {
             color: var(--mint);
         }
+
         .toast-notification.error .toast-icon {
             color: var(--accent-orange);
         }
+
         .toast-content {
             flex-grow: 1;
         }
+
         .toast-title {
             font-weight: 700;
             font-size: 1rem;
             margin-bottom: 2px;
             color: white;
         }
+
         .toast-desc {
             font-size: 0.85rem;
             color: rgba(255, 255, 255, 0.7);
         }
+
         .toast-close {
             background: none;
             border: none;
@@ -1137,6 +1346,7 @@
             transition: color 0.3s;
             padding: 5px;
         }
+
         .toast-close:hover {
             color: white;
         }
@@ -1146,11 +1356,13 @@
             background: linear-gradient(180deg, #020f0c 0%, #010605 100%) !important;
             padding: 5rem 0 2rem !important;
         }
+
         .footer-grid {
             display: grid !important;
             grid-template-columns: 1.5fr 1fr 1.2fr !important;
             gap: 3rem !important;
         }
+
         .footer-map-card {
             position: relative;
             width: 100%;
@@ -1163,6 +1375,7 @@
             border: 1px solid rgba(0, 255, 204, 0.15);
             background: rgba(5, 34, 28, 0.45);
         }
+
         .footer-map-badge {
             position: absolute;
             top: 10px;
@@ -1179,15 +1392,17 @@
             align-items: center;
             gap: 6px;
             z-index: 5;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             transition: all 0.3s ease;
             text-decoration: none;
         }
+
         .footer-map-badge:hover {
             background: white;
             color: var(--primary-dark);
             transform: translateY(-2px);
         }
+
         .footer-mini-map {
             width: 100%;
             height: 100%;
@@ -1195,24 +1410,29 @@
             filter: grayscale(80%) brightness(0.95);
             transition: all 0.5s ease;
         }
+
         .footer-map-card:hover .footer-mini-map {
             filter: grayscale(0%) brightness(1);
         }
+
         .footer p {
             max-width: 100% !important;
             margin-top: 1rem !important;
             line-height: 1.6 !important;
         }
+
         .footer h4 {
             font-weight: 700 !important;
             font-size: 1.15rem !important;
             padding-bottom: 0.5rem !important;
             margin-bottom: 1.25rem !important;
         }
+
         .footer h4::after {
             background: var(--primary-dark) !important;
             width: 30px !important;
         }
+
         .footer ul li a {
             display: inline-flex;
             align-items: center;
@@ -1220,6 +1440,7 @@
             color: rgba(255, 255, 255, 0.6) !important;
             font-weight: 500;
         }
+
         .footer ul li a::before {
             content: '→' !important;
             font-family: inherit !important;
@@ -1231,10 +1452,12 @@
             margin-right: 0 !important;
             display: inline-block;
         }
+
         .footer ul li a:hover {
             color: var(--primary-dark) !important;
             transform: translateX(5px) !important;
         }
+
         .footer ul li a:hover::before {
             opacity: 1 !important;
         }
@@ -1244,85 +1467,328 @@
             .filter-card {
                 grid-template-columns: 1.2fr 1fr;
             }
+
             .toggle-box-custom {
                 grid-column: span 2;
                 justify-content: flex-start;
             }
+
             .doctors-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
             .footer-grid {
                 grid-template-columns: 1.2fr 1fr !important;
                 gap: 2.5rem !important;
             }
-            .footer-grid > div:last-child {
+
+            .footer-grid>div:last-child {
                 grid-column: span 2;
             }
         }
+
         @media (max-width: 768px) {
             .doctors-hero {
                 padding: 5rem 0 3rem;
             }
+
             .doctors-title,
             .ai-matcher-title {
                 font-size: 2.2rem;
             }
+
             .doctors-subtitle {
                 font-size: 1rem;
                 padding: 0 10px;
             }
+
             .filter-card {
                 grid-template-columns: 1fr;
                 padding: 1.5rem;
             }
+
             .toggle-box-custom {
                 grid-column: span 1;
             }
+
             .doctors-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
+
             .doctor-card-premium {
                 padding: 2.25rem 1.5rem;
                 border-radius: 20px;
             }
+
             .doctor-card-premium:hover {
                 transform: translateY(-5px) scale(1.01);
             }
+
             .faq-title {
                 font-size: 1.8rem;
             }
+
             .faq-header {
                 padding: 1.2rem;
             }
+
             .faq-question {
                 font-size: 0.95rem;
             }
+
             .modal-card {
                 padding: 2rem 1.5rem;
             }
         }
+
         @media (max-width: 576px) {
+
             .doctors-title,
             .ai-matcher-title {
                 font-size: 1.8rem;
             }
+
             .footer-grid {
                 grid-template-columns: 1fr !important;
                 gap: 2rem !important;
             }
-            .footer-grid > div:last-child {
+
+            .footer-grid>div:last-child {
                 grid-column: span 1;
             }
+
             .footer-map-card {
                 max-width: 100%;
             }
+
             .footer {
                 padding: 4rem 0 2rem !important;
             }
         }
+
+        /* --- TELEHEALTH PIPELINE SECTION (HOW IT WORKS - INFINITE SCROLL) --- */
+        .telehealth-pipeline-section {
+            padding: 8rem 0;
+            background: linear-gradient(180deg, #031410 0%, #062c25 50%, #031410 100%);
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(0, 255, 204, 0.08);
+            border-bottom: 1px solid rgba(0, 255, 204, 0.08);
+        }
+
+        .telehealth-pipeline-section::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(26, 188, 156, 0.08) 0%, transparent 70%);
+            bottom: -10%;
+            left: -10%;
+            z-index: 0;
+            pointer-events: none;
+            animation: driftBlob1 25s infinite alternate;
+        }
+
+        .telehealth-pipeline-section .container {
+            position: relative;
+            z-index: 2;
+            max-width: 100% !important;
+            padding: 0;
+        }
+
+        .pipeline-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 0 20px;
+        }
+
+        .pipeline-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .pipeline-header h2 span {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(248, 181, 0, 0.15);
+        }
+
+        .pipeline-header p {
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        /* Infinite Scroll Marquee Container */
+        .pipeline-scroll-container {
+            width: 100%;
+            overflow: hidden;
+            padding: 2rem 0;
+            position: relative;
+            mask-image: linear-gradient(to right, transparent 0%, white 12%, white 88%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, white 12%, white 88%, transparent 100%);
+        }
+
+        .pipeline-scroll-track {
+            display: flex;
+            gap: 2rem;
+            width: max-content;
+            animation: pipelineScroll 45s linear infinite;
+        }
+
+        .pipeline-scroll-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes pipelineScroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                /* Total translation matches exactly the width of the 7 cards + gaps */
+                /* 7 cards * 320px = 2240px. 7 gaps * 32px (2rem) = 224px. Total = 2464px. */
+                transform: translateX(-2464px);
+            }
+        }
+
+        .pipeline-card {
+            width: 320px;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.02) !important;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 204, 0.1) !important;
+            border-radius: 24px;
+            padding: 3rem 2rem 2.5rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .pipeline-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(0, 255, 204, 0.08) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .pipeline-card:hover {
+            transform: translateY(-12px);
+            border-color: transparent !important;
+            box-shadow: 0 20px 45px rgba(26, 188, 156, 0.4) !important;
+            background: var(--mint) !important;
+        }
+
+        .pipeline-card:hover::before {
+            opacity: 1;
+        }
+
+        .step-badge {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.25;
+            font-family: var(--font-serif);
+            transition: all 0.4s ease;
+        }
+
+        .pipeline-card:hover .step-badge {
+            opacity: 0.15;
+            background: none !important;
+            -webkit-background-clip: unset !important;
+            -webkit-text-fill-color: #031410 !important;
+            color: #031410 !important;
+            transform: scale(1.1);
+        }
+
+        .pipeline-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(26, 188, 156, 0.15), rgba(26, 188, 156, 0.02));
+            border: 1px solid rgba(26, 188, 156, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2.2rem;
+            color: var(--mint);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        .pipeline-card:hover .pipeline-icon-wrapper {
+            background: rgba(3, 20, 16, 0.15) !important;
+            color: #031410 !important;
+            border-color: rgba(3, 20, 16, 0.2) !important;
+            transform: rotateY(360deg);
+            box-shadow: none;
+        }
+
+        .pipeline-card h3 {
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .pipeline-card:hover h3 {
+            color: #031410 !important;
+        }
+
+        .pipeline-card p {
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.7;
+            font-size: 0.95rem;
+            margin: 0;
+            transition: color 0.3s ease;
+        }
+
+        .pipeline-card:hover p {
+            color: rgba(3, 20, 16, 0.85) !important;
+        }
+
+        /* Responsive overrides for pipeline */
+        @media (max-width: 992px) {
+            .pipeline-scroll-track {
+                gap: 1.5rem;
+                animation-duration: 35s;
+            }
+            @keyframes pipelineScroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    /* On mobile, cards are 280px, gap is 24px (1.5rem). 7 cards * 280px = 1960px. 7 gaps * 24px = 168px. Total = 2128px. */
+                    transform: translateX(-2128px);
+                }
+            }
+            .pipeline-card {
+                width: 280px;
+                padding: 2.5rem 1.5rem;
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <!-- ================== HEADER ================== -->
@@ -1330,7 +1796,8 @@
         <div class="top-header">
             <div class="container flex justify-between items-center">
                 <a href="index.html" class="logo-box">
-                    <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i></div>
+                    <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i>
+                    </div>
                     <div class="logo-text-group">
                         <span class="logo-text">Avijit Medicare</span>
                         <span class="logo-sub">TRUSTED PHARMACY</span>
@@ -1344,11 +1811,13 @@
                     <div class="square-icon"><i class="fa-regular fa-heart"></i></div>
                     <a href="cart.html" class="square-icon" style="position: relative;">
                         <i class="fa-solid fa-cart-shopping"></i>
-                        <span style="position: absolute; top:-5px; right:-5px; background:red; color:white; font-size:9px; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center;">2</span>
+                        <span
+                            style="position: absolute; top:-5px; right:-5px; background:red; color:white; font-size:9px; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center;">2</span>
                     </a>
                     <div class="action-links">
                         <span id="welcomeUser" class="register-link"></span>
-                        <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary" style="border-radius: 4px;">Logout</a>
+                        <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary"
+                            style="border-radius: 4px;">Logout</a>
                     </div>
                     <button class="mobile-logout-btn" onclick="logoutUser()" aria-label="Logout">
                         <i class="fa-solid fa-right-from-bracket"></i>
@@ -1386,13 +1855,17 @@
                     <span class="logo-sub" style="color: var(--text-muted);">TRUSTED PHARMACY</span>
                 </div>
             </a>
-            <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+            <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i
+                    class="fa-solid fa-xmark"></i></button>
         </div>
-        <div class="drawer-profile" style="background: rgba(248, 181, 0, 0.05); padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-            <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary-dark); display: flex; align-items: center; justify-content: center; color: var(--bg-light); font-weight: 700; font-size: 1.1rem; border: 2px solid rgba(248, 181, 0, 0.3);" id="mobileAvatarInitials">U</div>
+        <div class="drawer-profile"
+            style="background: rgba(248, 181, 0, 0.05); padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary-dark); display: flex; align-items: center; justify-content: center; color: var(--bg-light); font-weight: 700; font-size: 1.1rem; border: 2px solid rgba(248, 181, 0, 0.3);"
+                id="mobileAvatarInitials">U</div>
             <div style="display: flex; flex-direction: column;">
                 <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;">Welcome back,</span>
-                <span id="welcomeUserMobile" style="font-size: 0.95rem; color: white; font-weight: 700; margin-top: 2px;">Guest User</span>
+                <span id="welcomeUserMobile"
+                    style="font-size: 0.95rem; color: white; font-weight: 700; margin-top: 2px;">Guest User</span>
             </div>
         </div>
         <div class="drawer-body">
@@ -1405,7 +1878,8 @@
                 <a href="contact.html" class="drawer-link"><i class="fa-solid fa-envelope"></i> Contact Us</a>
             </nav>
             <div class="drawer-footer">
-                <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary w-full" style="border-radius: 8px;">
+                <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary w-full"
+                    style="border-radius: 8px;">
                     <i class="fa-solid fa-right-from-bracket" style="margin-right: 8px;"></i> Logout
                 </a>
             </div>
@@ -1415,12 +1889,14 @@
 
     <!-- Floating Contact Buttons -->
     <div class="floating-contact">
-        <a href="tel:+917855870349" class="float-btn call-float" title="Call +91 7855870349"><i class="fa-solid fa-phone"></i></a>
-        <a href="https://wa.me/919971286110?text=Hello" target="_blank" class="float-btn wa-float" title="WhatsApp +91 9971286110"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="tel:+917855870349" class="float-btn call-float" title="Call +91 7855870349"><i
+                class="fa-solid fa-phone"></i></a>
+        <a href="https://wa.me/919971286110?text=Hello" target="_blank" class="float-btn wa-float"
+            title="WhatsApp +91 9971286110"><i class="fa-brands fa-whatsapp"></i></a>
     </div>
 
     <!-- ================== MAIN CONTENT ================== -->
-    
+
     <!-- PAGE HERO (PREMIUM DARK GLASS THEME - Matching About & Medicine Pages) -->
     <section class="about-page-hero">
         <div class="container">
@@ -1439,7 +1915,9 @@
                     </h4>
 
                     <p class="hero-text" data-aos="fade-right" data-aos-delay="300">
-                        Connect with certified medical experts across multiple specialties from the comfort of your home. Get instant prescriptions, treatment plans, and continuous medical support under our interactive virtual care console.
+                        Connect with certified medical experts across multiple specialties from the comfort of your
+                        home. Get instant prescriptions, treatment plans, and continuous medical support under our
+                        interactive virtual care console.
                     </p>
 
                     <div class="hero-buttons" data-aos="fade-up" data-aos-delay="400">
@@ -1502,7 +1980,8 @@
         <div class="filter-card">
             <div class="search-box-custom">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="doctorSearch" class="search-input-custom" placeholder="Search doctor by name, keyword...">
+                <input type="text" id="doctorSearch" class="search-input-custom"
+                    placeholder="Search doctor by name, keyword...">
             </div>
             <div>
                 <select id="specialtyFilter" class="select-custom">
@@ -1525,7 +2004,7 @@
     <!-- Doctors Grid Section -->
     <section class="doctors-grid-section">
         <div class="doctors-grid" id="doctorsGrid">
-            
+
             <!-- Dr. Ananya Das -->
             <div class="doctor-card-premium" data-aos="fade-up" data-specialty="General Physician" data-online="true">
                 <div class="doctor-avatar-wrapper">
@@ -1552,13 +2031,16 @@
                     </div>
                 </div>
                 <div class="doctor-actions">
-                    <a href="https://wa.me/919971286110?text=Hi%20Dr.%20Ananya%20Das,%20I%20would%20like%20to%20consult%20you" target="_blank" class="btn-doc-chat"><i class="fa-solid fa-comment-medical"></i> Chat</a>
-                    <button class="btn-doc-consult" onclick="openBookingModal('Dr. Ananya Das', 'General Physician')"><i class="fa-solid fa-video"></i> Book</button>
+                    <a href="https://wa.me/919971286110?text=Hi%20Dr.%20Ananya%20Das,%20I%20would%20like%20to%20consult%20you"
+                        target="_blank" class="btn-doc-chat"><i class="fa-solid fa-comment-medical"></i> Chat</a>
+                    <button class="btn-doc-consult" onclick="openBookingModal('Dr. Ananya Das', 'General Physician')"><i
+                            class="fa-solid fa-video"></i> Book</button>
                 </div>
             </div>
 
             <!-- Dr. Amit Verma -->
-            <div class="doctor-card-premium" data-aos="fade-up" data-aos-delay="50" data-specialty="Cardiologist" data-online="true">
+            <div class="doctor-card-premium" data-aos="fade-up" data-aos-delay="50" data-specialty="Cardiologist"
+                data-online="true">
                 <div class="doctor-avatar-wrapper">
                     <div class="doctor-avatar-container">
                         <img src="images/doc_amit.png" alt="Dr. Amit Verma" class="doctor-avatar-img">
@@ -1583,13 +2065,16 @@
                     </div>
                 </div>
                 <div class="doctor-actions">
-                    <a href="https://wa.me/919971286110?text=Hi%20Dr.%20Amit%20Verma,%20I%20would%20like%20to%20consult%20you" target="_blank" class="btn-doc-chat"><i class="fa-solid fa-comment-medical"></i> Chat</a>
-                    <button class="btn-doc-consult" onclick="openBookingModal('Dr. Amit Verma', 'Cardiologist')"><i class="fa-solid fa-video"></i> Book</button>
+                    <a href="https://wa.me/919971286110?text=Hi%20Dr.%20Amit%20Verma,%20I%20would%20like%20to%20consult%20you"
+                        target="_blank" class="btn-doc-chat"><i class="fa-solid fa-comment-medical"></i> Chat</a>
+                    <button class="btn-doc-consult" onclick="openBookingModal('Dr. Amit Verma', 'Cardiologist')"><i
+                            class="fa-solid fa-video"></i> Book</button>
                 </div>
             </div>
 
             <!-- Dr. K. N. Rao -->
-            <div class="doctor-card-premium" data-aos="fade-up" data-aos-delay="100" data-specialty="Neurologist" data-online="true">
+            <div class="doctor-card-premium" data-aos="fade-up" data-aos-delay="100" data-specialty="Neurologist"
+                data-online="true">
                 <div class="doctor-avatar-wrapper">
                     <div class="doctor-avatar-container">
                         <img src="images/doc_rao.png" alt="Dr. K. N. Rao" class="doctor-avatar-img">
@@ -1614,8 +2099,10 @@
                     </div>
                 </div>
                 <div class="doctor-actions">
-                    <a href="https://wa.me/919971286110?text=Hi%20Dr.%20K.%20N.%20Rao,%20I%20would%20like%20to%20consult%20you" target="_blank" class="btn-doc-chat"><i class="fa-solid fa-comment-medical"></i> Chat</a>
-                    <button class="btn-doc-consult" onclick="openBookingModal('Dr. K. N. Rao', 'Neurologist')"><i class="fa-solid fa-video"></i> Book</button>
+                    <a href="https://wa.me/919971286110?text=Hi%20Dr.%20K.%20N.%20Rao,%20I%20would%20like%20to%20consult%20you"
+                        target="_blank" class="btn-doc-chat"><i class="fa-solid fa-comment-medical"></i> Chat</a>
+                    <button class="btn-doc-consult" onclick="openBookingModal('Dr. K. N. Rao', 'Neurologist')"><i
+                            class="fa-solid fa-video"></i> Book</button>
                 </div>
             </div>
 
@@ -1645,13 +2132,16 @@
                     </div>
                 </div>
                 <div class="doctor-actions">
-                    <a href="https://wa.me/919971286110?text=Hi%20Dr.%20S.%20P.%20Mohanty,%20I%20would%20like%20to%20consult%20you" target="_blank" class="btn-doc-chat"><i class="fa-solid fa-comment-medical"></i> Chat</a>
-                    <button class="btn-doc-consult" onclick="openBookingModal('Dr. S. P. Mohanty', 'Diabetologist')"><i class="fa-solid fa-video"></i> Book</button>
+                    <a href="https://wa.me/919971286110?text=Hi%20Dr.%20S.%20P.%20Mohanty,%20I%20would%20like%20to%20consult%20you"
+                        target="_blank" class="btn-doc-chat"><i class="fa-solid fa-comment-medical"></i> Chat</a>
+                    <button class="btn-doc-consult" onclick="openBookingModal('Dr. S. P. Mohanty', 'Diabetologist')"><i
+                            class="fa-solid fa-video"></i> Book</button>
                 </div>
             </div>
 
             <!-- Dr. Baidyanath Mishra -->
-            <div class="doctor-card-premium" data-aos="fade-up" data-aos-delay="50" data-specialty="Ayurvedic Expert" data-online="true">
+            <div class="doctor-card-premium" data-aos="fade-up" data-aos-delay="50" data-specialty="Ayurvedic Expert"
+                data-online="true">
                 <div class="doctor-avatar-wrapper">
                     <div class="doctor-avatar-container">
                         <img src="images/doc_mishra.png" alt="Dr. Baidyanath Mishra" class="doctor-avatar-img">
@@ -1676,13 +2166,17 @@
                     </div>
                 </div>
                 <div class="doctor-actions">
-                    <a href="https://wa.me/919971286110?text=Hi%20Dr.%20Baidyanath%20Mishra,%20I%20would%20like%20to%20consult%20you" target="_blank" class="btn-doc-chat"><i class="fa-solid fa-comment-medical"></i> Chat</a>
-                    <button class="btn-doc-consult" onclick="openBookingModal('Dr. Baidyanath Mishra', 'Ayurvedic Expert')"><i class="fa-solid fa-video"></i> Book</button>
+                    <a href="https://wa.me/919971286110?text=Hi%20Dr.%20Baidyanath%20Mishra,%20I%20would%20like%20to%20consult%20you"
+                        target="_blank" class="btn-doc-chat"><i class="fa-solid fa-comment-medical"></i> Chat</a>
+                    <button class="btn-doc-consult"
+                        onclick="openBookingModal('Dr. Baidyanath Mishra', 'Ayurvedic Expert')"><i
+                            class="fa-solid fa-video"></i> Book</button>
                 </div>
             </div>
 
             <!-- Dr. Rashmi Rekha -->
-            <div class="doctor-card-premium" data-aos="fade-up" data-aos-delay="100" data-specialty="Dermatologist" data-online="true">
+            <div class="doctor-card-premium" data-aos="fade-up" data-aos-delay="100" data-specialty="Dermatologist"
+                data-online="true">
                 <div class="doctor-avatar-wrapper">
                     <div class="doctor-avatar-container">
                         <img src="images/doc_rekha.png" alt="Dr. Rashmi Rekha" class="doctor-avatar-img">
@@ -1707,8 +2201,10 @@
                     </div>
                 </div>
                 <div class="doctor-actions">
-                    <a href="https://wa.me/919971286110?text=Hi%20Dr.%20Rashmi%20Rekha,%20I%20would%20like%20to%20consult%20you" target="_blank" class="btn-doc-chat"><i class="fa-solid fa-comment-medical"></i> Chat</a>
-                    <button class="btn-doc-consult" onclick="openBookingModal('Dr. Rashmi Rekha', 'Dermatologist')"><i class="fa-solid fa-video"></i> Book</button>
+                    <a href="https://wa.me/919971286110?text=Hi%20Dr.%20Rashmi%20Rekha,%20I%20would%20like%20to%20consult%20you"
+                        target="_blank" class="btn-doc-chat"><i class="fa-solid fa-comment-medical"></i> Chat</a>
+                    <button class="btn-doc-consult" onclick="openBookingModal('Dr. Rashmi Rekha', 'Dermatologist')"><i
+                            class="fa-solid fa-video"></i> Book</button>
                 </div>
             </div>
 
@@ -1721,24 +2217,31 @@
         <div class="ai-matcher-dashboard">
             <div class="matcher-left">
                 <h3>Select Your Symptom</h3>
-                <p>Select any symptom tag below. Our interactive diagnostic system will simulate a holographic scan to match and highlight the best medical specialist for you instantly.</p>
+                <p>Select any symptom tag below. Our interactive diagnostic system will simulate a holographic scan to
+                    match and highlight the best medical specialist for you instantly.</p>
                 <div class="symptom-tags-container">
-                    <div class="symptom-tag" onclick="selectSymptom('🌡️ Fever / Body Pain', 'Dr. Ananya Das', 'General Physician')">
+                    <div class="symptom-tag"
+                        onclick="selectSymptom('🌡️ Fever / Body Pain', 'Dr. Ananya Das', 'General Physician')">
                         🌡️ Fever / Body Pain
                     </div>
-                    <div class="symptom-tag" onclick="selectSymptom('🫀 Heart / Chest Tightness', 'Dr. Amit Verma', 'Cardiologist')">
+                    <div class="symptom-tag"
+                        onclick="selectSymptom('🫀 Heart / Chest Tightness', 'Dr. Amit Verma', 'Cardiologist')">
                         🫀 Heart / Chest Tightness
                     </div>
-                    <div class="symptom-tag" onclick="selectSymptom('🧠 Headache / Nerve Issues', 'Dr. K. N. Rao', 'Neurologist')">
+                    <div class="symptom-tag"
+                        onclick="selectSymptom('🧠 Headache / Nerve Issues', 'Dr. K. N. Rao', 'Neurologist')">
                         🧠 Headache / Nerve Issues
                     </div>
-                    <div class="symptom-tag" onclick="selectSymptom('🍬 High Sugar / Diabetes', 'Dr. S. P. Mohanty', 'Diabetologist')">
+                    <div class="symptom-tag"
+                        onclick="selectSymptom('🍬 High Sugar / Diabetes', 'Dr. S. P. Mohanty', 'Diabetologist')">
                         🍬 High Sugar / Diabetes
                     </div>
-                    <div class="symptom-tag" onclick="selectSymptom('🌿 Natural / Daily Stress', 'Dr. Baidyanath Mishra', 'Ayurvedic Expert')">
+                    <div class="symptom-tag"
+                        onclick="selectSymptom('🌿 Natural / Daily Stress', 'Dr. Baidyanath Mishra', 'Ayurvedic Expert')">
                         🌿 Natural / Daily Stress
                     </div>
-                    <div class="symptom-tag" onclick="selectSymptom('✨ Acne / Skin Care', 'Dr. Rashmi Rekha', 'Dermatologist')">
+                    <div class="symptom-tag"
+                        onclick="selectSymptom('✨ Acne / Skin Care', 'Dr. Rashmi Rekha', 'Dermatologist')">
                         ✨ Acne / Skin Care
                     </div>
                 </div>
@@ -1747,18 +2250,22 @@
                 <div class="scanner-hologram-card">
                     <div class="scan-line" id="scanLine"></div>
                     <div class="scanner-grid-overlay"></div>
-                    
+
                     <!-- High-tech Sonar Radar -->
                     <div class="radar-box">
                         <div class="radar-circle-bg"></div>
                         <div class="radar-circle-mid"></div>
                         <div class="radar-circle-inner"></div>
                         <div class="radar-sonar-sweep" id="radarSonar"></div>
-                        <svg width="60" height="60" viewBox="0 0 60 60" style="position:relative; z-index:2;" id="scannerIcon">
-                            <circle cx="30" cy="30" r="24" fill="none" stroke="rgba(26, 188, 156, 0.2)" stroke-width="2"/>
-                            <path d="M 30,6 L 30,14 M 30,46 L 30,54 M 6,30 L 14,30 M 46,30 L 54,30" stroke="var(--mint)" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M 22,30 A 8,8 0 0,1 38,30" fill="none" stroke="var(--primary-dark)" stroke-width="2"/>
-                            <circle cx="30" cy="30" r="3" fill="var(--mint)"/>
+                        <svg width="60" height="60" viewBox="0 0 60 60" style="position:relative; z-index:2;"
+                            id="scannerIcon">
+                            <circle cx="30" cy="30" r="24" fill="none" stroke="rgba(26, 188, 156, 0.2)"
+                                stroke-width="2" />
+                            <path d="M 30,6 L 30,14 M 30,46 L 30,54 M 6,30 L 14,30 M 46,30 L 54,30" stroke="var(--mint)"
+                                stroke-width="2" stroke-linecap="round" />
+                            <path d="M 22,30 A 8,8 0 0,1 38,30" fill="none" stroke="var(--primary-dark)"
+                                stroke-width="2" />
+                            <circle cx="30" cy="30" r="3" fill="var(--mint)" />
                         </svg>
                     </div>
 
@@ -1766,13 +2273,15 @@
                         <div class="scanner-hud-title">
                             <span class="pulse-dot" id="pulseDot"></span> Biometric Diagnostic Console
                         </div>
-                        <div class="scanner-hud-message" id="scannerStatus">System Online. Select a symptom tag to begin scanning...</div>
+                        <div class="scanner-hud-message" id="scannerStatus">System Online. Select a symptom tag to begin
+                            scanning...</div>
                     </div>
 
                     <!-- Pulse ECG Waveform -->
                     <div class="ecg-box" id="ecgBox">
                         <svg class="ecg-wave-svg" viewBox="0 0 400 50" preserveAspectRatio="none">
-                            <path class="ecg-path" id="ecgPath" d="M 0,25 L 60,25 L 70,25 L 80,10 L 90,40 L 100,25 L 110,25 L 170,25 L 180,25 L 190,0 L 200,50 L 210,25 L 220,25 L 290,25 L 300,25 L 310,10 L 320,40 L 330,25 L 340,25 L 400,25"/>
+                            <path class="ecg-path" id="ecgPath"
+                                d="M 0,25 L 60,25 L 70,25 L 80,10 L 90,40 L 100,25 L 110,25 L 170,25 L 180,25 L 190,0 L 200,50 L 210,25 L 220,25 L 290,25 L 300,25 L 310,10 L 320,40 L 330,25 L 340,25 L 400,25" />
                         </svg>
                     </div>
 
@@ -1797,6 +2306,164 @@
         </div>
     </section>
 
+    <!-- HOW IT WORKS SECTION (TELEHEALTH PIPELINE - INFINITE SCROLL) -->
+    <section class="telehealth-pipeline-section" data-aos="fade-up">
+        <div class="container">
+            <div class="pipeline-header">
+                <h2>Virtual Consultation <span>How It Works</span></h2>
+                <p>Get certified expert medical care from the comfort of your home in seven simple steps.</p>
+            </div>
+            
+            <div class="pipeline-scroll-container">
+                <div class="pipeline-scroll-track">
+                    
+                    <!-- Set 1 of 7 Steps -->
+                    <!-- Step 1: AI Symptom Match -->
+                    <div class="pipeline-card">
+                        <div class="step-badge">01</div>
+                        <div class="pipeline-icon-wrapper">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h3>AI Symptom Match</h3>
+                        <p>Select symptoms in our diagnostic console. Our AI instantly matches you with the best available doctor.</p>
+                    </div>
+                    
+                    <!-- Step 2: Profile Review -->
+                    <div class="pipeline-card">
+                        <div class="step-badge">02</div>
+                        <div class="pipeline-icon-wrapper">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+                        <h3>Doctor Profiles</h3>
+                        <p>Review detailed qualifications, experience, user ratings, and consultation rates of matching experts.</p>
+                    </div>
+                    
+                    <!-- Step 3: Secure Booking -->
+                    <div class="pipeline-card">
+                        <div class="step-badge">03</div>
+                        <div class="pipeline-icon-wrapper">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <h3>Instant Booking</h3>
+                        <p>Schedule a slot that fits your schedule or connect instantly with doctors currently active online.</p>
+                    </div>
+                    
+                    <!-- Step 4: Secure HD Consult -->
+                    <div class="pipeline-card">
+                        <div class="step-badge">04</div>
+                        <div class="pipeline-icon-wrapper">
+                            <i class="fa-solid fa-video"></i>
+                        </div>
+                        <h3>HD Video Consult</h3>
+                        <p>Join a fully secure, encrypted video or audio session. Chat and share reports in real-time.</p>
+                    </div>
+                    
+                    <!-- Step 5: e-Prescription -->
+                    <div class="pipeline-card">
+                        <div class="step-badge">05</div>
+                        <div class="pipeline-icon-wrapper">
+                            <i class="fa-solid fa-file-prescription"></i>
+                        </div>
+                        <h3>Digital Rx Receipt</h3>
+                        <p>Download your certified digital prescription with detailed dosage schedules directly to your account.</p>
+                    </div>
+                    
+                    <!-- Step 6: Pharmacy Dispatch -->
+                    <div class="pipeline-card">
+                        <div class="step-badge">06</div>
+                        <div class="pipeline-icon-wrapper">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+                        <h3>Pharmacy Dispatch</h3>
+                        <p>Genuine medicines are verified and shipped directly to your home address via superfast courier.</p>
+                    </div>
+                    
+                    <!-- Step 7: Continuous Care -->
+                    <div class="pipeline-card">
+                        <div class="step-badge">07</div>
+                        <div class="pipeline-icon-wrapper">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </div>
+                        <h3>Follow-up Support</h3>
+                        <p>Access session records, message your doctor post-consult, and schedule follow-up checks anytime.</p>
+                    </div>
+
+                    <!-- Set 2 (Duplicates for Infinite Loop) -->
+                    <!-- Step 1 Duplicate -->
+                    <div class="pipeline-card">
+                        <div class="step-badge">01</div>
+                        <div class="pipeline-icon-wrapper">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h3>AI Symptom Match</h3>
+                        <p>Select symptoms in our diagnostic console. Our AI instantly matches you with the best available doctor.</p>
+                    </div>
+                    
+                    <!-- Step 2 Duplicate -->
+                    <div class="pipeline-card">
+                        <div class="step-badge">02</div>
+                        <div class="pipeline-icon-wrapper">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+                        <h3>Doctor Profiles</h3>
+                        <p>Review detailed qualifications, experience, user ratings, and consultation rates of matching experts.</p>
+                    </div>
+                    
+                    <!-- Step 3 Duplicate -->
+                    <div class="pipeline-card">
+                        <div class="step-badge">03</div>
+                        <div class="pipeline-icon-wrapper">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <h3>Instant Booking</h3>
+                        <p>Schedule a slot that fits your schedule or connect instantly with doctors currently active online.</p>
+                    </div>
+                    
+                    <!-- Step 4 Duplicate -->
+                    <div class="pipeline-card">
+                        <div class="step-badge">04</div>
+                        <div class="pipeline-icon-wrapper">
+                            <i class="fa-solid fa-video"></i>
+                        </div>
+                        <h3>HD Video Consult</h3>
+                        <p>Join a fully secure, encrypted video or audio session. Chat and share reports in real-time.</p>
+                    </div>
+                    
+                    <!-- Step 5 Duplicate -->
+                    <div class="pipeline-card">
+                        <div class="step-badge">05</div>
+                        <div class="pipeline-icon-wrapper">
+                            <i class="fa-solid fa-file-prescription"></i>
+                        </div>
+                        <h3>Digital Rx Receipt</h3>
+                        <p>Download your certified digital prescription with detailed dosage schedules directly to your account.</p>
+                    </div>
+                    
+                    <!-- Step 6 Duplicate -->
+                    <div class="pipeline-card">
+                        <div class="step-badge">06</div>
+                        <div class="pipeline-icon-wrapper">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+                        <h3>Pharmacy Dispatch</h3>
+                        <p>Genuine medicines are verified and shipped directly to your home address via superfast courier.</p>
+                    </div>
+                    
+                    <!-- Step 7 Duplicate -->
+                    <div class="pipeline-card">
+                        <div class="step-badge">07</div>
+                        <div class="pipeline-icon-wrapper">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </div>
+                        <h3>Follow-up Support</h3>
+                        <p>Access session records, message your doctor post-consult, and schedule follow-up checks anytime.</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ================== FOOTER ================== -->
     <footer class="footer">
         <div class="container">
@@ -1813,9 +2480,13 @@
                         <a href="https://maps.app.goo.gl/o1Wc8WLyqU2G1WzJ7" target="_blank" class="footer-map-badge">
                             <span>Maps</span> <i class="fa-solid fa-up-right-from-square"></i>
                         </a>
-                        <iframe class="footer-mini-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118944.37562851413!2d86.64333934335936!3d21.2662057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1c6a7ab56ebcd7%3A0x6b2b6ab0c99aeb61!2sSoro%2C%20Odisha!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe class="footer-mini-map"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118944.37562851413!2d86.64333934335936!3d21.2662057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1c6a7ab56ebcd7%3A0x6b2b6ab0c99aeb61!2sSoro%2C%20Odisha!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                            style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
-                    <p>Your trusted partner for genuine medicines, expert doctors, and fast doorstep delivery across Odisha. Quality healthcare, simplified.</p>
+                    <p>Your trusted partner for genuine medicines, expert doctors, and fast doorstep delivery across
+                        Odisha. Quality healthcare, simplified.</p>
                     <div class="social-icons">
                         <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
                         <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
@@ -1839,16 +2510,22 @@
                 <div>
                     <h4>Contact Info</h4>
                     <ul style="display: flex; flex-direction: column; gap: 1.5rem;">
-                        <li style="display: flex; gap: 15px; align-items: flex-start; color: rgba(255,255,255,0.7); margin: 0; line-height: 1.6;">
-                            <i class="fa-solid fa-location-dot" style="margin-top: 4px; color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                        <li
+                            style="display: flex; gap: 15px; align-items: flex-start; color: rgba(255,255,255,0.7); margin: 0; line-height: 1.6;">
+                            <i class="fa-solid fa-location-dot"
+                                style="margin-top: 4px; color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
                             <span>Avijit Medicare, Soro Square,<br>Baleswar, Odisha 756045</span>
                         </li>
-                        <li style="display: flex; gap: 15px; align-items: center; color: rgba(255,255,255,0.7); margin: 0;">
-                            <i class="fa-solid fa-phone" style="color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                        <li
+                            style="display: flex; gap: 15px; align-items: center; color: rgba(255,255,255,0.7); margin: 0;">
+                            <i class="fa-solid fa-phone"
+                                style="color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
                             <span>+91 9556532388</span>
                         </li>
-                        <li style="display: flex; gap: 15px; align-items: center; color: rgba(255,255,255,0.7); margin: 0;">
-                            <i class="fa-solid fa-envelope" style="color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                        <li
+                            style="display: flex; gap: 15px; align-items: center; color: rgba(255,255,255,0.7); margin: 0;">
+                            <i class="fa-solid fa-envelope"
+                                style="color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
                             <span>support@avijitmedicare.com</span>
                         </li>
                     </ul>
@@ -1871,7 +2548,7 @@
             <button class="modal-close-btn" onclick="closeBookingModal()">&times;</button>
             <h2 class="modal-title">Book Consultation</h2>
             <p class="modal-subtitle">Pick a slot to start your consultation</p>
-            
+
             <form id="bookingForm" onsubmit="handleBookingSubmit(event)">
                 <div class="form-group-modal">
                     <label>Selected Doctor</label>
@@ -1935,8 +2612,8 @@
                     document.getElementById("welcomeUserMobile").innerText = currentUser.fname + " " + (currentUser.lname || "");
                 }
                 if (document.getElementById("mobileAvatarInitials")) {
-                    const initials = (currentUser.fname ? currentUser.fname.charAt(0).toUpperCase() : "") + 
-                                     (currentUser.lname ? currentUser.lname.charAt(0).toUpperCase() : "");
+                    const initials = (currentUser.fname ? currentUser.fname.charAt(0).toUpperCase() : "") +
+                        (currentUser.lname ? currentUser.lname.charAt(0).toUpperCase() : "");
                     document.getElementById("mobileAvatarInitials").innerText = initials || "U";
                 }
             }
@@ -1952,7 +2629,7 @@
             const searchInput = document.getElementById("doctorSearch");
             const specialtySelect = document.getElementById("specialtyFilter");
             const onlineToggle = document.getElementById("onlineToggle");
-            
+
             let showOnlineOnly = false;
 
             if (onlineToggle) {
@@ -1969,7 +2646,7 @@
             function filterDoctors() {
                 const query = searchInput ? searchInput.value.toLowerCase().trim() : "";
                 const targetSpecialty = specialtySelect ? specialtySelect.value : "all";
-                
+
                 const cards = document.querySelectorAll(".doctor-card-premium");
                 cards.forEach(card => {
                     const name = card.querySelector(".doctor-name").innerText.toLowerCase();
@@ -2041,7 +2718,7 @@
             const radarSonar = document.getElementById("radarSonar");
             const pulseDot = document.getElementById("pulseDot");
             const scannerCard = document.querySelector(".scanner-hologram-card");
-            
+
             const modeVal = document.getElementById("termModeVal");
             const matchVal = document.getElementById("termMatchVal");
             const syncVal = document.getElementById("termSyncVal");
@@ -2066,7 +2743,7 @@
 
             // Trigger double laser scanner sweep
             scanLine.className = "scan-line scanning-gold";
-            
+
             // Set dynamic terminal metrics
             modeVal.innerText = "SCANNING";
             modeVal.className = "terminal-val neon-gold";
@@ -2076,7 +2753,7 @@
             // Diagnostic progress count
             let pct = 0;
             scannerStatus.innerHTML = `<span style="color: var(--primary-dark);"><i class="fa-solid fa-satellite-dish fa-spin"></i> Holographic mapping in progress...</span>`;
-            
+
             diagnosticInterval = setInterval(() => {
                 pct += Math.floor(Math.random() * 15) + 5;
                 if (pct >= 100) {
@@ -2105,7 +2782,7 @@
                 modeVal.className = "terminal-val neon-green";
                 syncVal.innerText = "SYNCED";
                 syncVal.className = "terminal-val neon-green";
-                
+
                 scanLine.className = "scan-line"; // stop lasers
                 radarSonar.classList.remove("active");
                 ecgPath.classList.remove("animating");
@@ -2117,18 +2794,18 @@
                 // Highlight the matched doctor card
                 cards.forEach(card => {
                     const cardName = card.querySelector(".doctor-name").innerText.trim();
-                    
+
                     if (cardName === doctorName) {
                         card.style.opacity = "1";
                         card.style.transform = "none";
                         card.classList.add("ai-highlighted");
-                        
+
                         // Add AI Match Badge
                         const badgeHtml = document.createElement("div");
                         badgeHtml.className = "ai-match-badge";
                         badgeHtml.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles"></i> AI Best Match`;
                         card.appendChild(badgeHtml);
-                        
+
                         // Smoothly scroll to the highlighted card
                         card.scrollIntoView({ behavior: "smooth", block: "center" });
                     } else {
@@ -2153,14 +2830,14 @@
             const ecgPath = document.getElementById("ecgPath");
             const radarSonar = document.getElementById("radarSonar");
             const pulseDot = document.getElementById("pulseDot");
-            
+
             const modeVal = document.getElementById("termModeVal");
             const matchVal = document.getElementById("termMatchVal");
             const syncVal = document.getElementById("termSyncVal");
 
             // Reset tags
             tags.forEach(tag => tag.classList.remove("active"));
-            
+
             // Reset HUD items
             if (radarSonar) radarSonar.classList.remove("active");
             if (ecgBox) ecgBox.classList.remove("active");
@@ -2183,7 +2860,7 @@
             if (scannerStatus) {
                 scannerStatus.innerText = "System Online. Select a symptom tag to begin scanning...";
             }
-            
+
             // Restore cards visibility and remove highlights
             cards.forEach(card => {
                 card.style.opacity = "1";
@@ -2213,21 +2890,21 @@
 
         function handleBookingSubmit(event) {
             event.preventDefault();
-            
+
             const doctor = modalDoctorName.value;
             const mode = document.getElementById("modalConsultMode").value;
             const date = document.getElementById("modalBookingDate").value;
             const slot = document.getElementById("modalBookingSlot").value;
 
             closeBookingModal();
-            
+
             // Format nice display date
             const dateObj = new Date(date);
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             const formattedDate = dateObj.toLocaleDateString("en-US", options);
 
             showToast("success", "Appointment Confirmed!", "Your consultation with " + doctor + " has been booked for " + formattedDate + " during the " + slot + ". A meeting link will be shared via email.");
-            
+
             document.getElementById("bookingForm").reset();
             // Reset date field to default min
             const today = new Date().toISOString().split("T")[0];
@@ -2243,22 +2920,22 @@
 
         function showToast(type, title, message) {
             clearTimeout(toastTimeout);
-            
+
             toastNotification.classList.remove("success", "error", "active");
             toastNotification.classList.add(type);
-            
+
             if (type === "success") {
                 toastIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
             } else {
                 toastIcon.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i>';
             }
-            
+
             toastTitle.innerText = title;
             toastDesc.innerText = message;
-            
+
             void toastNotification.offsetWidth; // trigger reflow
             toastNotification.classList.add("active");
-            
+
             toastTimeout = setTimeout(() => {
                 closeToast();
             }, 7000);
@@ -2288,4 +2965,5 @@
         }
     </script>
 </body>
+
 </html>
