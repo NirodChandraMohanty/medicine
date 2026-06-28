@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        if (localStorage.getItem("avijit_logged_in") !== "true") {
+            window.location.href = "login.html";
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - AVIJIT MEDICARE</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Main Style Sheets -->
+    <link rel="stylesheet" href="css/style.css?v=52">
+    <link rel="stylesheet" href="css/about.css?v=19">
+
+    <style>
+        :root {
+            --primary-dark: #f8b500;
+            /* Gold */
+            --primary: #d49a00;
+            --primary-light: rgba(248, 181, 0, 0.1);
+            --mint: #1abc9c;
+            --accent-orange: #f06a42;
+            --bg-dark: #031410;
+            --bg-card: rgba(5, 34, 28, 0.45);
+            --border-color: rgba(0, 255, 204, 0.15);
+            --text-main: #e0e6e4;
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --blue-badge: #0a84ff;
+        }
+
+        body {
+            padding-top: 130px;
+            background-color: var(--bg-dark) !important;
+            color: var(--text-main) !important;
+            overflow-x: clip;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Sticky Header */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        .site-header.scrolled {
+            background: rgba(2, 20, 15, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 80px;
+            }
+        }
+
+        /* --- PRODUCT GRID LAYOUT --- */
+        .product-container {
+            max-width: 1200px;
+            margin: 0 auto 5rem;
+            padding: 0 20px;
+        }
+
+        .product-breadcrumb {
+            margin-bottom: 2rem;
+        }
+
+        .product-breadcrumb ul {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0;
+            padding: 0;
+        }
+
+        .product-breadcrumb a {
+            color: var(--text-muted);
+            transition: color 0.3s;
+        }
+
+        .product-breadcrumb a:hover {
+            color: var(--mint);
+        }
+
+        .product-breadcrumb span.current {
+            color: white;
+            font-weight: 600;
+        }
+
+        .product-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 3.5rem;
+            align-items: start;
+        }
+
+        /* --- LEFT SIDE: MEDIA COLLAGE --- */
+        .product-media-gallery {
+            position: sticky;
+            top: 150px;
+        }
+
+        .product-main-img-box {
+            position: relative;
+            width: 100%;
+            height: 480px;
+            border-radius: 24px;
+            overflow: hidden;
+            background: rgba(5, 34, 28, 0.35);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .product-main-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-main-img-box:hover img {
+            transform: scale(1.03);
+        }
+
+        .product-video-overlay-btn {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(26, 188, 156, 0.9);
+            color: #031410;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(26, 188, 156, 0.4);
+            border: none;
+            transition: all 0.3s ease;
+            z-index: 10;
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+
+        .product-main-img-box.has-video .product-video-overlay-btn {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        .product-video-overlay-btn:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 0 35px rgba(248, 181, 0, 0.5);
+            transform: scale(1.1);
+        }
+
+        /* Gallery Thumbnails */
+        .product-thumbnails {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .thumb-box {
+            position: relative;
+            height: 90px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(5, 34, 28, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .thumb-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.65;
+            transition: opacity 0.3s ease;
+        }
+
+        .thumb-box.active {
+            border-color: var(--mint);
+            box-shadow: 0 0 15px rgba(26, 188, 156, 0.25);
+        }
+
+        .thumb-box:hover img,
+        .thumb-box.active img {
+            opacity: 1;
+        }
+
+        .thumb-box.video-thumb::after {
+            content: '\f04b';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            inset: 0;
+            background: rgba(3, 20, 16, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: background 0.3s;
+        }
+
+        .thumb-box.video-thumb:hover::after {
+            background: rgba(26, 188, 156, 0.4);
+            color: var(--primary-dark);
+        }
+
+        /* --- RIGHT SIDE: PRODUCT DETAILS --- */
+        .product-details-content {
+            background: var(--bg-card);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .product-brand {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-title {
+            font-size: 2.2rem;
+            color: white;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        /* Badge Row */
+        .product-badge-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-badge {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--text-main);
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .detail-badge i {
+            color: var(--primary-dark);
+            font-size: 0.85rem;
+        }
+
+        /* Pricing Area */
+        .product-price-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 1.5rem;
+        }
+
+        .price-large {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .mrp-slashed {
+            font-size: 1.2rem;
+            text-decoration: line-through;
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        .discount-badge {
+            background: rgba(26, 188, 156, 0.12);
+            border: 1px solid rgba(26, 188, 156, 0.3);
+            color: var(--mint);
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .delivery-pill {
+            background: rgba(10, 132, 255, 0.12);
+            border: 1px solid rgba(10, 132, 255, 0.3);
+            color: var(--blue-badge);
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        /* Option Selections */
+        .option-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .option-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .option-title span {
+            color: var(--mint);
+            font-weight: 500;
+            margin-left: 5px;
+        }
+
+        .option-pills {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .option-pill {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-main);
+            padding: 8px 18px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option-pill:hover {
+            border-color: rgba(26, 188, 156, 0.4);
+            background: rgba(26, 188, 156, 0.03);
+        }
+
+        .option-pill.active {
+            background: rgba(248, 181, 0, 0.1);
+            border-color: var(--primary-dark);
+            color: var(--primary-dark);
+            box-shadow: 0 0 10px rgba(248, 181, 0, 0.15);
+        }
+
+        /* Short Description */
+        .short-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        /* --- USER MOCKUP PURCHASE CAPSULE --- */
+        .purchase-action-container {
+            display: flex;
+            gap: 1.25rem;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* The Custom Buy Capsule [ Price | - Qty + | Add to Cart ] */
+        .custom-buy-capsule {
+            background: rgba(15, 23, 20, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            padding: 6px 6px 6px 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            height: 56px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            flex-grow: 1;
+            max-width: 420px;
+            min-width: 280px;
+        }
+
+        .capsule-price {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .capsule-separator {
+            color: rgba(255, 255, 255, 0.15);
+            font-weight: 300;
+            font-size: 1.2rem;
+        }
+
+        .capsule-qty-selector {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .qty-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .qty-btn:hover {
+            color: white;
+        }
+
+        .qty-value {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: white;
+            width: 20px;
+            text-align: center;
+            user-select: none;
+        }
+
+        .btn-capsule-add {
+            background: var(--blue-badge);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
+        .btn-capsule-add:hover {
+            background: #0070e3;
+            box-shadow: 0 0 15px rgba(10, 132, 255, 0.45);
+        }
+
+        /* Separate Buy Now button */
+        .btn-buy-now-pill {
+            background: var(--blue-badge);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            height: 56px;
+            padding: 0 2.5rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(10, 132, 255, 0.2);
+            white-space: nowrap;
+        }
+
+        .btn-buy-now-pill:hover {
+            background: #0070e3;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(10, 132, 255, 0.35);
+        }
+
+        /* --- ACCORDIONS --- */
+        .details-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 2rem;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 1rem;
+        }
+
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 0.5rem 0;
+            user-select: none;
+        }
+
+        .accordion-header h5 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+        }
+
+        .accordion-header i {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .accordion-item.active .accordion-header i {
+            transform: rotate(180deg);
+            color: var(--mint);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.4s ease;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+            padding-top: 10px;
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .spec-table tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .spec-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .spec-table td {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+        }
+
+        .spec-table td.label-col {
+            font-weight: 700;
+            color: white;
+            width: 40%;
+        }
+
+        /* --- MOCK VIDEO OVERLAY --- */
+        .video-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(3, 20, 16, 0.92);
+            backdrop-filter: blur(20px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s ease;
+        }
+
+        .video-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .video-player-container {
+            width: 90%;
+            max-width: 800px;
+            aspect-ratio: 16/9;
+            background: black;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .video-modal-overlay.active .video-player-container {
+            transform: scale(1);
+        }
+
+        .video-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: background 0.3s;
+            z-index: 10002;
+        }
+
+        .video-close-btn:hover {
+            background: var(--accent-orange);
+        }
+
+        /* Custom simple simulated video player with Canvas/CSS */
+        .simulated-video-player {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #021a14 0%, #032b21 100%);
+            position: relative;
+        }
+
+        .simulated-video-player h4 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .simulated-video-player p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .video-loader {
+            display: flex;
+            gap: 6px;
+        }
+
+        .video-loader span {
+            width: 8px;
+            height: 8px;
+            background: var(--mint);
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .video-loader span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .video-loader span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0);
+            }
+
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        /* --- MEDIA QUERIES FOR DETAILED PAGE --- */
+        @media (max-width: 992px) {
+            .product-detail-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .product-media-gallery {
+                position: relative;
+                top: 0;
+            }
+
+            .product-main-img-box {
+                height: 380px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .product-main-img-box {
+                height: 280px;
+                border-radius: 16px;
+            }
+
+            .product-details-content {
+                padding: 2rem 1.5rem;
+                border-radius: 20px;
+            }
+
+            .product-title {
+                font-size: 1.7rem;
+            }
+
+            .price-large {
+                font-size: 2rem;
+            }
+
+            .custom-buy-capsule {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .btn-buy-now-pill {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================== HEADER ================== -->
+    <header id="main-header" class="site-header">
+        <div class="top-header">
+            <div class="container flex justify-between items-center">
+                <a href="index.html" class="logo-box">
+                    <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i>
+                    </div>
+                    <div class="logo-text-group">
+                        <span class="logo-text">Avijit Medicare</span>
+                        <span class="logo-sub">TRUSTED PHARMACY</span>
+                    </div>
+                </a>
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search medicines, doctors, products...">
+                </div>
+                <div class="top-actions">
+                    <div class="square-icon"><i class="fa-regular fa-bell"></i></div>
+                    <div class="square-icon"><i class="fa-regular fa-heart"></i></div>
+                    <a href="cart.html" class="square-icon" style="position: relative;">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span
+                            style="position: absolute; top:-5px; right:-5px; background:red; color:white; font-size:9px; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center;">2</span>
+                    </a>
+                    <div class="action-links">
+                        <span id="welcomeUser" class="register-link"></span>
+                        <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary"
+                            style="border-radius: 4px;">Logout</a>
+                    </div>
+                    <button class="mobile-logout-btn" onclick="logoutUser()" aria-label="Logout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                    <button class="mobile-search-toggle" id="mobileSearchToggle" aria-label="Toggle Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="nav-header">
+            <div class="container flex justify-between items-center" style="position: relative;">
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About Us</a>
+                    <a href="medicines.html" class="nav-link active">Medicine</a>
+                    <a href="doctors.html" class="nav-link">Doctors</a>
+                    <a href="track-order.html" class="nav-link">Order</a>
+                    <a href="contact.html" class="nav-link">Contact Us</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE DRAWER MENU OVERLAY -->
+    <div class="mobile-menu-drawer" id="mobileMenuDrawer">
+        <div class="drawer-header">
+            <a href="index.html" class="logo-box">
+                <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i></div>
+                <div class="logo-text-group">
+                    <span class="logo-text" style="color: white;">Avijit Medicare</span>
+                    <span class="logo-sub" style="color: var(--text-muted);">TRUSTED PHARMACY</span>
+                </div>
+            </a>
+            <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i
+                    class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-profile"
+            style="background: rgba(248, 181, 0, 0.05); padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary-dark); display: flex; align-items: center; justify-content: center; color: var(--bg-light); font-weight: 700; font-size: 1.1rem; border: 2px solid rgba(248, 181, 0, 0.3);"
+                id="mobileAvatarInitials">U</div>
+            <div style="display: flex; flex-direction: column;">
+                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;">Welcome back,</span>
+                <span id="welcomeUserMobile"
+                    style="font-size: 0.95rem; color: white; font-weight: 700; margin-top: 2px;">Guest User</span>
+            </div>
+        </div>
+        <div class="drawer-body">
+            <nav class="drawer-links">
+                <a href="index.html" class="drawer-link"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="about.html" class="drawer-link"><i class="fa-solid fa-circle-info"></i> About Us</a>
+                <a href="medicines.html" class="drawer-link active"><i class="fa-solid fa-pills"></i> Medicine</a>
+                <a href="doctors.html" class="drawer-link"><i class="fa-solid fa-user-doctor"></i> Doctors</a>
+                <a href="track-order.html" class="drawer-link"><i class="fa-solid fa-truck-fast"></i> Order</a>
+                <a href="contact.html" class="drawer-link"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+            </nav>
+            <div class="drawer-footer">
+                <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary w-full"
+                    style="border-radius: 8px;">
+                    <i class="fa-solid fa-right-from-bracket" style="margin-right: 8px;"></i> Logout
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <!-- Floating Contact Buttons -->
+    <div class="floating-contact">
+        <a href="tel:+917855870349" class="float-btn call-float" title="Call +91 7855870349"><i
+                class="fa-solid fa-phone"></i></a>
+        <a href="https://wa.me/919971286110?text=Hello" target="_blank" class="float-btn wa-float"
+            title="WhatsApp +91 9971286110"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+
+    <!-- ================== MAIN CONTENT ================== -->
+    <main class="product-container" style="margin-top: 3rem;">
+
+        <!-- Breadcrumb -->
+        <div class="product-breadcrumb" data-aos="fade-down">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><i class="fa-solid fa-chevron-right"></i></li>
+                <li><a href="track-order.html">Medicine Store</a></li>
+                <li><i class="fa-solid fa-chevron-right"></i></li>
+                <li><span class="current" id="breadcrumbCurrent">Product Details</span></li>
+            </ul>
+        </div>
+
+        <!-- Detail Grid Layout -->
+        <div class="product-detail-grid">
+
+            <!-- Left Side: Image Gallery & Video collage -->
+            <div class="product-media-gallery" data-aos="fade-right">
+                <!-- Main Large Box -->
+                <div class="product-main-img-box" id="productMainImgBox">
+                    <img id="mainProductImage" src="" alt="Product Image"
+                        style="display: block; width: 100%; height: 100%; object-fit: cover;">
+                    <video id="mainProductVideo" autoplay muted playsinline
+                        style="display: none; width: 100%; height: 100%; object-fit: cover;"></video>
+                </div>
+
+                <!-- Thumbnails below -->
+                <div class="product-thumbnails">
+                    <div class="thumb-box active" onclick="clickThumbnail(0, this)">
+                        <img id="thumbImg0" src="" alt="View 1">
+                    </div>
+                    <div class="thumb-box video-thumb" onclick="clickThumbnail(1, this)">
+                        <img id="thumbImg1" src="" alt="Video Presentation">
+                    </div>
+                    <div class="thumb-box" onclick="clickThumbnail(2, this)">
+                        <img id="thumbImg2" src="" alt="View 2">
+                    </div>
+                    <div class="thumb-box" onclick="clickThumbnail(3, this)">
+                        <img id="thumbImg3" src="" alt="View 3">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Details Sheet -->
+            <div class="product-details-content" data-aos="fade-left">
+                <div class="product-brand" id="detailBrandName">MICRO LABS</div>
+                <h1 class="product-title" id="detailProductName">Dolo 650 Tablet</h1>
+
+                <!-- Badge row -->
+                <div class="product-badge-row">
+                    <div class="detail-badge">
+                        <i class="fa-solid fa-shopping-bag"></i> <span id="ordersCountBadge">38 orders</span>
+                    </div>
+                    <div class="detail-badge">
+                        <i class="fa-solid fa-eye"></i> <span id="viewsCountBadge">20 views</span>
+                    </div>
+                    <div class="detail-badge">
+                        <i class="fa-solid fa-heart"></i> <span id="likesCountBadge">8 likes</span>
+                    </div>
+                </div>
+
+                <!-- Pricing Area -->
+                <div class="product-price-section">
+                    <div class="price-large" id="detailProductPrice">₹30.00</div>
+                    <div class="mrp-slashed" id="detailProductMRP">₹38.00</div>
+                    <div class="discount-badge" id="detailProductDiscount">21% OFF</div>
+                    <div class="delivery-pill">In Stock - Fast Delivery</div>
+                </div>
+
+                <!-- Dosage Strength Pills (Mockup Colors Option) -->
+                <div class="option-section">
+                    <div class="option-title">Dosage Strength: <span id="selectedStrength">650 mg</span></div>
+                    <div class="option-pills">
+                        <div class="option-pill active" onclick="selectStrength('650 mg', this)">650 mg</div>
+                        <div class="option-pill" onclick="selectStrength('500 mg', this)">500 mg</div>
+                        <div class="option-pill" onclick="selectStrength('250 mg', this)">250 mg</div>
+                    </div>
+                </div>
+
+                <!-- Packaging Option pills (Mockup Size Option) -->
+                <div class="option-section">
+                    <div class="option-title">Packaging: <span id="selectedPack">Strip of 15 Tabs</span></div>
+                    <div class="option-pills">
+                        <div class="option-pill active" onclick="selectPack('Strip of 15 Tabs', this)">Strip of 15 Tabs
+                        </div>
+                        <div class="option-pill" onclick="selectPack('Strip of 10 Tabs', this)">Strip of 10 Tabs</div>
+                    </div>
+                </div>
+
+                <!-- Description snippet -->
+                <p class="short-desc" id="detailShortDesc">
+                    Paracetamol 650mg tablets for fast fever reduction & mild to moderate pain relief. Sourced from
+                    certified pharmaceutical suppliers.
+                </p>
+
+                <!-- Mockup Purchase Capsule Action Row -->
+                <div class="purchase-action-container">
+
+                    <!-- Capsule [ Price | - Qty + | Add to Cart ] -->
+                    <div class="custom-buy-capsule">
+                        <div class="capsule-price" id="capsuleDynamicPrice">₹30.00</div>
+                        <div class="capsule-separator">|</div>
+                        <div class="capsule-qty-selector">
+                            <button class="qty-btn" onclick="adjustQty(-1)" aria-label="Decrease quantity"><i
+                                    class="fa-solid fa-minus"></i></button>
+                            <div class="qty-value" id="currentQtyVal">1</div>
+                            <button class="qty-btn" onclick="adjustQty(1)" aria-label="Increase quantity"><i
+                                    class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <button class="btn-capsule-add" onclick="performAddToCart()">
+                            <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+
+                    <!-- Buy Now Action Button -->
+                    <button class="btn-buy-now-pill" onclick="performBuyNow()">Buy Now</button>
+                </div>
+
+                <!-- Expandable Details Accordion -->
+                <div class="details-accordion">
+                    <!-- Description item -->
+                    <div class="accordion-item active" id="accItemDesc">
+                        <div class="accordion-header" onclick="toggleAccordion('accItemDesc')">
+                            <h5>Description</h5>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p id="detailFullAccordionDesc">
+                                Dolo 650 Tablet is a widely prescribed antipyretic (fever reducer) and analgesic (pain
+                                reliever) formula. Containing 650mg of paracetamol, it acts quickly on the central
+                                nervous system to block pain signals and regulate body temperature. Ideal for symptoms
+                                related to the common cold, influenza, headaches, toothaches, and muscle pain.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Specifications item -->
+                    <div class="accordion-item" id="accItemSpecs">
+                        <div class="accordion-header" onclick="toggleAccordion('accItemSpecs')">
+                            <h5>Specifications</h5>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <table class="spec-table">
+                                <tr>
+                                    <td class="label-col">Formula Composition</td>
+                                    <td id="specComposition">Paracetamol / Acetaminophen 650mg</td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">Dosage Form</td>
+                                    <td>Oral Tablets</td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">Packaging Type</td>
+                                    <td id="specPackaging">Strip of 15 Tablets</td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">Manufacturer</td>
+                                    <td id="specManufacturer">Micro Labs Ltd.</td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">Prescription Required</td>
+                                    <td id="specRx">No (Over-The-Counter)</td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">Country of Origin</td>
+                                    <td>India</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ================== FOOTER ================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="logo-box" style="margin-bottom: 1rem;">
+                        <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white;"></i></div>
+                        <div class="logo-text-group">
+                            <span class="logo-text" style="color: white;">Avijit Medicare</span>
+                            <span class="logo-sub" style="color: rgba(255,255,255,0.6);">TRUSTED PHARMACY</span>
+                        </div>
+                    </div>
+                    <div class="footer-map-card">
+                        <a href="https://maps.app.goo.gl/o1Wc8WLyqU2G1WzJ7" target="_blank" class="footer-map-badge">
+                            <span>Maps</span> <i class="fa-solid fa-up-right-from-square"></i>
+                        </a>
+                        <iframe class="footer-mini-map"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118944.37562851413!2d86.64333934335936!3d21.2662057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1c6a7ab56ebcd7%3A0x6b2b6ab0c99aeb61!2sSoro%2C%20Odisha!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                            style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <p>Your trusted partner for genuine medicines, expert doctors, and fast doorstep delivery across
+                        Odisha. Quality healthcare, simplified.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="medicines.html">Medicine</a></li>
+                        <li><a href="doctors.html">Doctors</a></li>
+                        <li><a href="track-order.html">Order</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Contact Info</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <li
+                            style="display: flex; gap: 15px; align-items: flex-start; color: rgba(255,255,255,0.7); margin: 0; line-height: 1.6;">
+                            <i class="fa-solid fa-location-dot"
+                                style="margin-top: 4px; color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                            <span>Avijit Medicare, Soro Square,<br>Baleswar, Odisha 756045</span>
+                        </li>
+                        <li
+                            style="display: flex; gap: 15px; align-items: center; color: rgba(255,255,255,0.7); margin: 0;">
+                            <i class="fa-solid fa-phone"
+                                style="color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                            <span>+91 9556532388</span>
+                        </li>
+                        <li
+                            style="display: flex; gap: 15px; align-items: center; color: rgba(255,255,255,0.7); margin: 0;">
+                            <i class="fa-solid fa-envelope"
+                                style="color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                            <span>support@avijitmedicare.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>&copy; 2026 Avijit Medicare. All rights reserved. Made with care in Odisha, India.</div>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Refund Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Markup -->
+    <div id="toastNotification" class="toast-notification">
+        <div class="toast-icon" id="toastIcon"><i class="fa-solid fa-circle-check"></i></div>
+        <div class="toast-content">
+            <div class="toast-title" id="toastTitle">Success!</div>
+            <div class="toast-desc" id="toastDesc">Action completed successfully.</div>
+        </div>
+        <button class="toast-close" onclick="closeToast()" aria-label="Close Notification"><i
+                class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <!-- Video Modal Overlay -->
+    <div class="video-modal-overlay" id="videoModalOverlay">
+        <button class="video-close-btn" onclick="triggerVideoModal()" aria-label="Close Video"><i
+                class="fa-solid fa-xmark"></i></button>
+        <div class="video-player-container">
+            <div class="simulated-video-player">
+                <i class="fa-solid fa-circle-play"
+                    style="font-size: 4rem; color: var(--mint); margin-bottom: 1.5rem;"></i>
+                <h4 id="videoModalMedTitle">Dolo 650 explanation</h4>
+                <p>Simulating clinical guidance video & pharmacists verification...</p>
+                <div class="video-loader">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 50
+        });
+
+        // 1. Data arrays loaded dynamically
+        const medicineCategories = [
+            {
+                id: "analgesics",
+                name: "Analgesics & Antipyretics",
+                medicines: [
+                    { name: "Dolo 650", brand: "Micro Labs", desc: "Paracetamol 650mg tablets for fast fever reduction & mild to moderate pain relief.", price: "₹30.00", mrp: "₹38.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Brufen 400", brand: "Abbott", desc: "Ibuprofen 400mg tablets to relieve pain, swelling, and chronic inflammatory conditions.", price: "₹20.00", mrp: "₹28.00", discount: "28% OFF", img: "https://images.unsplash.com/photo-1607619056574-7b8f304b3c8f?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Combiflam", brand: "Sanofi", desc: "Ibuprofen & Paracetamol combination for powerful body aches and muscular pain relief.", price: "₹25.00", mrp: "₹32.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1585435557343-3b092031a831?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Ultracet", brand: "Janssen", desc: "Prescription-only Tramadol & Acetaminophen formula for severe acute pain management.", price: "₹120.00", mrp: "₹150.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1631549916768-4119b255f9f2?w=500&auto=format&fit=crop&q=60" }
+                ]
+            },
+            {
+                id: "antibiotics",
+                name: "Antibiotics & Antivirals",
+                medicines: [
+                    { name: "Azithral 500", brand: "Alembic", desc: "Azithromycin 500mg broad-spectrum antibiotic for throat, chest, and nasal infections.", price: "₹110.00", mrp: "₹145.00", discount: "24% OFF", img: "https://images.unsplash.com/photo-1587854692152-cbe660dbbc88?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Taxim-O 200", brand: "Alkem", desc: "Cefixime 200mg antibiotic tablets, highly effective against typhoid fever and urinary infections.", price: "₹95.00", mrp: "₹120.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Augmentin 625 Duo", brand: "GSK", desc: "Amoxicillin + Clavulanic Acid formula to combat complex bacterial resistance in infections.", price: "₹200.00", mrp: "₹268.00", discount: "25% OFF", img: "https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Ciplox 500", brand: "Cipla", desc: "Ciprofloxacin 500mg tablets targeting respiratory, bone, abdominal, and skin infections.", price: "₹45.00", mrp: "₹58.00", discount: "22% OFF", img: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=500&auto=format&fit=crop&q=60" }
+                ]
+            },
+            {
+                id: "gastrointestinal",
+                name: "Stomach & Acid Relief",
+                medicines: [
+                    { name: "Pan-D Capsule", brand: "Alkem", desc: "Pantoprazole & Domperidone combination for severe hyperacidity, gas, and GERD relief.", price: "₹140.00", mrp: "₹175.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1624348438541-2244f60f252f?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Digene Gel", brand: "Abbott", desc: "Fast-acting antacid liquid suspension providing immediate relief from acidity & gas.", price: "₹130.00", mrp: "₹160.00", discount: "18% OFF", img: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Omez 20", brand: "Dr. Reddy's", desc: "Omeprazole 20mg capsules to treat peptic ulcers, acid reflux, and stomach irritation.", price: "₹55.00", mrp: "₹72.00", discount: "23% OFF", img: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Eldoper 2mg", brand: "Micro Labs", desc: "Loperamide hydrochloride capsule for direct control and relief of acute diarrhea symptoms.", price: "₹22.00", mrp: "₹30.00", discount: "26% OFF", img: "https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=500&auto=format&fit=crop&q=60" }
+                ]
+            },
+            {
+                id: "vitamins",
+                name: "Vitamins & Supplements",
+                medicines: [
+                    { name: "Becosules", brand: "Pfizer", desc: "Vitamin B-Complex capsules with Vitamin C, widely used for mouth ulcers and fatigue.", price: "₹48.00", mrp: "₹60.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1579684389782-64d84b5e901a?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Zincovit", brand: "Apex", desc: "Advanced Multivitamin, Multimineral, and Zinc tablet formulation for daily immunity support.", price: "₹105.00", mrp: "₹135.00", discount: "22% OFF", img: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Evion 400", brand: "Merck", desc: "Vitamin E 400mg capsules for anti-oxidant protection, healthy skin tissue, and hair growth.", price: "₹35.00", mrp: "₹45.00", discount: "22% OFF", img: "https://images.unsplash.com/photo-1616679911721-eff6eec18fcd?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Limcee 500mg", brand: "Abbott", desc: "Orange-flavored chewable Vitamin C tablets for scurvy prevention and cellular immunity.", price: "₹25.00", mrp: "₹32.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=500&auto=format&fit=crop&q=60" }
+                ]
+            },
+            {
+                id: "respiratory",
+                name: "Cough & Cold Relief",
+                medicines: [
+                    { name: "Ascoril LS Syrup", brand: "Glenmark", desc: "Levosalbutamol & Ambroxol expectorant syrup for chest congestion and wet cough relief.", price: "₹115.00", mrp: "₹140.00", discount: "17% OFF", img: "https://images.unsplash.com/photo-1581091911393-111b1f9c571a?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Benadryl DR Syrup", brand: "J&J", desc: "Soothing dry cough formula with Dextromethorphan to suppress throat tickle & irritation.", price: "₹105.00", mrp: "₹130.00", discount: "19% OFF", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Grilinctus Syrup", brand: "Franco-Indian", desc: "Time-tested cough syrup for relief of dry cough and common cold allergic symptoms.", price: "₹125.00", mrp: "₹155.00", discount: "19% OFF", img: "https://images.unsplash.com/photo-1512438248247-f0f2a5a8b7f0?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Montair-LC", brand: "Cipla", desc: "Montelukast & Levocetirizine tablets for respiratory allergies, sneezing, and asthma symptoms.", price: "₹180.00", mrp: "₹225.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1550572017-1f72f58db2c6?w=500&auto=format&fit=crop&q=60" }
+                ]
+            },
+            {
+                id: "cardiovascular",
+                name: "Heart & Blood Pressure",
+                medicines: [
+                    { name: "Telma 40", brand: "Glenmark", desc: "Telmisartan 40mg tablets daily to manage high blood pressure and protect cardiac health.", price: "₹90.00", mrp: "₹115.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1576602976047-174e57a47881?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Concor 5", brand: "Merck", desc: "Bisoprolol Fumarate 5mg beta-blocker to regulate hypertension and abnormal heart rhythms.", price: "₹115.00", mrp: "₹148.00", discount: "22% OFF", img: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Rosuvas 10", brand: "Sun Pharma", desc: "Rosuvastatin 10mg cholesterol-lowering statin to prevent arterial plaque and cardiac events.", price: "₹145.00", mrp: "₹185.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Ecosprin 75", brand: "USV", desc: "Low-dose Aspirin blood thinner for post-stroke protection and myocardial health.", price: "₹10.00", mrp: "₹13.00", discount: "23% OFF", img: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=500&auto=format&fit=crop&q=60" }
+                ]
+            },
+            {
+                id: "diabetes",
+                name: "Diabetes Care",
+                medicines: [
+                    { name: "Glycomet 500SR", brand: "USV", desc: "Sustained-release Metformin 500mg to regulate blood glucose levels in Type-2 Diabetes.", price: "₹28.00", mrp: "₹35.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Janumet 50/500", brand: "MSD", desc: "Sitagliptin & Metformin dual-therapy tablets for effective post-prandial glucose control.", price: "₹380.00", mrp: "₹480.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Amaryl 1mg", brand: "Sanofi", desc: "Glimepiride 1mg sulfonylurea tablets that stimulate insulin secretion from pancreatic cells.", price: "₹52.00", mrp: "₹68.00", discount: "23% OFF", img: "https://images.unsplash.com/photo-1607619056574-7b8f304b3c8f?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Galvus Met 50/500", brand: "Novartis", desc: "Vildagliptin & Metformin combination to control high blood sugar in adult diabetic patients.", price: "₹290.00", mrp: "₹368.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=500&auto=format&fit=crop&q=60" }
+                ]
+            },
+            {
+                id: "dermatology",
+                name: "Skin & Dermatology",
+                medicines: [
+                    { name: "Betnovate-N", brand: "Glaxo", desc: "Betamethasone steroid combined with Neomycin antibiotic for inflammatory skin conditions.", price: "₹45.00", mrp: "₹58.00", discount: "22% OFF", img: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Quadriderm RF", brand: "Fulford", desc: "Anti-fungal, anti-bacterial, and anti-inflammatory cream for eczema, rashes, and ringworm.", price: "₹95.00", mrp: "₹120.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1530026405186-ed1ea400c3af?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Volini Gel", brand: "Sun Pharma", desc: "Pain relief gel with Diclofenac & Methyl Salicylate to treat muscle aches and sprains.", price: "₹140.00", mrp: "₹175.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1547489432-cf93fa6c71ee?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Candid Powder", brand: "Glenmark", desc: "Clotrimazole dusting powder to prevent fungal growth, sweat rash, and skin irritation.", price: "₹110.00", mrp: "₹142.00", discount: "22% OFF", img: "https://images.unsplash.com/photo-1625902870074-d2dd0a042585?w=500&auto=format&fit=crop&q=60" }
+                ]
+            },
+            {
+                id: "neurology",
+                name: "Neurology & Mind",
+                medicines: [
+                    { name: "Clonotril 0.5", brand: "Torrent", desc: "Clonazepam 0.5mg benzodiazepine for management of epilepsy, panic disorder, and severe anxiety.", price: "₹40.00", mrp: "₹52.00", discount: "23% OFF", img: "https://images.unsplash.com/photo-1631549916768-4119b255f9f2?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Nexito 10", brand: "Sun Pharma", desc: "Escitalopram 10mg SSRI antidepressant tablets for clinical depression and panic therapy.", price: "₹95.00", mrp: "₹122.00", discount: "22% OFF", img: "https://images.unsplash.com/photo-1585435557343-3b092031a831?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Pacitane", brand: "Wyeth", desc: "Trihexyphenidyl tablets used to control involuntary muscle spasms and Parkinsonism.", price: "₹38.00", mrp: "₹48.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Zolax 0.5", brand: "Intas", desc: "Alprazolam 0.5mg tablets for temporary relief of anxiety-induced sleep disorders.", price: "₹30.00", mrp: "₹40.00", discount: "25% OFF", img: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&auto=format&fit=crop&q=60" }
+                ]
+            },
+            {
+                id: "ophthalmic",
+                name: "Eye & Ear Care",
+                medicines: [
+                    { name: "Refresh Tears", brand: "Allergan", desc: "Sodium Carboxymethylcellulose eye drops for relief of dry eye syndrome and strain.", price: "₹145.00", mrp: "₹185.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Ciplox Drops", brand: "Cipla", desc: "Ciprofloxacin antibiotic sterile drops for bacterial eye conjunctivitis or ear infections.", price: "₹18.00", mrp: "₹24.00", discount: "25% OFF", img: "https://images.unsplash.com/photo-1626422524298-693a4f0bf421?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Tobradex Drops", brand: "Alcon", desc: "Tobramycin and Dexamethasone combination drops to reduce post-surgery ocular swelling.", price: "₹185.00", mrp: "₹235.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1608096299210-db7e38487075?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Waxolve Drops", brand: "Apex", desc: "Paradichlorobenzene drops to gently dissolve hardened ear wax and relieve ear blockage.", price: "₹90.00", mrp: "₹115.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1616679911721-eff6eec18fcd?w=500&auto=format&fit=crop&q=60" }
+                ]
+            },
+            {
+                id: "ayurvedic",
+                name: "Ayurvedic & Herbal",
+                medicines: [
+                    { name: "Chyawanprash", brand: "Dabur", desc: "Amla-rich natural immunity booster concentrate containing 40+ vital therapeutic herbs.", price: "₹245.00", mrp: "₹299.00", discount: "18% OFF", img: "https://images.unsplash.com/photo-1618015358954-115ef1ed6515?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Liv.52 Tablets", brand: "Himalaya", desc: "Clinically validated hepatoprotective herbal formulation to support liver enzymes and health.", price: "₹150.00", mrp: "₹188.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1626367300130-1a842b109e25?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Cystone", brand: "Himalaya", desc: "Herbal tablets designed to naturally break down and flush out urinary kidney calculi/stones.", price: "₹160.00", mrp: "₹200.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Ashwagandha", brand: "Patanjali", desc: "Pure Ashwagandha extract capsule for adrenal health, energy restoration, and stress control.", price: "₹180.00", mrp: "₹225.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1514733670139-4d87a19ec157?w=500&auto=format&fit=crop&q=60" }
+                ]
+            },
+            {
+                id: "vaccines",
+                name: "Vaccines & Immunity",
+                medicines: [
+                    { name: "Vaxigrip Tetra", brand: "Sanofi", desc: "Quadrivalent influenza virus vaccine to prevent seasonal flu strains.", price: "₹1650.00", mrp: "₹1999.00", discount: "17% OFF", img: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Pneumovax 23", brand: "MSD", desc: "Pneumococcal vaccine to protect against severe lung, brain, and blood bacterial infections.", price: "₹2400.00", mrp: "₹2950.00", discount: "18% OFF", img: "https://images.unsplash.com/photo-1611070973770-b1a629b9f76a?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Cervarix", brand: "GSK", desc: "HPV vaccine for immunization against cervical cancer-causing viral strains.", price: "₹3200.00", mrp: "₹3850.00", discount: "16% OFF", img: "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Imovax Rabies", brand: "Sanofi", desc: "Inactivated rabies vaccine for post-exposure prophylaxis and immunization.", price: "₹380.00", mrp: "₹460.00", discount: "17% OFF", img: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=500&auto=format&fit=crop&q=60" }
+                ]
+            }
+        ];
+
+        // 2. Global state
+        let activeMedObj = {};
+        let quantityVal = 1;
+        let basePrice = 30.00;
+        let selectedDosage = "650 mg";
+        let selectedPackSize = "Strip of 15 Tabs";
+
+        // Simulated Image lists
+        const fallbackMedImages = [
+            "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&auto=format&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1607619056574-7b8f304b3c8f?w=800&auto=format&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1585435557343-3b092031a831?w=800&auto=format&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1631549916768-4119b255f9f2?w=800&auto=format&fit=crop&q=80"
+        ];
+
+        let imageList = [...fallbackMedImages];
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // User Session Display
+            const currentUser = JSON.parse(localStorage.getItem("avijit_current_user"));
+            if (currentUser) {
+                if (document.getElementById("welcomeUser")) {
+                    document.getElementById("welcomeUser").innerText = "Hi, " + currentUser.fname;
+                }
+                if (document.getElementById("welcomeUserMobile")) {
+                    document.getElementById("welcomeUserMobile").innerText = currentUser.fname + " " + (currentUser.lname || "");
+                }
+                if (document.getElementById("mobileAvatarInitials")) {
+                    const initials = (currentUser.fname ? currentUser.fname.charAt(0).toUpperCase() : "") +
+                        (currentUser.lname ? currentUser.lname.charAt(0).toUpperCase() : "");
+                    document.getElementById("mobileAvatarInitials").innerText = initials || "U";
+                }
+            }
+
+            // Mobile menu drawer script
+            const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+            const drawerClose = document.getElementById("drawerClose");
+            const mobileMenuDrawer = document.getElementById("mobileMenuDrawer");
+            const drawerOverlay = document.getElementById("drawerOverlay");
+            const mobileSearchToggle = document.getElementById("mobileSearchToggle");
+            const searchContainer = document.querySelector(".search-container");
+
+            if (mobileMenuToggle && mobileMenuDrawer && drawerOverlay) {
+                mobileMenuToggle.addEventListener("click", () => {
+                    mobileMenuDrawer.classList.add("active");
+                    drawerOverlay.classList.add("active");
+                    document.body.style.overflow = "hidden";
+                });
+            }
+            if (drawerClose && mobileMenuDrawer && drawerOverlay) {
+                drawerClose.addEventListener("click", () => {
+                    mobileMenuDrawer.classList.remove("active");
+                    drawerOverlay.classList.remove("active");
+                    document.body.style.overflow = "";
+                });
+            }
+            if (drawerOverlay && mobileMenuDrawer) {
+                drawerOverlay.addEventListener("click", () => {
+                    mobileMenuDrawer.classList.remove("active");
+                    drawerOverlay.classList.remove("active");
+                    document.body.style.overflow = "";
+                });
+            }
+            if (mobileSearchToggle && searchContainer) {
+                mobileSearchToggle.addEventListener("click", () => {
+                    searchContainer.classList.toggle("mobile-active");
+                });
+            }
+
+            // Sticky Header scroll script
+            window.addEventListener("scroll", function () {
+                const header = document.getElementById("main-header");
+                if (header) {
+                    if (window.scrollY > 10) {
+                        header.classList.add("scrolled");
+                    } else {
+                        header.classList.remove("scrolled");
+                    }
+                }
+            });
+
+            // Parse URL parameters and fetch active medicine
+            parseUrlAndRender();
+        });
+
+        // Parse query params: product-details.html?name=Dolo%20650&category=analgesics
+        function parseUrlAndRender() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const medNameParam = urlParams.get('name');
+            const medCategoryParam = urlParams.get('category');
+
+            if (!medNameParam) {
+                // Fallback if no param specified
+                loadMedicineProfile("Dolo 650", "Micro Labs", "Paracetamol 650mg tablets for fast fever reduction & mild to moderate pain relief.", "₹30.00", "₹38.00", "21% OFF", "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&auto=format&fit=crop&q=60", "analgesics");
+                return;
+            }
+
+            // Look up in static explorer categories
+            let foundMed = null;
+            let foundCategoryId = "analgesics";
+            for (let cat of medicineCategories) {
+                const match = cat.medicines.find(m => m.name.toLowerCase() === medNameParam.toLowerCase());
+                if (match) {
+                    foundMed = { ...match, categoryName: cat.name };
+                    foundCategoryId = cat.id;
+                    break;
+                }
+            }
+
+            if (foundMed) {
+                loadMedicineProfile(foundMed.name, foundMed.brand, foundMed.desc, foundMed.price, foundMed.mrp, foundMed.discount, foundMed.img, foundCategoryId);
+                return;
+            }
+
+            // Look up in 100 generated items database if there's any matching title
+            // (We search matching predefined database and generate generic if not found)
+            const fallbackTitle = medNameParam;
+            const fallbackCategoryId = medCategoryParam || "analgesics";
+            const fallbackBrand = getBrandForCategory(fallbackCategoryId);
+            const fallbackDesc = `Premium quality ${fallbackTitle} formula. Clinically tested for effective and fast results. Sourced from certified facilities.`;
+            const fallbackPriceVal = Math.floor(Math.random() * 200) + 30;
+            const fallbackMRPVal = fallbackPriceVal + Math.floor(Math.random() * 40) + 10;
+            const discountPercent = Math.round(((fallbackMRPVal - fallbackPriceVal) / fallbackMRPVal) * 100);
+
+            loadMedicineProfile(
+                fallbackTitle,
+                fallbackBrand,
+                fallbackDesc,
+                `₹${fallbackPriceVal}.00`,
+                `₹${fallbackMRPVal}.00`,
+                `${discountPercent}% OFF`,
+                "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&auto=format&fit=crop&q=60",
+                fallbackCategoryId
+            );
+        }
+
+        function getBrandForCategory(catId) {
+            const brands = {
+                analgesics: "Micro Labs",
+                antibiotics: "Alembic",
+                gastrointestinal: "Alkem",
+                vitamins: "Apex",
+                respiratory: "Glenmark",
+                cardiovascular: "Sun Pharma",
+                diabetes: "USV",
+                dermatology: "Glenmark",
+                neurology: "Torrent",
+                ophthalmic: "Allergan",
+                ayurvedic: "Himalaya",
+                vaccines: "Sanofi"
+            };
+            return brands[catId] || "Avijit Labs";
+        }
+
+        // Get specific media assets per category/medicine
+        function getMediaForMedicine(name, categoryId, fallbackImg) {
+            const mediaMap = {
+                analgesics: {
+                    images: [
+                        fallbackImg || "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1607619056574-7b8f304b3c8f?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1585435557343-3b092031a831?w=800&auto=format&fit=crop&q=80"
+                    ],
+                    video: "https://assets.mixkit.co/videos/preview/mixkit-pills-spilling-out-of-a-bottle-41618-large.mp4"
+                },
+                antibiotics: {
+                    images: [
+                        fallbackImg || "https://images.unsplash.com/photo-1587854692152-cbe660dbbc88?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=800&auto=format&fit=crop&q=80"
+                    ],
+                    video: "https://assets.mixkit.co/videos/preview/mixkit-pharmacist-holding-a-pack-of-pills-41616-large.mp4"
+                },
+                gastrointestinal: {
+                    images: [
+                        fallbackImg || "https://images.unsplash.com/photo-1624348438541-2244f60f252f?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=800&auto=format&fit=crop&q=80"
+                    ],
+                    video: "https://assets.mixkit.co/videos/preview/mixkit-pills-spilling-out-of-a-bottle-41618-large.mp4"
+                },
+                vitamins: {
+                    images: [
+                        fallbackImg || "https://images.unsplash.com/photo-1579684389782-64d84b5e901a?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1616679911721-eff6eec18fcd?w=800&auto=format&fit=crop&q=80"
+                    ],
+                    video: "https://assets.mixkit.co/videos/preview/mixkit-pills-spilling-out-of-a-bottle-41618-large.mp4"
+                },
+                respiratory: {
+                    images: [
+                        fallbackImg || "https://images.unsplash.com/photo-1581091911393-111b1f9c571a?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1512438248247-f0f2a5a8b7f0?w=800&auto=format&fit=crop&q=80"
+                    ],
+                    video: "https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-scientist-carrying-a-test-tube-with-blue-liquid-41611-large.mp4"
+                },
+                cardiovascular: {
+                    images: [
+                        fallbackImg || "https://images.unsplash.com/photo-1576602976047-174e57a47881?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=800&auto=format&fit=crop&q=80"
+                    ],
+                    video: "https://assets.mixkit.co/videos/preview/mixkit-pharmacist-holding-a-pack-of-pills-41616-large.mp4"
+                },
+                diabetes: {
+                    images: [
+                        fallbackImg || "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1607619056574-7b8f304b3c8f?w=800&auto=format&fit=crop&q=80"
+                    ],
+                    video: "https://assets.mixkit.co/videos/preview/mixkit-pharmacist-holding-a-pack-of-pills-41616-large.mp4"
+                },
+                dermatology: {
+                    images: [
+                        fallbackImg || "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1530026405186-ed1ea400c3af?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1547489432-cf93fa6c71ee?w=800&auto=format&fit=crop&q=80"
+                    ],
+                    video: "https://assets.mixkit.co/videos/preview/mixkit-pills-spilling-out-of-a-bottle-41618-large.mp4"
+                },
+                neurology: {
+                    images: [
+                        fallbackImg || "https://images.unsplash.com/photo-1631549916768-4119b255f9f2?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1585435557343-3b092031a831?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&auto=format&fit=crop&q=80"
+                    ],
+                    video: "https://assets.mixkit.co/videos/preview/mixkit-pills-spilling-out-of-a-bottle-41618-large.mp4"
+                },
+                ophthalmic: {
+                    images: [
+                        fallbackImg || "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1626422524298-693a4f0bf421?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1608096299210-db7e38487075?w=800&auto=format&fit=crop&q=80"
+                    ],
+                    video: "https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-scientist-carrying-a-test-tube-with-blue-liquid-41611-large.mp4"
+                },
+                ayurvedic: {
+                    images: [
+                        fallbackImg || "https://images.unsplash.com/photo-1618015358954-115ef1ed6515?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1626367300130-1a842b109e25?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&auto=format&fit=crop&q=80"
+                    ],
+                    video: "https://assets.mixkit.co/videos/preview/mixkit-pharmacist-holding-a-pack-of-pills-41616-large.mp4"
+                },
+                vaccines: {
+                    images: [
+                        fallbackImg || "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1611070973770-b1a629b9f76a?w=800&auto=format&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=800&auto=format&fit=crop&q=80"
+                    ],
+                    video: "https://assets.mixkit.co/videos/preview/mixkit-medical-analysis-of-a-vaccine-sample-41614-large.mp4"
+                }
+            };
+            return mediaMap[categoryId] || mediaMap.analgesics;
+        }
+
+        // Render dynamic details
+        function loadMedicineProfile(name, brand, desc, priceStr, mrpStr, discountStr, mainImg, categoryId) {
+            activeMedObj = { name, brand, desc, priceStr, mrpStr, discountStr, mainImg, categoryId };
+
+            // Text values
+            document.getElementById("detailBrandName").innerText = brand;
+            document.getElementById("detailProductName").innerText = name;
+            document.getElementById("breadcrumbCurrent").innerText = name;
+            document.getElementById("detailProductPrice").innerText = priceStr;
+            document.getElementById("detailProductMRP").innerText = mrpStr;
+            document.getElementById("detailProductDiscount").innerText = discountStr;
+            document.getElementById("detailShortDesc").innerText = desc;
+            document.getElementById("detailFullAccordionDesc").innerText = `${desc} Always consult a healthcare specialist or physician prior to taking any prescription medications. Store in a dry place away from direct sunlight. Keep out of reach of children.`;
+
+            // Specs Composition & Manufacturer
+            document.getElementById("specComposition").innerText = `${name} Active Ingredient Formula`;
+            document.getElementById("specManufacturer").innerText = `${brand} Pharmaceuticals Ltd.`;
+
+            // Generate random badges to simulate premium orders
+            const randomOrders = Math.floor(Math.random() * 80) + 15;
+            const randomViews = Math.floor(Math.random() * 400) + 100;
+            const randomLikes = Math.floor(Math.random() * 45) + 5;
+            document.getElementById("ordersCountBadge").innerText = `${randomOrders} orders`;
+            document.getElementById("viewsCountBadge").innerText = `${randomViews} views`;
+            document.getElementById("likesCountBadge").innerText = `${randomLikes} likes`;
+
+            // Dynamic Image & Video assignment
+            const mediaInfo = getMediaForMedicine(name, categoryId, mainImg);
+            activeMedObj.images = mediaInfo.images;
+            activeMedObj.video = mediaInfo.video;
+
+            // Define thumbnail image array (video thumb at index 1 shows image 1 as thumbnail behind the play icon)
+            imageList = [
+                mediaInfo.images[0],
+                mediaInfo.images[0],
+                mediaInfo.images[1],
+                mediaInfo.images[2]
+            ];
+
+            // Render thumbnails
+            for (let i = 0; i < 4; i++) {
+                const imgEl = document.getElementById(`thumbImg${i}`);
+                if (imgEl) {
+                    imgEl.src = imageList[i];
+                }
+            }
+
+            // Start Autoplay at slide index 0
+            showSlide(0);
+
+            // Base price integer parse
+            basePrice = parseFloat(priceStr.replace(/[^\d.]/g, '')) || 30.00;
+            updateDynamicCapsulePrice();
+        }
+
+        // Slideshow controls
+        let currentSlideIndex = 0;
+        let autoplayTimeout = null;
+        let resumeTimeout = null;
+
+        function showSlide(index) {
+            currentSlideIndex = index;
+            const mainImgEl = document.getElementById("mainProductImage");
+            const mainVidEl = document.getElementById("mainProductVideo");
+            const thumbs = document.querySelectorAll(".thumb-box");
+
+            // Sync active thumbnails
+            thumbs.forEach((t, i) => {
+                if (i === index) {
+                    t.classList.add("active");
+                } else {
+                    t.classList.remove("active");
+                }
+            });
+
+            // Transition
+            if (index === 1) {
+                // Video Slide
+                mainImgEl.style.display = "none";
+                mainVidEl.style.display = "block";
+
+                mainVidEl.src = activeMedObj.video;
+                mainVidEl.load();
+
+                mainVidEl.play().then(() => {
+                    // Automatically proceed to next slide when video ends
+                    mainVidEl.onended = function () {
+                        nextSlide();
+                    };
+                }).catch(err => {
+                    console.log("Autoplay block, fallback in 6s", err);
+                    clearTimeout(autoplayTimeout);
+                    autoplayTimeout = setTimeout(nextSlide, 6000);
+                });
+
+                // Fallback switch after 10s max in case video fails to fire 'ended'
+                clearTimeout(autoplayTimeout);
+                autoplayTimeout = setTimeout(nextSlide, 10000);
+            } else {
+                // Image Slide
+                mainVidEl.pause();
+                mainVidEl.style.display = "none";
+                mainImgEl.style.display = "block";
+
+                if (index === 0) {
+                    mainImgEl.src = activeMedObj.images[0];
+                } else if (index === 2) {
+                    mainImgEl.src = activeMedObj.images[1];
+                } else if (index === 3) {
+                    mainImgEl.src = activeMedObj.images[2];
+                }
+
+                // Autoplay image slide for 4 seconds
+                clearTimeout(autoplayTimeout);
+                autoplayTimeout = setTimeout(nextSlide, 4000);
+            }
+        }
+
+        function nextSlide() {
+            let nextIndex = (currentSlideIndex + 1) % 4;
+            showSlide(nextIndex);
+        }
+
+        window.clickThumbnail = function (index, element) {
+            clearTimeout(autoplayTimeout);
+            clearTimeout(resumeTimeout);
+
+            showSlide(index);
+
+            // Pause autoplay for 10 seconds of user inactivity, then restart loop
+            resumeTimeout = setTimeout(() => {
+                autoplayTimeout = setTimeout(nextSlide, 4000);
+            }, 10000);
+        };
+
+        // Strength / Pack selector
+        window.selectStrength = function (strength, element) {
+            document.getElementById("selectedStrength").innerText = strength;
+            const strengthPills = element.parentElement.querySelectorAll(".option-pill");
+            strengthPills.forEach(p => p.classList.remove("active"));
+            element.classList.add("active");
+
+            selectedDosage = strength;
+
+            // Recalculate price slightly based on strength for dynamic variance
+            let factor = 1.0;
+            if (strength.includes("500")) factor = 0.85;
+            if (strength.includes("250")) factor = 0.65;
+
+            const adjustedPrice = Math.round(basePrice * factor);
+            const adjustedMRP = Math.round((basePrice * 1.25) * factor);
+
+            document.getElementById("detailProductPrice").innerText = `₹${adjustedPrice.toFixed(2)}`;
+            document.getElementById("detailProductMRP").innerText = `₹${adjustedMRP.toFixed(2)}`;
+
+            // Update Composition Specification
+            document.getElementById("specComposition").innerText = `${activeMedObj.name} Active Formula (${strength})`;
+
+            updateDynamicCapsulePrice();
+        };
+
+        window.selectPack = function (pack, element) {
+            document.getElementById("selectedPack").innerText = pack;
+            const packPills = element.parentElement.querySelectorAll(".option-pill");
+            packPills.forEach(p => p.classList.remove("active"));
+            element.classList.add("active");
+
+            selectedPackSize = pack;
+
+            // Update packaging spec table
+            document.getElementById("specPackaging").innerText = pack;
+
+            let qtyMultiplier = 1.0;
+            if (pack.includes("10")) qtyMultiplier = 0.7;
+
+            // Recalculate spec dosage price
+            updateDynamicCapsulePrice();
+        };
+
+        // Qty controls
+        window.adjustQty = function (amount) {
+            quantityVal = Math.max(1, quantityVal + amount);
+            document.getElementById("currentQtyVal").innerText = quantityVal;
+            updateDynamicCapsulePrice();
+        };
+
+        function getCurrentPriceFloat() {
+            const priceText = document.getElementById("detailProductPrice").innerText;
+            return parseFloat(priceText.replace(/[^\d.]/g, '')) || basePrice;
+        }
+
+        function updateDynamicCapsulePrice() {
+            const currentPrice = getCurrentPriceFloat();
+            const totalPrice = currentPrice * quantityVal;
+            document.getElementById("capsuleDynamicPrice").innerText = `₹${totalPrice.toFixed(2)}`;
+        }
+
+        // Cart controllers
+        window.performAddToCart = function () {
+            let cart = JSON.parse(localStorage.getItem("avijit_cart")) || [];
+            const currentPrice = getCurrentPriceFloat();
+
+            // Unique key combining name, dosage, and pack size
+            const itemKey = `${activeMedObj.name} (${selectedDosage}) - ${selectedPackSize}`;
+
+            let existingItem = cart.find(item => item.name === itemKey);
+            if (existingItem) {
+                existingItem.qty += quantityVal;
+            } else {
+                cart.push({
+                    name: itemKey,
+                    price: currentPrice,
+                    qty: quantityVal
+                });
+            }
+
+            localStorage.setItem("avijit_cart", JSON.stringify(cart));
+
+            if (window.showToast) {
+                window.showToast("success", "Added to Cart!", `${quantityVal} x ${activeMedObj.name} (${selectedDosage}) has been successfully added to your cart.`);
+            } else {
+                alert(`${activeMedObj.name} added to cart!`);
+            }
+        };
+
+        window.performBuyNow = function () {
+            performAddToCart();
+            window.location.href = "cart.html";
+        };
+
+        // Accordion handler
+        window.toggleAccordion = function (itemId) {
+            const items = document.querySelectorAll(".accordion-item");
+            const targetItem = document.getElementById(itemId);
+
+            items.forEach(item => {
+                if (item.id === itemId) {
+                    item.classList.toggle("active");
+                } else {
+                    item.classList.remove("active");
+                }
+            });
+        };
+
+        // Video modal handler
+        window.triggerVideoModal = function () {
+            const modal = document.getElementById("videoModalOverlay");
+            document.getElementById("videoModalMedTitle").innerText = `${activeMedObj.name || "Medicine"} Clinical Usage Guidance`;
+
+            if (modal) {
+                modal.classList.toggle("active");
+            }
+        };
+
+        // Toast controller
+        const toastNotification = document.getElementById("toastNotification");
+        const toastIcon = document.getElementById("toastIcon");
+        const toastTitle = document.getElementById("toastTitle");
+        const toastDesc = document.getElementById("toastDesc");
+        let toastTimeout;
+
+        window.showToast = function (type, title, message) {
+            clearTimeout(toastTimeout);
+
+            toastNotification.classList.remove("success", "error", "active");
+            toastNotification.classList.add(type);
+
+            if (type === "success") {
+                toastIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+            } else {
+                toastIcon.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i>';
+            }
+
+            toastTitle.innerText = title;
+            toastDesc.innerText = message;
+
+            void toastNotification.offsetWidth; // Force Reflow
+            toastNotification.classList.add("active");
+
+            toastTimeout = setTimeout(() => {
+                closeToast();
+            }, 5000);
+        };
+
+        window.closeToast = function () {
+            toastNotification.classList.remove("active");
+        };
+
+        function logoutUser() {
+            localStorage.removeItem("avijit_logged_in");
+            localStorage.removeItem("avijit_current_user");
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+
+</html>

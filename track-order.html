@@ -1343,6 +1343,13 @@
             opacity: 1;
         }
 
+        .med-card-img-link {
+            display: block;
+            width: 100%;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
         .med-card-img-box {
             position: relative;
             width: 100%;
@@ -2411,10 +2418,12 @@
                     card.style.animationDelay = `${idx * 0.05}s`;
                     const isWishlisted = wishlist.includes(med.name);
                     card.innerHTML = `
-                        <div class="med-card-img-box">
-                            <span class="med-card-tag">${med.brand}</span>
-                            <img src="${med.img}" alt="${med.name}" onerror="this.src='${med.fallback || 'images/medicines/paracetamol.png'}'">
-                        </div>
+                        <a href="product-details.html?name=${encodeURIComponent(med.name)}&category=${encodeURIComponent(activeCategoryId)}" class="med-card-img-link">
+                            <div class="med-card-img-box">
+                                <span class="med-card-tag">${med.brand}</span>
+                                <img src="${med.img}" alt="${med.name}" onerror="this.src='${med.fallback || 'images/medicines/paracetamol.png'}'">
+                            </div>
+                        </a>
                         <div class="med-card-details">
                             <div class="med-card-info">
                                 <h4>${med.name}</h4>
