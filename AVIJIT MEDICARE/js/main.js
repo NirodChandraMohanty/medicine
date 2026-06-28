@@ -56,4 +56,61 @@ document.addEventListener('DOMContentLoaded', () => {
             icon.classList.remove('fa-sun'); icon.classList.add('fa-moon');
         }
     }
+
+    function updateCartCountBadge() {
+        const cart = JSON.parse(localStorage.getItem("avijit_cart")) || [];
+        const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+        const badges = document.querySelectorAll('a[href="cart.html"] span');
+        badges.forEach(badge => {
+            if (totalCount > 0) {
+                badge.innerText = totalCount;
+                badge.style.display = 'flex';
+            } else {
+                badge.style.display = 'none';
+            }
+        });
+    }
+
+    // Dynamic Wishlist Icon Setup on all pages
+    const wishlistIcons = document.querySelectorAll('.square-icon i.fa-heart');
+    wishlistIcons.forEach(icon => {
+        const parent = icon.parentElement;
+        if (parent && parent.tagName === 'DIV') {
+            const anchor = document.createElement('a');
+            anchor.href = 'wishlist.html';
+            anchor.className = parent.className;
+            anchor.id = 'wishlistHeaderBtn';
+            anchor.style.position = 'relative';
+            anchor.style.textDecoration = 'none';
+            
+            const badge = document.createElement('span');
+            badge.style.cssText = 'position: absolute; top:-5px; right:-5px; background:#f06a42; color:white; font-size:9px; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center; display:none;';
+            
+            while (parent.firstChild) {
+                anchor.appendChild(parent.firstChild);
+            }
+            anchor.appendChild(badge);
+            parent.replaceWith(anchor);
+        }
+    });
+
+    function updateWishlistCountBadge() {
+        const wishlist = JSON.parse(localStorage.getItem("avijit_wishlist")) || [];
+        const totalCount = wishlist.length;
+        const badges = document.querySelectorAll('#wishlistHeaderBtn span');
+        badges.forEach(badge => {
+            if (totalCount > 0) {
+                badge.innerText = totalCount;
+                badge.style.display = 'flex';
+            } else {
+                badge.style.display = 'none';
+            }
+        });
+    }
+
+    updateCartCountBadge();
+    window.updateCartCountBadge = updateCartCountBadge;
+    
+    updateWishlistCountBadge();
+    window.updateWishlistCountBadge = updateWishlistCountBadge;
 });

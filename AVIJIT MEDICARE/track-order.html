@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script>
         if (localStorage.getItem("avijit_logged_in") !== "true") {
@@ -8,24 +9,29 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Consignment Tracking Terminal - AVIJIT MEDICARE</title>
-    
+
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+
     <!-- Main Style Sheets -->
-    <link rel="stylesheet" href="css/style.css?v=48">
-    <link rel="stylesheet" href="css/about.css?v=17">
-    
+    <link rel="stylesheet" href="css/style.css?v=50">
+    <link rel="stylesheet" href="css/about.css?v=19">
+
     <style>
         :root {
-            --primary-dark: #f8b500; /* Gold */
+            --primary-dark: #f8b500;
+            /* Gold */
             --primary: #d49a00;
-            --primary-light: rgba(248, 181, 0, 0.1); 
+            --primary-light: rgba(248, 181, 0, 0.1);
             --mint: #1abc9c;
             --accent-orange: #f06a42;
             --bg-dark: #031410;
@@ -36,12 +42,44 @@
         }
 
         /* Sticky Header */
-        .site-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; transition: all 0.4s ease; background: transparent; }
-        body { padding-top: 130px; background-color: var(--bg-dark) !important; color: var(--text-main) !important; overflow-x: hidden; }
-        .site-header.scrolled { background: rgba(2, 20, 15, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-bottom: 1px solid rgba(0, 255, 204, 0.2); }
-        .site-header.scrolled .top-header { padding: 5px 0; }
-        .site-header.scrolled .nav-header { border-top: 1px solid rgba(255,255,255,0.05); }
-        @media (max-width: 768px) { body { padding-top: 80px; } }
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        body {
+            padding-top: 130px;
+            background-color: var(--bg-dark) !important;
+            color: var(--text-main) !important;
+            overflow-x: clip;
+        }
+
+        .site-header.scrolled {
+            background: rgba(2, 20, 15, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        .site-header.scrolled .top-header {
+            padding: 5px 0;
+        }
+
+        .site-header.scrolled .nav-header {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 80px;
+            }
+        }
 
         /* Custom overrides to make about-page-hero fit perfectly inside track-order */
         .about-page-hero {
@@ -54,6 +92,7 @@
         .breadcrumb-container {
             margin-bottom: 1.5rem;
         }
+
         .breadcrumb-list {
             display: flex;
             align-items: center;
@@ -63,16 +102,20 @@
             margin: 0;
             padding: 0;
         }
+
         .breadcrumb-list a {
             color: var(--text-muted);
             transition: color 0.3s;
         }
+
         .breadcrumb-list a:hover {
             color: var(--mint);
         }
+
         .breadcrumb-list i {
             font-size: 0.7rem;
         }
+
         .breadcrumb-list span.current {
             color: white;
             font-weight: 600;
@@ -84,6 +127,7 @@
             margin: 0 auto 3rem;
             padding: 0 20px;
         }
+
         .lookup-card {
             background: var(--bg-card);
             backdrop-filter: blur(25px);
@@ -91,32 +135,37 @@
             border: 1px solid var(--border-color);
             border-radius: 24px;
             padding: 2.5rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             text-align: center;
             position: relative;
             overflow: hidden;
             transition: all 0.4s ease;
         }
+
         .lookup-card:hover {
             border-color: rgba(0, 255, 204, 0.25);
             box-shadow: 0 20px 50px rgba(0, 255, 204, 0.05);
         }
+
         .lookup-card h3 {
             font-size: 1.6rem;
             color: white;
             margin-bottom: 1.5rem;
             font-weight: 700;
         }
+
         .lookup-form {
             display: flex;
             max-width: 600px;
             margin: 0 auto;
             gap: 12px;
         }
+
         .lookup-input-wrapper {
             position: relative;
             flex-grow: 1;
         }
+
         .lookup-input {
             width: 100%;
             background: rgba(255, 255, 255, 0.02);
@@ -127,12 +176,14 @@
             font-size: 1rem;
             transition: all 0.3s ease;
         }
+
         .lookup-input:focus {
             background: rgba(248, 181, 0, 0.03);
             border-color: var(--primary-dark);
             outline: none;
             box-shadow: 0 0 20px rgba(248, 181, 0, 0.1);
         }
+
         .lookup-icon {
             position: absolute;
             left: 1.2rem;
@@ -142,9 +193,11 @@
             font-size: 1.1rem;
             transition: color 0.3s;
         }
-        .lookup-input:focus + .lookup-icon {
+
+        .lookup-input:focus+.lookup-icon {
             color: var(--primary-dark);
         }
+
         .btn-lookup {
             background: var(--primary-dark);
             color: var(--bg-dark);
@@ -159,6 +212,7 @@
             align-items: center;
             gap: 8px;
         }
+
         .btn-lookup:hover {
             background: var(--mint);
             box-shadow: 0 8px 20px rgba(26, 188, 156, 0.3);
@@ -182,19 +236,23 @@
             border: 1px solid var(--border-color);
             border-radius: 30px;
             padding: 3rem 2.5rem;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
             position: relative;
             overflow: hidden;
             transition: all 0.4s ease;
         }
+
         .tracking-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 4px;
             background: linear-gradient(90deg, var(--primary-dark), var(--mint));
             opacity: 0.8;
         }
+
         .tracking-card:hover {
             border-color: rgba(0, 255, 204, 0.25);
         }
@@ -203,18 +261,21 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             padding-bottom: 1.5rem;
             margin-bottom: 2.5rem;
         }
+
         .track-meta-header h3 {
             font-size: 1.8rem;
             color: white;
             font-weight: 800;
         }
+
         .track-meta-header h3 span {
             color: var(--primary-dark);
         }
+
         .track-status-badge {
             background: rgba(248, 181, 0, 0.1);
             border: 1px solid var(--primary-dark);
@@ -229,11 +290,13 @@
             align-items: center;
             gap: 6px;
         }
+
         .track-status-badge.completed-status {
             background: rgba(26, 188, 156, 0.1);
             border: 1px solid var(--mint);
             color: var(--mint);
         }
+
         .track-eta-info {
             display: flex;
             gap: 3rem;
@@ -243,6 +306,7 @@
             padding: 1.25rem 2rem;
             margin-bottom: 3rem;
         }
+
         .track-eta-block p {
             font-size: 0.8rem;
             color: var(--text-muted);
@@ -250,11 +314,13 @@
             letter-spacing: 0.5px;
             margin-bottom: 4px;
         }
+
         .track-eta-block h4 {
             font-size: 1.15rem;
             color: white;
             font-weight: 700;
         }
+
         .track-eta-block.highlight h4 {
             color: var(--mint);
         }
@@ -264,6 +330,7 @@
             position: relative;
             padding-left: 3.5rem;
         }
+
         .timeline-track-bg {
             position: absolute;
             left: 1.4rem;
@@ -274,6 +341,7 @@
             border-radius: 10px;
             z-index: 1;
         }
+
         .timeline-track-progress {
             position: absolute;
             left: 1.4rem;
@@ -285,13 +353,16 @@
             transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             height: 33%;
         }
+
         .timeline-step {
             position: relative;
             margin-bottom: 3.5rem;
         }
+
         .timeline-step:last-child {
             margin-bottom: 0;
         }
+
         .track-step-icon-box {
             position: absolute;
             left: -3.5rem;
@@ -309,11 +380,13 @@
             z-index: 3;
             transition: all 0.4s ease;
         }
+
         .timeline-step.completed .track-step-icon-box {
             border-color: var(--mint);
             color: var(--mint);
             box-shadow: 0 0 15px rgba(26, 188, 156, 0.15);
         }
+
         .timeline-step.active .track-step-icon-box {
             border-color: var(--primary-dark);
             color: var(--primary-dark);
@@ -321,14 +394,25 @@
             box-shadow: 0 0 20px rgba(248, 181, 0, 0.35);
             animation: pulse-active-step 2s infinite;
         }
+
         @keyframes pulse-active-step {
-            0% { box-shadow: 0 0 0 0 rgba(248, 181, 0, 0.35); }
-            70% { box-shadow: 0 0 0 8px rgba(248, 181, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(248, 181, 0, 0); }
+            0% {
+                box-shadow: 0 0 0 0 rgba(248, 181, 0, 0.35);
+            }
+
+            70% {
+                box-shadow: 0 0 0 8px rgba(248, 181, 0, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(248, 181, 0, 0);
+            }
         }
+
         .track-step-content {
             padding-left: 0.5rem;
         }
+
         .track-step-content h4 {
             font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.4);
@@ -336,21 +420,25 @@
             margin-bottom: 4px;
             transition: color 0.3s;
         }
+
         .timeline-step.completed .track-step-content h4 {
             color: var(--mint);
         }
+
         .timeline-step.active .track-step-content h4 {
             color: var(--primary-dark);
         }
+
         .track-step-content p {
             font-size: 0.95rem;
             color: var(--text-muted);
             line-height: 1.5;
             margin-bottom: 4px;
         }
+
         .track-step-content span.timestamp {
             font-size: 0.8rem;
-            color: rgba(255,255,255,0.3);
+            color: rgba(255, 255, 255, 0.3);
             font-weight: 500;
         }
 
@@ -360,22 +448,25 @@
             font-weight: 700;
             margin-bottom: 1.5rem;
             padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
         .track-summary-date {
             font-size: 0.85rem;
             color: var(--text-muted);
             font-weight: 500;
         }
+
         .track-items-list {
             display: flex;
             flex-direction: column;
             gap: 1rem;
             margin-bottom: 2rem;
         }
+
         .track-item-row {
             display: flex;
             align-items: center;
@@ -386,11 +477,13 @@
             border-radius: 12px;
             transition: all 0.3s ease;
         }
+
         .track-item-row:hover {
             background: rgba(255, 255, 255, 0.03);
             border-color: rgba(248, 181, 0, 0.15);
             transform: translateX(5px);
         }
+
         .track-item-icon-box {
             width: 44px;
             height: 44px;
@@ -404,19 +497,23 @@
             color: var(--primary-dark);
             flex-shrink: 0;
         }
+
         .track-item-details {
             flex-grow: 1;
         }
+
         .track-item-name {
             font-size: 0.95rem;
             color: white;
             font-weight: 600;
             margin-bottom: 2px;
         }
+
         .track-item-qty {
             font-size: 0.8rem;
             color: var(--text-muted);
         }
+
         .track-item-price {
             font-size: 0.95rem;
             color: white;
@@ -424,30 +521,34 @@
         }
 
         .track-bill-details {
-            border-top: 1px dashed rgba(255,255,255,0.08);
+            border-top: 1px dashed rgba(255, 255, 255, 0.08);
             padding-top: 1.5rem;
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
             margin-bottom: 2.5rem;
         }
+
         .track-bill-row {
             display: flex;
             justify-content: space-between;
             font-size: 0.95rem;
             color: var(--text-muted);
         }
+
         .track-bill-row.discount-row {
             color: var(--mint);
         }
+
         .track-bill-row.total-row {
-            border-top: 1px solid rgba(255,255,255,0.06);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
             padding-top: 1rem;
             color: white;
             font-size: 1.25rem;
             font-weight: 800;
             margin-top: 0.5rem;
         }
+
         .track-bill-row.total-row span:last-child {
             color: var(--primary-dark);
         }
@@ -459,22 +560,26 @@
             padding: 1.75rem;
             text-align: center;
         }
+
         .track-support-shortcuts h5 {
             font-size: 1.05rem;
             color: white;
             margin-bottom: 0.5rem;
             font-weight: 700;
         }
+
         .track-support-shortcuts p {
             font-size: 0.85rem;
             color: var(--text-muted);
             margin-bottom: 1.25rem;
             line-height: 1.5;
         }
+
         .track-support-btns {
             display: flex;
             gap: 12px;
         }
+
         .track-btn-support-action {
             flex: 1;
             padding: 0.75rem 1rem;
@@ -489,21 +594,25 @@
             cursor: pointer;
             text-decoration: none;
         }
+
         .track-btn-support-call {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             color: white;
         }
+
         .track-btn-support-call:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
             transform: translateY(-2px);
         }
+
         .track-btn-support-wa {
             background: rgba(26, 188, 156, 0.1);
             border: 1px solid rgba(26, 188, 156, 0.2);
             color: var(--mint);
         }
+
         .track-btn-support-wa:hover {
             background: var(--mint);
             color: var(--bg-dark);
@@ -522,6 +631,7 @@
             gap: 15px;
             z-index: 999;
         }
+
         .float-btn {
             width: 60px;
             height: 60px;
@@ -531,24 +641,29 @@
             justify-content: center;
             font-size: 1.5rem;
             color: white;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-decoration: none;
         }
+
         .float-btn:hover {
             transform: scale(1.1) translateY(-5px);
         }
+
         .call-float {
             background: var(--primary-dark);
             border: 1px solid rgba(248, 181, 0, 0.3);
         }
+
         .call-float:hover {
             box-shadow: 0 10px 25px rgba(248, 181, 0, 0.4);
         }
+
         .wa-float {
             background: #25d366;
             border: 1px solid rgba(37, 211, 102, 0.3);
         }
+
         .wa-float:hover {
             box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
         }
@@ -577,19 +692,23 @@
             max-width: 90%;
             width: 450px;
         }
+
         .toast-notification.active {
             transform: translateX(-50%) translateY(0);
             opacity: 1;
             pointer-events: auto;
         }
+
         .toast-notification.success {
             border-color: rgba(26, 188, 156, 0.4);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(26, 188, 156, 0.15);
         }
+
         .toast-notification.error {
             border-color: rgba(240, 106, 66, 0.4);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(240, 106, 66, 0.15);
         }
+
         .toast-icon {
             font-size: 1.5rem;
             display: flex;
@@ -597,13 +716,43 @@
             justify-content: center;
             flex-shrink: 0;
         }
-        .toast-notification.success .toast-icon { color: var(--mint); }
-        .toast-notification.error .toast-icon { color: var(--accent-orange); }
-        .toast-content { flex-grow: 1; }
-        .toast-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
-        .toast-desc { font-size: 0.85rem; color: rgba(255, 255, 255, 0.7); }
-        .toast-close { background: none; border: none; color: rgba(255, 255, 255, 0.4); cursor: pointer; font-size: 1.1rem; transition: color 0.3s; padding: 5px; }
-        .toast-close:hover { color: white; }
+
+        .toast-notification.success .toast-icon {
+            color: var(--mint);
+        }
+
+        .toast-notification.error .toast-icon {
+            color: var(--accent-orange);
+        }
+
+        .toast-content {
+            flex-grow: 1;
+        }
+
+        .toast-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 2px;
+        }
+
+        .toast-desc {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            padding: 5px;
+        }
+
+        .toast-close:hover {
+            color: white;
+        }
 
         /* Footer styling overrides */
         .footer {
@@ -611,11 +760,13 @@
             padding: 5rem 0 2rem !important;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
+
         .footer-grid {
             display: grid !important;
             grid-template-columns: 1.5fr 1fr 1.2fr !important;
             gap: 3rem !important;
         }
+
         .footer-map-card {
             position: relative;
             width: 100%;
@@ -628,6 +779,7 @@
             border: 1px solid rgba(0, 255, 204, 0.15);
             background: rgba(5, 34, 28, 0.45);
         }
+
         .footer-map-badge {
             position: absolute;
             top: 10px;
@@ -644,15 +796,17 @@
             align-items: center;
             gap: 6px;
             z-index: 5;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             transition: all 0.3s ease;
             text-decoration: none;
         }
+
         .footer-map-badge:hover {
             background: white;
             color: var(--primary-dark);
             transform: translateY(-2px);
         }
+
         .footer-mini-map {
             width: 100%;
             height: 100%;
@@ -660,15 +814,18 @@
             filter: grayscale(80%) brightness(0.95);
             transition: all 0.5s ease;
         }
+
         .footer-map-card:hover .footer-mini-map {
             filter: grayscale(0%) brightness(1);
         }
+
         .footer p {
             max-width: 100% !important;
             margin-top: 1rem !important;
             line-height: 1.6 !important;
             color: var(--text-muted);
         }
+
         .footer h4 {
             font-weight: 700 !important;
             font-size: 1.15rem !important;
@@ -676,10 +833,12 @@
             margin-bottom: 1.25rem !important;
             color: white;
         }
+
         .footer h4::after {
             background: var(--primary-dark) !important;
             width: 30px !important;
         }
+
         .footer ul li a {
             display: inline-flex;
             align-items: center;
@@ -687,6 +846,7 @@
             color: rgba(255, 255, 255, 0.6) !important;
             font-weight: 500;
         }
+
         .footer ul li a::before {
             content: '→' !important;
             font-family: inherit !important;
@@ -697,42 +857,139 @@
             margin-right: 0 !important;
             display: inline-block;
         }
+
         .footer ul li a:hover {
             color: var(--primary-dark) !important;
             transform: translateX(5px) !important;
         }
+
         .footer ul li a:hover::before {
             opacity: 1 !important;
         }
 
         @media (max-width: 992px) {
-            .tracking-grid { grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 4rem; }
-            .tracking-card { padding: 3rem 2rem; }
-            .footer-grid { grid-template-columns: 1.2fr 1fr !important; gap: 2.5rem !important; }
-            .footer-grid > div:last-child { grid-column: span 2; }
+            .tracking-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                margin-bottom: 4rem;
+            }
+
+            .tracking-card {
+                padding: 3rem 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1.2fr 1fr !important;
+                gap: 2.5rem !important;
+            }
+
+            .footer-grid>div:last-child {
+                grid-column: span 2;
+            }
         }
+
         @media (max-width: 768px) {
-            body { padding-top: 80px; }
-            .about-page-hero { padding: 3rem 0 2rem !important; }
-            .lookup-card { padding: 1.75rem 1.25rem; border-radius: 16px; }
-            .lookup-form { flex-direction: column; }
-            .btn-lookup { padding: 1rem; justify-content: center; border-radius: 12px; }
-            .tracking-card { padding: 2.25rem 1.5rem; border-radius: 20px; }
-            .track-meta-header { flex-direction: column; gap: 12px; margin-bottom: 2rem; }
-            .track-meta-header h3 { font-size: 1.4rem; }
-            .track-eta-info { flex-direction: column; gap: 1.25rem; padding: 1.25rem; margin-bottom: 2rem; }
-            .timeline-wrapper { padding-left: 2.75rem; }
-            .timeline-track-bg, .timeline-track-progress { left: 1rem; }
-            .track-step-icon-box { left: -2.75rem; width: 36px; height: 36px; font-size: 0.95rem; }
-            .track-step-content h4 { font-size: 1.05rem; }
-            .track-step-content p { font-size: 0.85rem; }
-            .track-support-btns { flex-direction: column; }
-            .floating-contact { bottom: 20px; right: 20px; gap: 10px; }
-            .float-btn { width: 50px; height: 50px; font-size: 1.25rem; }
-            .footer-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
-            .footer-grid > div:last-child { grid-column: span 1; }
-            .footer-map-card { max-width: 100%; }
-            .footer { padding: 4rem 0 2rem !important; }
+            body {
+                padding-top: 80px;
+            }
+
+            .about-page-hero {
+                padding: 3rem 0 2rem !important;
+            }
+
+            .lookup-card {
+                padding: 1.75rem 1.25rem;
+                border-radius: 16px;
+            }
+
+            .lookup-form {
+                flex-direction: column;
+            }
+
+            .btn-lookup {
+                padding: 1rem;
+                justify-content: center;
+                border-radius: 12px;
+            }
+
+            .tracking-card {
+                padding: 2.25rem 1.5rem;
+                border-radius: 20px;
+            }
+
+            .track-meta-header {
+                flex-direction: column;
+                gap: 12px;
+                margin-bottom: 2rem;
+            }
+
+            .track-meta-header h3 {
+                font-size: 1.4rem;
+            }
+
+            .track-eta-info {
+                flex-direction: column;
+                gap: 1.25rem;
+                padding: 1.25rem;
+                margin-bottom: 2rem;
+            }
+
+            .timeline-wrapper {
+                padding-left: 2.75rem;
+            }
+
+            .timeline-track-bg,
+            .timeline-track-progress {
+                left: 1rem;
+            }
+
+            .track-step-icon-box {
+                left: -2.75rem;
+                width: 36px;
+                height: 36px;
+                font-size: 0.95rem;
+            }
+
+            .track-step-content h4 {
+                font-size: 1.05rem;
+            }
+
+            .track-step-content p {
+                font-size: 0.85rem;
+            }
+
+            .track-support-btns {
+                flex-direction: column;
+            }
+
+            .floating-contact {
+                bottom: 20px;
+                right: 20px;
+                gap: 10px;
+            }
+
+            .float-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+
+            .footer-grid>div:last-child {
+                grid-column: span 1;
+            }
+
+            .footer-map-card {
+                max-width: 100%;
+            }
+
+            .footer {
+                padding: 4rem 0 2rem !important;
+            }
         }
 
         /* ==========================================
@@ -751,7 +1008,7 @@
             margin: 0 auto 3.5rem;
             text-align: center;
         }
-        
+
         .explorer-header h2 {
             font-size: clamp(2.2rem, 5vw, 3.2rem);
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -760,7 +1017,7 @@
             line-height: 1.2;
             margin-bottom: 1rem;
         }
-        
+
         .explorer-header h2 span {
             background: linear-gradient(135deg, var(--primary-dark), var(--mint));
             -webkit-background-clip: text;
@@ -781,6 +1038,10 @@
             margin: 0 auto;
             padding: 0 20px;
         }
+        
+        .category-mobile-selector {
+            display: none;
+        }
 
         /* Sidebar Styling */
         .category-sidebar {
@@ -791,6 +1052,8 @@
             border-radius: 24px;
             padding: 1.75rem;
             height: fit-content;
+            align-self: start;
+            /* Prevents grid item stretching, allowing sticky to work */
             position: sticky;
             top: 150px;
             max-height: calc(100vh - 180px);
@@ -798,8 +1061,22 @@
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
             scrollbar-width: thin;
             scrollbar-color: rgba(248, 181, 0, 0.2) transparent;
+
+            /* Smooth opacity fade-in (replaces AOS to prevent sticky transform conflicts) */
+            opacity: 0;
+            animation: sidebarFadeIn 0.8s ease-out forwards;
         }
-        
+
+        @keyframes sidebarFadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
         .sidebar-header {
             margin-bottom: 1.5rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -986,7 +1263,7 @@
             transition: color 0.3s;
         }
 
-        .med-search-wrapper input:focus + .search-icon {
+        .med-search-wrapper input:focus+.search-icon {
             color: var(--primary-dark);
         }
 
@@ -998,7 +1275,14 @@
             min-height: 400px;
         }
 
-        /* Medicine Card */
+        /* ─── MEDICINE GRID ─── */
+        .medicine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+            min-height: 400px;
+        }
+
         .med-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -1006,23 +1290,40 @@
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            gap: 1rem;
             position: relative;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s ease;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             animation: cardFadeIn 0.5s ease both;
         }
 
+        .med-card-details {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
         @keyframes cardFadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .med-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; height: 3px;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
             background: linear-gradient(90deg, var(--primary-dark), var(--mint));
             opacity: 0;
             transition: opacity 0.3s;
@@ -1041,22 +1342,31 @@
         .med-card-img-box {
             position: relative;
             width: 100%;
-            height: 160px;
+            height: 180px;
             border-radius: 12px;
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.015);
+            background: rgba(3, 20, 16, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.04);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.25rem;
+            flex-shrink: 0;
         }
 
         .med-card-img-box img {
-            max-height: 100%;
-            max-width: 100%;
-            object-fit: contain;
-            transition: transform 0.5s;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .med-card-img-box::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(3, 20, 16, 0.65), transparent);
+            pointer-events: none;
+            z-index: 1;
         }
 
         .med-card:hover .med-card-img-box img {
@@ -1065,30 +1375,39 @@
 
         .med-card-tag {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(26, 188, 156, 0.1);
-            border: 1px solid rgba(26, 188, 156, 0.25);
-            color: var(--mint);
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 20px;
+            top: 12px;
+            right: 12px;
+            background: rgba(3, 20, 16, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(248, 181, 0, 0.4);
+            color: var(--primary-dark);
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 30px;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
         }
 
         .med-card-info h4 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 2px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 6px;
+            line-height: 1.3;
         }
 
         .med-card-info .brand-name {
-            font-size: 0.85rem;
-            color: var(--primary-dark);
-            font-weight: 600;
-            margin-bottom: 8px;
+            display: inline-block;
+            font-size: 0.72rem;
+            color: var(--mint);
+            background: rgba(26, 188, 156, 0.1);
+            border: 1px solid rgba(26, 188, 156, 0.25);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -1097,12 +1416,11 @@
             font-size: 0.85rem;
             color: var(--text-muted);
             line-height: 1.5;
-            margin-bottom: 1.5rem;
-            height: 45px;
-            overflow: hidden;
+            margin-bottom: 1.25rem;
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .med-card-footer {
@@ -1112,23 +1430,52 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding-top: 1rem;
             margin-top: auto;
-        }
-
-        .med-card-price {
-            display: flex;
-            flex-direction: column;
+            gap: 0.5rem;
         }
 
         .med-card-price .price-lbl {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            flex-wrap: wrap;
         }
 
         .med-card-price .price-val {
             font-size: 1.2rem;
             font-weight: 800;
             color: white;
+        }
+
+        .med-card-price .price-mrp {
+            font-size: 0.82rem;
+            text-decoration: line-through;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .med-card-price .price-disc {
+            font-size: 0.7rem;
+            color: var(--mint);
+            font-weight: 700;
+            background: rgba(26, 188, 156, 0.1);
+            border: 1px solid rgba(26, 188, 156, 0.25);
+            padding: 1px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .med-card-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-shrink: 0;
         }
 
         .btn-add-cart-med {
@@ -1142,43 +1489,51 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             font-size: 1rem;
         }
 
         .btn-add-cart-med:hover {
             background: var(--mint);
-            color: var(--bg-dark);
             transform: scale(1.1);
             box-shadow: 0 4px 15px rgba(26, 188, 156, 0.3);
         }
 
-        /* Empty State */
-        .med-empty-state {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 4rem 2rem;
+        .btn-add-cart-med .btn-text {
+            display: none;
+        }
+
+        .btn-wishlist-med {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             color: var(--text-muted);
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
         }
 
-        .med-empty-state i {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            color: rgba(255,255,255,0.08);
+        .btn-wishlist-med:hover,
+        .btn-wishlist-med.active {
+            background: rgba(240, 106, 66, 0.1);
+            border-color: rgba(240, 106, 66, 0.3);
+            color: var(--accent-orange);
+            transform: scale(1.1);
         }
 
-        .med-empty-state h4 {
-            font-size: 1.25rem;
-            color: white;
-            margin-bottom: 8px;
-        }
-
-        /* Mobile Responsive adjustments */
+        /* ─── TABLET/MOBILE ≤992px ─── */
         @media (max-width: 992px) {
             .explorer-layout {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1.5rem;
+                padding: 0 10px;
             }
+
             .category-sidebar {
                 position: relative;
                 top: 0;
@@ -1186,59 +1541,249 @@
                 overflow-y: visible;
                 padding: 1.25rem;
                 border-radius: 20px;
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
             }
+
             .sidebar-header {
-                display: none; /* Hide header in mobile view */
-            }
-            .category-list {
-                flex-direction: row;
-                overflow-x: auto;
-                padding-bottom: 8px;
-                scrollbar-width: none;
-                -ms-overflow-style: none;
-                gap: 12px;
-            }
-            .category-list::-webkit-scrollbar {
                 display: none;
             }
-            .category-btn {
-                flex-shrink: 0;
-                padding: 0.75rem 1.1rem;
-                border-left-width: 1px; /* Reset left border */
-                border-bottom: 3px solid transparent;
+
+            .category-list {
+                display: none !important;
             }
-            .category-btn:hover {
-                transform: translateY(-2px) translateX(0);
-                border-bottom-color: var(--mint);
+
+            .category-mobile-selector {
+                display: block;
+                position: relative;
+                width: 100%;
             }
-            .category-btn.active {
-                border-bottom-color: var(--primary-dark);
+
+            .category-mobile-selector select {
+                width: 100%;
+                background: rgba(5, 34, 28, 0.85);
+                border: 1px solid var(--border-color);
+                border-radius: 14px;
+                padding: 0.85rem 1rem 0.85rem 2.75rem;
+                color: white;
+                font-size: 0.95rem;
+                font-weight: 600;
+                appearance: none;
+                -webkit-appearance: none;
+                cursor: pointer;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+                transition: all 0.3s;
             }
-            .arrow-indicator {
-                display: none; /* Hide arrow in horizontal layout */
+
+            .category-mobile-selector select:focus {
+                outline: none;
+                border-color: var(--primary-dark);
+                box-shadow: 0 0 15px rgba(248, 181, 0, 0.25);
             }
+
+            .category-mobile-selector .selector-icon {
+                position: absolute;
+                left: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--primary-dark);
+                font-size: 1rem;
+                pointer-events: none;
+            }
+
+            .category-mobile-selector .arrow-icon {
+                position: absolute;
+                right: 1.1rem;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--text-muted);
+                font-size: 0.85rem;
+                pointer-events: none;
+            }
+
             .med-search-wrapper {
                 width: 100%;
             }
+
             .medicine-panel-header {
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 1rem;
             }
         }
 
+        /* ─── MOBILE ≤576px ─── */
         @media (max-width: 576px) {
+            .container {
+                padding: 0 0.75rem;
+            }
+
             .category-explorer-section {
-                padding: 3rem 0 4rem;
+                padding: 2.5rem 0 3.5rem;
             }
+
             .explorer-header {
-                margin-bottom: 2rem;
+                margin-bottom: 1.75rem;
             }
+
+            .explorer-layout {
+                padding: 0;
+            }
+
+            .medicine-panel-header h3 {
+                font-size: 1.3rem;
+            }
+
+            .medicine-panel-header {
+                padding-bottom: 0.75rem;
+                gap: 0.75rem;
+            }
+
             .medicine-grid {
                 grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+
+            /* Main Card structure on Mobile */
+            .med-card {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 0.85rem;
+                padding: 1rem;
+                border-radius: 16px;
+                height: auto;
+            }
+
+            .med-card-img-box {
+                width: 100% !important;
+                height: 140px !important;
+                margin-bottom: 0;
+                flex-shrink: 0;
+                border-radius: 10px;
+                aspect-ratio: 16 / 10 !important;
+            }
+
+            .med-card-tag {
+                font-size: 0.6rem;
+                padding: 2px 6px;
+                top: 6px;
+                right: 6px;
+            }
+
+            .med-card-details {
+                flex-grow: 1;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 0.5rem;
+                min-width: 0;
+                width: 100% !important;
+            }
+
+            .med-card-info h4 {
+                font-size: 1.1rem;
+                margin-bottom: 2px;
+                color: white;
+            }
+
+            .med-card-info .brand-name {
+                font-size: 0.62rem;
+                padding: 1px 4px;
+                margin-bottom: 4px;
+                width: fit-content;
+            }
+
+            .med-card-info p {
+                font-size: 0.8rem;
+                line-height: 1.4;
+                margin-bottom: 0.5rem;
+                height: auto;
+                max-height: 2.8em;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+            }
+
+            .med-card-footer {
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+                padding-top: 0.75rem;
+                margin-top: auto;
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                gap: 0.5rem;
+                flex-wrap: wrap !important;
+            }
+
+            .med-card-price .price-lbl {
+                display: none;
+            }
+
+            .price-container {
+                display: flex !important;
+                align-items: center !important;
+                gap: 5px !important;
+                flex-wrap: wrap !important;
+            }
+
+            .med-card-price .price-val {
+                font-size: 1.1rem;
+                font-weight: 800;
+                color: white;
+            }
+
+            .med-card-price .price-mrp {
+                font-size: 0.78rem;
+                color: rgba(255, 255, 255, 0.4);
+            }
+
+            .med-card-price .price-disc {
+                font-size: 0.65rem;
+                padding: 1px 4px;
+            }
+
+            .med-card-actions {
+                display: flex !important;
+                gap: 6px !important;
+                justify-content: flex-end !important;
+                align-items: center !important;
+                width: auto !important;
+            }
+
+            .btn-wishlist-med,
+            .btn-add-cart-med {
+                width: 36px !important;
+                height: 36px !important;
+                border-radius: 8px !important;
+                font-size: 0.85rem !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+
+            .btn-add-cart-med .btn-text {
+                display: none !important;
+            }
+        }
+
+        /* ─── VERY SMALL ≤380px ─── */
+        @media (max-width: 380px) {
+            .med-card-img-box {
+                height: 125px !important;
+            }
+
+            .med-card-info h4 {
+                font-size: 1rem;
+            }
+
+            .med-card-price .price-val {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
+
 <body>
 
     <!-- ================== HEADER ================== -->
@@ -1246,7 +1791,8 @@
         <div class="top-header">
             <div class="container flex justify-between items-center">
                 <a href="index.html" class="logo-box">
-                    <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i></div>
+                    <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i>
+                    </div>
                     <div class="logo-text-group">
                         <span class="logo-text">Avijit Medicare</span>
                         <span class="logo-sub">TRUSTED PHARMACY</span>
@@ -1260,11 +1806,13 @@
                     <div class="square-icon"><i class="fa-regular fa-heart"></i></div>
                     <a href="cart.html" class="square-icon" style="position: relative;">
                         <i class="fa-solid fa-cart-shopping"></i>
-                        <span style="position: absolute; top:-5px; right:-5px; background:red; color:white; font-size:9px; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center;">2</span>
+                        <span
+                            style="position: absolute; top:-5px; right:-5px; background:red; color:white; font-size:9px; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center;">2</span>
                     </a>
                     <div class="action-links">
                         <span id="welcomeUser" class="register-link"></span>
-                        <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary" style="border-radius: 4px;">Logout</a>
+                        <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary"
+                            style="border-radius: 4px;">Logout</a>
                     </div>
                     <button class="mobile-logout-btn" onclick="logoutUser()" aria-label="Logout">
                         <i class="fa-solid fa-right-from-bracket"></i>
@@ -1302,13 +1850,17 @@
                     <span class="logo-sub" style="color: var(--text-muted);">TRUSTED PHARMACY</span>
                 </div>
             </a>
-            <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+            <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i
+                    class="fa-solid fa-xmark"></i></button>
         </div>
-        <div class="drawer-profile" style="background: rgba(248, 181, 0, 0.05); padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-            <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary-dark); display: flex; align-items: center; justify-content: center; color: var(--bg-light); font-weight: 700; font-size: 1.1rem; border: 2px solid rgba(248, 181, 0, 0.3);" id="mobileAvatarInitials">U</div>
+        <div class="drawer-profile"
+            style="background: rgba(248, 181, 0, 0.05); padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary-dark); display: flex; align-items: center; justify-content: center; color: var(--bg-light); font-weight: 700; font-size: 1.1rem; border: 2px solid rgba(248, 181, 0, 0.3);"
+                id="mobileAvatarInitials">U</div>
             <div style="display: flex; flex-direction: column;">
                 <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;">Welcome back,</span>
-                <span id="welcomeUserMobile" style="font-size: 0.95rem; color: white; font-weight: 700; margin-top: 2px;">Guest User</span>
+                <span id="welcomeUserMobile"
+                    style="font-size: 0.95rem; color: white; font-weight: 700; margin-top: 2px;">Guest User</span>
             </div>
         </div>
         <div class="drawer-body">
@@ -1321,7 +1873,8 @@
                 <a href="contact.html" class="drawer-link"><i class="fa-solid fa-envelope"></i> Contact Us</a>
             </nav>
             <div class="drawer-footer">
-                <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary w-full" style="border-radius: 8px;">
+                <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary w-full"
+                    style="border-radius: 8px;">
                     <i class="fa-solid fa-right-from-bracket" style="margin-right: 8px;"></i> Logout
                 </a>
             </div>
@@ -1331,12 +1884,14 @@
 
     <!-- Floating Contact Buttons -->
     <div class="floating-contact">
-        <a href="tel:+917855870349" class="float-btn call-float" title="Call +91 7855870349"><i class="fa-solid fa-phone"></i></a>
-        <a href="https://wa.me/919971286110?text=Hello" target="_blank" class="float-btn wa-float" title="WhatsApp +91 9971286110"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="tel:+917855870349" class="float-btn call-float" title="Call +91 7855870349"><i
+                class="fa-solid fa-phone"></i></a>
+        <a href="https://wa.me/919971286110?text=Hello" target="_blank" class="float-btn wa-float"
+            title="WhatsApp +91 9971286110"><i class="fa-brands fa-whatsapp"></i></a>
     </div>
 
     <!-- ================== MAIN CONTENT ================== -->
-    
+
     <!-- PAGE HERO (PREMIUM DARK GLASS THEME - Matching About & Medicine Pages) -->
     <section class="about-page-hero">
         <div class="container">
@@ -1362,7 +1917,8 @@
                     </h4>
 
                     <p class="hero-text" data-aos="fade-right" data-aos-delay="300">
-                        Verify your parcel status, monitor dynamic logistics dispatch transit positions, and connect directly to active courier riders and pharmaceutical support terminals in real-time.
+                        Verify your parcel status, monitor dynamic logistics dispatch transit positions, and connect
+                        directly to active courier riders and pharmaceutical support terminals in real-time.
                     </p>
 
                     <div class="hero-buttons" data-aos="fade-up" data-aos-delay="400">
@@ -1373,16 +1929,20 @@
 
                 <!-- Right Image (3D Floating Collage Redesign) -->
                 <div class="about-image-wrapper" data-aos="fade-left" data-aos-duration="1200">
-                    <div class="about-glow-orb" style="background: radial-gradient(circle, rgba(248, 181, 0, 0.15) 0%, rgba(126, 255, 210, 0.08) 50%, transparent 70%);"></div>
+                    <div class="about-glow-orb"
+                        style="background: radial-gradient(circle, rgba(248, 181, 0, 0.15) 0%, rgba(126, 255, 210, 0.08) 50%, transparent 70%);">
+                    </div>
 
                     <!-- Main Image Frame -->
                     <div class="glass-image-container">
-                        <img src="images/tracking_hero.png" alt="Consignment Courier Tracker" class="premium-img" onerror="this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop'">
+                        <img src="images/tracking_hero.png" alt="Consignment Courier Tracker" class="premium-img"
+                            onerror="this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop'">
                     </div>
 
                     <!-- Floating Badge 1 (Bottom Left) -->
                     <div class="premium-float-card float-left-card" data-aos="zoom-in" data-aos-delay="600">
-                        <div class="glass-icon-circle" style="color: var(--primary-dark); border-color: rgba(248, 181, 0, 0.25);">
+                        <div class="glass-icon-circle"
+                            style="color: var(--primary-dark); border-color: rgba(248, 181, 0, 0.25);">
                             <i class="fa-solid fa-truck-fast"></i>
                         </div>
                         <div>
@@ -1393,7 +1953,8 @@
 
                     <!-- Floating Badge 2 (Top Right) -->
                     <div class="premium-float-card float-right-card" data-aos="zoom-in" data-aos-delay="800">
-                        <div class="glass-icon-circle mint-icon" style="color: var(--mint); border-color: rgba(26, 188, 156, 0.25);">
+                        <div class="glass-icon-circle mint-icon"
+                            style="color: var(--mint); border-color: rgba(26, 188, 156, 0.25);">
                             <i class="fa-solid fa-map-location-dot"></i>
                         </div>
                         <div>
@@ -1404,7 +1965,8 @@
 
                     <!-- Floating Badge 3 (Bottom Right) -->
                     <div class="premium-float-card float-center-card" data-aos="zoom-in" data-aos-delay="1000">
-                        <div class="glass-icon-circle gold-icon" style="color: var(--primary-dark); border-color: rgba(248, 181, 0, 0.25);">
+                        <div class="glass-icon-circle gold-icon"
+                            style="color: var(--primary-dark); border-color: rgba(248, 181, 0, 0.25);">
                             <i class="fa-solid fa-headset"></i>
                         </div>
                         <div>
@@ -1423,15 +1985,23 @@
         <div class="container">
             <div class="explorer-header" data-aos="fade-up">
                 <h2>Browse Medicine <span>Categories</span></h2>
-                <p>Explore our comprehensive database of pharmaceutical products across all medical classifications. Select a category to browse specific medicines.</p>
+                <p>Explore our comprehensive database of pharmaceutical products across all medical classifications.
+                    Select a category to browse specific medicines.</p>
             </div>
-            
+
             <div class="explorer-layout">
                 <!-- Left: Categories Sidebar -->
-                <aside class="category-sidebar" data-aos="fade-right">
+                <aside class="category-sidebar">
                     <div class="sidebar-header">
                         <h4><i class="fa-solid fa-layer-group"></i> Classifications</h4>
                         <p>Select a medical category below to filter available formulas.</p>
+                    </div>
+                    <div class="category-mobile-selector">
+                        <i class="fa-solid fa-layer-group selector-icon"></i>
+                        <select id="categoryMobileSelect" aria-label="Select Medicine Category">
+                            <!-- Categories dynamically loaded by JS -->
+                        </select>
+                        <i class="fa-solid fa-chevron-down arrow-icon"></i>
                     </div>
                     <div class="category-list" id="categoryList">
                         <!-- Categories dynamically loaded by JS -->
@@ -1472,9 +2042,13 @@
                         <a href="https://maps.app.goo.gl/o1Wc8WLyqU2G1WzJ7" target="_blank" class="footer-map-badge">
                             <span>Maps</span> <i class="fa-solid fa-up-right-from-square"></i>
                         </a>
-                        <iframe class="footer-mini-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118944.37562851413!2d86.64333934335936!3d21.2662057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1c6a7ab56ebcd7%3A0x6b2b6ab0c99aeb61!2sSoro%2C%20Odisha!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe class="footer-mini-map"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118944.37562851413!2d86.64333934335936!3d21.2662057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1c6a7ab56ebcd7%3A0x6b2b6ab0c99aeb61!2sSoro%2C%20Odisha!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                            style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
-                    <p>Your trusted partner for genuine medicines, expert doctors, and fast doorstep delivery across Odisha. Quality healthcare, simplified.</p>
+                    <p>Your trusted partner for genuine medicines, expert doctors, and fast doorstep delivery across
+                        Odisha. Quality healthcare, simplified.</p>
                     <div class="social-icons">
                         <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
                         <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
@@ -1538,11 +2112,13 @@
             <div class="toast-title" id="toastTitle">Success!</div>
             <div class="toast-desc" id="toastDesc">Action completed successfully.</div>
         </div>
-        <button class="toast-close" onclick="closeToast()" aria-label="Close Notification"><i class="fa-solid fa-xmark"></i></button>
+        <button class="toast-close" onclick="closeToast()" aria-label="Close Notification"><i
+                class="fa-solid fa-xmark"></i></button>
     </div>
 
     <!-- AOS Script -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
     <script>
         AOS.init({
             duration: 800,
@@ -1557,10 +2133,10 @@
                 name: "Analgesics & Antipyretics",
                 icon: "fa-capsules",
                 medicines: [
-                    { name: "Dolo 650", brand: "Micro Labs", desc: "Paracetamol 650mg tablets for fast fever reduction & mild to moderate pain relief.", price: "₹30.00", img: "images/medicines/paracetamol.png" },
-                    { name: "Brufen 400", brand: "Abbott", desc: "Ibuprofen 400mg tablets to relieve pain, swelling, and chronic inflammatory conditions.", price: "₹20.00", img: "images/medicines/paracetamol.png" },
-                    { name: "Combiflam", brand: "Sanofi", desc: "Ibuprofen & Paracetamol combination for powerful body aches and muscular pain relief.", price: "₹25.00", img: "images/medicines/paracetamol.png" },
-                    { name: "Ultracet", brand: "Janssen", desc: "Prescription-only Tramadol & Acetaminophen formula for severe acute pain management.", price: "₹120.00", img: "images/medicines/paracetamol.png" }
+                    { name: "Dolo 650", brand: "Micro Labs", desc: "Paracetamol 650mg tablets for fast fever reduction & mild to moderate pain relief.", price: "₹30.00", mrp: "₹38.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/paracetamol.png" },
+                    { name: "Brufen 400", brand: "Abbott", desc: "Ibuprofen 400mg tablets to relieve pain, swelling, and chronic inflammatory conditions.", price: "₹20.00", mrp: "₹28.00", discount: "28% OFF", img: "https://images.unsplash.com/photo-1607619056574-7b8f304b3c8f?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/paracetamol.png" },
+                    { name: "Combiflam", brand: "Sanofi", desc: "Ibuprofen & Paracetamol combination for powerful body aches and muscular pain relief.", price: "₹25.00", mrp: "₹32.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1585435557343-3b092031a831?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/paracetamol.png" },
+                    { name: "Ultracet", brand: "Janssen", desc: "Prescription-only Tramadol & Acetaminophen formula for severe acute pain management.", price: "₹120.00", mrp: "₹150.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1631549916768-4119b255f9f2?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/paracetamol.png" }
                 ]
             },
             {
@@ -1568,10 +2144,10 @@
                 name: "Antibiotics & Antivirals",
                 icon: "fa-prescription-bottle",
                 medicines: [
-                    { name: "Azithral 500", brand: "Alembic", desc: "Azithromycin 500mg broad-spectrum antibiotic for throat, chest, and nasal infections.", price: "₹110.00", img: "images/medicines/antibiotic.png" },
-                    { name: "Taxim-O 200", brand: "Alkem", desc: "Cefixime 200mg antibiotic tablets, highly effective against typhoid fever and urinary infections.", price: "₹95.00", img: "images/medicines/antibiotic.png" },
-                    { name: "Augmentin 625 Duo", brand: "GSK", desc: "Amoxicillin + Clavulanic Acid formula to combat complex bacterial resistance in infections.", price: "₹200.00", img: "images/medicines/antibiotic.png" },
-                    { name: "Ciplox 500", brand: "Cipla", desc: "Ciprofloxacin 500mg tablets targeting respiratory, bone, abdominal, and skin infections.", price: "₹45.00", img: "images/medicines/antibiotic.png" }
+                    { name: "Azithral 500", brand: "Alembic", desc: "Azithromycin 500mg broad-spectrum antibiotic for throat, chest, and nasal infections.", price: "₹110.00", mrp: "₹145.00", discount: "24% OFF", img: "https://images.unsplash.com/photo-1587854692152-cbe660dbbc88?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/antibiotic.png" },
+                    { name: "Taxim-O 200", brand: "Alkem", desc: "Cefixime 200mg antibiotic tablets, highly effective against typhoid fever and urinary infections.", price: "₹95.00", mrp: "₹120.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/antibiotic.png" },
+                    { name: "Augmentin 625 Duo", brand: "GSK", desc: "Amoxicillin + Clavulanic Acid formula to combat complex bacterial resistance in infections.", price: "₹200.00", mrp: "₹268.00", discount: "25% OFF", img: "https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/antibiotic.png" },
+                    { name: "Ciplox 500", brand: "Cipla", desc: "Ciprofloxacin 500mg tablets targeting respiratory, bone, abdominal, and skin infections.", price: "₹45.00", mrp: "₹58.00", discount: "22% OFF", img: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/antibiotic.png" }
                 ]
             },
             {
@@ -1579,10 +2155,10 @@
                 name: "Stomach & Acid Relief",
                 icon: "fa-bacteria",
                 medicines: [
-                    { name: "Pan-D Capsule", brand: "Alkem", desc: "Pantoprazole & Domperidone combination for severe hyperacidity, gas, and GERD relief.", price: "₹140.00", img: "images/medicines/stomach.png" },
-                    { name: "Digene Gel", brand: "Abbott", desc: "Fast-acting antacid liquid suspension providing immediate relief from acidity & gas.", price: "₹130.00", img: "images/medicines/stomach.png" },
-                    { name: "Omez 20", brand: "Dr. Reddy's", desc: "Omeprazole 20mg capsules to treat peptic ulcers, acid reflux, and stomach irritation.", price: "₹55.00", img: "images/medicines/stomach.png" },
-                    { name: "Eldoper 2mg", brand: "Micro Labs", desc: "Loperamide hydrochloride capsule for direct control and relief of acute diarrhea symptoms.", price: "₹22.00", img: "images/medicines/stomach.png" }
+                    { name: "Pan-D Capsule", brand: "Alkem", desc: "Pantoprazole & Domperidone combination for severe hyperacidity, gas, and GERD relief.", price: "₹140.00", mrp: "₹175.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1624348438541-2244f60f252f?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/stomach.png" },
+                    { name: "Digene Gel", brand: "Abbott", desc: "Fast-acting antacid liquid suspension providing immediate relief from acidity & gas.", price: "₹130.00", mrp: "₹160.00", discount: "18% OFF", img: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/stomach.png" },
+                    { name: "Omez 20", brand: "Dr. Reddy's", desc: "Omeprazole 20mg capsules to treat peptic ulcers, acid reflux, and stomach irritation.", price: "₹55.00", mrp: "₹72.00", discount: "23% OFF", img: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/stomach.png" },
+                    { name: "Eldoper 2mg", brand: "Micro Labs", desc: "Loperamide hydrochloride capsule for direct control and relief of acute diarrhea symptoms.", price: "₹22.00", mrp: "₹30.00", discount: "26% OFF", img: "https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/stomach.png" }
                 ]
             },
             {
@@ -1590,10 +2166,10 @@
                 name: "Vitamins & Supplements",
                 icon: "fa-tablets",
                 medicines: [
-                    { name: "Becosules", brand: "Pfizer", desc: "Vitamin B-Complex capsules with Vitamin C, widely used for mouth ulcers and fatigue.", price: "₹48.00", img: "images/medicines/vitamins.png" },
-                    { name: "Zincovit", brand: "Apex", desc: "Advanced Multivitamin, Multimineral, and Zinc tablet formulation for daily immunity support.", price: "₹105.00", img: "images/medicines/vitamins.png" },
-                    { name: "Evion 400", brand: "Merck", desc: "Vitamin E 400mg capsules for anti-oxidant protection, healthy skin tissue, and hair growth.", price: "₹35.00", img: "images/medicines/vitamins.png" },
-                    { name: "Limcee 500mg", brand: "Abbott", desc: "Orange-flavored chewable Vitamin C tablets for scurvy prevention and cellular immunity.", price: "₹25.00", img: "images/medicines/vitamins.png" }
+                    { name: "Becosules", brand: "Pfizer", desc: "Vitamin B-Complex capsules with Vitamin C, widely used for mouth ulcers and fatigue.", price: "₹48.00", mrp: "₹60.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1579684389782-64d84b5e901a?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/vitamins.png" },
+                    { name: "Zincovit", brand: "Apex", desc: "Advanced Multivitamin, Multimineral, and Zinc tablet formulation for daily immunity support.", price: "₹105.00", mrp: "₹135.00", discount: "22% OFF", img: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/vitamins.png" },
+                    { name: "Evion 400", brand: "Merck", desc: "Vitamin E 400mg capsules for anti-oxidant protection, healthy skin tissue, and hair growth.", price: "₹35.00", mrp: "₹45.00", discount: "22% OFF", img: "https://images.unsplash.com/photo-1616679911721-eff6eec18fcd?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/vitamins.png" },
+                    { name: "Limcee 500mg", brand: "Abbott", desc: "Orange-flavored chewable Vitamin C tablets for scurvy prevention and cellular immunity.", price: "₹25.00", mrp: "₹32.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/vitamins.png" }
                 ]
             },
             {
@@ -1601,10 +2177,10 @@
                 name: "Cough & Cold Relief",
                 icon: "fa-bottle-droplet",
                 medicines: [
-                    { name: "Ascoril LS Syrup", brand: "Glenmark", desc: "Levosalbutamol & Ambroxol expectorant syrup for chest congestion and wet cough relief.", price: "₹115.00", img: "images/medicines/syrup.png" },
-                    { name: "Benadryl DR Syrup", brand: "J&J", desc: "Soothing dry cough formula with Dextromethorphan to suppress throat tickle & irritation.", price: "₹105.00", img: "images/medicines/syrup.png" },
-                    { name: "Grilinctus Syrup", brand: "Franco-Indian", desc: "Time-tested cough syrup for relief of dry cough and common cold allergic symptoms.", price: "₹125.00", img: "images/medicines/syrup.png" },
-                    { name: "Montair-LC", brand: "Cipla", desc: "Montelukast & Levocetirizine tablets for respiratory allergies, sneezing, and asthma symptoms.", price: "₹180.00", img: "images/medicines/paracetamol.png" }
+                    { name: "Ascoril LS Syrup", brand: "Glenmark", desc: "Levosalbutamol & Ambroxol expectorant syrup for chest congestion and wet cough relief.", price: "₹115.00", mrp: "₹140.00", discount: "17% OFF", img: "https://images.unsplash.com/photo-1581091911393-111b1f9c571a?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/syrup.png" },
+                    { name: "Benadryl DR Syrup", brand: "J&J", desc: "Soothing dry cough formula with Dextromethorphan to suppress throat tickle & irritation.", price: "₹105.00", mrp: "₹130.00", discount: "19% OFF", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/syrup.png" },
+                    { name: "Grilinctus Syrup", brand: "Franco-Indian", desc: "Time-tested cough syrup for relief of dry cough and common cold allergic symptoms.", price: "₹125.00", mrp: "₹155.00", discount: "19% OFF", img: "https://images.unsplash.com/photo-1512438248247-f0f2a5a8b7f0?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/syrup.png" },
+                    { name: "Montair-LC", brand: "Cipla", desc: "Montelukast & Levocetirizine tablets for respiratory allergies, sneezing, and asthma symptoms.", price: "₹180.00", mrp: "₹225.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1550572017-1f72f58db2c6?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/paracetamol.png" }
                 ]
             },
             {
@@ -1612,10 +2188,10 @@
                 name: "Heart & Blood Pressure",
                 icon: "fa-heart-pulse",
                 medicines: [
-                    { name: "Telma 40", brand: "Glenmark", desc: "Telmisartan 40mg tablets daily to manage high blood pressure and protect cardiac health.", price: "₹90.00", img: "images/medicines/paracetamol.png" },
-                    { name: "Concor 5", brand: "Merck", desc: "Bisoprolol Fumarate 5mg beta-blocker to regulate hypertension and abnormal heart rhythms.", price: "₹115.00", img: "images/medicines/paracetamol.png" },
-                    { name: "Rosuvas 10", brand: "Sun Pharma", desc: "Rosuvastatin 10mg cholesterol-lowering statin to prevent arterial plaque and cardiac events.", price: "₹145.00", img: "images/medicines/paracetamol.png" },
-                    { name: "Ecosprin 75", brand: "USV", desc: "Low-dose Aspirin blood thinner for post-stroke protection and myocardial health.", price: "₹10.00", img: "images/medicines/paracetamol.png" }
+                    { name: "Telma 40", brand: "Glenmark", desc: "Telmisartan 40mg tablets daily to manage high blood pressure and protect cardiac health.", price: "₹90.00", mrp: "₹115.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1576602976047-174e57a47881?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/paracetamol.png" },
+                    { name: "Concor 5", brand: "Merck", desc: "Bisoprolol Fumarate 5mg beta-blocker to regulate hypertension and abnormal heart rhythms.", price: "₹115.00", mrp: "₹148.00", discount: "22% OFF", img: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/paracetamol.png" },
+                    { name: "Rosuvas 10", brand: "Sun Pharma", desc: "Rosuvastatin 10mg cholesterol-lowering statin to prevent arterial plaque and cardiac events.", price: "₹145.00", mrp: "₹185.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/paracetamol.png" },
+                    { name: "Ecosprin 75", brand: "USV", desc: "Low-dose Aspirin blood thinner for post-stroke protection and myocardial health.", price: "₹10.00", mrp: "₹13.00", discount: "23% OFF", img: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/paracetamol.png" }
                 ]
             },
             {
@@ -1623,10 +2199,10 @@
                 name: "Diabetes Care",
                 icon: "fa-droplet",
                 medicines: [
-                    { name: "Glycomet 500SR", brand: "USV", desc: "Sustained-release Metformin 500mg to regulate blood glucose levels in Type-2 Diabetes.", price: "₹28.00", img: "images/medicines/vitamins.png" },
-                    { name: "Janumet 50/500", brand: "MSD", desc: "Sitagliptin & Metformin dual-therapy tablets for effective post-prandial glucose control.", price: "₹380.00", img: "images/medicines/vitamins.png" },
-                    { name: "Amaryl 1mg", brand: "Sanofi", desc: "Glimepiride 1mg sulfonylurea tablets that stimulate insulin secretion from pancreatic cells.", price: "₹52.00", img: "images/medicines/vitamins.png" },
-                    { name: "Galvus Met 50/500", brand: "Novartis", desc: "Vildagliptin & Metformin combination to control high blood sugar in adult diabetic patients.", price: "₹290.00", img: "images/medicines/vitamins.png" }
+                    { name: "Glycomet 500SR", brand: "USV", desc: "Sustained-release Metformin 500mg to regulate blood glucose levels in Type-2 Diabetes.", price: "₹28.00", mrp: "₹35.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/vitamins.png" },
+                    { name: "Janumet 50/500", brand: "MSD", desc: "Sitagliptin & Metformin dual-therapy tablets for effective post-prandial glucose control.", price: "₹380.00", mrp: "₹480.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/vitamins.png" },
+                    { name: "Amaryl 1mg", brand: "Sanofi", desc: "Glimepiride 1mg sulfonylurea tablets that stimulate insulin secretion from pancreatic cells.", price: "₹52.00", mrp: "₹68.00", discount: "23% OFF", img: "https://images.unsplash.com/photo-1607619056574-7b8f304b3c8f?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/vitamins.png" },
+                    { name: "Galvus Met 50/500", brand: "Novartis", desc: "Vildagliptin & Metformin combination to control high blood sugar in adult diabetic patients.", price: "₹290.00", mrp: "₹368.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/vitamins.png" }
                 ]
             },
             {
@@ -1634,10 +2210,10 @@
                 name: "Skin & Dermatology",
                 icon: "fa-hand-dots",
                 medicines: [
-                    { name: "Betnovate-N", brand: "Glaxo", desc: "Betamethasone steroid combined with Neomycin antibiotic for inflammatory skin conditions.", price: "₹45.00", img: "images/medicines/ayurvedic.png" },
-                    { name: "Quadriderm RF", brand: "Fulford", desc: "Anti-fungal, anti-bacterial, and anti-inflammatory cream for eczema, rashes, and ringworm.", price: "₹95.00", img: "images/medicines/ayurvedic.png" },
-                    { name: "Volini Gel", brand: "Sun Pharma", desc: "Pain relief gel with Diclofenac & Methyl Salicylate to treat muscle aches and sprains.", price: "₹140.00", img: "images/medicines/ayurvedic.png" },
-                    { name: "Candid Powder", brand: "Glenmark", desc: "Clotrimazole dusting powder to prevent fungal growth, sweat rash, and skin irritation.", price: "₹110.00", img: "images/medicines/ayurvedic.png" }
+                    { name: "Betnovate-N", brand: "Glaxo", desc: "Betamethasone steroid combined with Neomycin antibiotic for inflammatory skin conditions.", price: "₹45.00", mrp: "₹58.00", discount: "22% OFF", img: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/ayurvedic.png" },
+                    { name: "Quadriderm RF", brand: "Fulford", desc: "Anti-fungal, anti-bacterial, and anti-inflammatory cream for eczema, rashes, and ringworm.", price: "₹95.00", mrp: "₹120.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1530026405186-ed1ea400c3af?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/ayurvedic.png" },
+                    { name: "Volini Gel", brand: "Sun Pharma", desc: "Pain relief gel with Diclofenac & Methyl Salicylate to treat muscle aches and sprains.", price: "₹140.00", mrp: "₹175.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1547489432-cf93fa6c71ee?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/ayurvedic.png" },
+                    { name: "Candid Powder", brand: "Glenmark", desc: "Clotrimazole dusting powder to prevent fungal growth, sweat rash, and skin irritation.", price: "₹110.00", mrp: "₹142.00", discount: "22% OFF", img: "https://images.unsplash.com/photo-1625902870074-d2dd0a042585?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/ayurvedic.png" }
                 ]
             },
             {
@@ -1645,10 +2221,10 @@
                 name: "Neurology & Mind",
                 icon: "fa-brain",
                 medicines: [
-                    { name: "Clonotril 0.5", brand: "Torrent", desc: "Clonazepam 0.5mg benzodiazepine for management of epilepsy, panic disorder, and severe anxiety.", price: "₹40.00", img: "images/medicines/paracetamol.png" },
-                    { name: "Nexito 10", brand: "Sun Pharma", desc: "Escitalopram 10mg SSRI antidepressant tablets for clinical depression and panic therapy.", price: "₹95.00", img: "images/medicines/paracetamol.png" },
-                    { name: "Pacitane", brand: "Wyeth", desc: "Trihexyphenidyl tablets used to control involuntary muscle spasms and Parkinsonism.", price: "₹38.00", img: "images/medicines/paracetamol.png" },
-                    { name: "Zolax 0.5", brand: "Intas", desc: "Alprazolam 0.5mg tablets for temporary relief of acute anxiety-induced sleep disorders.", price: "₹30.00", img: "images/medicines/paracetamol.png" }
+                    { name: "Clonotril 0.5", brand: "Torrent", desc: "Clonazepam 0.5mg benzodiazepine for management of epilepsy, panic disorder, and severe anxiety.", price: "₹40.00", mrp: "₹52.00", discount: "23% OFF", img: "https://images.unsplash.com/photo-1631549916768-4119b255f9f2?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/paracetamol.png" },
+                    { name: "Nexito 10", brand: "Sun Pharma", desc: "Escitalopram 10mg SSRI antidepressant tablets for clinical depression and panic therapy.", price: "₹95.00", mrp: "₹122.00", discount: "22% OFF", img: "https://images.unsplash.com/photo-1585435557343-3b092031a831?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/paracetamol.png" },
+                    { name: "Pacitane", brand: "Wyeth", desc: "Trihexyphenidyl tablets used to control involuntary muscle spasms and Parkinsonism.", price: "₹38.00", mrp: "₹48.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/paracetamol.png" },
+                    { name: "Zolax 0.5", brand: "Intas", desc: "Alprazolam 0.5mg tablets for temporary relief of acute anxiety-induced sleep disorders.", price: "₹30.00", mrp: "₹40.00", discount: "25% OFF", img: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/paracetamol.png" }
                 ]
             },
             {
@@ -1656,10 +2232,10 @@
                 name: "Eye & Ear Care",
                 icon: "fa-eye",
                 medicines: [
-                    { name: "Refresh Tears", brand: "Allergan", desc: "Sodium Carboxymethylcellulose eye drops for relief of dry eye syndrome and strain.", price: "₹145.00", img: "images/medicines/syrup.png" },
-                    { name: "Ciplox Drops", brand: "Cipla", desc: "Ciprofloxacin antibiotic sterile drops for bacterial eye conjunctivitis or ear infections.", price: "₹18.00", img: "images/medicines/syrup.png" },
-                    { name: "Tobradex Drops", brand: "Alcon", desc: "Tobramycin and Dexamethasone combination drops to reduce post-surgery ocular swelling.", price: "₹185.00", img: "images/medicines/syrup.png" },
-                    { name: "Waxolve Drops", brand: "Apex", desc: "Paradichlorobenzene drops to gently dissolve hardened ear wax and relieve ear blockage.", price: "₹90.00", img: "images/medicines/syrup.png" }
+                    { name: "Refresh Tears", brand: "Allergan", desc: "Sodium Carboxymethylcellulose eye drops for relief of dry eye syndrome and strain.", price: "₹145.00", mrp: "₹185.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/syrup.png" },
+                    { name: "Ciplox Drops", brand: "Cipla", desc: "Ciprofloxacin antibiotic sterile drops for bacterial eye conjunctivitis or ear infections.", price: "₹18.00", mrp: "₹24.00", discount: "25% OFF", img: "https://images.unsplash.com/photo-1626422524298-693a4f0bf421?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/syrup.png" },
+                    { name: "Tobradex Drops", brand: "Alcon", desc: "Tobramycin and Dexamethasone combination drops to reduce post-surgery ocular swelling.", price: "₹185.00", mrp: "₹235.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1608096299210-db7e38487075?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/syrup.png" },
+                    { name: "Waxolve Drops", brand: "Apex", desc: "Paradichlorobenzene drops to gently dissolve hardened ear wax and relieve ear blockage.", price: "₹90.00", mrp: "₹115.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1616679911721-eff6eec18fcd?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/syrup.png" }
                 ]
             },
             {
@@ -1667,10 +2243,10 @@
                 name: "Ayurvedic & Herbal",
                 icon: "fa-seedling",
                 medicines: [
-                    { name: "Chyawanprash", brand: "Dabur", desc: "Amla-rich natural immunity booster concentrate containing 40+ vital therapeutic herbs.", price: "₹245.00", img: "images/medicines/ayurvedic.png" },
-                    { name: "Liv.52 Tablets", brand: "Himalaya", desc: "Clinically validated hepatoprotective herbal formulation to support liver enzymes and health.", price: "₹150.00", img: "images/medicines/ayurvedic.png" },
-                    { name: "Cystone", brand: "Himalaya", desc: "Herbal tablets designed to naturally break down and flush out urinary kidney calculi/stones.", price: "₹160.00", img: "images/medicines/ayurvedic.png" },
-                    { name: "Ashwagandha", brand: "Patanjali", desc: "Pure Ashwagandha extract capsule for adrenal health, energy restoration, and stress control.", price: "₹180.00", img: "images/medicines/ayurvedic.png" }
+                    { name: "Chyawanprash", brand: "Dabur", desc: "Amla-rich natural immunity booster concentrate containing 40+ vital therapeutic herbs.", price: "₹245.00", mrp: "₹299.00", discount: "18% OFF", img: "https://images.unsplash.com/photo-1618015358954-115ef1ed6515?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/ayurvedic.png" },
+                    { name: "Liv.52 Tablets", brand: "Himalaya", desc: "Clinically validated hepatoprotective herbal formulation to support liver enzymes and health.", price: "₹150.00", mrp: "₹188.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1626367300130-1a842b109e25?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/ayurvedic.png" },
+                    { name: "Cystone", brand: "Himalaya", desc: "Herbal tablets designed to naturally break down and flush out urinary kidney calculi/stones.", price: "₹160.00", mrp: "₹200.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/ayurvedic.png" },
+                    { name: "Ashwagandha", brand: "Patanjali", desc: "Pure Ashwagandha extract capsule for adrenal health, energy restoration, and stress control.", price: "₹180.00", mrp: "₹225.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1514733670139-4d87a19ec157?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/ayurvedic.png" }
                 ]
             },
             {
@@ -1678,10 +2254,10 @@
                 name: "Vaccines & Immunity",
                 icon: "fa-syringe",
                 medicines: [
-                    { name: "Vaxigrip Tetra", brand: "Sanofi", desc: "Quadrivalent influenza virus vaccine to prevent seasonal flu strains.", price: "₹1650.00", img: "images/medicines/antibiotic.png" },
-                    { name: "Pneumovax 23", brand: "MSD", desc: "Pneumococcal vaccine to protect against severe lung, brain, and blood bacterial infections.", price: "₹2400.00", img: "images/medicines/antibiotic.png" },
-                    { name: "Cervarix", brand: "GSK", desc: "HPV vaccine for immunization against cervical cancer-causing viral strains.", price: "₹3200.00", img: "images/medicines/antibiotic.png" },
-                    { name: "Imovax Rabies", brand: "Sanofi", desc: "Inactivated rabies vaccine for post-exposure prophylaxis and immunization.", price: "₹380.00", img: "images/medicines/antibiotic.png" }
+                    { name: "Vaxigrip Tetra", brand: "Sanofi", desc: "Quadrivalent influenza virus vaccine to prevent seasonal flu strains.", price: "₹1650.00", mrp: "₹1999.00", discount: "17% OFF", img: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/antibiotic.png" },
+                    { name: "Pneumovax 23", brand: "MSD", desc: "Pneumococcal vaccine to protect against severe lung, brain, and blood bacterial infections.", price: "₹2400.00", mrp: "₹2950.00", discount: "18% OFF", img: "https://images.unsplash.com/photo-1611070973770-b1a629b9f76a?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/antibiotic.png" },
+                    { name: "Cervarix", brand: "GSK", desc: "HPV vaccine for immunization against cervical cancer-causing viral strains.", price: "₹3200.00", mrp: "₹3850.00", discount: "16% OFF", img: "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/antibiotic.png" },
+                    { name: "Imovax Rabies", brand: "Sanofi", desc: "Inactivated rabies vaccine for post-exposure prophylaxis and immunization.", price: "₹380.00", mrp: "₹460.00", discount: "17% OFF", img: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=500&auto=format&fit=crop&q=60", fallback: "images/medicines/antibiotic.png" }
                 ]
             }
         ];
@@ -1697,8 +2273,8 @@
                     document.getElementById("welcomeUserMobile").innerText = currentUser.fname + " " + (currentUser.lname || "");
                 }
                 if (document.getElementById("mobileAvatarInitials")) {
-                    const initials = (currentUser.fname ? currentUser.fname.charAt(0).toUpperCase() : "") + 
-                                     (currentUser.lname ? currentUser.lname.charAt(0).toUpperCase() : "");
+                    const initials = (currentUser.fname ? currentUser.fname.charAt(0).toUpperCase() : "") +
+                        (currentUser.lname ? currentUser.lname.charAt(0).toUpperCase() : "");
                     document.getElementById("mobileAvatarInitials").innerText = initials || "U";
                 }
             }
@@ -1752,40 +2328,53 @@
 
             // Category Explorer Implementation
             const categoryList = document.getElementById("categoryList");
+            const categoryMobileSelect = document.getElementById("categoryMobileSelect");
             const medicineGrid = document.getElementById("medicineGrid");
             const currentCategoryTitle = document.getElementById("currentCategoryTitle");
             const medSearchInput = document.getElementById("medSearchInput");
-            
+
             let activeCategoryId = "analgesics";
 
             function renderCategories() {
-                if (!categoryList) return;
-                categoryList.innerHTML = "";
-                medicineCategories.forEach(cat => {
-                    const btn = document.createElement("button");
-                    btn.className = `category-btn ${cat.id === activeCategoryId ? 'active' : ''}`;
-                    btn.innerHTML = `
-                        <div class="category-btn-inner">
-                            <div class="category-icon-wrapper">
-                                <i class="fa-solid ${cat.icon}"></i>
+                if (categoryList) {
+                    categoryList.innerHTML = "";
+                    medicineCategories.forEach(cat => {
+                        const btn = document.createElement("button");
+                        btn.className = `category-btn ${cat.id === activeCategoryId ? 'active' : ''}`;
+                        btn.innerHTML = `
+                            <div class="category-btn-inner">
+                                <div class="category-icon-wrapper">
+                                    <i class="fa-solid ${cat.icon}"></i>
+                                </div>
+                                <span>${cat.name}</span>
                             </div>
-                            <span>${cat.name}</span>
-                        </div>
-                        <i class="fa-solid fa-chevron-right arrow-indicator"></i>
-                    `;
-                    btn.addEventListener("click", () => {
-                        activeCategoryId = cat.id;
-                        if (medSearchInput) medSearchInput.value = "";
-                        updateActiveCategory();
+                            <i class="fa-solid fa-chevron-right arrow-indicator"></i>
+                        `;
+                        btn.addEventListener("click", () => {
+                            activeCategoryId = cat.id;
+                            if (medSearchInput) medSearchInput.value = "";
+                            updateActiveCategory();
+                        });
+                        categoryList.appendChild(btn);
                     });
-                    categoryList.appendChild(btn);
-                });
+                }
+
+                if (categoryMobileSelect) {
+                    categoryMobileSelect.innerHTML = "";
+                    medicineCategories.forEach(cat => {
+                        const opt = document.createElement("option");
+                        opt.value = cat.id;
+                        opt.textContent = cat.name;
+                        opt.selected = cat.id === activeCategoryId;
+                        categoryMobileSelect.appendChild(opt);
+                    });
+                }
             }
 
             function renderMedicines(filterText = "") {
                 if (!medicineGrid) return;
                 medicineGrid.innerHTML = "";
-                
+
                 const currentCat = medicineCategories.find(c => c.id === activeCategoryId);
                 if (!currentCat) return;
 
@@ -1793,7 +2382,7 @@
                     currentCategoryTitle.innerText = currentCat.name;
                 }
 
-                const filtered = currentCat.medicines.filter(med => 
+                const filtered = currentCat.medicines.filter(med =>
                     med.name.toLowerCase().includes(filterText.toLowerCase()) ||
                     med.brand.toLowerCase().includes(filterText.toLowerCase()) ||
                     med.desc.toLowerCase().includes(filterText.toLowerCase())
@@ -1810,28 +2399,42 @@
                     return;
                 }
 
+                const wishlist = JSON.parse(localStorage.getItem("avijit_wishlist")) || [];
+
                 filtered.forEach((med, idx) => {
                     const card = document.createElement("div");
                     card.className = "med-card";
                     card.style.animationDelay = `${idx * 0.05}s`;
+                    const isWishlisted = wishlist.includes(med.name);
                     card.innerHTML = `
                         <div class="med-card-img-box">
                             <span class="med-card-tag">${med.brand}</span>
-                            <img src="${med.img}" alt="${med.name}" onerror="this.src='images/medicines/paracetamol.png'">
+                            <img src="${med.img}" alt="${med.name}" onerror="this.src='${med.fallback || 'images/medicines/paracetamol.png'}'">
                         </div>
-                        <div class="med-card-info">
-                            <h4>${med.name}</h4>
-                            <div class="brand-name">${med.brand}</div>
-                            <p>${med.desc}</p>
-                        </div>
-                        <div class="med-card-footer">
-                            <div class="med-card-price">
-                                <span class="price-lbl">Retail Price</span>
-                                <span class="price-val">${med.price}</span>
+                        <div class="med-card-details">
+                            <div class="med-card-info">
+                                <h4>${med.name}</h4>
+                                <div class="brand-name">${med.brand}</div>
+                                <p>${med.desc}</p>
                             </div>
-                            <button class="btn-add-cart-med" onclick="addMedToCart('${med.name}', '${med.price}')">
-                                <i class="fa-solid fa-cart-plus"></i>
-                            </button>
+                            <div class="med-card-footer">
+                                <div class="med-card-price">
+                                    <span class="price-lbl">Retail Price</span>
+                                    <div class="price-container">
+                                        <span class="price-val">${med.price}</span>
+                                        <span class="price-mrp">${med.mrp}</span>
+                                        <span class="price-disc">${med.discount}</span>
+                                    </div>
+                                </div>
+                                <div class="med-card-actions" style="display: flex; gap: 8px;">
+                                    <button class="btn-wishlist-med ${isWishlisted ? 'active' : ''}" onclick="toggleWishlist('${med.name}', this)" aria-label="Add to Wishlist">
+                                        <i class="${isWishlisted ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                                    </button>
+                                    <button class="btn-add-cart-med" onclick="addMedToCart('${med.name}', '${med.price}')" aria-label="Add to Cart">
+                                        <i class="fa-solid fa-cart-plus"></i> <span class="btn-text">Add</span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     `;
                     medicineGrid.appendChild(card);
@@ -1839,17 +2442,31 @@
             }
 
             function updateActiveCategory() {
-                if (!categoryList) return;
-                const btns = categoryList.querySelectorAll(".category-btn");
-                btns.forEach((btn, idx) => {
-                    const cat = medicineCategories[idx];
-                    if (cat.id === activeCategoryId) {
-                        btn.classList.add("active");
-                    } else {
-                        btn.classList.remove("active");
-                    }
-                });
+                if (categoryList) {
+                    const btns = categoryList.querySelectorAll(".category-btn");
+                    btns.forEach((btn, idx) => {
+                        const cat = medicineCategories[idx];
+                        if (cat && cat.id === activeCategoryId) {
+                            btn.classList.add("active");
+                        } else {
+                            btn.classList.remove("active");
+                        }
+                    });
+                }
+
+                if (categoryMobileSelect) {
+                    categoryMobileSelect.value = activeCategoryId;
+                }
+
                 renderMedicines();
+            }
+
+            if (categoryMobileSelect) {
+                categoryMobileSelect.addEventListener("change", (e) => {
+                    activeCategoryId = e.target.value;
+                    if (medSearchInput) medSearchInput.value = "";
+                    updateActiveCategory();
+                });
             }
 
             if (medSearchInput) {
@@ -1870,39 +2487,91 @@
         const toastDesc = document.getElementById("toastDesc");
         let toastTimeout;
 
-        window.showToast = function(type, title, message) {
+        window.showToast = function (type, title, message) {
             clearTimeout(toastTimeout);
-            
+
             toastNotification.classList.remove("success", "error", "active");
             toastNotification.classList.add(type);
-            
+
             if (type === "success") {
                 toastIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
             } else {
                 toastIcon.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i>';
             }
-            
+
             toastTitle.innerText = title;
             toastDesc.innerText = message;
-            
+
             void toastNotification.offsetWidth; // Reflow layout
-            
+
             toastNotification.classList.add("active");
-            
+
             toastTimeout = setTimeout(() => {
                 closeToast();
             }, 6000);
         };
 
-        window.closeToast = function() {
+        window.closeToast = function () {
             toastNotification.classList.remove("active");
         };
 
-        window.addMedToCart = function(medName, price) {
+        window.addMedToCart = function (medName, price) {
+            let cart = JSON.parse(localStorage.getItem("avijit_cart")) || [];
+            let parsedPrice = parseFloat(price.replace(/[^\d.]/g, ''));
+
+            let existingItem = cart.find(item => item.name === medName);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({
+                    name: medName,
+                    price: parsedPrice,
+                    qty: 1
+                });
+            }
+
+            localStorage.setItem("avijit_cart", JSON.stringify(cart));
+
+            if (window.updateCartCountBadge) {
+                window.updateCartCountBadge();
+            }
+
             if (window.showToast) {
                 window.showToast("success", "Added to Cart!", `${medName} (${price}) has been successfully added to your cart.`);
             } else {
                 alert(`${medName} added to cart!`);
+            }
+        };
+
+        window.toggleWishlist = function (medName, btnEl) {
+            let wishlist = JSON.parse(localStorage.getItem("avijit_wishlist")) || [];
+            const index = wishlist.indexOf(medName);
+            let iconEl = btnEl.querySelector('i');
+
+            if (index > -1) {
+                wishlist.splice(index, 1);
+                btnEl.classList.remove('active');
+                if (iconEl) {
+                    iconEl.className = 'fa-regular fa-heart';
+                }
+                if (window.showToast) {
+                    window.showToast("info", "Removed from Wishlist", `${medName} has been removed from your wishlist.`);
+                }
+            } else {
+                wishlist.push(medName);
+                btnEl.classList.add('active');
+                if (iconEl) {
+                    iconEl.className = 'fa-solid fa-heart';
+                }
+                if (window.showToast) {
+                    window.showToast("success", "Added to Wishlist!", `${medName} has been added to your wishlist.`);
+                }
+            }
+
+            localStorage.setItem("avijit_wishlist", JSON.stringify(wishlist));
+
+            if (window.updateWishlistCountBadge) {
+                window.updateWishlistCountBadge();
             }
         };
 
@@ -1913,4 +2582,5 @@
         }
     </script>
 </body>
+
 </html>

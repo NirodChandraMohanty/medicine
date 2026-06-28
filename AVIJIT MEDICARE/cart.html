@@ -71,48 +71,147 @@
 
     <div class="container cart-grid">
         <!-- Cart Items -->
-        <div class="card" style="padding: 0;">
-            <div style="padding: 1.5rem; border-bottom: 1px solid var(--border);">
-                <h2 style="margin: 0;">Your Cart (2 items)</h2>
+        <div class="card" style="padding: 0;" id="cartContentCard">
+            <div style="padding: 1.5rem; border-bottom: 1px solid var(--border);" class="flex justify-between items-center">
+                <h2 style="margin: 0;" id="cartTitleCount">Your Cart (0 items)</h2>
+                <button class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.85rem;" onclick="clearCart()">Clear Cart</button>
             </div>
             
-            <div class="cart-item">
-                <div class="cart-item-img"><i class="fa-solid fa-pills"></i></div>
-                <div style="flex: 1;">
-                    <h3 style="margin-bottom: 0.25rem; font-size: 1.1rem;">Paracetamol 500mg</h3>
-                    <p class="text-muted" style="font-size: 0.9rem;">Strip of 10</p>
-                </div>
-                <div class="flex items-center gap-4">
-                    <input type="number" class="form-control" value="2" min="1" style="width: 60px; text-align: center;">
-                    <div style="font-weight: 700; color: var(--primary);">₹90.00</div>
-                    <button class="icon-btn text-danger"><i class="fa-solid fa-trash"></i></button>
-                </div>
-            </div>
-
-            <div class="cart-item">
-                <div class="cart-item-img"><i class="fa-solid fa-bottle-droplet"></i></div>
-                <div style="flex: 1;">
-                    <h3 style="margin-bottom: 0.25rem; font-size: 1.1rem;">Cough Syrup 100ml</h3>
-                    <p class="text-muted" style="font-size: 0.9rem;">1 Bottle</p>
-                </div>
-                <div class="flex items-center gap-4">
-                    <input type="number" class="form-control" value="1" min="1" style="width: 60px; text-align: center;">
-                    <div style="font-weight: 700; color: var(--primary);">₹120.00</div>
-                    <button class="icon-btn text-danger"><i class="fa-solid fa-trash"></i></button>
-                </div>
+            <div id="cartItemsList">
+                <!-- Rendered dynamically -->
             </div>
         </div>
 
         <!-- Order Summary -->
-        <div class="order-summary">
+        <div class="order-summary" id="orderSummaryCard">
             <h3 style="margin-bottom: 1.5rem;">Order Summary</h3>
-            <div class="summary-row"><span>Subtotal</span> <span>₹210.00</span></div>
-            <div class="summary-row"><span>Delivery Fee</span> <span>₹40.00</span></div>
-            <div class="summary-row"><span>Discount (AVI20)</span> <span style="color: var(--success);">-₹42.00</span></div>
-            <div class="summary-total"><span>Total</span> <span class="text-primary">₹208.00</span></div>
-            <a href="checkout.html" class="btn btn-primary w-full mt-6">Proceed to Checkout</a>
+            <div class="summary-row"><span>Subtotal</span> <span id="cartSubtotal">₹0.00</span></div>
+            <div class="summary-row"><span>Delivery Fee</span> <span id="cartDelivery">₹0.00</span></div>
+            <div class="summary-row"><span>Discount (AVI20)</span> <span id="cartDiscount" style="color: var(--success);">-₹0.00</span></div>
+            <div class="summary-total"><span>Total</span> <span class="text-primary" id="cartTotal">₹0.00</span></div>
+            <a href="checkout.html" class="btn btn-primary w-full mt-6" id="checkoutBtn">Proceed to Checkout</a>
         </div>
     </div>
+
     <script src="js/main.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderCart();
+        });
+
+        function renderCart() {
+            const cartItemsList = document.getElementById("cartItemsList");
+            const cartTitleCount = document.getElementById("cartTitleCount");
+            const cartSubtotal = document.getElementById("cartSubtotal");
+            const cartDelivery = document.getElementById("cartDelivery");
+            const cartDiscount = document.getElementById("cartDiscount");
+            const cartTotal = document.getElementById("cartTotal");
+            const checkoutBtn = document.getElementById("checkoutBtn");
+            const cartContentCard = document.getElementById("cartContentCard");
+            const orderSummaryCard = document.getElementById("orderSummaryCard");
+
+            let cart = JSON.parse(localStorage.getItem("avijit_cart")) || [];
+
+            // Update title count
+            let totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            cartTitleCount.innerText = `Your Cart (${totalItems} item${totalItems !== 1 ? 's' : ''})`;
+
+            if (cart.length === 0) {
+                cartContentCard.innerHTML = `
+                    <div style="padding: 4rem 2rem; text-align: center;">
+                        <i class="fa-solid fa-cart-shopping" style="font-size: 4rem; color: var(--text-muted); opacity: 0.3; margin-bottom: 1.5rem; display: block;"></i>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text-main);">Your Cart is Empty</h3>
+                        <p class="text-muted" style="margin-bottom: 2rem; max-width: 320px; margin-left: auto; margin-right: auto;">Explore our medicine categories and add some medicines to your cart shelf.</p>
+                        <a href="track-order.html" class="btn btn-primary" style="padding: 0.75rem 2rem; border-radius: 8px; text-decoration: none; display: inline-block;">Browse Medicines</a>
+                    </div>
+                `;
+                orderSummaryCard.style.opacity = "0.5";
+                orderSummaryCard.style.pointerEvents = "none";
+                checkoutBtn.classList.add("disabled");
+                
+                cartSubtotal.innerText = "₹0.00";
+                cartDelivery.innerText = "₹0.00";
+                cartDiscount.innerText = "-₹0.00";
+                cartTotal.innerText = "₹0.00";
+                return;
+            }
+
+            orderSummaryCard.style.opacity = "1";
+            orderSummaryCard.style.pointerEvents = "auto";
+            checkoutBtn.classList.remove("disabled");
+
+            cartItemsList.innerHTML = "";
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                subtotal += item.price * item.qty;
+                const itemDiv = document.createElement("div");
+                itemDiv.className = "cart-item";
+                itemDiv.innerHTML = `
+                    <div class="cart-item-img" style="background: rgba(26, 188, 156, 0.05); color: var(--mint); border: 1px solid rgba(26, 188, 156, 0.15); width: 60px; height: 60px; font-size: 1.5rem; border-radius: 12px; flex-shrink: 0;">
+                        <i class="fa-solid fa-pills"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="margin-bottom: 0.25rem; font-size: 1.1rem; color: var(--text-main); font-weight: 700;">${item.name}</h3>
+                        <p class="text-muted" style="font-size: 0.85rem; margin: 0;">Generic Prescription</p>
+                    </div>
+                    <div class="flex items-center gap-6" style="flex-wrap: wrap; margin-left: auto;">
+                        <div style="display: flex; align-items: center; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--bg);">
+                            <button onclick="changeQty('${item.name}', -1)" style="border: none; background: transparent; padding: 0.35rem 0.75rem; color: var(--text-main); font-weight: 700; cursor: pointer; transition: background 0.2s;">-</button>
+                            <span style="font-weight: 700; width: 30px; text-align: center; color: var(--text-main); font-size: 0.95rem;">${item.qty}</span>
+                            <button onclick="changeQty('${item.name}', 1)" style="border: none; background: transparent; padding: 0.35rem 0.75rem; color: var(--text-main); font-weight: 700; cursor: pointer; transition: background 0.2s;">+</button>
+                        </div>
+                        <div style="font-weight: 800; color: var(--text-main); min-width: 80px; text-align: right; font-size: 1.1rem;">₹${(item.price * item.qty).toFixed(2)}</div>
+                        <button onclick="removeFromCart('${item.name}')" class="icon-btn text-danger" style="background: transparent; border: none; cursor: pointer; font-size: 1.1rem; transition: transform 0.2s; padding: 5px;"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+                cartItemsList.appendChild(itemDiv);
+            });
+
+            // Calculate Order Summary
+            let deliveryFee = subtotal >= 500 ? 0 : 40;
+            let discount = subtotal * 0.20; // 20% Discount with AVI20
+            let total = subtotal + deliveryFee - discount;
+
+            cartSubtotal.innerText = `₹${subtotal.toFixed(2)}`;
+            cartDelivery.innerText = deliveryFee === 0 ? "FREE" : `₹${deliveryFee.toFixed(2)}`;
+            cartDiscount.innerText = `-₹${discount.toFixed(2)}`;
+            cartTotal.innerText = `₹${total.toFixed(2)}`;
+        }
+
+        function changeQty(name, amount) {
+            let cart = JSON.parse(localStorage.getItem("avijit_cart")) || [];
+            let item = cart.find(x => x.name === name);
+            if (item) {
+                item.qty += amount;
+                if (item.qty <= 0) {
+                    cart = cart.filter(x => x.name !== name);
+                }
+            }
+            localStorage.setItem("avijit_cart", JSON.stringify(cart));
+            renderCart();
+            if (window.updateCartCountBadge) {
+                window.updateCartCountBadge();
+            }
+        }
+
+        function removeFromCart(name) {
+            let cart = JSON.parse(localStorage.getItem("avijit_cart")) || [];
+            cart = cart.filter(x => x.name !== name);
+            localStorage.setItem("avijit_cart", JSON.stringify(cart));
+            renderCart();
+            if (window.updateCartCountBadge) {
+                window.updateCartCountBadge();
+            }
+        }
+
+        function clearCart() {
+            localStorage.removeItem("avijit_cart");
+            renderCart();
+            if (window.updateCartCountBadge) {
+                window.updateCartCountBadge();
+            }
+        }
+    </script>
 </body>
 </html>

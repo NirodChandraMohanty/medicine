@@ -10,7 +10,8 @@
     <style>
         .admin-layout {
             display: flex;
-            min-height: 100vh;
+            height: 100vh;
+            overflow: hidden;
         }
 
         .admin-sidebar {
@@ -18,10 +19,9 @@
             background: var(--surface);
             border-right: 1px solid var(--border);
             padding: 1.5rem;
-            position: sticky;
-            top: 0;
             height: 100vh;
             overflow-y: auto;
+            flex-shrink: 0;
         }
 
         .admin-main {
@@ -29,6 +29,7 @@
             padding: 2rem;
             background: var(--bg);
             overflow-y: auto;
+            height: 100vh;
         }
 
         .admin-link {
@@ -40,12 +41,84 @@
             border-radius: var(--radius-md);
             margin-bottom: 0.5rem;
             font-weight: 500;
+            transition: all 0.3s ease;
         }
 
         .admin-link:hover,
         .admin-link.active {
             background: var(--primary);
             color: white;
+        }
+
+        /* Responsive Mobile Layout */
+        @media (max-width: 768px) {
+            .admin-layout {
+                flex-direction: column;
+                height: auto;
+                overflow: visible;
+            }
+
+            .admin-sidebar {
+                width: 100%;
+                height: auto;
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 0.75rem 1rem;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 1rem;
+                overflow-x: auto;
+                scrollbar-width: none; /* Hide scrollbar for clean UI */
+            }
+
+            .admin-sidebar::-webkit-scrollbar {
+                display: none;
+            }
+
+            .admin-sidebar .logo {
+                margin-bottom: 0 !important;
+                font-size: 1rem;
+                flex-shrink: 0;
+            }
+
+            .admin-sidebar h4 {
+                display: none !important; /* Hide subheadings like "Advanced" to save space */
+            }
+
+            .admin-link {
+                margin-bottom: 0 !important;
+                margin-top: 0 !important;
+                white-space: nowrap;
+                padding: 0.5rem 0.85rem;
+                font-size: 0.85rem;
+                flex-shrink: 0;
+                gap: 0.5rem;
+            }
+
+            .admin-link.mt-8 {
+                margin-top: 0 !important; /* Reset log out margin */
+            }
+
+            .admin-main {
+                padding: 1.25rem 1rem;
+                height: auto;
+                overflow-y: visible;
+            }
+
+            .admin-main > .flex {
+                flex-direction: column;
+                align-items: flex-start !important;
+                gap: 1rem;
+            }
+
+            .admin-main > .flex input {
+                max-width: 100% !important;
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -76,14 +149,15 @@
 
             <!-- Client Request: Order Tracking (Admin Side) -->
             <div class="card" style="padding: 1.5rem;">
-                <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                    <tr style="border-bottom: 2px solid var(--border); color: var(--text-muted);">
-                        <th style="padding: 1rem;">Order Details</th>
-                        <th style="padding: 1rem;">User Info</th>
-                        <th style="padding: 1rem;">Medicines</th>
-                        <th style="padding: 1rem;">Status / Stock Check</th>
-                        <th style="padding: 1rem;">Action</th>
-                    </tr>
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left; min-width: 850px;">
+                        <tr style="border-bottom: 2px solid var(--border); color: var(--text-muted);">
+                            <th style="padding: 1rem;">Order Details</th>
+                            <th style="padding: 1rem;">User Info</th>
+                            <th style="padding: 1rem;">Medicines</th>
+                            <th style="padding: 1rem;">Status / Stock Check</th>
+                            <th style="padding: 1rem;">Action</th>
+                        </tr>
 
                     <tr style="border-bottom: 1px solid var(--border);">
                         <td style="padding: 1rem;">
@@ -147,6 +221,7 @@
                         </td>
                     </tr>
                 </table>
+                </div>
             </div>
         </main>
     </div>
