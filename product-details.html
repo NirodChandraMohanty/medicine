@@ -1203,19 +1203,6 @@
                 <div class="product-brand" id="detailBrandName">MICRO LABS</div>
                 <h1 class="product-title" id="detailProductName">Dolo 650 Tablet</h1>
 
-                <!-- Badge row -->
-                <div class="product-badge-row">
-                    <div class="detail-badge">
-                        <i class="fa-solid fa-shopping-bag"></i> <span id="ordersCountBadge">38 orders</span>
-                    </div>
-                    <div class="detail-badge">
-                        <i class="fa-solid fa-eye"></i> <span id="viewsCountBadge">20 views</span>
-                    </div>
-                    <div class="detail-badge">
-                        <i class="fa-solid fa-heart"></i> <span id="likesCountBadge">8 likes</span>
-                    </div>
-                </div>
-
                 <!-- Pricing Area -->
                 <div class="product-price-section">
                     <div class="price-large" id="detailProductPrice">₹30.00</div>
@@ -1858,14 +1845,6 @@
             // Specs Composition & Manufacturer
             document.getElementById("specComposition").innerText = `${name} Active Ingredient Formula`;
             document.getElementById("specManufacturer").innerText = `${brand} Pharmaceuticals Ltd.`;
-
-            // Generate random badges to simulate premium orders
-            const randomOrders = Math.floor(Math.random() * 80) + 15;
-            const randomViews = Math.floor(Math.random() * 400) + 100;
-            const randomLikes = Math.floor(Math.random() * 45) + 5;
-            document.getElementById("ordersCountBadge").innerText = `${randomOrders} orders`;
-            document.getElementById("viewsCountBadge").innerText = `${randomViews} views`;
-            document.getElementById("likesCountBadge").innerText = `${randomLikes} likes`;
 
             // Dynamic Image & Video assignment
             const mediaInfo = getMediaForMedicine(name, categoryId, mainImg);
