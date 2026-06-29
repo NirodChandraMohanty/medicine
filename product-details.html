@@ -1782,14 +1782,14 @@
             document.getElementById("specComposition").innerText = `${name} Active Ingredient Formula`;
             document.getElementById("specManufacturer").innerText = `${brand} Pharmaceuticals Ltd.`;
 
-            // Determine if this product has a video (e.g. Dolo 650)
-            const hasVideo = name.toLowerCase().includes("dolo 650");
+            // Determine if this product has a video (Enforced true for all medicines)
+            const hasVideo = true;
             
             // Get 3 distinct images for this medicine
             const medImages = getDistinctImagesForMedicine(name, mainImg);
             activeMedObj.images = medImages;
             activeMedObj.hasVideo = hasVideo;
-            activeMedObj.video = hasVideo ? "https://vjs.zencdn.net/v/oceans.mp4" : "";
+            activeMedObj.video = "https://vjs.zencdn.net/v/oceans.mp4";
 
             // Build list of slides and thumbnails dynamically
             const thumbnailsContainer = document.querySelector(".product-thumbnails");
