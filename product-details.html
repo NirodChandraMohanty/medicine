@@ -512,6 +512,194 @@
             box-shadow: 0 12px 25px rgba(26, 188, 156, 0.4);
         }
 
+        /* Wishlist & Share Header Row */
+        .product-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-title-group {
+            flex: 1;
+        }
+
+        .product-action-buttons {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .action-circle-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-main);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0;
+        }
+
+        .action-circle-btn:hover {
+            background: var(--primary-light);
+            border-color: var(--primary-dark);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(248, 181, 0, 0.2);
+        }
+
+        .action-circle-btn.wished {
+            background: rgba(255, 75, 75, 0.1);
+            border-color: #ff4b4b;
+            color: #ff4b4b;
+            animation: heartBeat 0.4s ease-out;
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        /* Share Modal styling */
+        .share-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(3, 20, 16, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .share-modal.show {
+            display: flex;
+            animation: fadeIn 0.25s ease-out;
+        }
+
+        .share-modal-content {
+            background: #05221c;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 400px;
+            padding: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .share-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .share-modal-header h3 {
+            font-family: var(--font-sans);
+            color: var(--primary-dark);
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .close-modal-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.75rem;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+
+        .close-modal-btn:hover {
+            color: white;
+        }
+
+        .share-modal-body p {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            margin-bottom: 1.25rem;
+        }
+
+        .share-options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .share-option-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem 1rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .share-option-item i {
+            font-size: 1.5rem;
+        }
+
+        .share-option-item:hover {
+            transform: translateY(-3px);
+            background: rgba(26, 188, 156, 0.08);
+            border-color: var(--mint);
+            color: var(--mint);
+        }
+
+        .share-option-item.whatsapp:hover {
+            background: rgba(37, 211, 102, 0.08);
+            border-color: #25d366;
+            color: #25d366;
+        }
+
+        .share-option-item.facebook:hover {
+            background: rgba(24, 119, 242, 0.08);
+            border-color: #1877f2;
+            color: #1877f2;
+        }
+
+        .share-option-item.twitter:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: #ffffff;
+            color: #ffffff;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
         /* --- ACCORDIONS --- */
         .details-accordion {
             display: flex;
@@ -1071,7 +1259,11 @@
                 </div>
                 <div class="top-actions">
                     <div class="square-icon"><i class="fa-regular fa-bell"></i></div>
-                    <div class="square-icon"><i class="fa-regular fa-heart"></i></div>
+                    <a href="wishlist.html" class="square-icon" style="position: relative;" id="wishlistButtonHeader" title="View Wishlist">
+                        <i class="fa-regular fa-heart" id="wishlistIconHeader"></i>
+                        <span id="wishlistCountBadge"
+                            style="position: absolute; top:-5px; right:-5px; background:#ff4b4b; color:white; font-weight:700; font-size:9px; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center; display:none;">0</span>
+                    </a>
                     <a href="cart.html" class="square-icon" style="position: relative;">
                         <i class="fa-solid fa-cart-shopping"></i>
                         <span id="cartCountBadge"
@@ -1182,8 +1374,20 @@
 
             <!-- Right Side: Details Sheet -->
             <div class="product-details-content" data-aos="fade-left">
-                <div class="product-brand" id="detailBrandName">MICRO LABS</div>
-                <h1 class="product-title" id="detailProductName">Dolo 650 Tablet</h1>
+                <div class="product-header-row">
+                    <div class="product-title-group">
+                        <div class="product-brand" id="detailBrandName">MICRO LABS</div>
+                        <h1 class="product-title" id="detailProductName">Dolo 650 Tablet</h1>
+                    </div>
+                    <div class="product-action-buttons">
+                        <button class="action-circle-btn wishlist-action-btn" id="wishlistToggleBtn" onclick="toggleWishlist()" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <button class="action-circle-btn share-action-btn" onclick="openShareMenu(event)" title="Share Product">
+                            <i class="fa-regular fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
 
                 <!-- Pricing Area -->
                 <div class="product-price-section">
@@ -1407,6 +1611,37 @@
                     <span></span>
                     <span></span>
                     <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Share Modal Overlay -->
+    <div class="share-modal" id="shareModal">
+        <div class="share-modal-content">
+            <div class="share-modal-header">
+                <h3>Share this Medicine</h3>
+                <button class="close-modal-btn" onclick="closeShareModal()" aria-label="Close Share Menu">&times;</button>
+            </div>
+            <div class="share-modal-body">
+                <p>Share <strong><span id="shareMedicineName">Medicine Name</span></strong> with your family & friends:</p>
+                <div class="share-options-grid">
+                    <a href="#" id="shareWhatsapp" target="_blank" class="share-option-item whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                    <a href="#" id="shareFacebook" target="_blank" class="share-option-item facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="#" id="shareTwitter" target="_blank" class="share-option-item twitter">
+                        <i class="fa-brands fa-x-twitter"></i>
+                        <span>Twitter</span>
+                    </a>
+                    <div class="share-option-item copy-link" onclick="copyProductLink()">
+                        <i class="fa-solid fa-copy"></i>
+                        <span>Copy Link</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1636,6 +1871,9 @@
             if (window.updateCartBadge) {
                 window.updateCartBadge();
             }
+            if (window.updateWishlistBadge) {
+                window.updateWishlistBadge();
+            }
         });
 
         // Parse query params: product-details.html?name=Dolo%20650&category=analgesics
@@ -1829,6 +2067,11 @@
             // Start Autoplay at slide index 0
             showSlide(0);
 
+            // Sync Wishlist UI state
+            if (window.updateWishlistUI) {
+                window.updateWishlistUI();
+            }
+
             // Base price integer parse
             basePrice = parseFloat(priceStr.replace(/[^\d.]/g, '')) || 30.00;
             updateDynamicCapsulePrice();
@@ -1999,6 +2242,127 @@
                 badge.style.display = totalItems > 0 ? "flex" : "none";
             }
         };
+
+        // Wishlist controllers
+        window.updateWishlistBadge = function () {
+            const badge = document.getElementById("wishlistCountBadge");
+            const headerHeart = document.getElementById("wishlistIconHeader");
+            if (badge) {
+                const wishlist = JSON.parse(localStorage.getItem("avijit_wishlist")) || [];
+                const count = wishlist.length;
+                badge.innerText = count;
+                badge.style.display = count > 0 ? "flex" : "none";
+                if (headerHeart) {
+                    if (count > 0) {
+                        headerHeart.classList.remove("fa-regular");
+                        headerHeart.classList.add("fa-solid");
+                        headerHeart.style.color = "#ff4b4b";
+                    } else {
+                        headerHeart.classList.remove("fa-solid");
+                        headerHeart.classList.add("fa-regular");
+                        headerHeart.style.color = "";
+                    }
+                }
+            }
+        };
+
+        window.updateWishlistUI = function () {
+            const btn = document.getElementById("wishlistToggleBtn");
+            if (btn && activeMedObj.name) {
+                const wishlist = JSON.parse(localStorage.getItem("avijit_wishlist")) || [];
+                const isWished = wishlist.includes(activeMedObj.name);
+                const heartIcon = btn.querySelector("i");
+                if (isWished) {
+                    btn.classList.add("wished");
+                    if (heartIcon) {
+                        heartIcon.classList.remove("fa-regular");
+                        heartIcon.classList.add("fa-solid");
+                    }
+                } else {
+                    btn.classList.remove("wished");
+                    if (heartIcon) {
+                        heartIcon.classList.remove("fa-solid");
+                        heartIcon.classList.add("fa-regular");
+                    }
+                }
+            }
+            updateWishlistBadge();
+        };
+
+        window.toggleWishlist = function () {
+            if (!activeMedObj.name) return;
+            let wishlist = JSON.parse(localStorage.getItem("avijit_wishlist")) || [];
+            const index = wishlist.indexOf(activeMedObj.name);
+            const btn = document.getElementById("wishlistToggleBtn");
+            const heartIcon = btn ? btn.querySelector("i") : null;
+
+            if (index > -1) {
+                wishlist.splice(index, 1);
+                if (btn) btn.classList.remove("wished");
+                if (heartIcon) {
+                    heartIcon.classList.remove("fa-solid");
+                    heartIcon.classList.add("fa-regular");
+                }
+                showToast("success", "Removed from Wishlist", `${activeMedObj.name} has been removed from your wishlist.`);
+            } else {
+                wishlist.push(activeMedObj.name);
+                if (btn) btn.classList.add("wished");
+                if (heartIcon) {
+                    heartIcon.classList.remove("fa-regular");
+                    heartIcon.classList.add("fa-solid");
+                }
+                showToast("success", "Added to Wishlist", `${activeMedObj.name} has been added to your wishlist.`);
+            }
+
+            localStorage.setItem("avijit_wishlist", JSON.stringify(wishlist));
+            updateWishlistBadge();
+        };
+
+        // Share controllers
+        window.openShareMenu = function (event) {
+            event.stopPropagation();
+            const modal = document.getElementById("shareModal");
+            const titleEl = document.getElementById("shareMedicineName");
+            if (modal && titleEl) {
+                titleEl.innerText = activeMedObj.name || "this medicine";
+                
+                // Update share links dynamically
+                const pageUrl = window.location.href;
+                const shareText = `Check out ${activeMedObj.name} on Avijit Medicare: ${pageUrl}`;
+                
+                document.getElementById("shareWhatsapp").href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+                document.getElementById("shareFacebook").href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
+                document.getElementById("shareTwitter").href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+                
+                modal.classList.add("show");
+            }
+        };
+
+        window.closeShareModal = function () {
+            const modal = document.getElementById("shareModal");
+            if (modal) {
+                modal.classList.remove("show");
+            }
+        };
+
+        window.copyProductLink = function () {
+            const pageUrl = window.location.href;
+            navigator.clipboard.writeText(pageUrl).then(() => {
+                closeShareModal();
+                showToast("success", "Copied to Clipboard!", "Product link copied to clipboard successfully.");
+            }).catch(err => {
+                console.error("Could not copy text: ", err);
+                showToast("error", "Copy Failed", "Failed to copy link. Please copy it from your address bar.");
+            });
+        };
+
+        // Close share modal if clicking outside content
+        window.addEventListener("click", function (event) {
+            const modal = document.getElementById("shareModal");
+            if (event.target === modal) {
+                closeShareModal();
+            }
+        });
 
         window.performAddToCart = function () {
             let cart = JSON.parse(localStorage.getItem("avijit_cart")) || [];
