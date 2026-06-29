@@ -1070,8 +1070,8 @@
                     <div class="square-icon"><i class="fa-regular fa-heart"></i></div>
                     <a href="cart.html" class="square-icon" style="position: relative;">
                         <i class="fa-solid fa-cart-shopping"></i>
-                        <span
-                            style="position: absolute; top:-5px; right:-5px; background:red; color:white; font-size:9px; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center;">2</span>
+                        <span id="cartCountBadge"
+                            style="position: absolute; top:-5px; right:-5px; background:red; color:white; font-size:9px; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center;">0</span>
                     </a>
                     <div class="action-links">
                         <span id="welcomeUser" class="register-link"></span>
@@ -1662,6 +1662,11 @@
 
             // Parse URL parameters and fetch active medicine
             parseUrlAndRender();
+
+            // Initialize cart count badge from localStorage
+            if (window.updateCartBadge) {
+                window.updateCartBadge();
+            }
         });
 
         // Parse query params: product-details.html?name=Dolo%20650&category=analgesics
@@ -2034,6 +2039,16 @@
         }
 
         // Cart controllers
+        window.updateCartBadge = function () {
+            const badge = document.getElementById("cartCountBadge");
+            if (badge) {
+                const cart = JSON.parse(localStorage.getItem("avijit_cart")) || [];
+                const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+                badge.innerText = totalItems;
+                badge.style.display = totalItems > 0 ? "flex" : "none";
+            }
+        };
+
         window.performAddToCart = function () {
             let cart = JSON.parse(localStorage.getItem("avijit_cart")) || [];
             const currentPrice = getCurrentPriceFloat();
@@ -2053,6 +2068,9 @@
             }
 
             localStorage.setItem("avijit_cart", JSON.stringify(cart));
+            
+            // Update badge immediately
+            updateCartBadge();
 
             if (window.showToast) {
                 window.showToast("success", "Added to Cart!", `${quantityVal} x ${activeMedObj.name} (${selectedDosage}) has been successfully added to your cart.`);
