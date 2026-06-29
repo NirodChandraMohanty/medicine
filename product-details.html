@@ -183,7 +183,8 @@
         /* Gallery Thumbnails */
         .product-thumbnails {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-auto-flow: column;
+            grid-auto-columns: 1fr;
             gap: 1rem;
         }
 
@@ -1175,18 +1176,7 @@
 
                 <!-- Thumbnails below -->
                 <div class="product-thumbnails">
-                    <div class="thumb-box active" onclick="clickThumbnail(0, this)">
-                        <img id="thumbImg0" src="" alt="View 1">
-                    </div>
-                    <div class="thumb-box video-thumb" onclick="clickThumbnail(1, this)">
-                        <img id="thumbImg1" src="" alt="Video Presentation">
-                    </div>
-                    <div class="thumb-box" onclick="clickThumbnail(2, this)">
-                        <img id="thumbImg2" src="" alt="View 2">
-                    </div>
-                    <div class="thumb-box" onclick="clickThumbnail(3, this)">
-                        <img id="thumbImg3" src="" alt="View 3">
-                    </div>
+                    <!-- Populated dynamically via JS to prevent broken image flashes -->
                 </div>
             </div>
 
@@ -1453,7 +1443,7 @@
                     { name: "Azithral 500", brand: "Alembic", desc: "Azithromycin 500mg broad-spectrum antibiotic for throat, chest, and nasal infections.", price: "₹110.00", mrp: "₹145.00", discount: "24% OFF", img: "https://images.unsplash.com/photo-1587854692152-cbe660dbbc88?w=500&auto=format&fit=crop&q=60" },
                     { name: "Taxim-O 200", brand: "Alkem", desc: "Cefixime 200mg antibiotic tablets, highly effective against typhoid fever and urinary infections.", price: "₹95.00", mrp: "₹120.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=500&auto=format&fit=crop&q=60" },
                     { name: "Augmentin 625 Duo", brand: "GSK", desc: "Amoxicillin + Clavulanic Acid formula to combat complex bacterial resistance in infections.", price: "₹200.00", mrp: "₹268.00", discount: "25% OFF", img: "https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=500&auto=format&fit=crop&q=60" },
-                    { name: "Ciplox 500", brand: "Cipla", desc: "Ciprofloxacin 500mg tablets targeting respiratory, bone, abdominal, and skin infections.", price: "₹45.00", mrp: "₹58.00", discount: "22% OFF", img: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=500&auto=format&fit=crop&q=60" }
+                    { name: "Ciplox 500", brand: "Cipla", desc: "Ciprofloxacin 500mg tablets targeting respiratory, bone, abdominal, and skin infections.", price: "₹45.00", mrp: "₹58.00", discount: "22% OFF", img: "https://images.unsplash.com/photo-1576602976047-174e57a47881?w=500&auto=format&fit=crop&q=60" }
                 ]
             },
             {
@@ -1483,7 +1473,7 @@
                     { name: "Ascoril LS Syrup", brand: "Glenmark", desc: "Levosalbutamol & Ambroxol expectorant syrup for chest congestion and wet cough relief.", price: "₹115.00", mrp: "₹140.00", discount: "17% OFF", img: "https://images.unsplash.com/photo-1581091911393-111b1f9c571a?w=500&auto=format&fit=crop&q=60" },
                     { name: "Benadryl DR Syrup", brand: "J&J", desc: "Soothing dry cough formula with Dextromethorphan to suppress throat tickle & irritation.", price: "₹105.00", mrp: "₹130.00", discount: "19% OFF", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&auto=format&fit=crop&q=60" },
                     { name: "Grilinctus Syrup", brand: "Franco-Indian", desc: "Time-tested cough syrup for relief of dry cough and common cold allergic symptoms.", price: "₹125.00", mrp: "₹155.00", discount: "19% OFF", img: "https://images.unsplash.com/photo-1512438248247-f0f2a5a8b7f0?w=500&auto=format&fit=crop&q=60" },
-                    { name: "Montair-LC", brand: "Cipla", desc: "Montelukast & Levocetirizine tablets for respiratory allergies, sneezing, and asthma symptoms.", price: "₹180.00", mrp: "₹225.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1550572017-1f72f58db2c6?w=500&auto=format&fit=crop&q=60" }
+                    { name: "Montair-LC", brand: "Cipla", desc: "Montelukast & Levocetirizine tablets for respiratory allergies, sneezing, and asthma symptoms.", price: "₹180.00", mrp: "₹225.00", discount: "20% OFF", img: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=500&auto=format&fit=crop&q=60" }
                 ]
             },
             {
@@ -1493,7 +1483,7 @@
                     { name: "Telma 40", brand: "Glenmark", desc: "Telmisartan 40mg tablets daily to manage high blood pressure and protect cardiac health.", price: "₹90.00", mrp: "₹115.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1576602976047-174e57a47881?w=500&auto=format&fit=crop&q=60" },
                     { name: "Concor 5", brand: "Merck", desc: "Bisoprolol Fumarate 5mg beta-blocker to regulate hypertension and abnormal heart rhythms.", price: "₹115.00", mrp: "₹148.00", discount: "22% OFF", img: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=500&auto=format&fit=crop&q=60" },
                     { name: "Rosuvas 10", brand: "Sun Pharma", desc: "Rosuvastatin 10mg cholesterol-lowering statin to prevent arterial plaque and cardiac events.", price: "₹145.00", mrp: "₹185.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=500&auto=format&fit=crop&q=60" },
-                    { name: "Ecosprin 75", brand: "USV", desc: "Low-dose Aspirin blood thinner for post-stroke protection and myocardial health.", price: "₹10.00", mrp: "₹13.00", discount: "23% OFF", img: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=500&auto=format&fit=crop&q=60" }
+                    { name: "Ecosprin 75", brand: "USV", desc: "Low-dose Aspirin blood thinner for post-stroke protection and myocardial health.", price: "₹10.00", mrp: "₹13.00", discount: "23% OFF", img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&auto=format&fit=crop&q=60" }
                 ]
             },
             {
@@ -1530,7 +1520,7 @@
                 id: "ophthalmic",
                 name: "Eye & Ear Care",
                 medicines: [
-                    { name: "Refresh Tears", brand: "Allergan", desc: "Sodium Carboxymethylcellulose eye drops for relief of dry eye syndrome and strain.", price: "₹145.00", mrp: "₹185.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=500&auto=format&fit=crop&q=60" },
+                    { name: "Refresh Tears", brand: "Allergan", desc: "Sodium Carboxymethylcellulose eye drops for relief of dry eye syndrome and strain.", price: "₹145.00", mrp: "₹185.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=500&auto=format&fit=crop&q=60" },
                     { name: "Ciplox Drops", brand: "Cipla", desc: "Ciprofloxacin antibiotic sterile drops for bacterial eye conjunctivitis or ear infections.", price: "₹18.00", mrp: "₹24.00", discount: "25% OFF", img: "https://images.unsplash.com/photo-1626422524298-693a4f0bf421?w=500&auto=format&fit=crop&q=60" },
                     { name: "Tobradex Drops", brand: "Alcon", desc: "Tobramycin and Dexamethasone combination drops to reduce post-surgery ocular swelling.", price: "₹185.00", mrp: "₹235.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1608096299210-db7e38487075?w=500&auto=format&fit=crop&q=60" },
                     { name: "Waxolve Drops", brand: "Apex", desc: "Paradichlorobenzene drops to gently dissolve hardened ear wax and relieve ear blockage.", price: "₹90.00", mrp: "₹115.00", discount: "21% OFF", img: "https://images.unsplash.com/photo-1616679911721-eff6eec18fcd?w=500&auto=format&fit=crop&q=60" }
@@ -1717,107 +1707,62 @@
             return brands[catId] || "Avijit Labs";
         }
 
-        // Get specific media assets per category/medicine
-        function getMediaForMedicine(name, categoryId, fallbackImg) {
-            const mediaMap = {
-                analgesics: {
-                    images: [
-                        fallbackImg || "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1607619056574-7b8f304b3c8f?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1585435557343-3b092031a831?w=800&auto=format&fit=crop&q=80"
-                    ],
-                    video: "https://assets.mixkit.co/videos/preview/mixkit-pills-spilling-out-of-a-bottle-41618-large.mp4"
-                },
-                antibiotics: {
-                    images: [
-                        fallbackImg || "https://images.unsplash.com/photo-1587854692152-cbe660dbbc88?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=800&auto=format&fit=crop&q=80"
-                    ],
-                    video: "https://assets.mixkit.co/videos/preview/mixkit-pharmacist-holding-a-pack-of-pills-41616-large.mp4"
-                },
-                gastrointestinal: {
-                    images: [
-                        fallbackImg || "https://images.unsplash.com/photo-1624348438541-2244f60f252f?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=800&auto=format&fit=crop&q=80"
-                    ],
-                    video: "https://assets.mixkit.co/videos/preview/mixkit-pills-spilling-out-of-a-bottle-41618-large.mp4"
-                },
-                vitamins: {
-                    images: [
-                        fallbackImg || "https://images.unsplash.com/photo-1579684389782-64d84b5e901a?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1616679911721-eff6eec18fcd?w=800&auto=format&fit=crop&q=80"
-                    ],
-                    video: "https://assets.mixkit.co/videos/preview/mixkit-pills-spilling-out-of-a-bottle-41618-large.mp4"
-                },
-                respiratory: {
-                    images: [
-                        fallbackImg || "https://images.unsplash.com/photo-1581091911393-111b1f9c571a?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1512438248247-f0f2a5a8b7f0?w=800&auto=format&fit=crop&q=80"
-                    ],
-                    video: "https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-scientist-carrying-a-test-tube-with-blue-liquid-41611-large.mp4"
-                },
-                cardiovascular: {
-                    images: [
-                        fallbackImg || "https://images.unsplash.com/photo-1576602976047-174e57a47881?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=800&auto=format&fit=crop&q=80"
-                    ],
-                    video: "https://assets.mixkit.co/videos/preview/mixkit-pharmacist-holding-a-pack-of-pills-41616-large.mp4"
-                },
-                diabetes: {
-                    images: [
-                        fallbackImg || "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1607619056574-7b8f304b3c8f?w=800&auto=format&fit=crop&q=80"
-                    ],
-                    video: "https://assets.mixkit.co/videos/preview/mixkit-pharmacist-holding-a-pack-of-pills-41616-large.mp4"
-                },
-                dermatology: {
-                    images: [
-                        fallbackImg || "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1530026405186-ed1ea400c3af?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1547489432-cf93fa6c71ee?w=800&auto=format&fit=crop&q=80"
-                    ],
-                    video: "https://assets.mixkit.co/videos/preview/mixkit-pills-spilling-out-of-a-bottle-41618-large.mp4"
-                },
-                neurology: {
-                    images: [
-                        fallbackImg || "https://images.unsplash.com/photo-1631549916768-4119b255f9f2?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1585435557343-3b092031a831?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&auto=format&fit=crop&q=80"
-                    ],
-                    video: "https://assets.mixkit.co/videos/preview/mixkit-pills-spilling-out-of-a-bottle-41618-large.mp4"
-                },
-                ophthalmic: {
-                    images: [
-                        fallbackImg || "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1626422524298-693a4f0bf421?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1608096299210-db7e38487075?w=800&auto=format&fit=crop&q=80"
-                    ],
-                    video: "https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-scientist-carrying-a-test-tube-with-blue-liquid-41611-large.mp4"
-                },
-                ayurvedic: {
-                    images: [
-                        fallbackImg || "https://images.unsplash.com/photo-1618015358954-115ef1ed6515?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1626367300130-1a842b109e25?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&auto=format&fit=crop&q=80"
-                    ],
-                    video: "https://assets.mixkit.co/videos/preview/mixkit-pharmacist-holding-a-pack-of-pills-41616-large.mp4"
-                },
-                vaccines: {
-                    images: [
-                        fallbackImg || "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1611070973770-b1a629b9f76a?w=800&auto=format&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=800&auto=format&fit=crop&q=80"
-                    ],
-                    video: "https://assets.mixkit.co/videos/preview/mixkit-medical-analysis-of-a-vaccine-sample-41614-large.mp4"
-                }
+        // Dynamic distinct related image generator to prevent other medicine brands from showing up
+        function getDistinctImagesForMedicine(name, mainImg) {
+            const lowerName = name.toLowerCase();
+            const primary = mainImg || "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&auto=format&fit=crop&q=80";
+            
+            // Map specific key medicines
+            const imageMap = {
+                "dolo 650": [
+                    "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=800&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=800&auto=format&fit=crop&q=80"
+                ],
+                "brufen 400": [
+                    "https://images.unsplash.com/photo-1607619056574-7b8f304b3c8f?w=800&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1576602976047-174e57a47881?w=800&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1624348438541-2244f60f252f?w=800&auto=format&fit=crop&q=80"
+                ],
+                "combiflam": [
+                    "https://images.unsplash.com/photo-1585435557343-3b092031a831?w=800&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=800&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&auto=format&fit=crop&q=80"
+                ]
             };
-            return mediaMap[categoryId] || mediaMap.analgesics;
+
+            const key = Object.keys(imageMap).find(k => lowerName.includes(k));
+            if (key) {
+                return imageMap[key];
+            }
+
+            // High-quality generic images pool
+            const genericPool = [
+                "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=800&auto=format&fit=crop&q=80",
+                "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&auto=format&fit=crop&q=80",
+                "https://images.unsplash.com/photo-1624348438541-2244f60f252f?w=800&auto=format&fit=crop&q=80",
+                "https://images.unsplash.com/photo-1576602976047-174e57a47881?w=800&auto=format&fit=crop&q=80",
+                "https://images.unsplash.com/photo-1585435557343-3b092031a831?w=800&auto=format&fit=crop&q=80",
+                "https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=800&auto=format&fit=crop&q=80",
+                "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=800&auto=format&fit=crop&q=80",
+                "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=800&auto=format&fit=crop&q=80",
+                "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=800&auto=format&fit=crop&q=80",
+                "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=800&auto=format&fit=crop&q=80"
+            ];
+
+            // Use character codes sum to select two stable distinct fallback images from pool
+            let sum = 0;
+            for (let i = 0; i < name.length; i++) {
+                sum += name.charCodeAt(i);
+            }
+            const index1 = sum % genericPool.length;
+            const index2 = (sum + 3) % genericPool.length;
+            
+            return [
+                primary,
+                genericPool[index1],
+                genericPool[index2]
+            ];
         }
 
         // Render dynamic details
@@ -1837,25 +1782,48 @@
             document.getElementById("specComposition").innerText = `${name} Active Ingredient Formula`;
             document.getElementById("specManufacturer").innerText = `${brand} Pharmaceuticals Ltd.`;
 
-            // Dynamic Image & Video assignment
-            const mediaInfo = getMediaForMedicine(name, categoryId, mainImg);
-            activeMedObj.images = mediaInfo.images;
-            activeMedObj.video = mediaInfo.video;
+            // Determine if this product has a video (e.g. Dolo 650)
+            const hasVideo = name.toLowerCase().includes("dolo 650");
+            
+            // Get 3 distinct images for this medicine
+            const medImages = getDistinctImagesForMedicine(name, mainImg);
+            activeMedObj.images = medImages;
+            activeMedObj.hasVideo = hasVideo;
+            activeMedObj.video = hasVideo ? "https://vjs.zencdn.net/v/oceans.mp4" : "";
 
-            // Define thumbnail image array (video thumb at index 1 shows image 1 as thumbnail behind the play icon)
-            imageList = [
-                mediaInfo.images[0],
-                mediaInfo.images[0],
-                mediaInfo.images[1],
-                mediaInfo.images[2]
-            ];
-
-            // Render thumbnails
-            for (let i = 0; i < 4; i++) {
-                const imgEl = document.getElementById(`thumbImg${i}`);
-                if (imgEl) {
-                    imgEl.src = imageList[i];
-                }
+            // Build list of slides and thumbnails dynamically
+            const thumbnailsContainer = document.querySelector(".product-thumbnails");
+            thumbnailsContainer.innerHTML = ""; // Clear existing static thumbnails
+            
+            if (hasVideo) {
+                // Render 4 thumbnails
+                thumbnailsContainer.innerHTML = `
+                    <div class="thumb-box active" onclick="clickThumbnail(0, this)">
+                        <img src="${medImages[0]}" alt="View 1">
+                    </div>
+                    <div class="thumb-box video-thumb" onclick="clickThumbnail(1, this)">
+                        <img src="${medImages[0]}" alt="Video Presentation">
+                    </div>
+                    <div class="thumb-box" onclick="clickThumbnail(2, this)">
+                        <img src="${medImages[1]}" alt="View 2">
+                    </div>
+                    <div class="thumb-box" onclick="clickThumbnail(3, this)">
+                        <img src="${medImages[2]}" alt="View 3">
+                    </div>
+                `;
+            } else {
+                // Render 3 thumbnails (no video)
+                thumbnailsContainer.innerHTML = `
+                    <div class="thumb-box active" onclick="clickThumbnail(0, this)">
+                        <img src="${medImages[0]}" alt="View 1">
+                    </div>
+                    <div class="thumb-box" onclick="clickThumbnail(1, this)">
+                        <img src="${medImages[1]}" alt="View 2">
+                    </div>
+                    <div class="thumb-box" onclick="clickThumbnail(2, this)">
+                        <img src="${medImages[2]}" alt="View 3">
+                    </div>
+                `;
             }
 
             // Start Autoplay at slide index 0
@@ -1886,13 +1854,17 @@
                 }
             });
 
-            // Transition
-            if (index === 1) {
+            const hasVideo = activeMedObj.hasVideo;
+            const medImages = activeMedObj.images || [];
+
+            if (hasVideo && index === 1) {
                 // Video Slide
                 mainImgEl.style.display = "none";
                 mainVidEl.style.display = "block";
 
                 mainVidEl.src = activeMedObj.video;
+                mainVidEl.muted = true; // Programmatic mute bypasses autoplay bans
+                mainVidEl.playsInline = true;
                 mainVidEl.load();
 
                 mainVidEl.play().then(() => {
@@ -1915,12 +1887,19 @@
                 mainVidEl.style.display = "none";
                 mainImgEl.style.display = "block";
 
-                if (index === 0) {
-                    mainImgEl.src = activeMedObj.images[0];
-                } else if (index === 2) {
-                    mainImgEl.src = activeMedObj.images[1];
-                } else if (index === 3) {
-                    mainImgEl.src = activeMedObj.images[2];
+                let targetImageSrc = "";
+                if (hasVideo) {
+                    if (index === 0) targetImageSrc = medImages[0];
+                    else if (index === 2) targetImageSrc = medImages[1];
+                    else if (index === 3) targetImageSrc = medImages[2];
+                } else {
+                    if (index === 0) targetImageSrc = medImages[0];
+                    else if (index === 1) targetImageSrc = medImages[1];
+                    else if (index === 2) targetImageSrc = medImages[2];
+                }
+
+                if (targetImageSrc) {
+                    mainImgEl.src = targetImageSrc;
                 }
 
                 // Autoplay image slide for 4 seconds
@@ -1930,7 +1909,9 @@
         }
 
         function nextSlide() {
-            let nextIndex = (currentSlideIndex + 1) % 4;
+            const hasVideo = activeMedObj.hasVideo;
+            const maxSlides = hasVideo ? 4 : 3;
+            let nextIndex = (currentSlideIndex + 1) % maxSlides;
             showSlide(nextIndex);
         }
 
