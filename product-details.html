@@ -732,25 +732,106 @@
             }
 
             .product-details-content {
-                padding: 2rem 1.5rem;
+                padding: 2rem 1.25rem;
                 border-radius: 20px;
             }
 
             .product-title {
-                font-size: 1.7rem;
+                font-size: 1.6rem;
+            }
+
+            .product-badge-row {
+                gap: 8px;
+            }
+
+            .detail-badge {
+                padding: 4px 10px;
+                font-size: 0.75rem;
+            }
+
+            .product-price-section {
+                gap: 8px 12px;
+                padding-bottom: 1.25rem;
+                margin-bottom: 1.25rem;
             }
 
             .price-large {
-                font-size: 2rem;
+                font-size: 1.85rem;
             }
 
+            .mrp-slashed {
+                font-size: 1.05rem;
+            }
+
+            .delivery-pill {
+                margin-left: 0;
+                font-size: 0.75rem;
+            }
+
+            .option-pill {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+                border-radius: 8px;
+            }
+
+            .purchase-action-container {
+                gap: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            /* Custom Buy Capsule Redesign for Mobile to Prevent Overflows */
             .custom-buy-capsule {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto;
+                gap: 12px;
+                height: auto !important;
+                border-radius: 16px !important;
+                padding: 14px 16px !important;
                 width: 100%;
                 max-width: 100%;
             }
 
+            .capsule-price {
+                grid-column: 1;
+                grid-row: 1;
+                align-self: center;
+                font-size: 1.25rem;
+            }
+
+            .capsule-separator {
+                display: none !important;
+            }
+
+            .capsule-qty-selector {
+                grid-column: 2;
+                grid-row: 1;
+                justify-self: end;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 20px;
+                padding: 4px 8px;
+            }
+
+            .btn-capsule-add {
+                grid-column: 1 / span 2;
+                grid-row: 2;
+                width: 100% !important;
+                height: 46px !important;
+                justify-content: center;
+                border-radius: 25px !important;
+                margin-left: 0 !important;
+                padding: 0 1rem;
+            }
+
             .btn-buy-now-pill {
                 width: 100%;
+                height: 48px;
+                font-size: 0.9rem;
+            }
+
+            .spec-table td {
+                padding: 8px 6px;
+                font-size: 0.85rem;
             }
         }
     </style>
