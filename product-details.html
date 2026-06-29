@@ -20,7 +20,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Main Style Sheets -->
-    <link rel="stylesheet" href="css/style.css?v=52">
+    <link rel="stylesheet" href="css/style.css?v=53">
     <link rel="stylesheet" href="css/about.css?v=19">
 
     <style>
@@ -69,6 +69,29 @@
         @media (max-width: 768px) {
             body {
                 padding-top: 80px;
+            }
+            /* Hide the mobile search toggle as requested */
+            .mobile-search-toggle {
+                display: none !important;
+            }
+
+            /* Show wishlist icon in top actions on mobile */
+            .top-actions .square-icon[href="wishlist.html"] {
+                display: flex !important;
+            }
+
+            /* Layout order on mobile: Cart (1) -> Logout (2) -> Wishlist (3) -> Menu (4) */
+            .top-actions .square-icon[href="cart.html"] {
+                order: 1 !important;
+            }
+            .top-actions .mobile-logout-btn {
+                order: 2 !important;
+            }
+            .top-actions .square-icon[href="wishlist.html"] {
+                order: 3 !important;
+            }
+            .top-actions .mobile-menu-toggle {
+                order: 4 !important;
             }
         }
 

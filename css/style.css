@@ -2401,15 +2401,36 @@ ul {
 
     /* Display Action Toggles */
     .mobile-menu-toggle,
-    .mobile-search-toggle,
     .mobile-logout-btn {
         display: flex;
+    }
+    .mobile-search-toggle {
+        display: none !important;
     }
 
     /* Hide bulky desktop stuff on mobile header */
     .top-actions .square-icon:not([href="cart.html"]):not([href="wishlist.html"]),
     .action-links {
         display: none !important;
+    }
+
+    /* Show wishlist link in top actions on mobile */
+    .top-actions .square-icon[href="wishlist.html"] {
+        display: flex !important;
+    }
+
+    /* Layout order on mobile: Cart (1) -> Logout (2) -> Wishlist (3) -> Menu (4) */
+    .top-actions .square-icon[href="cart.html"] {
+        order: 1;
+    }
+    .top-actions .mobile-logout-btn {
+        order: 2;
+    }
+    .top-actions .square-icon[href="wishlist.html"] {
+        order: 3;
+    }
+    .top-actions .mobile-menu-toggle {
+        order: 4;
     }
 
     .top-actions {
