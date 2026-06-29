@@ -2407,7 +2407,7 @@ ul {
     }
 
     /* Hide bulky desktop stuff on mobile header */
-    .top-actions .square-icon:not([href="cart.html"]),
+    .top-actions .square-icon:not([href="cart.html"]):not([href="wishlist.html"]),
     .action-links {
         display: none !important;
     }
