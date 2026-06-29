@@ -830,7 +830,8 @@
             medicineCategories.forEach(cat => {
                 cat.medicines.forEach(med => {
                     if (wishlistNames.includes(med.name) && !wishlistedMedicines.some(m => m.name === med.name)) {
-                        wishlistedMedicines.push(med);
+                        const medCopy = { ...med, categoryId: cat.id };
+                        wishlistedMedicines.push(medCopy);
                     }
                 });
             });
@@ -852,6 +853,13 @@
                 const card = document.createElement("div");
                 card.className = "med-card";
                 card.style.animationDelay = `${idx * 0.05}s`;
+                card.style.cursor = "pointer";
+                card.onclick = function (e) {
+                    if (e.target.closest(".med-card-actions")) {
+                        return;
+                    }
+                    window.location.href = `product-details.html?name=${encodeURIComponent(med.name)}&category=${encodeURIComponent(med.categoryId || 'analgesics')}`;
+                };
                 card.innerHTML = `
                     <div class="med-card-img-box">
                         <span class="med-card-tag">${med.brand}</span>
