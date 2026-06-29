@@ -464,8 +464,8 @@
         }
 
         .btn-capsule-add {
-            background: var(--blue-badge);
-            color: white;
+            background: var(--primary-dark);
+            color: #031410;
             border: none;
             padding: 0 1.5rem;
             font-size: 0.9rem;
@@ -476,36 +476,39 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             margin-left: auto;
             white-space: nowrap;
         }
 
         .btn-capsule-add:hover {
-            background: #0070e3;
-            box-shadow: 0 0 15px rgba(10, 132, 255, 0.45);
+            background: var(--mint);
+            color: #031410;
+            box-shadow: 0 6px 18px rgba(26, 188, 156, 0.4);
+            transform: translateY(-1px);
         }
 
         /* Separate Buy Now button */
         .btn-buy-now-pill {
-            background: var(--blue-badge);
-            color: white;
+            background: var(--primary-dark);
+            color: #031410;
             border: none;
             border-radius: 50px;
             height: 56px;
             padding: 0 2.5rem;
             font-size: 0.95rem;
-            font-weight: 700;
+            font-weight: 800;
             cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 10px 20px rgba(10, 132, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 20px rgba(248, 181, 0, 0.15);
             white-space: nowrap;
         }
 
         .btn-buy-now-pill:hover {
-            background: #0070e3;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(10, 132, 255, 0.35);
+            background: var(--mint);
+            color: #031410;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(26, 188, 156, 0.4);
         }
 
         /* --- ACCORDIONS --- */
