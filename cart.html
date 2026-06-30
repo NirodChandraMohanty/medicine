@@ -1,217 +1,1630 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
+
 <head>
+    <script>
+        if (localStorage.getItem("avijit_logged_in") !== "true") {
+            window.location.href = "login.html";
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Cart - AVIJIT MEDICARE</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Main Style Sheets -->
+    <link rel="stylesheet" href="css/style.css?v=53">
+
     <style>
+        :root {
+            --primary-dark: #f8b500;
+            --primary: #d49a00;
+            --primary-light: rgba(248, 181, 0, 0.1);
+            --mint: #1abc9c;
+            --accent-orange: #f06a42;
+            --bg-dark: #031410;
+            --bg-card: rgba(5, 34, 28, 0.45);
+            --border-color: rgba(0, 255, 204, 0.15);
+            --text-main: #e0e6e4;
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --danger: #ff4b4b;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding-top: 130px;
+        }
+
+        /* --- STICKY GLASSMORPHISM HEADER (matches about.html) --- */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        .site-header.scrolled {
+            background: rgba(2, 20, 15, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        .site-header.scrolled .top-header {
+            padding: 5px 0;
+        }
+
+        .site-header.scrolled .nav-header {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 80px;
+            }
+        }
+
+        /* ---- PREMIUM HERO SECTION (matches about.html style) ---- */
+        .about-page-hero {
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(126, 255, 210, 0.16), transparent 28%),
+                radial-gradient(circle at 85% 35%, rgba(255, 170, 80, 0.18), transparent 25%),
+                linear-gradient(135deg, #062c25 0%, #0A5C48 48%, #073b4c 100%);
+            padding: 5rem 0 4rem;
+            color: #ffffff;
+        }
+
+        .about-page-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+            background-size: 42px 42px;
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), transparent);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), transparent);
+            pointer-events: none;
+        }
+
+        .about-page-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero-title span {
+            color: var(--mint);
+            text-shadow: 0 0 30px rgba(126, 255, 210, 0.22);
+        }
+
+        .hero-text {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        /* ---- BREADCRUMB ---- */
+        .breadcrumb-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb-list {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0;
+            padding: 0;
+        }
+
+        .breadcrumb-list a {
+            color: rgba(255, 255, 255, 0.5);
+            transition: color 0.3s;
+        }
+
+        .breadcrumb-list a:hover {
+            color: var(--mint);
+        }
+
+        .breadcrumb-list i {
+            font-size: 0.7rem;
+        }
+
+        .breadcrumb-list span.current {
+            color: white;
+            font-weight: 600;
+        }
+
+        /* ---- MAIN CONTENT WRAPPER ---- */
+        .cart-main-content {
+            padding: 4rem 0 6rem;
+            position: relative;
+            background-color: var(--bg-dark);
+            z-index: 5;
+        }
+
+        /* ---- CART GRID ---- */
         .cart-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr;
+            grid-template-columns: 1.8fr 1fr;
             gap: 2rem;
-            margin: 2rem 0 4rem;
+            align-items: start;
         }
+
         @media (max-width: 992px) {
-            .cart-grid { grid-template-columns: 1fr; }
+            .cart-main-content {
+                padding: 2.5rem 0 4rem;
+            }
+            .cart-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
         }
+
+        /* Glass Cards */
+        .glass-card {
+            position: relative !important;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .cart-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .cart-header-row h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin: 0;
+            color: white;
+        }
+
+        .btn-outline-danger {
+            background: transparent;
+            border: 1px solid rgba(255, 75, 75, 0.3);
+            color: var(--danger);
+            padding: 0.5rem 1.25rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-outline-danger:hover {
+            background: rgba(255, 75, 75, 0.1);
+            border-color: var(--danger);
+            transform: translateY(-2px);
+        }
+
+        /* Cart Items styling */
+        .cart-items-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
         .cart-item {
             display: flex;
             align-items: center;
             gap: 1.5rem;
             padding: 1.5rem;
-            border-bottom: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 18px;
+            transition: all 0.3s ease;
+            flex-wrap: wrap;
         }
+
+        .cart-item:hover {
+            border-color: rgba(26, 188, 156, 0.2);
+            background: rgba(26, 188, 156, 0.02);
+        }
+
         .cart-item-img {
-            width: 80px;
-            height: 80px;
-            background: var(--bg);
-            border-radius: var(--radius-md);
+            width: 70px;
+            height: 70px;
+            background: rgba(26, 188, 156, 0.06);
+            border: 1px solid rgba(26, 188, 156, 0.15);
+            color: var(--mint);
+            font-size: 1.8rem;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            color: var(--primary);
+            flex-shrink: 0;
+            transition: transform 0.3s;
         }
-        .order-summary {
-            background: var(--surface);
-            padding: 1.5rem;
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border);
-            height: fit-content;
+
+        .cart-item:hover .cart-item-img {
+            transform: scale(1.08) rotate(-5deg);
         }
+
+        .cart-item-info {
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .cart-item-info h4 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: white;
+            margin: 0 0 0.25rem;
+        }
+
+        .cart-item-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-left: auto;
+        }
+
+        /* Qty selector */
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .qty-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 0.5rem 0.8rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .qty-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--primary-dark);
+        }
+
+        .qty-val {
+            font-weight: 700;
+            width: 30px;
+            text-align: center;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .item-price {
+            font-weight: 800;
+            color: white;
+            font-size: 1.2rem;
+            min-width: 90px;
+            text-align: right;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .delete-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 5px;
+            transition: all 0.2s;
+        }
+
+        .delete-btn:hover {
+            color: var(--danger);
+            transform: scale(1.1);
+        }
+
+        /* Summary Card styling */
+        .summary-wrapper-card h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin: 0 0 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 1rem;
+            color: white;
+        }
+
+        .summary-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
         .summary-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 1rem;
             color: var(--text-muted);
+            font-size: 0.95rem;
         }
-        .summary-total {
+
+        .summary-row.promo-applied span:last-child {
+            color: var(--mint);
+            font-weight: 600;
+        }
+
+        .summary-total-row {
             display: flex;
             justify-content: space-between;
-            font-size: 1.25rem;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: white;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 1.25rem;
+            margin-top: 0.5rem;
+        }
+
+        .btn-checkout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--primary-dark);
+            color: #031410;
+            border: none;
+            width: 100%;
+            padding: 1.1rem;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(248, 181, 0, 0.15);
+            margin-bottom: 1rem;
+            box-sizing: border-box;
+        }
+
+        .btn-checkout:hover {
+            background: var(--mint);
+            color: #031410;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(26, 188, 156, 0.3);
+        }
+
+        .btn-checkout.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .btn-checkout i {
+            transition: transform 0.2s;
+        }
+
+        .btn-checkout:hover i {
+            transform: translateX(4px);
+        }
+
+        .btn-continue-shopping {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: white;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 14px;
             font-weight: 700;
-            border-top: 1px solid var(--border);
-            padding-top: 1rem;
-            margin-top: 1rem;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+
+        .btn-continue-shopping:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Empty Cart State */
+        .empty-cart-box {
+            padding: 3rem 1.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .empty-cart-box i {
+            font-size: 3.5rem;
+            color: var(--text-muted);
+            opacity: 0.3;
+            margin-bottom: 1.25rem;
+            display: block;
+        }
+
+        .empty-cart-box h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
             color: var(--text-main);
+        }
+
+        .empty-cart-box p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .empty-cart-box .btn-checkout {
+            max-width: 250px;
+            margin: 0.5rem auto 0 !important;
+        }
+
+        #cartItemsList {
+            min-height: 0;
+        }
+
+        #cartContentCard {
+            overflow: visible;
+            min-height: 320px;
+        }
+
+        /* Toast Notification styling */
+        .toast-notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(5, 34, 28, 0.9);
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 1.25rem 1.75rem;
+            border-radius: 18px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 255, 204, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 10000;
+            transform: translateY(150px) scale(0.9);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 400px;
+        }
+
+        .toast-notification.active {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .toast-notification.success {
+            border-color: rgba(26, 188, 156, 0.4);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(26, 188, 156, 0.15);
+        }
+
+        .toast-notification.error {
+            border-color: rgba(240, 106, 66, 0.4);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(240, 106, 66, 0.15);
+        }
+
+        .toast-icon {
+            font-size: 1.5rem;
+            color: var(--mint);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .toast-notification.success .toast-icon {
+            color: var(--mint);
+        }
+
+        .toast-notification.error .toast-icon {
+            color: var(--accent-orange);
+        }
+
+        .toast-content {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: white;
+            margin-bottom: 2px;
+        }
+
+        .toast-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .toast-close {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+            padding: 4px;
+        }
+
+        .toast-close:hover {
+            color: white;
+        }
+
+        /* --- FOOTER REDESIGN (matches about.html exactly) --- */
+        .footer {
+            background: linear-gradient(180deg, #020f0c 0%, #010605 100%) !important;
+            padding: 5rem 0 2rem !important;
+        }
+
+        .footer-grid {
+            display: grid !important;
+            grid-template-columns: 1.5fr 1fr 1.2fr !important;
+            gap: 3rem !important;
+        }
+
+        .footer-map-card {
+            position: relative;
+            width: 100%;
+            max-width: 320px;
+            height: 160px;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 1.25rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 255, 204, 0.15);
+            background: rgba(5, 34, 28, 0.45);
+        }
+
+        .footer-map-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: #031410;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 5;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .footer-map-badge:hover {
+            background: white;
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .footer-mini-map {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(80%) brightness(0.95);
+            transition: all 0.5s ease;
+        }
+
+        .footer-map-card:hover .footer-mini-map {
+            filter: grayscale(0%) brightness(1);
+        }
+
+        .footer p {
+            max-width: 100% !important;
+            margin-top: 1rem !important;
+            line-height: 1.6 !important;
+        }
+
+        .footer h4 {
+            font-weight: 700 !important;
+            font-size: 1.15rem !important;
+            padding-bottom: 0.5rem !important;
+            margin-bottom: 1.25rem !important;
+        }
+
+        .footer h4::after {
+            background: var(--primary-dark) !important;
+            width: 30px !important;
+        }
+
+        .footer ul li a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.6) !important;
+            font-weight: 500;
+        }
+
+        .footer ul li a::before {
+            content: '→' !important;
+            font-family: inherit !important;
+            font-weight: bold !important;
+            font-size: 0.9rem !important;
+            color: var(--primary-dark) !important;
+            opacity: 0.5 !important;
+            transform: translateX(0) !important;
+            margin-right: 0 !important;
+            display: inline-block;
+        }
+
+        .footer ul li a:hover {
+            color: var(--primary-dark) !important;
+            transform: translateX(5px) !important;
+        }
+
+        .footer ul li a:hover::before {
+            opacity: 1 !important;
+        }
+
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: 1.2fr 1fr !important;
+                gap: 2.5rem !important;
+            }
+
+            .footer-grid>div:last-child {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+
+            .footer-grid>div:last-child {
+                grid-column: span 1;
+            }
+
+            .footer-map-card {
+                max-width: 100%;
+            }
+
+            .footer {
+                padding: 4rem 0 2rem !important;
+            }
+        }
+
+        /* Header Badges styling on mobile */
+        @media (max-width: 768px) {
+            .mobile-search-toggle {
+                display: none !important;
+            }
+
+            .top-actions .square-icon[href="cart.html"] {
+                order: 1 !important;
+            }
+
+            .top-actions .mobile-logout-btn {
+                order: 2 !important;
+            }
+
+            .top-actions .square-icon[href="wishlist.html"] {
+                order: 3 !important;
+            }
+
+            .top-actions .mobile-menu-toggle {
+                order: 4 !important;
+            }
+        }
+
+        /* ============================================
+           CART PAGE FULL MOBILE RESPONSIVE
+           ============================================ */
+        @media (max-width: 768px) {
+            .about-page-hero {
+                padding: 3rem 0 2.5rem;
+            }
+
+            .hero-title {
+                font-size: 1.85rem !important;
+                margin-top: 0.5rem !important;
+            }
+
+            .hero-text {
+                font-size: 0.92rem !important;
+            }
+
+            .cart-main-content {
+                padding: 2rem 0 3.5rem;
+            }
+
+            .container.cart-grid {
+                margin-top: 0 !important;
+                gap: 1.75rem !important;
+            }
+
+            .glass-card {
+                padding: 1.25rem !important;
+                border-radius: 18px;
+            }
+
+            .cart-header-row {
+                margin-bottom: 1.25rem;
+                padding-bottom: 1rem;
+            }
+
+            .cart-header-row h2 {
+                font-size: 1.15rem;
+            }
+
+            .btn-outline-danger {
+                padding: 0.4rem 0.9rem;
+                font-size: 0.8rem;
+            }
+
+            .cart-items-wrapper {
+                gap: 1rem;
+            }
+
+            .cart-item {
+                gap: 1rem;
+                padding: 1rem;
+                border-radius: 14px;
+            }
+
+            .cart-item-img {
+                width: 56px;
+                height: 56px;
+                font-size: 1.4rem;
+                border-radius: 12px;
+            }
+
+            .cart-item-info {
+                min-width: 100px;
+            }
+
+            .cart-item-info h4 {
+                font-size: 1rem;
+            }
+
+            .cart-item-info p {
+                font-size: 0.78rem;
+            }
+
+            .cart-item-actions {
+                width: 100%;
+                justify-content: space-between;
+                gap: 0.75rem;
+                margin-top: 0.5rem;
+                margin-left: 0;
+                padding-top: 0.85rem;
+                border-top: 1px dashed rgba(255, 255, 255, 0.08);
+            }
+
+            .qty-btn {
+                padding: 0.4rem 0.65rem;
+                font-size: 1rem;
+            }
+
+            .item-price {
+                font-size: 1.05rem;
+                min-width: auto;
+            }
+
+            .delete-btn {
+                font-size: 1.05rem;
+            }
+
+            .summary-wrapper-card h3 {
+                font-size: 1.2rem;
+                margin-bottom: 1.1rem;
+                padding-bottom: 0.85rem;
+            }
+
+            .summary-details {
+                gap: 0.85rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .summary-row {
+                font-size: 0.88rem;
+            }
+
+            .summary-total-row {
+                font-size: 1.1rem;
+                padding-top: 1rem;
+            }
+
+            .btn-checkout,
+            .btn-continue-shopping {
+                padding: 0.9rem;
+                font-size: 0.95rem;
+                border-radius: 12px;
+            }
+
+            .empty-cart-box {
+                padding: 2.5rem 1rem;
+            }
+
+            .empty-cart-box i {
+                font-size: 2.75rem;
+            }
+
+            .empty-cart-box h3 {
+                font-size: 1.15rem;
+            }
+
+            .empty-cart-box p {
+                font-size: 0.85rem;
+            }
+
+            .empty-cart-box .btn-checkout {
+                max-width: 100%;
+            }
+
+            .toast-notification {
+                right: 15px;
+                left: 15px;
+                bottom: 20px;
+                max-width: none;
+                padding: 1rem 1.25rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.6rem !important;
+            }
+
+            .glass-card {
+                padding: 1rem !important;
+                border-radius: 16px;
+            }
+
+            .cart-item {
+                padding: 0.85rem;
+            }
+
+            .cart-item-img {
+                width: 48px;
+                height: 48px;
+                font-size: 1.2rem;
+                border-radius: 10px;
+            }
+
+            .cart-item-info h4 {
+                font-size: 0.92rem;
+            }
+
+            .cart-item-info p {
+                font-size: 0.72rem;
+            }
+
+            .item-price {
+                font-size: 0.95rem;
+            }
+
+            .qty-val {
+                width: 24px;
+                font-size: 0.9rem;
+            }
+
+            .qty-btn {
+                padding: 0.35rem 0.55rem;
+                font-size: 0.92rem;
+            }
+
+            .cart-header-row h2 {
+                font-size: 1.05rem;
+            }
+
+            .btn-outline-danger {
+                padding: 0.35rem 0.75rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .cart-item-actions {
+                gap: 0.5rem;
+            }
+
+            .item-price {
+                font-size: 0.88rem;
+            }
         }
     </style>
 </head>
+
 <body>
-    <header class="header">
-        <div class="container navbar">
-            <a href="index.html" class="logo">
-                <i class="fa-solid fa-notes-medical"></i>
-                <span>AVIJIT <span>MEDICARE</span></span>
-            </a>
+
+    <!-- ================== HEADER ================== -->
+    <header id="main-header" class="site-header">
+        <div class="top-header">
+            <div class="container flex justify-between items-center">
+                <a href="index.html" class="logo-box">
+                    <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i>
+                    </div>
+                    <div class="logo-text-group">
+                        <span class="logo-text">Avijit Medicare</span>
+                        <span class="logo-sub">TRUSTED PHARMACY</span>
+                    </div>
+                </a>
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search medicines, doctors, products...">
+                </div>
+                <div class="top-actions">
+                    <div class="square-icon"><i class="fa-regular fa-bell"></i></div>
+                    <a href="wishlist.html" class="square-icon" style="position: relative;" id="wishlistButtonHeader"
+                        title="View Wishlist">
+                        <i class="fa-regular fa-heart" id="wishlistIconHeader"></i>
+                        <span id="wishlistCountBadge"
+                            style="position: absolute; top:-5px; right:-5px; background:#ff4b4b; color:white; font-weight:700; font-size:9px; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center; display:none;">0</span>
+                    </a>
+                    <a href="cart.html" class="square-icon" style="position: relative;">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span id="cartCountBadge"
+                            style="position: absolute; top:-5px; right:-5px; background:red; color:white; font-size:9px; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center;">0</span>
+                    </a>
+                    <div class="action-links">
+                        <span id="welcomeUser" class="register-link"></span>
+                        <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary"
+                            style="border-radius: 4px;">Logout</a>
+                    </div>
+                    <button class="mobile-logout-btn" onclick="logoutUser()" aria-label="Logout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                    <button class="mobile-search-toggle" id="mobileSearchToggle" aria-label="Toggle Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="nav-header">
+            <div class="container flex justify-between items-center" style="position: relative;">
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About Us</a>
+                    <a href="medicines.html" class="nav-link">Medicine</a>
+                    <a href="doctors.html" class="nav-link">Doctors</a>
+                    <a href="track-order.html" class="nav-link">Order</a>
+                    <a href="contact.html" class="nav-link">Contact Us</a>
+                </nav>
+            </div>
         </div>
     </header>
 
-    <div class="container cart-grid">
-        <!-- Cart Items -->
-        <div class="card" style="padding: 0;" id="cartContentCard">
-            <div style="padding: 1.5rem; border-bottom: 1px solid var(--border);" class="flex justify-between items-center">
-                <h2 style="margin: 0;" id="cartTitleCount">Your Cart (0 items)</h2>
-                <button class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.85rem;" onclick="clearCart()">Clear Cart</button>
-            </div>
-            
-            <div id="cartItemsList">
-                <!-- Rendered dynamically -->
+    <!-- MOBILE DRAWER MENU OVERLAY -->
+    <div class="mobile-menu-drawer" id="mobileMenuDrawer">
+        <div class="drawer-header">
+            <a href="index.html" class="logo-box">
+                <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i>
+                </div>
+                <div class="logo-text-group">
+                    <span class="logo-text" style="color: white;">Avijit Medicare</span>
+                    <span class="logo-sub" style="color: var(--text-muted);">TRUSTED PHARMACY</span>
+                </div>
+            </a>
+            <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i
+                    class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-profile"
+            style="background: rgba(248, 181, 0, 0.05); padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary-dark); display: flex; align-items: center; justify-content: center; color: var(--bg-light); font-weight: 700; font-size: 1.1rem; border: 2px solid rgba(248, 181, 0, 0.3);"
+                id="mobileAvatarInitials">U</div>
+            <div style="display: flex; flex-direction: column;">
+                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;">Welcome back,</span>
+                <span id="welcomeUserMobile"
+                    style="font-size: 0.95rem; color: white; font-weight: 700; margin-top: 2px;">Guest User</span>
             </div>
         </div>
-
-        <!-- Order Summary -->
-        <div class="order-summary" id="orderSummaryCard">
-            <h3 style="margin-bottom: 1.5rem;">Order Summary</h3>
-            <div class="summary-row"><span>Subtotal</span> <span id="cartSubtotal">₹0.00</span></div>
-            <div class="summary-row"><span>Delivery Fee</span> <span id="cartDelivery">₹0.00</span></div>
-            <div class="summary-row"><span>Discount (AVI20)</span> <span id="cartDiscount" style="color: var(--success);">-₹0.00</span></div>
-            <div class="summary-total"><span>Total</span> <span class="text-primary" id="cartTotal">₹0.00</span></div>
-            <a href="checkout.html" class="btn btn-primary w-full mt-6" id="checkoutBtn">Proceed to Checkout</a>
+        <div class="drawer-body">
+            <nav class="drawer-links">
+                <a href="index.html" class="drawer-link"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="about.html" class="drawer-link"><i class="fa-solid fa-circle-info"></i> About Us</a>
+                <a href="medicines.html" class="drawer-link"><i class="fa-solid fa-pills"></i> Medicine</a>
+                <a href="doctors.html" class="drawer-link"><i class="fa-solid fa-user-doctor"></i> Doctors</a>
+                <a href="track-order.html" class="drawer-link"><i class="fa-solid fa-truck-fast"></i> Order</a>
+                <a href="contact.html" class="drawer-link"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+            </nav>
+            <div class="drawer-footer">
+                <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary w-full"
+                    style="border-radius: 8px;">
+                    <i class="fa-solid fa-right-from-bracket" style="margin-right: 8px;"></i> Logout
+                </a>
+            </div>
         </div>
     </div>
+    <div class="drawer-overlay" id="drawerOverlay"></div>
 
+    <!-- Floating Contact Buttons -->
+    <div class="floating-contact">
+        <a href="tel:+917855870349" class="float-btn call-float" title="Call +91 7855870349"><i
+                class="fa-solid fa-phone"></i></a>
+        <a href="https://wa.me/919971286110?text=Hello" target="_blank" class="float-btn wa-float"
+            title="WhatsApp +91 9971286110"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+
+    <!-- ================== PAGE HERO ================== -->
+    <section class="about-page-hero">
+        <div class="container">
+            <div class="breadcrumb-container">
+                <ul class="breadcrumb-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><i class="fa-solid fa-chevron-right"></i></li>
+                    <li><span class="current">Your Cart</span></li>
+                </ul>
+            </div>
+            <div class="hero-tag" data-aos="fade-down">SHOPPING CART SHELF</div>
+            <h1 class="hero-title" data-aos="fade-right" style="margin-top: 0.5rem;">
+                Review Your <span>Selected Medicines</span>
+            </h1>
+            <p class="hero-text" data-aos="fade-right" style="max-width: 600px; margin-top: 0.5rem;">
+                Please verify your quantities, dosage strengths, and items before checking out. All prescription
+                items will be verified by our certified pharmacists.
+            </p>
+        </div>
+    </section>
+
+    <!-- ================== MAIN CONTENT ================== -->
+    <main class="cart-main-content">
+        <div class="container cart-grid">
+        <!-- Left Column: Cart List -->
+        <div class="cart-left-container">
+            <div class="glass-card" id="cartContentCard">
+                <div class="cart-header-row">
+                    <h2 id="cartTitleCount">Your Cart (0 items)</h2>
+                    <button class="btn-outline-danger" onclick="clearCart()">Clear Shelf</button>
+                </div>
+
+                <div id="cartItemsList" class="cart-items-wrapper">
+                    <!-- Dynamic Cart Items Injected Here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Summary Card -->
+        <div class="cart-right-container">
+            <div class="glass-card summary-wrapper-card" id="orderSummaryCard">
+                <h3>Order Summary</h3>
+                <div class="summary-details">
+                    <div class="summary-row">
+                        <span>Basket Subtotal</span>
+                        <span id="cartSubtotal">₹0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery Charges</span>
+                        <span id="cartDelivery">₹0.00</span>
+                    </div>
+                    <div class="summary-row promo-applied">
+                        <span>Discount Applied (AVI20)</span>
+                        <span id="cartDiscount">-₹0.00</span>
+                    </div>
+                    <div class="summary-total-row">
+                        <span>Total Payable</span>
+                        <span id="cartTotal">₹0.00</span>
+                    </div>
+                </div>
+                <a href="checkout.html" class="btn-checkout" id="checkoutBtn">Proceed to Checkout <i
+                        class="fa-solid fa-arrow-right"></i></a>
+                <a href="track-order.html" class="btn-continue-shopping"><i class="fa-solid fa-cart-plus"></i>
+                    Continue Shopping</a>
+            </div>
+        </div>
+        </div>
+    </main>
+
+    <!-- ================== FOOTER ================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="logo-box" style="margin-bottom: 1rem;">
+                        <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white;"></i></div>
+                        <div class="logo-text-group">
+                            <span class="logo-text" style="color: white;">Avijit Medicare</span>
+                            <span class="logo-sub" style="color: rgba(255,255,255,0.6);">TRUSTED PHARMACY</span>
+                        </div>
+                    </div>
+                    <div class="footer-map-card">
+                        <a href="https://maps.app.goo.gl/o1Wc8WLyqU2G1WzJ7" target="_blank" class="footer-map-badge">
+                            <span>Maps</span> <i class="fa-solid fa-up-right-from-square"></i>
+                        </a>
+                        <iframe class="footer-mini-map"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118944.37562851413!2d86.64333934335936!3d21.2662057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1c6a7ab56ebcd7%3A0x6b2b6ab0c99aeb61!2sSoro%2C%20Odisha!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                            style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <p>Your trusted partner for genuine medicines, expert doctors, and fast doorstep delivery across
+                        Odisha. Quality healthcare, simplified.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="medicines.html">Medicine</a></li>
+                        <li><a href="doctors.html">Doctors</a></li>
+                        <li><a href="track-order.html">Order</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Contact Info</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <li
+                            style="display: flex; gap: 15px; align-items: flex-start; color: rgba(255,255,255,0.7); margin: 0; line-height: 1.6;">
+                            <i class="fa-solid fa-location-dot"
+                                style="margin-top: 4px; color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                            <span>Avijit Medicare, Soro Square,<br>Baleswar, Odisha 756045</span>
+                        </li>
+                        <li
+                            style="display: flex; gap: 15px; align-items: center; color: rgba(255,255,255,0.7); margin: 0;">
+                            <i class="fa-solid fa-phone"
+                                style="color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                            <span>+91 9556532388</span>
+                        </li>
+                        <li
+                            style="display: flex; gap: 15px; align-items: center; color: rgba(255,255,255,0.7); margin: 0;">
+                            <i class="fa-solid fa-envelope"
+                                style="color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                            <span>support@avijitmedicare.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>&copy; 2026 Avijit Medicare. All rights reserved. Made with care in Odisha, India.</div>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Refund Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Markup -->
+    <div id="toastNotification" class="toast-notification">
+        <div class="toast-icon" id="toastIcon"><i class="fa-solid fa-circle-check"></i></div>
+        <div class="toast-content">
+            <div class="toast-title" id="toastTitle">Success!</div>
+            <div class="toast-desc" id="toastDesc">Action completed successfully.</div>
+        </div>
+        <button class="toast-close" onclick="closeToast()" aria-label="Close Notification"><i
+                class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/main.js"></script>
+
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            renderCart();
+        document.addEventListener("DOMContentLoaded", function () {
+            try {
+                AOS.init({
+                    duration: 800,
+                    easing: 'ease-out-cubic',
+                    once: true,
+                    offset: 50
+                });
+
+                let currentUser = null;
+                try {
+                    const storedUser = localStorage.getItem("avijit_current_user");
+                    if (storedUser && storedUser !== "undefined") {
+                        currentUser = JSON.parse(storedUser);
+                    }
+                } catch (e) {
+                    console.error("User session parsing error:", e);
+                }
+
+                if (currentUser) {
+                    const welcomeUserEl = document.getElementById("welcomeUser");
+                    const welcomeUserMobileEl = document.getElementById("welcomeUserMobile");
+                    const mobileAvatarInitialsEl = document.getElementById("mobileAvatarInitials");
+
+                    if (welcomeUserEl) {
+                        welcomeUserEl.innerText = "Hi, " + currentUser.fname;
+                    }
+                    if (welcomeUserMobileEl) {
+                        welcomeUserMobileEl.innerText = currentUser.fname + " " + (currentUser.lname || "");
+                    }
+                    if (mobileAvatarInitialsEl) {
+                        const initials = (currentUser.fname ? currentUser.fname.charAt(0).toUpperCase() : "") +
+                            (currentUser.lname ? currentUser.lname.charAt(0).toUpperCase() : "");
+                        mobileAvatarInitialsEl.innerText = initials || "U";
+                    }
+                }
+
+                const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+                const drawerClose = document.getElementById("drawerClose");
+                const mobileMenuDrawer = document.getElementById("mobileMenuDrawer");
+                const drawerOverlay = document.getElementById("drawerOverlay");
+                const mobileSearchToggle = document.getElementById("mobileSearchToggle");
+                const searchContainer = document.querySelector(".search-container");
+
+                if (mobileMenuToggle && mobileMenuDrawer && drawerOverlay) {
+                    mobileMenuToggle.addEventListener("click", () => {
+                        mobileMenuDrawer.classList.add("active");
+                        drawerOverlay.classList.add("active");
+                        document.body.style.overflow = "hidden";
+                    });
+                }
+                if (drawerClose && mobileMenuDrawer && drawerOverlay) {
+                    drawerClose.addEventListener("click", () => {
+                        mobileMenuDrawer.classList.remove("active");
+                        drawerOverlay.classList.remove("active");
+                        document.body.style.overflow = "";
+                    });
+                }
+                if (drawerOverlay && mobileMenuDrawer) {
+                    drawerOverlay.addEventListener("click", () => {
+                        mobileMenuDrawer.classList.remove("active");
+                        drawerOverlay.classList.remove("active");
+                        document.body.style.overflow = "";
+                    });
+                }
+                if (mobileSearchToggle && searchContainer) {
+                    mobileSearchToggle.addEventListener("click", () => {
+                        searchContainer.classList.toggle("mobile-active");
+                    });
+                }
+
+                window.addEventListener("scroll", function () {
+                    const header = document.getElementById("main-header");
+                    if (header) {
+                        if (window.scrollY > 10) {
+                            header.classList.add("scrolled");
+                        } else {
+                            header.classList.remove("scrolled");
+                        }
+                    }
+                });
+
+                updateCartBadge();
+                updateWishlistBadge();
+                renderCart();
+            } catch (err) {
+                console.error("DOMContentLoaded initialization error:", err);
+            }
         });
 
-        function renderCart() {
-            const cartItemsList = document.getElementById("cartItemsList");
-            const cartTitleCount = document.getElementById("cartTitleCount");
-            const cartSubtotal = document.getElementById("cartSubtotal");
-            const cartDelivery = document.getElementById("cartDelivery");
-            const cartDiscount = document.getElementById("cartDiscount");
-            const cartTotal = document.getElementById("cartTotal");
-            const checkoutBtn = document.getElementById("checkoutBtn");
-            const cartContentCard = document.getElementById("cartContentCard");
-            const orderSummaryCard = document.getElementById("orderSummaryCard");
-
-            let cart = JSON.parse(localStorage.getItem("avijit_cart")) || [];
-
-            // Update title count
-            let totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-            cartTitleCount.innerText = `Your Cart (${totalItems} item${totalItems !== 1 ? 's' : ''})`;
-
-            if (cart.length === 0) {
-                cartContentCard.innerHTML = `
-                    <div style="padding: 4rem 2rem; text-align: center;">
-                        <i class="fa-solid fa-cart-shopping" style="font-size: 4rem; color: var(--text-muted); opacity: 0.3; margin-bottom: 1.5rem; display: block;"></i>
-                        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text-main);">Your Cart is Empty</h3>
-                        <p class="text-muted" style="margin-bottom: 2rem; max-width: 320px; margin-left: auto; margin-right: auto;">Explore our medicine categories and add some medicines to your cart shelf.</p>
-                        <a href="track-order.html" class="btn btn-primary" style="padding: 0.75rem 2rem; border-radius: 8px; text-decoration: none; display: inline-block;">Browse Medicines</a>
-                    </div>
-                `;
-                orderSummaryCard.style.opacity = "0.5";
-                orderSummaryCard.style.pointerEvents = "none";
-                checkoutBtn.classList.add("disabled");
-                
-                cartSubtotal.innerText = "₹0.00";
-                cartDelivery.innerText = "₹0.00";
-                cartDiscount.innerText = "-₹0.00";
-                cartTotal.innerText = "₹0.00";
-                return;
-            }
-
-            orderSummaryCard.style.opacity = "1";
-            orderSummaryCard.style.pointerEvents = "auto";
-            checkoutBtn.classList.remove("disabled");
-
-            cartItemsList.innerHTML = "";
-            let subtotal = 0;
-
-            cart.forEach(item => {
-                subtotal += item.price * item.qty;
-                const itemDiv = document.createElement("div");
-                itemDiv.className = "cart-item";
-                itemDiv.innerHTML = `
-                    <div class="cart-item-img" style="background: rgba(26, 188, 156, 0.05); color: var(--mint); border: 1px solid rgba(26, 188, 156, 0.15); width: 60px; height: 60px; font-size: 1.5rem; border-radius: 12px; flex-shrink: 0;">
-                        <i class="fa-solid fa-pills"></i>
-                    </div>
-                    <div style="flex: 1;">
-                        <h3 style="margin-bottom: 0.25rem; font-size: 1.1rem; color: var(--text-main); font-weight: 700;">${item.name}</h3>
-                        <p class="text-muted" style="font-size: 0.85rem; margin: 0;">Generic Prescription</p>
-                    </div>
-                    <div class="flex items-center gap-6" style="flex-wrap: wrap; margin-left: auto;">
-                        <div style="display: flex; align-items: center; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--bg);">
-                            <button onclick="changeQty('${item.name}', -1)" style="border: none; background: transparent; padding: 0.35rem 0.75rem; color: var(--text-main); font-weight: 700; cursor: pointer; transition: background 0.2s;">-</button>
-                            <span style="font-weight: 700; width: 30px; text-align: center; color: var(--text-main); font-size: 0.95rem;">${item.qty}</span>
-                            <button onclick="changeQty('${item.name}', 1)" style="border: none; background: transparent; padding: 0.35rem 0.75rem; color: var(--text-main); font-weight: 700; cursor: pointer; transition: background 0.2s;">+</button>
-                        </div>
-                        <div style="font-weight: 800; color: var(--text-main); min-width: 80px; text-align: right; font-size: 1.1rem;">₹${(item.price * item.qty).toFixed(2)}</div>
-                        <button onclick="removeFromCart('${item.name}')" class="icon-btn text-danger" style="background: transparent; border: none; cursor: pointer; font-size: 1.1rem; transition: transform 0.2s; padding: 5px;"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                `;
-                cartItemsList.appendChild(itemDiv);
-            });
-
-            // Calculate Order Summary
-            let deliveryFee = subtotal >= 500 ? 0 : 40;
-            let discount = subtotal * 0.20; // 20% Discount with AVI20
-            let total = subtotal + deliveryFee - discount;
-
-            cartSubtotal.innerText = `₹${subtotal.toFixed(2)}`;
-            cartDelivery.innerText = deliveryFee === 0 ? "FREE" : `₹${deliveryFee.toFixed(2)}`;
-            cartDiscount.innerText = `-₹${discount.toFixed(2)}`;
-            cartTotal.innerText = `₹${total.toFixed(2)}`;
-        }
-
-        function changeQty(name, amount) {
-            let cart = JSON.parse(localStorage.getItem("avijit_cart")) || [];
-            let item = cart.find(x => x.name === name);
-            if (item) {
-                item.qty += amount;
-                if (item.qty <= 0) {
-                    cart = cart.filter(x => x.name !== name);
+        window.updateCartBadge = function () {
+            try {
+                const badge = document.getElementById("cartCountBadge");
+                if (badge) {
+                    let cart = [];
+                    try {
+                        const storedCart = localStorage.getItem("avijit_cart");
+                        if (storedCart && storedCart !== "undefined") {
+                            cart = JSON.parse(storedCart) || [];
+                        }
+                    } catch (e) {
+                        console.error("Error parsing cart in badge:", e);
+                    }
+                    const totalItems = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
+                    badge.innerText = totalItems;
+                    badge.style.display = totalItems > 0 ? "flex" : "none";
                 }
+            } catch (err) {
+                console.error("updateCartBadge error:", err);
             }
-            localStorage.setItem("avijit_cart", JSON.stringify(cart));
-            renderCart();
-            if (window.updateCartCountBadge) {
-                window.updateCartCountBadge();
+        };
+
+        window.updateWishlistBadge = function () {
+            try {
+                const badge = document.getElementById("wishlistCountBadge");
+                const headerHeart = document.getElementById("wishlistIconHeader");
+                if (badge) {
+                    let wishlist = [];
+                    try {
+                        const storedWishlist = localStorage.getItem("avijit_wishlist");
+                        if (storedWishlist && storedWishlist !== "undefined") {
+                            wishlist = JSON.parse(storedWishlist) || [];
+                        }
+                    } catch (e) {
+                        console.error("Error parsing wishlist in badge:", e);
+                    }
+                    const count = wishlist.length;
+                    badge.innerText = count;
+                    badge.style.display = count > 0 ? "flex" : "none";
+                    if (headerHeart) {
+                        if (count > 0) {
+                            headerHeart.classList.remove("fa-regular");
+                            headerHeart.classList.add("fa-solid");
+                            headerHeart.style.color = "#ff4b4b";
+                        } else {
+                            headerHeart.classList.remove("fa-solid");
+                            headerHeart.classList.add("fa-regular");
+                            headerHeart.style.color = "";
+                        }
+                    }
+                }
+            } catch (err) {
+                console.error("updateWishlistBadge error:", err);
+            }
+        };
+
+        function renderCart() {
+            try {
+                const cartItemsList = document.getElementById("cartItemsList");
+                const cartTitleCount = document.getElementById("cartTitleCount");
+                const cartSubtotal = document.getElementById("cartSubtotal");
+                const cartDelivery = document.getElementById("cartDelivery");
+                const cartDiscount = document.getElementById("cartDiscount");
+                const cartTotal = document.getElementById("cartTotal");
+                const checkoutBtn = document.getElementById("checkoutBtn");
+                const orderSummaryCard = document.getElementById("orderSummaryCard");
+
+                let cart = [];
+                try {
+                    const storedCart = localStorage.getItem("avijit_cart");
+                    if (storedCart && storedCart !== "undefined") {
+                        cart = JSON.parse(storedCart) || [];
+                    }
+                } catch (e) {
+                    console.error("Error parsing cart in renderCart:", e);
+                }
+
+                let totalItems = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
+                if (cartTitleCount) {
+                    cartTitleCount.innerText = `Your Cart (${totalItems} item${totalItems !== 1 ? 's' : ''})`;
+                }
+
+                if (cart.length === 0) {
+                    if (cartItemsList) {
+                        cartItemsList.innerHTML = `
+                            <div class="empty-cart-box">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <h3>Your Cart is Empty</h3>
+                                <p>Explore our medicine categories and add some medicines to your cart shelf.</p>
+                                <a href="track-order.html" class="btn-checkout" style="max-width: 250px; margin: 2rem auto 0; display: flex;">Browse Shelf</a>
+                            </div>
+                        `;
+                    }
+                    const clearBtn = document.querySelector(".btn-outline-danger");
+                    if (clearBtn) clearBtn.style.display = "none";
+
+                    if (orderSummaryCard) {
+                        orderSummaryCard.style.opacity = "0.5";
+                        orderSummaryCard.style.pointerEvents = "none";
+                    }
+                    if (checkoutBtn) {
+                        checkoutBtn.classList.add("disabled");
+                    }
+
+                    if (cartSubtotal) cartSubtotal.innerText = "₹0.00";
+                    if (cartDelivery) cartDelivery.innerText = "₹0.00";
+                    if (cartDiscount) cartDiscount.innerText = "-₹0.00";
+                    if (cartTotal) cartTotal.innerText = "₹0.00";
+                    return;
+                }
+
+                const clearBtn = document.querySelector(".btn-outline-danger");
+                if (clearBtn) clearBtn.style.display = "block";
+
+                if (orderSummaryCard) {
+                    orderSummaryCard.style.opacity = "1";
+                    orderSummaryCard.style.pointerEvents = "auto";
+                }
+                if (checkoutBtn) {
+                    checkoutBtn.classList.remove("disabled");
+                }
+
+                if (cartItemsList) {
+                    cartItemsList.innerHTML = "";
+                    let subtotal = 0;
+
+                    cart.forEach(item => {
+                        subtotal += (item.price || 0) * (item.qty || 0);
+                        const itemDiv = document.createElement("div");
+                        itemDiv.className = "cart-item";
+                        itemDiv.innerHTML = `
+                            <div class="cart-item-img">
+                                <i class="fa-solid fa-pills"></i>
+                            </div>
+                            <div class="cart-item-info">
+                                <h4>${item.name}</h4>
+                                <p>Generic Prescription</p>
+                            </div>
+                            <div class="cart-item-actions">
+                                <div class="qty-controls">
+                                    <button class="qty-btn" onclick="changeQty('${item.name}', -1)">-</button>
+                                    <span class="qty-val">${item.qty}</span>
+                                    <button class="qty-btn" onclick="changeQty('${item.name}', 1)">+</button>
+                                </div>
+                                <div class="item-price">₹${((item.price || 0) * (item.qty || 0)).toFixed(2)}</div>
+                                <button onclick="removeFromCart('${item.name}')" class="delete-btn" aria-label="Remove item"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        `;
+                        cartItemsList.appendChild(itemDiv);
+                    });
+
+                    let deliveryFee = subtotal >= 500 ? 0 : 40;
+                    let discount = subtotal * 0.20;
+                    let total = subtotal + deliveryFee - discount;
+
+                    if (cartSubtotal) cartSubtotal.innerText = `₹${subtotal.toFixed(2)}`;
+                    if (cartDelivery) cartDelivery.innerText = deliveryFee === 0 ? "FREE" : `₹${deliveryFee.toFixed(2)}`;
+                    if (cartDiscount) cartDiscount.innerText = `-₹${discount.toFixed(2)}`;
+                    if (cartTotal) cartTotal.innerText = `₹${total.toFixed(2)}`;
+                }
+            } catch (err) {
+                console.error("renderCart error:", err);
             }
         }
 
-        function removeFromCart(name) {
-            let cart = JSON.parse(localStorage.getItem("avijit_cart")) || [];
-            cart = cart.filter(x => x.name !== name);
-            localStorage.setItem("avijit_cart", JSON.stringify(cart));
-            renderCart();
-            if (window.updateCartCountBadge) {
-                window.updateCartCountBadge();
+        window.changeQty = function (name, amount) {
+            try {
+                let cart = [];
+                try {
+                    const storedCart = localStorage.getItem("avijit_cart");
+                    if (storedCart && storedCart !== "undefined") {
+                        cart = JSON.parse(storedCart) || [];
+                    }
+                } catch (e) {
+                    console.error("Error parsing cart in changeQty:", e);
+                }
+                let item = cart.find(x => x.name === name);
+                if (item) {
+                    item.qty += amount;
+                    if (item.qty <= 0) {
+                        cart = cart.filter(x => x.name !== name);
+                        showToast("success", "Removed from Cart", `${name} removed from your shopping cart shelf.`);
+                    } else {
+                        showToast("success", "Quantity Updated", `Quantity for ${name} updated successfully.`);
+                    }
+                }
+                localStorage.setItem("avijit_cart", JSON.stringify(cart));
+                renderCart();
+                updateCartBadge();
+            } catch (err) {
+                console.error("changeQty error:", err);
             }
-        }
+        };
 
-        function clearCart() {
-            localStorage.removeItem("avijit_cart");
-            renderCart();
-            if (window.updateCartCountBadge) {
-                window.updateCartCountBadge();
+        window.removeFromCart = function (name) {
+            try {
+                let cart = [];
+                try {
+                    const storedCart = localStorage.getItem("avijit_cart");
+                    if (storedCart && storedCart !== "undefined") {
+                        cart = JSON.parse(storedCart) || [];
+                    }
+                } catch (e) {
+                    console.error("Error parsing cart in removeFromCart:", e);
+                }
+                cart = cart.filter(x => x.name !== name);
+                localStorage.setItem("avijit_cart", JSON.stringify(cart));
+                renderCart();
+                updateCartBadge();
+                showToast("success", "Item Removed", `${name} has been removed from your cart shelf.`);
+            } catch (err) {
+                console.error("removeFromCart error:", err);
             }
+        };
+
+        window.clearCart = function () {
+            try {
+                localStorage.removeItem("avijit_cart");
+                renderCart();
+                updateCartBadge();
+                showToast("success", "Cart Cleared", "All items have been cleared from your shopping cart shelf.");
+            } catch (err) {
+                console.error("clearCart error:", err);
+            }
+        };
+
+        const toastNotification = document.getElementById("toastNotification");
+        const toastIcon = document.getElementById("toastIcon");
+        const toastTitle = document.getElementById("toastTitle");
+        const toastDesc = document.getElementById("toastDesc");
+        let toastTimeout;
+
+        window.showToast = function (type, title, message) {
+            try {
+                if (!toastNotification) return;
+                clearTimeout(toastTimeout);
+
+                toastNotification.classList.remove("success", "error", "active");
+                toastNotification.classList.add(type);
+
+                if (type === "success") {
+                    if (toastIcon) toastIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+                } else {
+                    if (toastIcon) toastIcon.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i>';
+                }
+
+                if (toastTitle) toastTitle.innerText = title;
+                if (toastDesc) toastDesc.innerText = message;
+
+                void toastNotification.offsetWidth;
+                toastNotification.classList.add("active");
+
+                toastTimeout = setTimeout(() => {
+                    closeToast();
+                }, 5000);
+            } catch (err) {
+                console.error("showToast error:", err);
+            }
+        };
+
+        window.closeToast = function () {
+            try {
+                if (toastNotification) toastNotification.classList.remove("active");
+            } catch (err) {
+                console.error("closeToast error:", err);
+            }
+        };
+
+        function logoutUser() {
+            localStorage.removeItem("avijit_logged_in");
+            localStorage.removeItem("avijit_current_user");
+            window.location.href = "login.html";
         }
     </script>
 </body>
+
 </html>
