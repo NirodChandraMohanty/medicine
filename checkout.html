@@ -143,8 +143,14 @@
 
         @media (max-width: 992px) {
             .purchase-grid {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
+                grid-template-columns: 1fr !important;
+                gap: 2.5rem !important;
+            }
+
+            .purchase-left-col,
+            .purchase-right-col {
+                width: 100% !important;
+                max-width: 100% !important;
             }
 
             .purchase-main-content {
@@ -1182,6 +1188,17 @@
                 overflow-x: hidden !important;
             }
 
+            .purchase-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+
+            .purchase-left-col,
+            .purchase-right-col {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
             .purchase-title-bar h1 {
                 font-size: 1.3rem !important;
             }
@@ -1189,12 +1206,16 @@
             .white-card {
                 padding: 1rem;
                 border-radius: 16px;
+                width: 100% !important;
+                box-sizing: border-box !important;
             }
 
             .delivering-to-dark {
                 padding: 1rem;
                 margin-bottom: 1.5rem;
                 border-radius: 12px;
+                width: 100% !important;
+                box-sizing: border-box !important;
             }
 
             /* Stack product list items on mobile to prevent overflows */
