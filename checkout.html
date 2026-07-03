@@ -27,7 +27,8 @@
 
     <style>
         :root {
-            --primary-dark: #f8b500; /* Gold */
+            --primary-dark: #f8b500;
+            /* Gold */
             --primary: #d49a00;
             --primary-light: rgba(248, 181, 0, 0.1);
             --mint: #1abc9c;
@@ -43,11 +44,14 @@
         /* --- STICKY GLASSMORPHISM HEADER --- */
         .site-header {
             position: fixed;
-            top: 0; left: 0; width: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
             z-index: 1000;
             transition: all 0.4s ease;
             background: transparent;
         }
+
         body {
             background: linear-gradient(135deg, #092e40 0%, #031410 100%) !important;
             color: var(--text-main);
@@ -62,18 +66,66 @@
             background: rgba(2, 20, 15, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             border-bottom: 1px solid rgba(0, 255, 204, 0.2);
         }
+
         .site-header.scrolled .top-header {
-            padding: 5px 0; /* Shrink slightly on scroll */
+            padding: 5px 0;
+            /* Shrink slightly on scroll */
         }
+
         .site-header.scrolled .nav-header {
-            border-top: 1px solid rgba(255,255,255,0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
-        
+
         @media (max-width: 768px) {
-            body { padding-top: 80px; } /* Mobile header is shorter */
+            body {
+                padding-top: 80px;
+            }
+
+            /* Mobile header is shorter */
+        }
+
+        /* --- BACKGROUND GLOW ORBS --- */
+        .purchase-glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(140px);
+            -webkit-filter: blur(140px);
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.18;
+            animation: pulseGlow 12s ease-in-out infinite alternate;
+        }
+
+        .purchase-glow-orb.orb-1 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, var(--mint) 0%, transparent 70%);
+            top: 15%;
+            left: -120px;
+        }
+
+        .purchase-glow-orb.orb-2 {
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, var(--primary-dark) 0%, transparent 70%);
+            bottom: 20%;
+            right: -150px;
+            animation-delay: -4s;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.15;
+            }
+
+            100% {
+                transform: translateY(40px) scale(1.15);
+                opacity: 0.24;
+            }
         }
 
         .purchase-main-content {
@@ -94,11 +146,9 @@
                 grid-template-columns: 1fr;
                 gap: 2.5rem;
             }
+
             .purchase-main-content {
                 padding: 1.5rem 0 4rem;
-            }
-            body {
-                padding-top: 80px;
             }
         }
 
@@ -109,6 +159,7 @@
             gap: 12px;
             margin-bottom: 1.5rem;
             color: #ffffff;
+            animation: fadeInLeft 0.6s ease;
         }
 
         .purchase-title-bar a {
@@ -117,11 +168,11 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.2s;
+            transition: transform 0.25s ease, color 0.25s ease;
         }
 
         .purchase-title-bar a:hover {
-            transform: translateX(-4px);
+            transform: scale(1.1) translateX(-4px);
             color: var(--mint);
         }
 
@@ -130,34 +181,139 @@
             font-weight: 800;
             margin: 0;
             color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* --- CHECKOUT STEPPER --- */
+        .checkout-stepper-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 2.5rem;
+            padding: 0 1rem;
+            box-sizing: border-box;
+        }
+
+        .stepper-track-bg {
+            position: absolute;
+            top: 22px;
+            left: 10%;
+            width: 80%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            z-index: 1;
+        }
+
+        .stepper-track-progress {
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--mint) 0%, var(--primary-dark) 100%);
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+        }
+
+        .stepper-steps {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            z-index: 2;
+        }
+
+        .stepper-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80px;
+        }
+
+        .stepper-step .step-badge {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(2, 20, 15, 0.9);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .stepper-step .step-label {
+            margin-top: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.4);
+            text-align: center;
+            transition: color 0.4s ease;
+        }
+
+        .stepper-step.completed .step-badge {
+            background: var(--mint);
+            border-color: var(--mint);
+            color: #031410;
+            box-shadow: 0 0 15px rgba(26, 188, 156, 0.4);
+        }
+
+        .stepper-step.completed .step-label {
+            color: var(--mint);
+        }
+
+        .stepper-step.active .step-badge {
+            background: rgba(248, 181, 0, 0.15);
+            border-color: var(--primary-dark);
+            color: var(--primary-dark);
+            box-shadow: 0 0 15px rgba(248, 181, 0, 0.4);
+            transform: scale(1.1);
+        }
+
+        .stepper-step.active .step-label {
+            color: var(--primary-dark);
+            font-weight: 800;
         }
 
         /* White container for left column layout (exactly matches screenshot) */
         .white-card {
             background: #ffffff;
             color: #1a1a1a;
-            border-radius: 20px;
+            border-radius: 24px;
             padding: 2rem;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-        }
-
-        @media (max-width: 576px) {
-            .white-card {
-                padding: 1.25rem;
-                border-radius: 16px;
-            }
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
         }
 
         /* Delivering To Card (Black background inside white container) */
         .delivering-to-dark {
             background: #111111;
             color: #ffffff;
-            border-radius: 12px;
-            padding: 1.25rem 1.5rem;
+            border-radius: 16px;
+            padding: 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(248, 181, 0, 0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(248, 181, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .delivering-to-dark:hover {
+            border-color: var(--primary-dark);
+            box-shadow: 0 10px 30px rgba(248, 181, 0, 0.2), inset 0 0 15px rgba(248, 181, 0, 0.05);
         }
 
         .address-info {
@@ -165,43 +321,43 @@
         }
 
         .address-info h4 {
-            color: #888888;
-            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.72rem;
             text-transform: uppercase;
-            margin: 0 0 4px;
-            letter-spacing: 0.5px;
-            font-weight: 700;
+            margin: 0 0 6px;
+            letter-spacing: 1px;
+            font-weight: 800;
         }
 
         .address-user-name {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 800;
             color: white;
         }
 
         .address-user-name span {
-            color: #888888;
+            color: rgba(255, 255, 255, 0.5);
             font-size: 0.85rem;
             font-weight: 500;
             margin-left: 8px;
         }
 
         .address-text {
-            color: #cccccc;
-            font-size: 0.85rem;
-            margin: 4px 0 0 0;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.88rem;
+            margin: 8px 0 0 0;
             line-height: 1.5;
         }
 
         .edit-address-btn {
             background: transparent;
             border: none;
-            color: #888888;
-            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 1.15rem;
             cursor: pointer;
-            padding: 8px;
+            padding: 10px;
             border-radius: 50%;
-            transition: all 0.2s;
+            transition: all 0.25s ease;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -209,16 +365,18 @@
 
         .edit-address-btn:hover {
             color: var(--primary-dark);
-            background: rgba(255, 255, 255, 0.06);
-            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.08);
+            transform: scale(1.1) rotate(15deg);
         }
 
         /* Cart Items Listing */
         .items-section-title {
             font-size: 1.05rem;
-            font-weight: 700;
+            font-weight: 800;
             color: #6b7280;
             margin-bottom: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .purchase-items-wrapper {
@@ -232,26 +390,40 @@
             display: flex;
             align-items: center;
             gap: 1.25rem;
-            padding: 1rem 0;
+            padding: 1.25rem;
             border-bottom: 1px solid #f1f3f6;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border-radius: 16px;
         }
 
         .item-row-white:last-child {
             border-bottom: none;
         }
 
+        .item-row-white:hover {
+            background: #f8fafc;
+            transform: translateX(6px);
+        }
+
         .item-row-white .item-img-box {
-            width: 72px;
-            height: 72px;
-            border: 1px solid #e1e3e6;
-            border-radius: 16px;
+            width: 76px;
+            height: 76px;
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #f8f9fa;
+            background: #ffffff;
             color: #2563eb;
-            font-size: 1.8rem;
+            font-size: 1.9rem;
             flex-shrink: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        .item-row-white:hover .item-img-box {
+            border-color: #2563eb;
+            transform: scale(1.05);
         }
 
         .item-row-white .item-info {
@@ -259,17 +431,17 @@
         }
 
         .item-row-white .item-title {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             font-weight: 800;
             color: #2563eb;
-            margin: 0 0 4px;
+            margin: 0 0 6px;
         }
 
         .item-row-white .item-meta {
             font-size: 0.82rem;
             color: #6b7280;
             display: flex;
-            gap: 8px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
@@ -283,50 +455,57 @@
             gap: 8px;
             font-size: 0.85rem;
             color: #6b7280;
-            font-weight: 600;
+            font-weight: 700;
             flex-shrink: 0;
         }
 
         .item-row-white .qty-pill {
             display: flex;
             align-items: center;
-            background: #f1f3f6;
+            background: #f1f5f9;
             border-radius: 20px;
-            padding: 3px 8px;
+            padding: 3px 6px;
+            border: 1px solid #e2e8f0;
         }
 
         .item-row-white .qty-pill button {
             background: transparent;
             border: none;
-            color: #1a1a1a;
+            color: #0f172a;
             font-weight: 800;
             cursor: pointer;
             padding: 2px 8px;
             font-size: 0.95rem;
+            transition: transform 0.2s ease;
+        }
+
+        .item-row-white .qty-pill button:hover {
+            transform: scale(1.2);
+            color: #2563eb;
         }
 
         .item-row-white .qty-pill span {
             font-weight: 800;
-            color: #1a1a1a;
-            width: 20px;
+            color: #0f172a;
+            width: 22px;
             text-align: center;
         }
 
         .item-row-white .price-col {
             margin-left: auto;
             text-align: right;
-            min-width: 90px;
+            min-width: 95px;
         }
 
         .item-row-white .price-main {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 800;
-            color: #1a1a1a;
+            color: #0f172a;
         }
 
         .item-row-white .price-strike {
             font-size: 0.82rem;
-            color: #9ca3af;
+            color: #94a3b8;
             text-decoration: line-through;
             margin-top: 2px;
         }
@@ -335,10 +514,11 @@
         .saved-title-black {
             font-size: 1.25rem;
             font-weight: 800;
-            color: #1a1a1a;
-            margin: 2rem 0 1.25rem;
+            color: #0f172a;
+            margin: 2.25rem 0 1.25rem;
             border-top: 1px solid #f1f3f6;
             padding-top: 1.75rem;
+            text-transform: capitalize;
         }
 
         .saved-later-grid {
@@ -349,35 +529,43 @@
 
         .saved-card-white {
             background: #ffffff;
-            border: 1px solid #e1e3e6;
-            border-radius: 16px;
-            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 1.1rem;
             position: relative;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
         }
 
         .saved-card-white:hover {
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
             border-color: #2563eb;
+            transform: translateY(-6px);
         }
 
         .saved-card-white .saved-img {
             height: 110px;
-            background: #f8f9fa;
-            border: 1px solid #f1f3f6;
-            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.2rem;
             color: #2563eb;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .saved-card-white:hover .saved-img {
+            transform: scale(1.03);
+            background: #f1f5f9;
         }
 
         .saved-card-white .saved-name {
             font-weight: 800;
             font-size: 0.92rem;
-            color: #1a1a1a;
+            color: #0f172a;
             margin-bottom: 2px;
             white-space: nowrap;
             overflow: hidden;
@@ -386,20 +574,20 @@
 
         .saved-card-white .saved-desc {
             font-size: 0.75rem;
-            color: #6b7280;
+            color: #64748b;
             margin-bottom: 8px;
         }
 
         .saved-card-white .saved-price {
             font-weight: 800;
             font-size: 1rem;
-            color: #1a1a1a;
+            color: #0f172a;
         }
 
         .saved-card-actions {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 12px;
+            right: 12px;
             display: flex;
             gap: 6px;
             z-index: 5;
@@ -410,22 +598,22 @@
             height: 28px;
             border-radius: 50%;
             background: #ffffff;
-            border: 1px solid #e1e3e6;
-            color: #6b7280;
+            border: 1px solid #e2e8f0;
+            color: #64748b;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
         }
 
         .saved-action-btn:hover {
             background: #2563eb;
             color: white;
             border-color: #2563eb;
-            transform: scale(1.1);
+            transform: scale(1.15);
         }
 
         .saved-action-btn.btn-delete-saved:hover {
@@ -445,18 +633,25 @@
             background: var(--bg-card);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(0, 255, 204, 0.12);
             border-radius: 24px;
             padding: 2rem;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(0, 255, 204, 0.22);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.42);
         }
 
         .right-card-title {
             font-size: 1.1rem;
-            font-weight: 700;
+            font-weight: 800;
             color: white;
             margin: 0 0 1rem;
             position: relative;
+            letter-spacing: 0.5px;
         }
 
         /* Add a Note */
@@ -464,7 +659,7 @@
             width: 100%;
             background: #ffffff;
             border: 1px solid #d1d5db;
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 1rem;
             color: #1a1a1a;
             font-family: inherit;
@@ -472,12 +667,12 @@
             outline: none;
             resize: none;
             box-sizing: border-box;
-            transition: border-color 0.3s;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .note-textarea-white:focus {
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            border-color: var(--mint);
+            box-shadow: 0 0 15px rgba(26, 188, 156, 0.25);
         }
 
         .char-counter {
@@ -486,6 +681,7 @@
             right: 0;
             font-size: 0.78rem;
             color: var(--text-muted);
+            font-weight: 500;
         }
 
         /* Apply Coupon */
@@ -498,35 +694,37 @@
             flex: 1;
             background: #ffffff;
             border: 1px solid #d1d5db;
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 0.8rem 1rem;
             color: #1a1a1a;
             outline: none;
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .coupon-input-white:focus {
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            border-color: var(--mint);
+            box-shadow: 0 0 15px rgba(26, 188, 156, 0.25);
         }
 
         .btn-apply-coupon {
-            background: #05221c;
+            background: rgba(5, 34, 28, 0.85);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: white;
-            padding: 0 1.5rem;
-            border-radius: 12px;
+            padding: 0 1.75rem;
+            border-radius: 14px;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
 
         .btn-apply-coupon:hover {
             background: var(--primary-dark);
             color: #031410;
             border-color: var(--primary-dark);
+            transform: translateY(-1px);
         }
 
         .coupon-links-row {
@@ -536,12 +734,14 @@
 
         .coupon-links-row a {
             color: var(--mint);
-            font-weight: 600;
+            font-weight: 700;
             text-decoration: none;
+            transition: opacity 0.2s;
         }
 
         .coupon-links-row a:hover {
             text-decoration: underline;
+            opacity: 0.9;
         }
 
         /* Breakdown Card */
@@ -564,25 +764,26 @@
 
         .payable-row.promo-applied span:last-child {
             color: var(--mint);
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .payable-row i {
-            margin-right: 6px;
-            opacity: 0.7;
+            margin-right: 8px;
+            opacity: 0.65;
+            color: var(--mint);
         }
 
         .bottom-payable-panel {
-            background: rgba(5, 34, 28, 0.75);
+            background: rgba(5, 34, 28, 0.8);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 18px;
-            padding: 1.1rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 1.25rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
         }
 
         .panel-price-box {
@@ -591,19 +792,23 @@
         }
 
         .panel-price-val {
-            font-size: 1.4rem;
+            font-size: 1.45rem;
             font-weight: 800;
             color: white;
+            letter-spacing: -0.5px;
         }
 
         .panel-price-lbl {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
+            font-weight: 600;
         }
 
         .btn-make-payment {
+            position: relative;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -611,35 +816,50 @@
             background: #2563eb;
             color: white;
             border: none;
-            padding: 0.9rem 2.2rem;
+            padding: 0.95rem 2.25rem;
             border-radius: 999px;
             font-weight: 800;
-            font-size: 1rem;
+            font-size: 1.05rem;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
             text-decoration: none;
+        }
+
+        .btn-make-payment::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .btn-make-payment:hover::after {
+            left: 100%;
         }
 
         .btn-make-payment:hover {
             background: #1d4ed8;
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 28px rgba(37, 99, 235, 0.45);
         }
 
         .btn-make-payment i {
-            transition: transform 0.2s;
+            transition: transform 0.25s ease;
         }
 
         .btn-make-payment:hover i {
-            transform: translateX(3px);
+            transform: translateX(4px);
         }
 
         /* Modal styling */
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.78);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             z-index: 10000;
@@ -660,6 +880,12 @@
             width: 100%;
             max-width: 480px;
             box-sizing: border-box;
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
         }
 
         .form-group {
@@ -684,11 +910,13 @@
             font-family: inherit;
             outline: none;
             font-size: 0.95rem;
-            transition: border-color 0.3s;
+            transition: all 0.3s ease;
         }
 
         .form-control:focus {
             border-color: var(--mint);
+            box-shadow: 0 0 12px rgba(0, 255, 204, 0.2);
+            background: rgba(255, 255, 255, 0.06);
         }
 
         /* Toast notifications */
@@ -696,13 +924,13 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: rgba(5, 34, 28, 0.9);
+            background: rgba(5, 34, 28, 0.95);
             border: 1px solid rgba(0, 255, 204, 0.3);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             padding: 1.25rem 1.75rem;
             border-radius: 18px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
             display: flex;
             align-items: center;
             gap: 15px;
@@ -769,9 +997,9 @@
         .payment-loader {
             position: fixed;
             inset: 0;
-            background: rgba(3, 20, 16, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(3, 20, 16, 0.96);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             z-index: 99999;
             display: none;
             flex-direction: column;
@@ -794,14 +1022,17 @@
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .payment-loader h3 {
-            font-size: 1.4rem;
+            font-size: 1.45rem;
             font-weight: 800;
             color: white;
             margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
         }
 
         .payment-loader p {
@@ -926,32 +1157,187 @@
                 grid-template-columns: 1.2fr 1fr !important;
                 gap: 2.5rem !important;
             }
+
             .footer-grid>div:last-child {
                 grid-column: span 2;
+            }
+
+            .checkout-stepper-container {
+                margin-bottom: 2rem;
+            }
+
+            .stepper-track-bg {
+                top: 20px;
+            }
+
+            .stepper-step .step-badge {
+                width: 38px;
+                height: 38px;
+                font-size: 0.9rem;
             }
         }
 
         @media (max-width: 576px) {
+            html, body {
+                overflow-x: hidden !important;
+            }
+
+            .purchase-title-bar h1 {
+                font-size: 1.3rem !important;
+            }
+
+            .white-card {
+                padding: 1rem;
+                border-radius: 16px;
+            }
+
+            .delivering-to-dark {
+                padding: 1rem;
+                margin-bottom: 1.5rem;
+                border-radius: 12px;
+            }
+
+            /* Stack product list items on mobile to prevent overflows */
+            .item-row-white {
+                display: grid !important;
+                grid-template-columns: 60px 1fr !important;
+                grid-template-rows: auto auto !important;
+                gap: 10px !important;
+                padding: 0.75rem 0.25rem !important;
+                align-items: start !important;
+            }
+
+            .item-row-white:hover {
+                transform: none !important;
+            }
+
+            .item-row-white .item-img-box {
+                grid-column: 1 !important;
+                grid-row: 1 / span 2 !important;
+                width: 60px !important;
+                height: 60px !important;
+                border-radius: 12px !important;
+                font-size: 1.5rem !important;
+            }
+
+            .item-row-white .item-info {
+                grid-column: 2 !important;
+                grid-row: 1 !important;
+            }
+
+            .item-row-white .item-title {
+                font-size: 0.95rem !important;
+            }
+
+            .item-row-white .qty-capsule-wrapper {
+                grid-column: 2 !important;
+                grid-row: 2 !important;
+                margin-top: 4px !important;
+                font-size: 0.78rem !important;
+            }
+
+            .item-row-white .qty-pill {
+                padding: 2px 4px !important;
+            }
+
+            .item-row-white .qty-pill button {
+                padding: 1px 6px !important;
+                font-size: 0.85rem !important;
+            }
+
+            .item-row-white .qty-pill span {
+                width: 18px !important;
+            }
+
+            .item-row-white .price-col {
+                grid-column: 2 !important;
+                grid-row: 2 !important;
+                text-align: right !important;
+                align-self: center !important;
+                margin-left: 0 !important;
+                margin-top: 4px !important;
+            }
+
+            .item-row-white .price-main {
+                font-size: 1rem !important;
+            }
+
+            .item-row-white .price-strike {
+                font-size: 0.75rem !important;
+            }
+
+            /* Responsive Saved for Later Grid */
+            .saved-later-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) !important;
+                gap: 10px !important;
+            }
+
+            .saved-card-white {
+                padding: 0.75rem !important;
+                border-radius: 12px !important;
+            }
+
+            .saved-card-white .saved-img {
+                height: 80px !important;
+                font-size: 1.6rem !important;
+            }
+
+            .saved-card-white .saved-name {
+                font-size: 0.82rem !important;
+            }
+
+            .saved-card-white .saved-desc {
+                font-size: 0.68rem !important;
+            }
+
+            .saved-card-white .saved-price {
+                font-size: 0.88rem !important;
+            }
+
+            /* Payment Panel Responsive */
+            .bottom-payable-panel {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+                align-items: stretch;
+                padding: 1rem;
+            }
+
+            .panel-price-box {
+                align-items: center;
+                margin-bottom: 2px;
+            }
+
+            .btn-make-payment {
+                width: 100%;
+                padding: 0.85rem 1.5rem;
+                font-size: 0.95rem;
+            }
+
             .footer-grid {
                 grid-template-columns: 1fr !important;
                 gap: 2rem !important;
             }
+
             .footer-grid>div:last-child {
                 grid-column: span 1;
             }
+
             .footer-map-card {
                 max-width: 100%;
             }
+
             .footer {
                 padding: 4rem 0 2rem !important;
             }
         }
-
-
     </style>
 </head>
 
 <body>
+    <!-- Orbs -->
+    <div class="purchase-glow-orb orb-1"></div>
+    <div class="purchase-glow-orb orb-2"></div>
 
     <!-- ================== HEADER ================== -->
     <header id="main-header" class="site-header">
@@ -1066,7 +1452,7 @@
     <!-- ================== MAIN CONTENT ================== -->
     <main class="purchase-main-content">
         <div class="container">
-            
+
             <!-- Title Bar (Matches complete purchase title screen layout) -->
             <div class="purchase-title-bar">
                 <a href="javascript:void(0)" onclick="window.history.back()" aria-label="Go Back">
@@ -1076,11 +1462,11 @@
             </div>
 
             <div class="purchase-grid">
-                
+
                 <!-- Left Column: Delivering To, Purchase items, Saved items -->
                 <div class="purchase-left-col">
                     <div class="white-card">
-                        
+
                         <!-- Delivering To Address Card (Black capsule inside white container) -->
                         <div class="delivering-to-dark">
                             <div class="address-info">
@@ -1121,15 +1507,16 @@
                 <!-- Right Column: Notes, Coupons, and Totals -->
                 <div class="purchase-right-col">
                     <div class="right-column-wrapper">
-                        
+
                         <!-- Add a Note Card -->
                         <div class="glass-card" style="padding: 1.5rem; border-radius: 18px;">
                             <div class="right-card-title">
-                                Add a Note (Optional) 
+                                Add a Note (Optional)
                                 <span class="char-counter" id="noteCharCounter">0/150</span>
                             </div>
                             <div class="textarea-container" style="margin-top: 1.5rem;">
-                                <textarea id="purchaseNote" class="note-textarea-white" rows="3" maxlength="150" placeholder="Add special instructions for delivery, packaging notes, etc."></textarea>
+                                <textarea id="purchaseNote" class="note-textarea-white" rows="3" maxlength="150"
+                                    placeholder="Add special instructions for delivery, packaging notes, etc."></textarea>
                             </div>
                         </div>
 
@@ -1147,7 +1534,8 @@
 
                         <!-- Total Payable Amount Breakdown Card -->
                         <div class="glass-card" style="padding: 1.5rem; border-radius: 18px;" id="breakdownCard">
-                            <div class="right-card-title" style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.75rem; margin-bottom: 1rem;">
+                            <div class="right-card-title"
+                                style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.75rem; margin-bottom: 1rem;">
                                 Total Payable Amount
                             </div>
                             <div class="payable-details-card">
@@ -1267,7 +1655,8 @@
     <!-- Edit Address Modal -->
     <div id="addressModal" class="modal-overlay">
         <div class="glass-card modal-content" style="background: #05221c; border-color: var(--border-color);">
-            <h3 style="margin-top: 0; margin-bottom: 1.5rem; font-weight: 800; font-size: 1.25rem;">Update Delivery Address</h3>
+            <h3 style="margin-top: 0; margin-bottom: 1.5rem; font-weight: 800; font-size: 1.25rem;">Update Delivery
+                Address</h3>
             <div class="form-group">
                 <label for="editName">Receiver Full Name</label>
                 <input type="text" id="editName" class="form-control" placeholder="E.g. Loresh Mohanty">
@@ -1278,11 +1667,14 @@
             </div>
             <div class="form-group">
                 <label for="editAddress">Complete Shipping Address</label>
-                <textarea id="editAddress" class="form-control" rows="3" placeholder="E.g. Kapileshwar, Khordha, Odisha, 751002"></textarea>
+                <textarea id="editAddress" class="form-control" rows="3"
+                    placeholder="E.g. Kapileshwar, Khordha, Odisha, 751002"></textarea>
             </div>
             <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
-                <button onclick="saveAddress()" class="btn-checkout" style="padding: 0.8rem; margin: 0; font-size: 0.95rem;">Save Changes</button>
-                <button onclick="closeAddressModal()" class="btn-continue-shopping" style="padding: 0.8rem; margin: 0;">Cancel</button>
+                <button onclick="saveAddress()" class="btn-checkout"
+                    style="padding: 0.8rem; margin: 0; font-size: 0.95rem;">Save Changes</button>
+                <button onclick="closeAddressModal()" class="btn-continue-shopping"
+                    style="padding: 0.8rem; margin: 0;">Cancel</button>
             </div>
         </div>
     </div>
@@ -1356,7 +1748,7 @@
                 const purchaseNote = document.getElementById("purchaseNote");
                 const charCounter = document.getElementById("noteCharCounter");
                 if (purchaseNote && charCounter) {
-                    purchaseNote.addEventListener("input", function() {
+                    purchaseNote.addEventListener("input", function () {
                         charCounter.innerText = `${purchaseNote.value.length}/150`;
                     });
                 }
@@ -1425,7 +1817,7 @@
                 let savedAddr = null;
                 try {
                     savedAddr = JSON.parse(localStorage.getItem("avijit_delivery_address"));
-                } catch(e) {}
+                } catch (e) { }
 
                 const nameEl = document.getElementById("displayAddrName");
                 const mobileEl = document.getElementById("displayAddrMobile");
@@ -1447,7 +1839,7 @@
         }
 
         // Address modal controls
-        window.openAddressModal = function() {
+        window.openAddressModal = function () {
             const modal = document.getElementById("addressModal");
             const nameEl = document.getElementById("displayAddrName");
             const mobileEl = document.getElementById("displayAddrMobile");
@@ -1460,12 +1852,12 @@
             if (modal) modal.classList.add("active");
         };
 
-        window.closeAddressModal = function() {
+        window.closeAddressModal = function () {
             const modal = document.getElementById("addressModal");
             if (modal) modal.classList.remove("active");
         };
 
-        window.saveAddress = function() {
+        window.saveAddress = function () {
             try {
                 const name = document.getElementById("editName").value.trim();
                 const mobile = document.getElementById("editMobile").value.trim();
@@ -1489,7 +1881,7 @@
 
                 closeAddressModal();
                 showToast("success", "Address Updated", "Your delivery details have been refreshed.");
-            } catch(e) {
+            } catch (e) {
                 console.error(e);
             }
         };
@@ -1509,7 +1901,7 @@
                     if (storedCart && storedCart !== "undefined") {
                         cart = JSON.parse(storedCart) || [];
                     }
-                } catch (e) {}
+                } catch (e) { }
 
                 let totalItems = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
                 if (totalItemsLabel) {
@@ -1536,7 +1928,7 @@
                     cart.forEach(item => {
                         subtotal += (item.price || 0) * (item.qty || 0);
                         const originalPriceVal = ((item.price || 0) * 1.15); // mock standard pricing crossed out
-                        
+
                         const itemDiv = document.createElement("div");
                         itemDiv.className = "item-row-white";
                         itemDiv.innerHTML = `
@@ -1575,7 +1967,7 @@
             }
         }
 
-        window.changeQtyCheckout = function(name, amount) {
+        window.changeQtyCheckout = function (name, amount) {
             try {
                 let cart = [];
                 try {
@@ -1583,7 +1975,7 @@
                     if (storedCart && storedCart !== "undefined") {
                         cart = JSON.parse(storedCart) || [];
                     }
-                } catch (e) {}
+                } catch (e) { }
 
                 let item = cart.find(x => x.name === name);
                 if (item) {
@@ -1595,7 +1987,7 @@
                 localStorage.setItem("avijit_cart", JSON.stringify(cart));
                 renderPurchasePage();
                 updateCartBadge();
-            } catch(e) {
+            } catch (e) {
                 console.error(e);
             }
         };
@@ -1612,7 +2004,7 @@
                     if (storedWishlist && storedWishlist !== "undefined") {
                         wishlist = JSON.parse(storedWishlist) || [];
                     }
-                } catch (e) {}
+                } catch (e) { }
 
                 if (wishlist.length === 0) {
                     // Populate with mock products like Honeybush tea for display
@@ -1655,17 +2047,17 @@
                     `;
                     listEl.appendChild(card);
                 });
-            } catch(e) {
+            } catch (e) {
                 console.error(e);
             }
         }
 
-        window.moveMockToCart = function(name, price) {
+        window.moveMockToCart = function (name, price) {
             try {
                 let cart = [];
                 try {
                     cart = JSON.parse(localStorage.getItem("avijit_cart")) || [];
-                } catch(e) {}
+                } catch (e) { }
 
                 let existing = cart.find(x => x.name === name);
                 if (existing) {
@@ -1677,34 +2069,34 @@
                 renderPurchasePage();
                 updateCartBadge();
                 showToast("success", "Moved to Cart", `${name} added to complete purchase list.`);
-            } catch(e) {
+            } catch (e) {
                 console.error(e);
             }
         };
 
-        window.moveToCartFromSaved = function(name, price) {
+        window.moveToCartFromSaved = function (name, price) {
             try {
                 moveMockToCart(name, price);
                 removeFromSavedLater(name);
-            } catch(e) {}
+            } catch (e) { }
         };
 
-        window.removeFromSavedLater = function(name) {
+        window.removeFromSavedLater = function (name) {
             try {
                 let wishlist = [];
                 try {
                     wishlist = JSON.parse(localStorage.getItem("avijit_wishlist")) || [];
-                } catch(e) {}
+                } catch (e) { }
                 wishlist = wishlist.filter(x => x.name !== name);
                 localStorage.setItem("avijit_wishlist", JSON.stringify(wishlist));
                 renderWishlistSavedLater();
                 updateWishlistBadge();
                 showToast("success", "Removed Item", `${name} removed from saved list.`);
-            } catch(e) {}
+            } catch (e) { }
         };
 
         // Coupon application
-        window.validateCoupon = function() {
+        window.validateCoupon = function () {
             const input = document.getElementById("couponCode");
             if (!input) return;
             const code = input.value.trim().toUpperCase();
@@ -1725,7 +2117,7 @@
             renderPurchasePage();
         };
 
-        window.applyDefaultCoupon = function() {
+        window.applyDefaultCoupon = function () {
             const input = document.getElementById("couponCode");
             if (input) {
                 input.value = "AVI20";
@@ -1749,18 +2141,18 @@
                 if (discEl) discEl.innerText = `₹${discount.toFixed(2)}`;
                 if (shipEl) shipEl.innerText = deliveryFee === 0 ? "FREE" : `₹${deliveryFee.toFixed(2)}`;
                 if (finalEl) finalEl.innerText = `₹${total.toFixed(2)}`;
-            } catch(e) {
+            } catch (e) {
                 console.error(e);
             }
         }
 
         // Make Payment actions
-        window.triggerPayment = function() {
+        window.triggerPayment = function () {
             try {
                 let cart = [];
                 try {
                     cart = JSON.parse(localStorage.getItem("avijit_cart")) || [];
-                } catch(e) {}
+                } catch (e) { }
 
                 if (cart.length === 0) {
                     showToast("error", "Empty Shelf", "You have no items inside your purchase cart.");
@@ -1770,14 +2162,14 @@
                 const loader = document.getElementById("paymentLoader");
                 if (loader) loader.classList.add("active");
 
-                setTimeout(function() {
+                setTimeout(function () {
                     // Clear the cart shelf after payment successful
                     localStorage.removeItem("avijit_cart");
-                    
+
                     // Redirect to order-success page
                     window.location.href = "order-success.html";
                 }, 3000);
-            } catch(e) {
+            } catch (e) {
                 console.error(e);
             }
         };
@@ -1793,12 +2185,12 @@
                         if (storedCart && storedCart !== "undefined") {
                             cart = JSON.parse(storedCart) || [];
                         }
-                    } catch (e) {}
+                    } catch (e) { }
                     const totalItems = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
                     badge.innerText = totalItems;
                     badge.style.display = totalItems > 0 ? "flex" : "none";
                 }
-            } catch (err) {}
+            } catch (err) { }
         };
 
         window.updateWishlistBadge = function () {
@@ -1812,7 +2204,7 @@
                         if (storedWishlist && storedWishlist !== "undefined") {
                             wishlist = JSON.parse(storedWishlist) || [];
                         }
-                    } catch (e) {}
+                    } catch (e) { }
                     const count = wishlist.length;
                     badge.innerText = count;
                     badge.style.display = count > 0 ? "flex" : "none";
@@ -1828,7 +2220,7 @@
                         }
                     }
                 }
-            } catch (err) {}
+            } catch (err) { }
         };
 
         // Toast controller
@@ -1861,13 +2253,13 @@
                 toastTimeout = setTimeout(() => {
                     closeToast();
                 }, 5000);
-            } catch (err) {}
+            } catch (err) { }
         };
 
         window.closeToast = function () {
             try {
                 if (toastNotification) toastNotification.classList.remove("active");
-            } catch (err) {}
+            } catch (err) { }
         };
 
         function logoutUser() {
