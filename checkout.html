@@ -1291,11 +1291,11 @@
             /* Stack product list items on mobile to prevent overflows */
             .item-row-white {
                 display: grid !important;
-                grid-template-columns: 60px 1fr !important;
+                grid-template-columns: 60px 1fr auto !important;
                 grid-template-rows: auto auto !important;
                 gap: 10px !important;
                 padding: 0.75rem 0.25rem !important;
-                align-items: start !important;
+                align-items: center !important;
             }
 
             .item-row-white:hover {
@@ -1312,7 +1312,7 @@
             }
 
             .item-row-white .item-info {
-                grid-column: 2 !important;
+                grid-column: 2 / span 2 !important;
                 grid-row: 1 !important;
             }
 
@@ -1325,6 +1325,7 @@
                 grid-row: 2 !important;
                 margin-top: 4px !important;
                 font-size: 0.78rem !important;
+                justify-self: start !important;
             }
 
             .item-row-white .qty-pill {
@@ -1341,16 +1342,18 @@
             }
 
             .item-row-white .price-col {
-                grid-column: 2 !important;
+                grid-column: 3 !important;
                 grid-row: 2 !important;
                 text-align: right !important;
                 align-self: center !important;
                 margin-left: 0 !important;
                 margin-top: 4px !important;
+                justify-self: end !important;
             }
 
             .item-row-white .price-main {
-                font-size: 1rem !important;
+                font-size: 0.95rem !important;
+                font-weight: 800 !important;
             }
 
             .item-row-white .price-strike {
