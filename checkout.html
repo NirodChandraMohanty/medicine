@@ -1323,22 +1323,52 @@
             .item-row-white .qty-capsule-wrapper {
                 grid-column: 2 !important;
                 grid-row: 2 !important;
-                margin-top: 4px !important;
-                font-size: 0.78rem !important;
+                margin-top: 6px !important;
+                font-size: 0.82rem !important;
                 justify-self: start !important;
+                display: flex !important;
+                align-items: center !important;
+                gap: 10px !important;
             }
 
             .item-row-white .qty-pill {
-                padding: 2px 4px !important;
+                padding: 4px 8px !important;
+                gap: 6px !important;
+                display: flex !important;
+                align-items: center !important;
+                background: rgba(255, 255, 255, 0.08) !important;
+                border-radius: 24px !important;
             }
 
             .item-row-white .qty-pill button {
-                padding: 1px 6px !important;
-                font-size: 0.85rem !important;
+                padding: 0 !important;
+                font-size: 1.25rem !important;
+                font-weight: 800 !important;
+                min-width: 32px !important;
+                min-height: 32px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                background: rgba(255, 255, 255, 0.06) !important;
+                border-radius: 50% !important;
+                color: white !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                touch-action: manipulation !important;
+                transition: all 0.15s ease !important;
+            }
+
+            .item-row-white .qty-pill button:active {
+                background: var(--mint) !important;
+                color: black !important;
+                transform: scale(0.9);
             }
 
             .item-row-white .qty-pill span {
-                width: 18px !important;
+                width: 24px !important;
+                font-size: 1.05rem !important;
+                font-weight: 800 !important;
+                text-align: center !important;
+                display: inline-block !important;
             }
 
             .item-row-white .price-col {
