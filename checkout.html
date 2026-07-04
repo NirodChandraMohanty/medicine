@@ -643,6 +643,7 @@
         }
 
         .glass-card {
+            position: relative !important;
             background: var(--bg-card);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -1192,7 +1193,9 @@
         }
 
         @media (max-width: 576px) {
-            html, body {
+
+            html,
+            body {
                 overflow-x: hidden !important;
                 width: 100% !important;
             }
