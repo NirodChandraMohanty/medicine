@@ -317,14 +317,15 @@
             font-weight: 800;
         }
 
-        /* White container for left column layout (exactly matches screenshot) */
         .white-card {
-            background: #ffffff;
-            color: #1a1a1a;
+            background: var(--bg-card) !important;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(0, 255, 204, 0.12) !important;
+            color: var(--text-main) !important;
             border-radius: 24px;
             padding: 2rem;
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35) !important;
             transition: all 0.3s ease;
         }
 
@@ -423,7 +424,7 @@
             align-items: center;
             gap: 1.25rem;
             padding: 1.25rem;
-            border-bottom: 1px solid #f1f3f6;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             border-radius: 16px;
         }
@@ -433,20 +434,20 @@
         }
 
         .item-row-white:hover {
-            background: #f8fafc;
+            background: rgba(255, 255, 255, 0.04);
             transform: translateX(6px);
         }
 
         .item-row-white .item-img-box {
             width: 76px;
             height: 76px;
-            border: 1px solid #e2e8f0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #ffffff;
-            color: #2563eb;
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--mint);
             font-size: 1.9rem;
             flex-shrink: 0;
             transition: all 0.3s ease;
@@ -454,7 +455,7 @@
         }
 
         .item-row-white:hover .item-img-box {
-            border-color: #2563eb;
+            border-color: var(--mint);
             transform: scale(1.05);
         }
 
@@ -465,20 +466,20 @@
         .item-row-white .item-title {
             font-size: 1.1rem;
             font-weight: 800;
-            color: #2563eb;
+            color: white;
             margin: 0 0 6px;
         }
 
         .item-row-white .item-meta {
             font-size: 0.82rem;
-            color: #6b7280;
+            color: var(--text-muted);
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
         }
 
         .item-row-white .item-meta span strong {
-            color: #1a1a1a;
+            color: white;
         }
 
         .item-row-white .qty-capsule-wrapper {
@@ -486,7 +487,7 @@
             align-items: center;
             gap: 8px;
             font-size: 0.85rem;
-            color: #6b7280;
+            color: var(--text-muted);
             font-weight: 700;
             flex-shrink: 0;
         }
@@ -494,16 +495,16 @@
         .item-row-white .qty-pill {
             display: flex;
             align-items: center;
-            background: #f1f5f9;
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 20px;
             padding: 3px 6px;
-            border: 1px solid #e2e8f0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .item-row-white .qty-pill button {
             background: transparent;
             border: none;
-            color: #0f172a;
+            color: white;
             font-weight: 800;
             cursor: pointer;
             padding: 2px 8px;
@@ -513,12 +514,12 @@
 
         .item-row-white .qty-pill button:hover {
             transform: scale(1.2);
-            color: #2563eb;
+            color: var(--mint);
         }
 
         .item-row-white .qty-pill span {
             font-weight: 800;
-            color: #0f172a;
+            color: white;
             width: 22px;
             text-align: center;
         }
@@ -532,12 +533,12 @@
         .item-row-white .price-main {
             font-size: 1.2rem;
             font-weight: 800;
-            color: #0f172a;
+            color: white;
         }
 
         .item-row-white .price-strike {
             font-size: 0.82rem;
-            color: #94a3b8;
+            color: var(--text-muted);
             text-decoration: line-through;
             margin-top: 2px;
         }
@@ -546,9 +547,9 @@
         .saved-title-black {
             font-size: 1.25rem;
             font-weight: 800;
-            color: #0f172a;
+            color: white;
             margin: 2.25rem 0 1.25rem;
-            border-top: 1px solid #f1f3f6;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
             padding-top: 1.75rem;
             text-transform: capitalize;
         }
@@ -560,8 +561,8 @@
         }
 
         .saved-card-white {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 18px;
             padding: 1.1rem;
             position: relative;
@@ -570,34 +571,35 @@
         }
 
         .saved-card-white:hover {
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
-            border-color: #2563eb;
+            box-shadow: 0 12px 25px rgba(0, 255, 204, 0.08);
+            border-color: var(--mint);
             transform: translateY(-6px);
+            background: rgba(255, 255, 255, 0.04);
         }
 
         .saved-card-white .saved-img {
             height: 110px;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.2rem;
-            color: #2563eb;
+            color: var(--mint);
             margin-bottom: 0.85rem;
             transition: all 0.3s ease;
         }
 
         .saved-card-white:hover .saved-img {
             transform: scale(1.03);
-            background: #f1f5f9;
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .saved-card-white .saved-name {
             font-weight: 800;
             font-size: 0.92rem;
-            color: #0f172a;
+            color: white;
             margin-bottom: 2px;
             white-space: nowrap;
             overflow: hidden;
@@ -606,14 +608,14 @@
 
         .saved-card-white .saved-desc {
             font-size: 0.75rem;
-            color: #64748b;
+            color: var(--text-muted);
             margin-bottom: 8px;
         }
 
         .saved-card-white .saved-price {
             font-weight: 800;
             font-size: 1rem;
-            color: #0f172a;
+            color: white;
         }
 
         .saved-card-actions {
@@ -629,9 +631,9 @@
             width: 28px;
             height: 28px;
             border-radius: 50%;
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            color: #64748b;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1622,21 +1624,21 @@
                         <!-- Total Payable Amount Breakdown Card -->
                         <div class="white-card animate-fade-up delay-400" id="breakdownCard">
                             <div class="right-card-title"
-                                style="border-bottom: 1px solid #f1f3f6; padding-bottom: 0.75rem; margin-bottom: 1rem; color: #1a1a1a; font-weight: 800;">
+                                style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.75rem; margin-bottom: 1rem; color: white; font-weight: 800;">
                                 Total Payable Amount
                             </div>
                             <div class="payable-details-card">
-                                <div class="payable-row" style="color: #6b7280; font-weight: 600; font-size: 0.95rem;">
+                                <div class="payable-row" style="color: var(--text-muted); font-weight: 600; font-size: 0.95rem;">
                                     <span><i class="fa-solid fa-list-check" style="color: var(--mint); margin-right: 8px;"></i> Subtotal</span>
-                                    <span id="breakdownSubtotal" style="color: #1a1a1a; font-weight: 800;">₹0.00</span>
+                                    <span id="breakdownSubtotal" style="color: white; font-weight: 800;">₹0.00</span>
                                 </div>
-                                <div class="payable-row promo-applied" style="color: #6b7280; font-weight: 600; font-size: 0.95rem;">
+                                <div class="payable-row promo-applied" style="color: var(--text-muted); font-weight: 600; font-size: 0.95rem;">
                                     <span><i class="fa-solid fa-tags" style="color: var(--mint); margin-right: 8px;"></i> Discount</span>
                                     <span id="breakdownDiscount" style="color: var(--mint); font-weight: 800;">₹0.00</span>
                                 </div>
-                                <div class="payable-row" style="color: #6b7280; font-weight: 600; font-size: 0.95rem;">
+                                <div class="payable-row" style="color: var(--text-muted); font-weight: 600; font-size: 0.95rem;">
                                     <span><i class="fa-solid fa-truck" style="color: var(--mint); margin-right: 8px;"></i> Shipping</span>
-                                    <span id="breakdownShipping" style="color: #1a1a1a; font-weight: 800;">FREE</span>
+                                    <span id="breakdownShipping" style="color: white; font-weight: 800;">FREE</span>
                                 </div>
                             </div>
 
