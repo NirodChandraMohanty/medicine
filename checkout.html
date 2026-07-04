@@ -69,6 +69,25 @@
             width: 100% !important;
         }
 
+        /* --- ADVANCED PREMIUM ANIMATIONS --- */
+        .animate-fade-up {
+            opacity: 0;
+            transform: translateY(25px);
+            animation: fadeUpIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+
+        @keyframes fadeUpIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .site-header.scrolled {
             background: rgba(2, 20, 15, 0.85);
             backdrop-filter: blur(20px);
@@ -1533,7 +1552,7 @@
 
                 <!-- Left Column: Delivering To, Purchase items, Saved items -->
                 <div class="purchase-left-col">
-                    <div class="white-card">
+                    <div class="white-card animate-fade-up delay-100">
 
                         <!-- Delivering To Address Card (Black capsule inside white container) -->
                         <div class="delivering-to-dark">
@@ -1577,7 +1596,7 @@
                     <div class="right-column-wrapper">
 
                         <!-- Add a Note Card -->
-                        <div class="glass-card" style="padding: 1.5rem; border-radius: 18px;">
+                        <div class="glass-card animate-fade-up delay-200" style="padding: 1.5rem; border-radius: 18px;">
                             <div class="right-card-title">
                                 Add a Note (Optional)
                                 <span class="char-counter" id="noteCharCounter">0/150</span>
@@ -1589,7 +1608,7 @@
                         </div>
 
                         <!-- Apply Coupon Card -->
-                        <div class="glass-card" style="padding: 1.5rem; border-radius: 18px;">
+                        <div class="glass-card animate-fade-up delay-300" style="padding: 1.5rem; border-radius: 18px;">
                             <div class="right-card-title">Apply Coupon</div>
                             <div class="coupon-input-group">
                                 <input type="text" id="couponCode" class="coupon-input-white" placeholder="Coupon code">
@@ -1601,7 +1620,7 @@
                         </div>
 
                         <!-- Total Payable Amount Breakdown Card -->
-                        <div class="white-card" id="breakdownCard">
+                        <div class="white-card animate-fade-up delay-400" id="breakdownCard">
                             <div class="right-card-title"
                                 style="border-bottom: 1px solid #f1f3f6; padding-bottom: 0.75rem; margin-bottom: 1rem; color: #1a1a1a; font-weight: 800;">
                                 Total Payable Amount
@@ -1955,6 +1974,29 @@
         let activeDiscountRate = 0.0;
         let appliedPromoCode = "";
 
+        function getMedicineImage(name) {
+            const n = name.toLowerCase();
+            if (n.includes("paracetamol") || n.includes("brufen") || n.includes("combiflam") || n.includes("crocin") || n.includes("calpol")) {
+                return "images/medicines/paracetamol.png";
+            }
+            if (n.includes("antibiotic") || n.includes("amoxicillin") || n.includes("azithromycin")) {
+                return "images/medicines/antibiotic.png";
+            }
+            if (n.includes("vitamin") || n.includes("calcium") || n.includes("multivitamin") || n.includes("zinc")) {
+                return "images/medicines/vitamins.png";
+            }
+            if (n.includes("stomach") || n.includes("antacid") || n.includes("pantocid") || n.includes("digene") || n.includes("gaspills")) {
+                return "images/medicines/stomach.png";
+            }
+            if (n.includes("syrup") || n.includes("cough") || n.includes("benadryl")) {
+                return "images/medicines/syrup.png";
+            }
+            if (n.includes("ayurvedic") || n.includes("ashwagandha") || n.includes("honeybush") || n.includes("herbal") || n.includes("tea")) {
+                return "images/medicines/ayurvedic.png";
+            }
+            return "images/medicines/paracetamol.png";
+        }
+
         function renderPurchasePage() {
             try {
                 const itemsList = document.getElementById("purchaseItemsList");
@@ -1994,11 +2036,12 @@
                         subtotal += (item.price || 0) * (item.qty || 0);
                         const originalPriceVal = ((item.price || 0) * 1.15); // mock standard pricing crossed out
 
+                        const medImgSrc = item.image || getMedicineImage(item.name);
                         const itemDiv = document.createElement("div");
                         itemDiv.className = "item-row-white";
                         itemDiv.innerHTML = `
                             <div class="item-img-box">
-                                <i class="fa-solid fa-pills"></i>
+                                <img src="${medImgSrc}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 12px;">
                             </div>
                             <div class="item-info">
                                 <h4 class="item-title">${item.name}</h4>
@@ -2078,7 +2121,7 @@
                             <div class="saved-card-actions">
                                 <button onclick="moveMockToCart('Honeybush Tea', 140.00)" class="saved-action-btn" title="Add to Cart"><i class="fa-solid fa-cart-plus"></i></button>
                             </div>
-                            <div class="saved-img"><i class="fa-solid fa-mug-hot"></i></div>
+                            <div class="saved-img"><img src="images/medicines/ayurvedic.png" alt="Honeybush Tea" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;"></div>
                             <div class="saved-name">Honeybush Tea Pack</div>
                             <div class="saved-desc">Caffeine Free Honeybush Tea</div>
                             <div class="saved-price">₹140.00</div>
@@ -2087,7 +2130,7 @@
                             <div class="saved-card-actions">
                                 <button onclick="moveMockToCart('Amlodipine 5mg', 90.00)" class="saved-action-btn" title="Add to Cart"><i class="fa-solid fa-cart-plus"></i></button>
                             </div>
-                            <div class="saved-img"><i class="fa-solid fa-file-prescription"></i></div>
+                            <div class="saved-img"><img src="images/medicines/paracetamol.png" alt="Amlodipine" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;"></div>
                             <div class="saved-name">Amlodipine 5mg</div>
                             <div class="saved-desc">Blood Pressure Regulator</div>
                             <div class="saved-price">₹90.00</div>
@@ -2098,6 +2141,7 @@
 
                 listEl.innerHTML = "";
                 wishlist.forEach(item => {
+                    const wishlistImgSrc = item.image || getMedicineImage(item.name);
                     const card = document.createElement("div");
                     card.className = "saved-card-white";
                     card.innerHTML = `
@@ -2105,7 +2149,9 @@
                             <button onclick="moveToCartFromSaved('${item.name}', ${item.price})" class="saved-action-btn" title="Move to Cart"><i class="fa-solid fa-cart-plus"></i></button>
                             <button onclick="removeFromSavedLater('${item.name}')" class="saved-action-btn btn-delete-saved" title="Delete"><i class="fa-solid fa-trash"></i></button>
                         </div>
-                        <div class="saved-img"><i class="fa-solid fa-pills"></i></div>
+                        <div class="saved-img">
+                            <img src="${wishlistImgSrc}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                        </div>
                         <div class="saved-name">${item.name}</div>
                         <div class="saved-desc">Generic Prescription Formula</div>
                         <div class="saved-price">₹${(item.price || 0).toFixed(2)}</div>

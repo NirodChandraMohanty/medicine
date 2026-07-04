@@ -2404,7 +2404,8 @@
                 cart.push({
                     name: itemKey,
                     price: currentPrice,
-                    qty: quantityVal
+                    qty: quantityVal,
+                    image: (activeMedObj.images && activeMedObj.images[0]) ? activeMedObj.images[0] : 'images/medicines/paracetamol.png'
                 });
             }
 
