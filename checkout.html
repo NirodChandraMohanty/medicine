@@ -1293,8 +1293,8 @@
                 display: grid !important;
                 grid-template-columns: 60px 1fr auto !important;
                 grid-template-rows: auto auto !important;
-                gap: 10px !important;
-                padding: 0.75rem 0.25rem !important;
+                gap: 12px !important;
+                padding: 1rem 0.85rem !important;
                 align-items: center !important;
             }
 
@@ -2423,7 +2423,7 @@
                     itemsList.innerHTML = "";
                     let subtotal = 0;
 
-                    cart.forEach(item => {
+                    cart.forEach((item, i) => {
                         subtotal += (item.price || 0) * (item.qty || 0);
                         const originalPriceVal = ((item.price || 0) * 1.15); // mock standard pricing crossed out
 
@@ -2432,7 +2432,7 @@
                         itemDiv.className = "item-row-white";
                         itemDiv.innerHTML = `
                             <div class="item-img-box">
-                                <img src="${medImgSrc}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 12px;">
+                                <img src="${medImgSrc}" onerror="this.onerror=null; this.src='images/medicines/paracetamol.png';" alt="${item.name}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 12px;">
                             </div>
                             <div class="item-info">
                                 <h4 class="item-title">${item.name}</h4>
@@ -2444,9 +2444,9 @@
                             <div class="qty-capsule-wrapper">
                                 <span>Qty</span>
                                 <div class="qty-pill">
-                                    <button onclick="changeQtyCheckout('${item.name}', -1)">-</button>
+                                    <button onclick="changeQtyCheckoutByIndex(${i}, -1)">-</button>
                                     <span>${item.qty}</span>
-                                    <button onclick="changeQtyCheckout('${item.name}', 1)">+</button>
+                                    <button onclick="changeQtyCheckoutByIndex(${i}, 1)">+</button>
                                 </div>
                             </div>
                             <div class="price-col">
@@ -2466,7 +2466,7 @@
             }
         }
 
-        window.changeQtyCheckout = function (name, amount) {
+        window.changeQtyCheckoutByIndex = function (idx, amount) {
             try {
                 let cart = [];
                 try {
@@ -2476,16 +2476,15 @@
                     }
                 } catch (e) { }
 
-                let item = cart.find(x => x.name === name);
-                if (item) {
-                    item.qty += amount;
-                    if (item.qty <= 0) {
-                        cart = cart.filter(x => x.name !== name);
+                if (cart[idx]) {
+                    cart[idx].qty += amount;
+                    if (cart[idx].qty <= 0) {
+                        cart.splice(idx, 1);
                     }
+                    localStorage.setItem("avijit_cart", JSON.stringify(cart));
+                    renderPurchasePage();
+                    updateCartBadge();
                 }
-                localStorage.setItem("avijit_cart", JSON.stringify(cart));
-                renderPurchasePage();
-                updateCartBadge();
             } catch (e) {
                 console.error(e);
             }
