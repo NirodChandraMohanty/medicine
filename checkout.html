@@ -789,21 +789,17 @@
         }
 
         .bottom-payable-panel {
-            background: rgba(5, 34, 28, 0.8);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+            background: #111111 !important;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 1.25rem 1.5rem;
+            border-radius: 999px !important;
+            padding: 0.5rem 0.5rem 0.5rem 1.5rem !important;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
-        }
-
-        .panel-price-box {
-            display: flex;
-            flex-direction: column;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+            margin-top: 1.5rem;
+            box-sizing: border-box;
+            width: 100%;
         }
 
         .panel-price-val {
@@ -813,31 +809,23 @@
             letter-spacing: -0.5px;
         }
 
-        .panel-price-lbl {
-            font-size: 0.72rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            font-weight: 600;
-        }
-
         .btn-make-payment {
             position: relative;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             background: #2563eb;
             color: white;
             border: none;
-            padding: 0.95rem 2.25rem;
+            padding: 0.85rem 1.75rem;
             border-radius: 999px;
-            font-weight: 800;
-            font-size: 1.05rem;
+            font-weight: 700;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.25);
             text-decoration: none;
         }
 
@@ -1363,22 +1351,35 @@
 
             /* Payment Panel Responsive */
             .bottom-payable-panel {
-                flex-direction: column;
-                gap: 12px;
-                text-align: center;
-                align-items: stretch;
-                padding: 1rem;
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                padding: 0.4rem 0.4rem 0.4rem 1.25rem !important;
+                border-radius: 999px !important;
+                gap: 8px !important;
+                height: auto !important;
+                margin-top: 1.25rem !important;
+                background: #111111 !important;
             }
 
-            .panel-price-box {
-                align-items: center;
-                margin-bottom: 2px;
+            .panel-price-val {
+                font-size: 1.25rem !important;
             }
 
             .btn-make-payment {
-                width: 100%;
-                padding: 0.85rem 1.5rem;
-                font-size: 0.95rem;
+                width: auto !important;
+                padding: 0.7rem 1.25rem !important;
+                font-size: 0.9rem !important;
+                margin: 0 !important;
+                height: auto !important;
+                position: relative !important;
+                display: flex !important;
+                box-sizing: border-box !important;
+            }
+
+            #breakdownCard {
+                padding-bottom: 1.5rem !important;
             }
 
             .footer-grid {
@@ -1600,32 +1601,29 @@
                         </div>
 
                         <!-- Total Payable Amount Breakdown Card -->
-                        <div class="glass-card" style="padding: 1.5rem; border-radius: 18px;" id="breakdownCard">
+                        <div class="white-card" id="breakdownCard">
                             <div class="right-card-title"
-                                style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.75rem; margin-bottom: 1rem;">
+                                style="border-bottom: 1px solid #f1f3f6; padding-bottom: 0.75rem; margin-bottom: 1rem; color: #1a1a1a; font-weight: 800;">
                                 Total Payable Amount
                             </div>
                             <div class="payable-details-card">
-                                <div class="payable-row">
-                                    <span><i class="fa-solid fa-list-check"></i> Subtotal</span>
-                                    <span id="breakdownSubtotal">₹0.00</span>
+                                <div class="payable-row" style="color: #6b7280; font-weight: 600; font-size: 0.95rem;">
+                                    <span><i class="fa-solid fa-list-check" style="color: var(--mint); margin-right: 8px;"></i> Subtotal</span>
+                                    <span id="breakdownSubtotal" style="color: #1a1a1a; font-weight: 800;">₹0.00</span>
                                 </div>
-                                <div class="payable-row promo-applied">
-                                    <span><i class="fa-solid fa-tags"></i> Discount</span>
-                                    <span id="breakdownDiscount">₹0.00</span>
+                                <div class="payable-row promo-applied" style="color: #6b7280; font-weight: 600; font-size: 0.95rem;">
+                                    <span><i class="fa-solid fa-tags" style="color: var(--mint); margin-right: 8px;"></i> Discount</span>
+                                    <span id="breakdownDiscount" style="color: var(--mint); font-weight: 800;">₹0.00</span>
                                 </div>
-                                <div class="payable-row">
-                                    <span><i class="fa-solid fa-truck"></i> Shipping</span>
-                                    <span id="breakdownShipping">FREE</span>
+                                <div class="payable-row" style="color: #6b7280; font-weight: 600; font-size: 0.95rem;">
+                                    <span><i class="fa-solid fa-truck" style="color: var(--mint); margin-right: 8px;"></i> Shipping</span>
+                                    <span id="breakdownShipping" style="color: #1a1a1a; font-weight: 800;">FREE</span>
                                 </div>
                             </div>
 
                             <!-- Bottom Summary sticky panel -->
                             <div class="bottom-payable-panel">
-                                <div class="panel-price-box">
-                                    <span class="panel-price-val" id="finalPayableAmount">₹0.00</span>
-                                    <span class="panel-price-lbl">Total Payable</span>
-                                </div>
+                                <span class="panel-price-val" id="finalPayableAmount">₹0.00</span>
                                 <button onclick="triggerPayment()" class="btn-make-payment">
                                     Make Payment <i class="fa-solid fa-chevron-right" style="font-size: 0.85rem;"></i>
                                 </button>
