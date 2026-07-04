@@ -75,11 +75,26 @@
             transform: translateY(25px);
             animation: fadeUpIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        .delay-100 { animation-delay: 100ms; }
-        .delay-200 { animation-delay: 200ms; }
-        .delay-300 { animation-delay: 300ms; }
-        .delay-400 { animation-delay: 400ms; }
-        .delay-500 { animation-delay: 500ms; }
+
+        .delay-100 {
+            animation-delay: 100ms;
+        }
+
+        .delay-200 {
+            animation-delay: 200ms;
+        }
+
+        .delay-300 {
+            animation-delay: 300ms;
+        }
+
+        .delay-400 {
+            animation-delay: 400ms;
+        }
+
+        .delay-500 {
+            animation-delay: 500ms;
+        }
 
         @keyframes fadeUpIn {
             to {
@@ -1420,6 +1435,221 @@
                 padding: 4rem 0 2rem !important;
             }
         }
+
+        /* --- Address Side Drawer --- */
+        .address-drawer {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            height: 100%;
+            background: rgba(10, 25, 20, 0.95);
+            backdrop-filter: blur(35px);
+            -webkit-backdrop-filter: blur(35px);
+            border-left: 1px solid rgba(0, 255, 204, 0.15);
+            box-shadow: -15px 0 45px rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 2.5rem 2rem;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .address-drawer.active {
+            right: 0;
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .drawer-title-box h3 {
+            margin: 0;
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .drawer-title-box p {
+            margin: 6px 0 0 0;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .drawer-close-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            line-height: 1;
+        }
+
+        .drawer-close-btn:hover {
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .add-address-dashed {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 2px dashed rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 1.15rem;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .add-address-dashed:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--mint);
+            color: var(--mint);
+            transform: translateY(-2px);
+        }
+
+        .address-item-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 1.25rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            box-sizing: border-box;
+            width: 100%;
+            text-align: left;
+        }
+
+        .address-item-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-3px);
+        }
+
+        .address-item-card.selected {
+            border-color: #2563eb !important;
+            background: rgba(37, 99, 235, 0.08) !important;
+        }
+
+        .address-icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .address-item-card.selected .address-icon-box {
+            background: rgba(37, 99, 235, 0.2);
+            color: #2563eb;
+        }
+
+        .address-details-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .address-name-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .address-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .address-check-indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.72rem;
+            color: transparent;
+            transition: all 0.25s ease;
+            flex-shrink: 0;
+        }
+
+        .address-item-card.selected .address-check-indicator {
+            border-color: #00e676;
+            background: #00e676;
+            color: white;
+        }
+
+        .address-details-text {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin: 4px 0 0 0;
+        }
+
+        .address-phone {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin: 2px 0 0 0;
+        }
+
+        @media (max-width: 576px) {
+            .address-drawer {
+                width: 100% !important;
+                right: -100% !important;
+                padding: 2rem 1.5rem !important;
+            }
+            .address-drawer.active {
+                right: 0 !important;
+            }
+        }
     </style>
 </head>
 
@@ -1628,16 +1858,23 @@
                                 Total Payable Amount
                             </div>
                             <div class="payable-details-card">
-                                <div class="payable-row" style="color: var(--text-muted); font-weight: 600; font-size: 0.95rem;">
-                                    <span><i class="fa-solid fa-list-check" style="color: var(--mint); margin-right: 8px;"></i> Subtotal</span>
+                                <div class="payable-row"
+                                    style="color: var(--text-muted); font-weight: 600; font-size: 0.95rem;">
+                                    <span><i class="fa-solid fa-list-check"
+                                            style="color: var(--mint); margin-right: 8px;"></i> Subtotal</span>
                                     <span id="breakdownSubtotal" style="color: white; font-weight: 800;">₹0.00</span>
                                 </div>
-                                <div class="payable-row promo-applied" style="color: var(--text-muted); font-weight: 600; font-size: 0.95rem;">
-                                    <span><i class="fa-solid fa-tags" style="color: var(--mint); margin-right: 8px;"></i> Discount</span>
-                                    <span id="breakdownDiscount" style="color: var(--mint); font-weight: 800;">₹0.00</span>
+                                <div class="payable-row promo-applied"
+                                    style="color: var(--text-muted); font-weight: 600; font-size: 0.95rem;">
+                                    <span><i class="fa-solid fa-tags"
+                                            style="color: var(--mint); margin-right: 8px;"></i> Discount</span>
+                                    <span id="breakdownDiscount"
+                                        style="color: var(--mint); font-weight: 800;">₹0.00</span>
                                 </div>
-                                <div class="payable-row" style="color: var(--text-muted); font-weight: 600; font-size: 0.95rem;">
-                                    <span><i class="fa-solid fa-truck" style="color: var(--mint); margin-right: 8px;"></i> Shipping</span>
+                                <div class="payable-row"
+                                    style="color: var(--text-muted); font-weight: 600; font-size: 0.95rem;">
+                                    <span><i class="fa-solid fa-truck"
+                                            style="color: var(--mint); margin-right: 8px;"></i> Shipping</span>
                                     <span id="breakdownShipping" style="color: white; font-weight: 800;">FREE</span>
                                 </div>
                             </div>
@@ -1738,30 +1975,49 @@
         </div>
     </footer>
 
-    <!-- Edit Address Modal -->
-    <div id="addressModal" class="modal-overlay">
-        <div class="glass-card modal-content" style="background: #05221c; border-color: var(--border-color);">
-            <h3 style="margin-top: 0; margin-bottom: 1.5rem; font-weight: 800; font-size: 1.25rem;">Update Delivery
-                Address</h3>
-            <div class="form-group">
-                <label for="editName">Receiver Full Name</label>
-                <input type="text" id="editName" class="form-control" placeholder="E.g. Loresh Mohanty">
+    <!-- Edit Address Drawer Overlay -->
+    <div class="drawer-overlay" id="addressDrawerOverlay" onclick="closeAddressDrawer()"></div>
+
+    <!-- Edit Address Drawer (Mockup Design) -->
+    <div class="address-drawer" id="addressDrawer">
+        <!-- Header -->
+        <div class="drawer-header">
+            <div class="drawer-title-box">
+                <h3>Delivery Address</h3>
+                <p>Select or add an address for your delivery</p>
             </div>
-            <div class="form-group">
-                <label for="editMobile">Mobile Number</label>
-                <input type="tel" id="editMobile" class="form-control" placeholder="E.g. 7855870349">
+            <button onclick="closeAddressDrawer()" class="drawer-close-btn">&times;</button>
+        </div>
+
+        <!-- Add New Address dotted button -->
+        <button onclick="toggleAddAddressForm()" class="add-address-dashed">
+            <i class="fa-solid fa-plus"></i> Add New Address
+        </button>
+
+        <!-- Inline Add New Address Form (Initially hidden) -->
+        <div id="addAddressFormContainer" style="display: none; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 1.25rem; margin-bottom: 0.5rem; transition: all 0.3s ease;">
+            <h4 style="margin: 0 0 1rem 0; color: white; font-size: 1rem;">Add Address Details</h4>
+            <div class="form-group" style="margin-bottom: 0.85rem;">
+                <label style="color: var(--text-muted); font-size: 0.78rem; display:block; margin-bottom:4px;">Full Name</label>
+                <input type="text" id="newAddrName" class="form-control" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 0.6rem 0.8rem; border-radius: 8px; width:100%; box-sizing:border-box;" placeholder="E.g. Loresh Mohanty">
             </div>
-            <div class="form-group">
-                <label for="editAddress">Complete Shipping Address</label>
-                <textarea id="editAddress" class="form-control" rows="3"
-                    placeholder="E.g. Kapileshwar, Khordha, Odisha, 751002"></textarea>
+            <div class="form-group" style="margin-bottom: 0.85rem;">
+                <label style="color: var(--text-muted); font-size: 0.78rem; display:block; margin-bottom:4px;">Mobile Number</label>
+                <input type="tel" id="newAddrMobile" class="form-control" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 0.6rem 0.8rem; border-radius: 8px; width:100%; box-sizing:border-box;" placeholder="E.g. 7855870349">
             </div>
-            <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
-                <button onclick="saveAddress()" class="btn-checkout"
-                    style="padding: 0.8rem; margin: 0; font-size: 0.95rem;">Save Changes</button>
-                <button onclick="closeAddressModal()" class="btn-continue-shopping"
-                    style="padding: 0.8rem; margin: 0;">Cancel</button>
+            <div class="form-group" style="margin-bottom: 1rem;">
+                <label style="color: var(--text-muted); font-size: 0.78rem; display:block; margin-bottom:4px;">Complete Address</label>
+                <textarea id="newAddrText" class="form-control" rows="2" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 0.6rem 0.8rem; border-radius: 8px; width:100%; box-sizing:border-box; resize:none;" placeholder="E.g. Kapileshwar, Khordha, Odisha, 751002"></textarea>
             </div>
+            <div style="display:flex; gap: 8px;">
+                <button onclick="saveNewAddress()" class="btn-checkout" style="padding: 0.6rem 1rem; font-size: 0.85rem; border-radius: 8px; margin:0; width: auto;">Add Address</button>
+                <button onclick="toggleAddAddressForm()" class="btn-continue-shopping" style="padding: 0.6rem 1rem; font-size: 0.85rem; border-radius: 8px; margin:0; background:rgba(255,255,255,0.05); color:white; border:1px solid rgba(255,255,255,0.1); width: auto;">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Address Cards List container -->
+        <div id="addressCardsList" style="display:flex; flex-direction:column; gap:1rem; overflow-y:auto; flex: 1; padding-right: 4px;">
+            <!-- Dynamic Address list cards will render here -->
         </div>
     </div>
 
@@ -1897,78 +2153,181 @@
             }
         });
 
+        // Setup Address list and Drawer controls
+        let addresses = [];
+
+        function initAddresses() {
+            try {
+                const stored = localStorage.getItem("avijit_addresses");
+                if (stored) {
+                    addresses = JSON.parse(stored);
+                } else {
+                    // Default values matching mockup
+                    addresses = [
+                        {
+                            name: "Loresh",
+                            mobile: "7855870349",
+                            address: "Kapileshwar, Khordha, Odisha, 751002, India",
+                            selected: true
+                        },
+                        {
+                            name: "Neheru",
+                            mobile: "7855870349",
+                            address: "Kapileshwar, Khordha, Odisha, 751002, India",
+                            selected: false
+                        }
+                    ];
+                    localStorage.setItem("avijit_addresses", JSON.stringify(addresses));
+                }
+            } catch (e) {
+                console.error("initAddresses error:", e);
+            }
+        }
+
         // Setup Delivery Info
         function setupAddressInfo(user) {
             try {
-                let savedAddr = null;
-                try {
-                    savedAddr = JSON.parse(localStorage.getItem("avijit_delivery_address"));
-                } catch (e) { }
+                initAddresses();
+                const selectedAddr = addresses.find(a => a.selected) || addresses[0];
 
                 const nameEl = document.getElementById("displayAddrName");
                 const mobileEl = document.getElementById("displayAddrMobile");
                 const textEl = document.getElementById("displayAddrText");
 
-                if (savedAddr) {
-                    if (nameEl) nameEl.firstChild.textContent = savedAddr.name + " ";
-                    if (mobileEl) mobileEl.innerText = savedAddr.mobile;
-                    if (textEl) textEl.innerText = savedAddr.address;
-                } else if (user) {
-                    const fullName = `${user.fname} ${user.lname || ""}`.trim();
-                    if (nameEl) nameEl.firstChild.textContent = fullName + " ";
-                    if (mobileEl) mobileEl.innerText = user.mobile || "7855870349";
-                    if (textEl) textEl.innerText = "Kapileshwar, Khordha, Odisha, 751002";
+                if (selectedAddr) {
+                    if (nameEl) nameEl.firstChild.textContent = selectedAddr.name + " ";
+                    if (mobileEl) mobileEl.innerText = selectedAddr.mobile;
+                    if (textEl) textEl.innerText = selectedAddr.address;
                 }
             } catch (e) {
                 console.error("setupAddressInfo error:", e);
             }
         }
 
-        // Address modal controls
         window.openAddressModal = function () {
-            const modal = document.getElementById("addressModal");
-            const nameEl = document.getElementById("displayAddrName");
-            const mobileEl = document.getElementById("displayAddrMobile");
-            const textEl = document.getElementById("displayAddrText");
-
-            document.getElementById("editName").value = nameEl ? nameEl.firstChild.textContent.trim() : "";
-            document.getElementById("editMobile").value = mobileEl ? mobileEl.innerText.trim() : "";
-            document.getElementById("editAddress").value = textEl ? textEl.innerText.trim() : "";
-
-            if (modal) modal.classList.add("active");
+            // Keep original function name mapping to match HTML pencil click
+            window.openAddressDrawer();
         };
 
-        window.closeAddressModal = function () {
-            const modal = document.getElementById("addressModal");
-            if (modal) modal.classList.remove("active");
+        window.openAddressDrawer = function () {
+            initAddresses();
+            window.renderAddressDrawerList();
+            
+            const drawer = document.getElementById("addressDrawer");
+            const overlay = document.getElementById("addressDrawerOverlay");
+            if (drawer) drawer.classList.add("active");
+            if (overlay) overlay.classList.add("active");
         };
 
-        window.saveAddress = function () {
+        window.closeAddressDrawer = function () {
+            const drawer = document.getElementById("addressDrawer");
+            const overlay = document.getElementById("addressDrawerOverlay");
+            if (drawer) drawer.classList.remove("active");
+            if (overlay) overlay.classList.remove("active");
+            
+            // Hide add address form in case it was open
+            const formContainer = document.getElementById("addAddressFormContainer");
+            if (formContainer) formContainer.style.display = "none";
+        };
+
+        window.toggleAddAddressForm = function () {
+            const formContainer = document.getElementById("addAddressFormContainer");
+            if (formContainer) {
+                if (formContainer.style.display === "none") {
+                    formContainer.style.display = "block";
+                    // Clear inputs
+                    document.getElementById("newAddrName").value = "";
+                    document.getElementById("newAddrMobile").value = "";
+                    document.getElementById("newAddrText").value = "";
+                } else {
+                    formContainer.style.display = "none";
+                }
+            }
+        };
+
+        window.saveNewAddress = function () {
             try {
-                const name = document.getElementById("editName").value.trim();
-                const mobile = document.getElementById("editMobile").value.trim();
-                const address = document.getElementById("editAddress").value.trim();
+                const name = document.getElementById("newAddrName").value.trim();
+                const mobile = document.getElementById("newAddrMobile").value.trim();
+                const address = document.getElementById("newAddrText").value.trim();
 
                 if (!name || !mobile || !address) {
-                    showToast("error", "Failed", "Please fill in all address inputs.");
+                    showToast("error", "Input Error", "Please fill in all address details.");
                     return;
                 }
 
-                const addrObj = { name, mobile, address };
-                localStorage.setItem("avijit_delivery_address", JSON.stringify(addrObj));
+                // Add and set selected
+                addresses.forEach(a => a.selected = false);
+                addresses.push({
+                    name: name,
+                    mobile: mobile,
+                    address: address,
+                    selected: true
+                });
 
-                const nameEl = document.getElementById("displayAddrName");
-                const mobileEl = document.getElementById("displayAddrMobile");
-                const textEl = document.getElementById("displayAddrText");
-
-                if (nameEl) nameEl.firstChild.textContent = name + " ";
-                if (mobileEl) mobileEl.innerText = mobile;
-                if (textEl) textEl.innerText = address;
-
-                closeAddressModal();
-                showToast("success", "Address Updated", "Your delivery details have been refreshed.");
+                localStorage.setItem("avijit_addresses", JSON.stringify(addresses));
+                setupAddressInfo();
+                window.renderAddressDrawerList();
+                
+                // Hide Form
+                document.getElementById("addAddressFormContainer").style.display = "none";
+                showToast("success", "Success", "New delivery address has been added.");
             } catch (e) {
-                console.error(e);
+                console.error("saveNewAddress error:", e);
+            }
+        };
+
+        window.selectAddressIndex = function (idx) {
+            try {
+                addresses.forEach((a, i) => {
+                    a.selected = (i === idx);
+                });
+                
+                localStorage.setItem("avijit_addresses", JSON.stringify(addresses));
+                setupAddressInfo();
+                window.renderAddressDrawerList();
+                
+                // Close drawer with delay for feedback visual transition
+                setTimeout(() => {
+                    window.closeAddressDrawer();
+                    showToast("success", "Address Changed", "Delivery location updated.");
+                }, 300);
+            } catch (e) {
+                console.error("selectAddressIndex error:", e);
+            }
+        };
+
+        window.renderAddressDrawerList = function () {
+            try {
+                const listEl = document.getElementById("addressCardsList");
+                if (!listEl) return;
+                
+                listEl.innerHTML = "";
+                addresses.forEach((addr, i) => {
+                    const isSel = addr.selected ? "selected" : "";
+                    const card = document.createElement("div");
+                    card.className = `address-item-card ${isSel}`;
+                    card.setAttribute("onclick", `selectAddressIndex(${i})`);
+                    
+                    card.innerHTML = `
+                        <div class="address-icon-box">
+                            <i class="fa-solid fa-house"></i>
+                        </div>
+                        <div class="address-details-box">
+                            <div class="address-name-row">
+                                <span class="address-name">${addr.name}</span>
+                                <div class="address-check-indicator">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                            </div>
+                            <p class="address-details-text">${addr.address}</p>
+                            <span class="address-phone">${addr.mobile}</span>
+                        </div>
+                    `;
+                    listEl.appendChild(card);
+                });
+            } catch (e) {
+                console.error("renderAddressDrawerList error:", e);
             }
         };
 
