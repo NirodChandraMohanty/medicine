@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script>
         if (localStorage.getItem("avijit_logged_in") !== "true") {
@@ -8,23 +9,25 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - AVIJIT MEDICARE</title>
-    
+    <title>Contact Us - DAMODAR MEDICARE</title>
+
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+
     <!-- Main Style -->
     <link rel="stylesheet" href="css/style.css?v=48">
-    
+
     <style>
         :root {
-            --primary-dark: #f8b500; /* Gold */
+            --primary-dark: #f8b500;
+            /* Gold */
             --primary: #d49a00;
-            --primary-light: rgba(248, 181, 0, 0.1); 
+            --primary-light: rgba(248, 181, 0, 0.1);
             --mint: #1abc9c;
             --accent-orange: #f06a42;
             --bg-dark: #031410;
@@ -35,12 +38,44 @@
         }
 
         /* Sticky Header (From index.html) */
-        .site-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; transition: all 0.4s ease; background: transparent; }
-        body { padding-top: 130px; background-color: var(--bg-dark) !important; color: var(--text-main) !important; overflow-x: hidden; }
-        .site-header.scrolled { background: rgba(2, 20, 15, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-bottom: 1px solid rgba(0, 255, 204, 0.2); }
-        .site-header.scrolled .top-header { padding: 5px 0; }
-        .site-header.scrolled .nav-header { border-top: 1px solid rgba(255,255,255,0.05); }
-        @media (max-width: 768px) { body { padding-top: 80px; } }
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        body {
+            padding-top: 130px;
+            background-color: var(--bg-dark) !important;
+            color: var(--text-main) !important;
+            overflow-x: hidden;
+        }
+
+        .site-header.scrolled {
+            background: rgba(2, 20, 15, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        .site-header.scrolled .top-header {
+            padding: 5px 0;
+        }
+
+        .site-header.scrolled .nav-header {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 80px;
+            }
+        }
 
         /* --- CONTACT HERO SECTION --- */
         .contact-hero {
@@ -49,7 +84,7 @@
             text-align: center;
             overflow: hidden;
         }
-        
+
         /* Floating background orbs */
         .bg-orb {
             position: absolute;
@@ -60,6 +95,7 @@
             pointer-events: none;
             animation: pulse-orb 8s ease-in-out infinite alternate;
         }
+
         .orb-1 {
             width: 300px;
             height: 300px;
@@ -67,6 +103,7 @@
             top: 5%;
             left: 10%;
         }
+
         .orb-2 {
             width: 250px;
             height: 250px;
@@ -75,6 +112,7 @@
             right: 15%;
             animation-delay: -3s;
         }
+
         .orb-3 {
             width: 200px;
             height: 200px;
@@ -83,10 +121,22 @@
             right: 45%;
             animation-delay: -5s;
         }
+
         @keyframes pulse-orb {
-            0% { transform: scale(1) translate(0, 0); opacity: 0.12; }
-            50% { transform: scale(1.15) translate(15px, -15px); opacity: 0.2; }
-            100% { transform: scale(0.9) translate(-15px, 15px); opacity: 0.12; }
+            0% {
+                transform: scale(1) translate(0, 0);
+                opacity: 0.12;
+            }
+
+            50% {
+                transform: scale(1.15) translate(15px, -15px);
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: scale(0.9) translate(-15px, 15px);
+                opacity: 0.12;
+            }
         }
 
         .contact-title {
@@ -99,23 +149,32 @@
             -webkit-text-fill-color: transparent;
             animation: fadeInUp 0.8s ease forwards;
         }
-        .contact-title span { 
-            color: var(--primary-dark); 
-            -webkit-text-fill-color: var(--primary-dark); 
+
+        .contact-title span {
+            color: var(--primary-dark);
+            -webkit-text-fill-color: var(--primary-dark);
             text-shadow: 0 0 25px rgba(248, 181, 0, 0.3);
         }
+
         .contact-subtitle {
-            font-size: 1.2rem; 
-            color: rgba(255,255,255,0.7); 
-            max-width: 650px; 
-            margin: 0 auto; 
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 650px;
+            margin: 0 auto;
             line-height: 1.6;
             animation: fadeInUp 1s ease forwards;
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* --- CONTACT GRID --- */
@@ -127,7 +186,7 @@
             margin: 0 auto 6rem;
             padding: 0 20px;
         }
-        
+
         /* Form Side */
         .contact-form-card {
             background: var(--bg-card);
@@ -136,39 +195,45 @@
             border: 1px solid var(--border-color);
             border-radius: 30px;
             padding: 3.5rem 3rem;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
             position: relative;
             overflow: hidden;
             transition: all 0.4s ease;
         }
+
         .contact-form-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 4px;
             background: linear-gradient(90deg, var(--primary-dark), var(--mint));
             opacity: 0.8;
         }
+
         .contact-form-card:hover {
             border-color: rgba(0, 255, 204, 0.3);
             box-shadow: 0 30px 60px rgba(0, 255, 204, 0.08);
         }
-        .contact-form-card h3 { 
-            font-size: 2.2rem; 
-            color: white; 
-            margin-bottom: 2.5rem; 
-            font-weight: 800; 
+
+        .contact-form-card h3 {
+            font-size: 2.2rem;
+            color: white;
+            margin-bottom: 2.5rem;
+            font-weight: 800;
             letter-spacing: -0.5px;
             background: linear-gradient(135deg, #fff 0%, #a8b2d1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
+
         /* Floating Labels & Form Elements */
-        .form-group-custom { 
-            margin-bottom: 2.2rem; 
-            position: relative; 
+        .form-group-custom {
+            margin-bottom: 2.2rem;
+            position: relative;
         }
+
         .form-control-custom {
             width: 100%;
             background: rgba(255, 255, 255, 0.02);
@@ -179,6 +244,7 @@
             font-size: 1rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .form-label-custom {
             position: absolute;
             left: 1.2rem;
@@ -189,22 +255,27 @@
             transform-origin: 0 0;
             font-size: 1rem;
         }
+
         .form-control-custom:focus {
             background: rgba(248, 181, 0, 0.03);
             border-color: var(--primary-dark);
             outline: none;
             box-shadow: 0 0 20px rgba(248, 181, 0, 0.1);
         }
+
         /* Float the label */
-        .form-control-custom:focus ~ .form-label-custom,
-        .form-control-custom:not(:placeholder-shown) ~ .form-label-custom {
+        .form-control-custom:focus~.form-label-custom,
+        .form-control-custom:not(:placeholder-shown)~.form-label-custom {
             transform: translateY(-1.8rem) scale(0.8);
             color: var(--primary-dark);
             font-weight: 600;
         }
-        
-        textarea.form-control-custom { resize: vertical; min-height: 130px; }
-        
+
+        textarea.form-control-custom {
+            resize: vertical;
+            min-height: 130px;
+        }
+
         /* Validation Feedback styles */
         .validation-feedback {
             font-size: 0.8rem;
@@ -218,27 +289,33 @@
             height: 0;
             overflow: hidden;
         }
+
         .validation-feedback.error-msg {
             color: var(--accent-orange);
         }
+
         .form-control-custom:user-invalid {
             border-color: var(--accent-orange) !important;
             background-color: rgba(240, 106, 66, 0.05);
         }
-        .form-control-custom:user-invalid ~ .form-label-custom {
+
+        .form-control-custom:user-invalid~.form-label-custom {
             color: var(--accent-orange) !important;
         }
-        .form-control-custom:user-invalid ~ .validation-feedback {
+
+        .form-control-custom:user-invalid~.validation-feedback {
             opacity: 1;
             transform: translateY(0);
             height: auto;
             margin-top: 0.5rem;
         }
+
         .form-control-custom:user-valid {
             border-color: var(--mint) !important;
             background-color: rgba(26, 188, 156, 0.03);
         }
-        .form-control-custom:user-valid ~ .form-label-custom {
+
+        .form-control-custom:user-valid~.form-label-custom {
             color: var(--mint) !important;
         }
 
@@ -254,8 +331,12 @@
             border-radius: 4px;
             cursor: pointer;
             transition: all 0.2s ease;
-            display: flex; justify-content: center; align-items: center; gap: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
         }
+
         .btn-submit:hover {
             background: var(--mint);
             color: var(--bg-dark);
@@ -263,17 +344,22 @@
             box-shadow: 0 8px 20px rgba(26, 188, 156, 0.35);
             transform: translateY(-2px);
         }
+
         .btn-submit i {
             transition: transform 0.2s ease;
         }
+
         .btn-submit:hover i {
             transform: translateX(4px);
         }
 
         /* Info Side */
         .info-cards-wrapper {
-            display: flex; flex-direction: column; gap: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
+
         .info-card {
             background: rgba(5, 34, 28, 0.25);
             backdrop-filter: blur(15px);
@@ -289,6 +375,7 @@
             position: relative;
             overflow: hidden;
         }
+
         .info-card::before {
             content: '';
             position: absolute;
@@ -297,32 +384,57 @@
             opacity: 0;
             transition: opacity 0.4s ease;
         }
+
         .info-card:hover::before {
             opacity: 1;
         }
+
         .info-card:hover {
             background: rgba(5, 34, 28, 0.45);
             border-color: rgba(248, 181, 0, 0.25);
             transform: translateX(12px) scale(1.02);
-            box-shadow: -10px 15px 35px rgba(0,0,0,0.3);
+            box-shadow: -10px 15px 35px rgba(0, 0, 0, 0.3);
         }
+
         .info-icon {
-            width: 60px; height: 60px; border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
             background: rgba(248, 181, 0, 0.1);
             border: 1px solid rgba(248, 181, 0, 0.2);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary-dark);
             flex-shrink: 0;
             transition: all 0.4s ease;
         }
+
         .info-card:hover .info-icon {
-            background: var(--primary-dark); color: #031410; transform: scale(1.1) rotate(15deg);
+            background: var(--primary-dark);
+            color: #031410;
+            transform: scale(1.1) rotate(15deg);
             box-shadow: 0 0 20px rgba(248, 181, 0, 0.4);
         }
-        .info-content h4 { font-size: 1.3rem; color: white; margin-bottom: 0.5rem; transition: color 0.3s; }
-        .info-card:hover .info-content h4 { color: var(--primary-dark); }
-        .info-content p { color: rgba(255,255,255,0.7); line-height: 1.6; font-size: 0.95rem; }
-        
+
+        .info-content h4 {
+            font-size: 1.3rem;
+            color: white;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .info-card:hover .info-content h4 {
+            color: var(--primary-dark);
+        }
+
+        .info-content p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
         /* Pulse Indicator */
         .live-pulse {
             width: 8px;
@@ -333,6 +445,7 @@
             display: inline-block;
             margin-left: 2px;
         }
+
         .live-pulse::after {
             content: '';
             position: absolute;
@@ -341,9 +454,17 @@
             border-radius: 50%;
             animation: pulse-ring 1.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
         }
+
         @keyframes pulse-ring {
-            0% { transform: scale(0.5); opacity: 1; }
-            100% { transform: scale(1.8); opacity: 0; }
+            0% {
+                transform: scale(0.5);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1.8);
+                opacity: 0;
+            }
         }
 
         /* Map Section */
@@ -353,28 +474,34 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding: 4rem 0 0;
         }
+
         .map-container-wrapper {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
+
         .map-frame {
             border-radius: 30px;
             overflow: hidden;
             border: 1px solid rgba(0, 255, 204, 0.15);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
             transition: all 0.5s ease;
         }
+
         .map-frame:hover {
             border-color: var(--mint);
             box-shadow: 0 20px 50px rgba(26, 188, 156, 0.15);
         }
+
         .map-wrapper {
-            width: 100%; height: 450px;
+            width: 100%;
+            height: 450px;
             filter: grayscale(100%) invert(92%) contrast(83%) brightness(95%);
             transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
             display: block;
         }
+
         .map-frame:hover .map-wrapper {
             filter: grayscale(20%) invert(0%) contrast(100%) brightness(100%);
         }
@@ -387,52 +514,65 @@
                 padding: 0 24px;
                 margin-bottom: 4rem;
             }
+
             .contact-form-card {
                 padding: 3rem 2rem;
             }
+
             .map-section {
                 padding: 2rem 0 0;
             }
         }
+
         @media (max-width: 768px) {
             body {
                 padding-top: 80px;
             }
+
             .contact-hero {
                 padding: 5rem 0 3rem;
             }
+
             .contact-title {
                 font-size: 2.8rem;
             }
+
             .contact-subtitle {
                 font-size: 1rem;
                 padding: 0 10px;
             }
+
             .contact-form-card {
                 padding: 2.5rem 1.5rem;
                 border-radius: 20px;
             }
+
             .info-card {
                 padding: 1.5rem;
                 border-radius: 16px;
                 gap: 1.2rem;
             }
+
             .info-icon {
                 width: 50px;
                 height: 50px;
                 font-size: 1.3rem;
             }
+
             .info-content h4 {
                 font-size: 1.15rem;
             }
+
             .map-wrapper {
                 height: 350px;
             }
+
             .floating-contact {
                 bottom: 20px;
                 right: 20px;
                 gap: 10px;
             }
+
             .float-btn {
                 width: 50px;
                 height: 50px;
@@ -445,11 +585,13 @@
             background: linear-gradient(180deg, #020f0c 0%, #010605 100%) !important;
             padding: 5rem 0 2rem !important;
         }
+
         .footer-grid {
             display: grid !important;
             grid-template-columns: 1.5fr 1fr 1.2fr !important;
             gap: 3rem !important;
         }
+
         .footer-map-card {
             position: relative;
             width: 100%;
@@ -462,6 +604,7 @@
             border: 1px solid rgba(0, 255, 204, 0.15);
             background: rgba(5, 34, 28, 0.45);
         }
+
         .footer-map-badge {
             position: absolute;
             top: 10px;
@@ -478,15 +621,17 @@
             align-items: center;
             gap: 6px;
             z-index: 5;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             transition: all 0.3s ease;
             text-decoration: none;
         }
+
         .footer-map-badge:hover {
             background: white;
             color: var(--primary-dark);
             transform: translateY(-2px);
         }
+
         .footer-mini-map {
             width: 100%;
             height: 100%;
@@ -494,10 +639,11 @@
             filter: grayscale(80%) brightness(0.95);
             transition: all 0.5s ease;
         }
+
         .footer-map-card:hover .footer-mini-map {
             filter: grayscale(0%) brightness(1);
         }
-        
+
         .footer p {
             max-width: 100% !important;
             margin-top: 1rem !important;
@@ -510,6 +656,7 @@
             padding-bottom: 0.5rem !important;
             margin-bottom: 1.25rem !important;
         }
+
         .footer h4::after {
             background: var(--primary-dark) !important;
             width: 30px !important;
@@ -522,6 +669,7 @@
             color: rgba(255, 255, 255, 0.6) !important;
             font-weight: 500;
         }
+
         .footer ul li a::before {
             content: '→' !important;
             font-family: inherit !important;
@@ -533,10 +681,12 @@
             margin-right: 0 !important;
             display: inline-block;
         }
+
         .footer ul li a:hover {
             color: var(--primary-dark) !important;
             transform: translateX(5px) !important;
         }
+
         .footer ul li a:hover::before {
             opacity: 1 !important;
         }
@@ -546,21 +696,26 @@
                 grid-template-columns: 1.2fr 1fr !important;
                 gap: 2.5rem !important;
             }
-            .footer-grid > div:last-child {
+
+            .footer-grid>div:last-child {
                 grid-column: span 2;
             }
         }
+
         @media (max-width: 576px) {
             .footer-grid {
                 grid-template-columns: 1fr !important;
                 gap: 2rem !important;
             }
-            .footer-grid > div:last-child {
+
+            .footer-grid>div:last-child {
                 grid-column: span 1;
             }
+
             .footer-map-card {
                 max-width: 100%;
             }
+
             .footer {
                 padding: 4rem 0 2rem !important;
             }
@@ -590,19 +745,23 @@
             max-width: 90%;
             width: 450px;
         }
+
         .toast-notification.active {
             transform: translateX(-50%) translateY(0);
             opacity: 1;
             pointer-events: auto;
         }
+
         .toast-notification.success {
             border-color: rgba(26, 188, 156, 0.4);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(26, 188, 156, 0.15);
         }
+
         .toast-notification.error {
             border-color: rgba(240, 106, 66, 0.4);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(240, 106, 66, 0.15);
         }
+
         .toast-icon {
             font-size: 1.5rem;
             display: flex;
@@ -610,15 +769,19 @@
             justify-content: center;
             flex-shrink: 0;
         }
+
         .toast-notification.success .toast-icon {
             color: var(--mint);
         }
+
         .toast-notification.error .toast-icon {
             color: var(--accent-orange);
         }
+
         .toast-content {
             flex-grow: 1;
         }
+
         .toast-title {
             font-weight: 700;
             font-size: 1rem;
@@ -628,10 +791,12 @@
             -webkit-background-clip: unset !important;
             -webkit-text-fill-color: unset !important;
         }
+
         .toast-desc {
             font-size: 0.85rem;
             color: rgba(255, 255, 255, 0.7);
         }
+
         .toast-close {
             background: none;
             border: none;
@@ -641,6 +806,7 @@
             transition: color 0.3s;
             padding: 5px;
         }
+
         .toast-close:hover {
             color: white;
         }
@@ -651,6 +817,7 @@
             margin: 4rem auto 6rem;
             padding: 0 20px;
         }
+
         .cta-container {
             position: relative;
             background: linear-gradient(135deg, #041d18 0%, #083c31 100%);
@@ -664,6 +831,7 @@
             overflow: hidden;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
         }
+
         .cta-container::before {
             content: '';
             position: absolute;
@@ -676,6 +844,7 @@
             pointer-events: none;
             z-index: 1;
         }
+
         .cta-container::after {
             content: '';
             position: absolute;
@@ -688,11 +857,13 @@
             pointer-events: none;
             z-index: 1;
         }
+
         .cta-content {
             position: relative;
             z-index: 2;
             max-width: 680px;
         }
+
         .cta-content h2 {
             font-size: clamp(1.8rem, 3.5vw, 2.4rem);
             font-weight: 800;
@@ -701,16 +872,19 @@
             letter-spacing: -0.5px;
             line-height: 1.25;
         }
+
         .cta-content p {
             font-size: clamp(0.95rem, 1.6vw, 1.1rem);
             color: rgba(255, 255, 255, 0.75);
             line-height: 1.6;
         }
+
         .cta-actions {
             position: relative;
             z-index: 2;
             flex-shrink: 0;
         }
+
         .btn-cta {
             background: white;
             color: #031410;
@@ -726,34 +900,61 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 2px solid transparent;
         }
+
         .btn-cta:hover {
             background: var(--primary-dark);
             color: #031410;
             transform: scale(1.05) translateY(-3px);
             box-shadow: 0 15px 30px rgba(248, 181, 0, 0.3);
         }
+
         .btn-cta i {
             font-size: 1.15rem;
             color: var(--primary-dark);
             transition: color 0.4s ease;
         }
+
         .btn-cta:hover i {
             color: #031410;
         }
-        
+
         /* Wiggle Animation for phone icon */
         @keyframes wiggle {
-            0%, 100% { transform: rotate(0); }
-            15% { transform: rotate(-15deg); }
-            30% { transform: rotate(15deg); }
-            45% { transform: rotate(-10deg); }
-            60% { transform: rotate(10deg); }
-            75% { transform: rotate(-5deg); }
-            90% { transform: rotate(5deg); }
+
+            0%,
+            100% {
+                transform: rotate(0);
+            }
+
+            15% {
+                transform: rotate(-15deg);
+            }
+
+            30% {
+                transform: rotate(15deg);
+            }
+
+            45% {
+                transform: rotate(-10deg);
+            }
+
+            60% {
+                transform: rotate(10deg);
+            }
+
+            75% {
+                transform: rotate(-5deg);
+            }
+
+            90% {
+                transform: rotate(5deg);
+            }
         }
+
         .animate-wiggle {
             display: inline-block;
         }
+
         .btn-cta:hover .animate-wiggle {
             animation: wiggle 1s ease-in-out infinite;
         }
@@ -762,11 +963,13 @@
             .cta-section {
                 margin: 3rem auto 5rem;
             }
+
             .cta-container {
                 padding: 3rem;
                 gap: 2.5rem;
             }
         }
+
         @media (max-width: 768px) {
             .cta-container {
                 flex-direction: column;
@@ -774,9 +977,11 @@
                 padding: 3rem 2rem;
                 gap: 2rem;
             }
+
             .cta-content {
                 max-width: 100%;
             }
+
             .btn-cta {
                 width: 100%;
                 justify-content: center;
@@ -785,6 +990,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- ================== HEADER ================== -->
@@ -792,9 +998,10 @@
         <div class="top-header">
             <div class="container flex justify-between items-center">
                 <a href="index.html" class="logo-box">
-                    <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i></div>
+                    <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i>
+                    </div>
                     <div class="logo-text-group">
-                        <span class="logo-text">Avijit Medicare</span>
+                        <span class="logo-text">Damodar Medicare</span>
                         <span class="logo-sub">TRUSTED PHARMACY</span>
                     </div>
                 </a>
@@ -808,11 +1015,13 @@
                     </a>
                     <a href="cart.html" class="square-icon" style="position: relative;">
                         <i class="fa-solid fa-cart-shopping"></i>
-                        <span style="position: absolute; top:-5px; right:-5px; background:red; color:white; font-size:9px; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center;">2</span>
+                        <span
+                            style="position: absolute; top:-5px; right:-5px; background:red; color:white; font-size:9px; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center;">2</span>
                     </a>
                     <div class="action-links">
                         <span id="welcomeUser" class="register-link"></span>
-                        <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary" style="border-radius: 4px;">Logout</a>
+                        <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary"
+                            style="border-radius: 4px;">Logout</a>
                     </div>
                     <button class="mobile-logout-btn" onclick="logoutUser()" aria-label="Logout">
                         <i class="fa-solid fa-right-from-bracket"></i>
@@ -846,17 +1055,21 @@
             <a href="index.html" class="logo-box">
                 <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i></div>
                 <div class="logo-text-group">
-                    <span class="logo-text" style="color: white;">Avijit Medicare</span>
+                    <span class="logo-text" style="color: white;">Damodar Medicare</span>
                     <span class="logo-sub" style="color: var(--text-muted);">TRUSTED PHARMACY</span>
                 </div>
             </a>
-            <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+            <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i
+                    class="fa-solid fa-xmark"></i></button>
         </div>
-        <div class="drawer-profile" style="background: rgba(248, 181, 0, 0.05); padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-            <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary-dark); display: flex; align-items: center; justify-content: center; color: var(--bg-light); font-weight: 700; font-size: 1.1rem; border: 2px solid rgba(248, 181, 0, 0.3);" id="mobileAvatarInitials">U</div>
+        <div class="drawer-profile"
+            style="background: rgba(248, 181, 0, 0.05); padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary-dark); display: flex; align-items: center; justify-content: center; color: var(--bg-light); font-weight: 700; font-size: 1.1rem; border: 2px solid rgba(248, 181, 0, 0.3);"
+                id="mobileAvatarInitials">U</div>
             <div style="display: flex; flex-direction: column;">
                 <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;">Welcome back,</span>
-                <span id="welcomeUserMobile" style="font-size: 0.95rem; color: white; font-weight: 700; margin-top: 2px;">Guest User</span>
+                <span id="welcomeUserMobile"
+                    style="font-size: 0.95rem; color: white; font-weight: 700; margin-top: 2px;">Guest User</span>
             </div>
         </div>
         <div class="drawer-body">
@@ -869,7 +1082,8 @@
                 <a href="contact.html" class="drawer-link active"><i class="fa-solid fa-envelope"></i> Contact Us</a>
             </nav>
             <div class="drawer-footer">
-                <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary w-full" style="border-radius: 8px;">
+                <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary w-full"
+                    style="border-radius: 8px;">
                     <i class="fa-solid fa-right-from-bracket" style="margin-right: 8px;"></i> Logout
                 </a>
             </div>
@@ -879,12 +1093,14 @@
 
     <!-- Floating Contact Buttons -->
     <div class="floating-contact">
-        <a href="tel:+917855870349" class="float-btn call-float" title="Call +91 7855870349"><i class="fa-solid fa-phone"></i></a>
-        <a href="https://wa.me/919971286110?text=Hello" target="_blank" class="float-btn wa-float" title="WhatsApp +91 9971286110"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="tel:+917855870349" class="float-btn call-float" title="Call +91 7855870349"><i
+                class="fa-solid fa-phone"></i></a>
+        <a href="https://wa.me/919971286110?text=Hello" target="_blank" class="float-btn wa-float"
+            title="WhatsApp +91 9971286110"><i class="fa-brands fa-whatsapp"></i></a>
     </div>
 
     <!-- ================== MAIN CONTENT ================== -->
-    
+
     <!-- Hero Section -->
     <section class="contact-hero">
         <div class="bg-orb orb-1"></div>
@@ -892,7 +1108,8 @@
         <div class="bg-orb orb-3"></div>
         <div class="container" data-aos="fade-up">
             <h1 class="contact-title">We're Here to <span>Help</span></h1>
-            <p class="contact-subtitle">Have a question about your order, our medicines, or need a doctor consultation? Reach out to our 24/7 support team.</p>
+            <p class="contact-subtitle">Have a question about your order, our medicines, or need a doctor consultation?
+                Reach out to our 24/7 support team.</p>
         </div>
     </section>
 
@@ -903,33 +1120,37 @@
             <h3>Send us a Message</h3>
             <form id="contactForm">
                 <!-- FormSubmit Configuration -->
-                <input type="hidden" name="_subject" value="New Message from Avijit Medicare Contact Form">
+                <input type="hidden" name="_subject" value="New Message from Damodar Medicare Contact Form">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
-                
+
                 <div class="form-group-custom">
-                    <input type="text" id="contact-name" name="name" class="form-control-custom" placeholder=" " required autocomplete="name">
+                    <input type="text" id="contact-name" name="name" class="form-control-custom" placeholder=" "
+                        required autocomplete="name">
                     <label for="contact-name" class="form-label-custom">Your Full Name</label>
                     <div class="validation-feedback error-msg">
                         <i class="fa-solid fa-circle-exclamation"></i> Please enter your name.
                     </div>
                 </div>
                 <div class="form-group-custom">
-                    <input type="email" id="contact-email" name="email" class="form-control-custom" placeholder=" " required autocomplete="email">
+                    <input type="email" id="contact-email" name="email" class="form-control-custom" placeholder=" "
+                        required autocomplete="email">
                     <label for="contact-email" class="form-label-custom">Email Address</label>
                     <div class="validation-feedback error-msg">
                         <i class="fa-solid fa-circle-exclamation"></i> Please enter a valid email address.
                     </div>
                 </div>
                 <div class="form-group-custom">
-                    <input type="tel" id="contact-phone" name="phone" class="form-control-custom" placeholder=" " required pattern="[0-9]{10}" autocomplete="tel">
+                    <input type="tel" id="contact-phone" name="phone" class="form-control-custom" placeholder=" "
+                        required pattern="[0-9]{10}" autocomplete="tel">
                     <label for="contact-phone" class="form-label-custom">Phone Number</label>
                     <div class="validation-feedback error-msg">
                         <i class="fa-solid fa-circle-exclamation"></i> Please enter a valid 10-digit phone number.
                     </div>
                 </div>
                 <div class="form-group-custom">
-                    <textarea id="contact-message" name="message" class="form-control-custom" placeholder=" " required></textarea>
+                    <textarea id="contact-message" name="message" class="form-control-custom" placeholder=" "
+                        required></textarea>
                     <label for="contact-message" class="form-label-custom">How can we help you today?</label>
                     <div class="validation-feedback error-msg">
                         <i class="fa-solid fa-circle-exclamation"></i> Message cannot be empty.
@@ -947,7 +1168,7 @@
                 <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
                 <div class="info-content">
                     <h4>Visit Our Pharmacy</h4>
-                    <p>Avijit Medicare, Soro Square,<br>Baleswar, Odisha 756045</p>
+                    <p>Damodar Medicare, Soro Square,<br>Baleswar, Odisha 756045</p>
                 </div>
             </div>
 
@@ -966,10 +1187,10 @@
                 <div class="info-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
                 <div class="info-content">
                     <h4>Email Support</h4>
-                    <p>support@avijitmedicare.com<br>info@avijitmedicare.com</p>
+                    <p>support@damodarmedicare.com<br>info@damodarmedicare.com</p>
                 </div>
             </div>
-            
+
             <div class="info-card">
                 <div class="info-icon"><i class="fa-solid fa-clock"></i></div>
                 <div class="info-content">
@@ -984,7 +1205,10 @@
     <section class="map-section" data-aos="fade-up">
         <div class="map-container-wrapper">
             <div class="map-frame">
-                <iframe class="map-wrapper" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118944.37562851413!2d86.64333934335936!3d21.2662057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1c6a7ab56ebcd7%3A0x6b2b6ab0c99aeb61!2sSoro%2C%20Odisha!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe class="map-wrapper"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118944.37562851413!2d86.64333934335936!3d21.2662057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1c6a7ab56ebcd7%3A0x6b2b6ab0c99aeb61!2sSoro%2C%20Odisha!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                    style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
@@ -994,7 +1218,8 @@
         <div class="cta-container">
             <div class="cta-content">
                 <h2>Need Immediate Assistance?</h2>
-                <p>Our certified pharmacists and emergency support team are here for you 24/7. Get your health questions answered or order medicines instantly.</p>
+                <p>Our certified pharmacists and emergency support team are here for you 24/7. Get your health questions
+                    answered or order medicines instantly.</p>
             </div>
             <div class="cta-actions">
                 <a href="tel:+919556532388" class="btn-cta">
@@ -1012,7 +1237,7 @@
                     <div class="logo-box" style="margin-bottom: 1rem;">
                         <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white;"></i></div>
                         <div class="logo-text-group">
-                            <span class="logo-text" style="color: white;">Avijit Medicare</span>
+                            <span class="logo-text" style="color: white;">Damodar Medicare</span>
                             <span class="logo-sub" style="color: rgba(255,255,255,0.6);">TRUSTED PHARMACY</span>
                         </div>
                     </div>
@@ -1020,9 +1245,13 @@
                         <a href="https://maps.app.goo.gl/o1Wc8WLyqU2G1WzJ7" target="_blank" class="footer-map-badge">
                             <span>Maps</span> <i class="fa-solid fa-up-right-from-square"></i>
                         </a>
-                        <iframe class="footer-mini-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118944.37562851413!2d86.64333934335936!3d21.2662057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1c6a7ab56ebcd7%3A0x6b2b6ab0c99aeb61!2sSoro%2C%20Odisha!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe class="footer-mini-map"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118944.37562851413!2d86.64333934335936!3d21.2662057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1c6a7ab56ebcd7%3A0x6b2b6ab0c99aeb61!2sSoro%2C%20Odisha!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                            style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
-                    <p>Your trusted partner for genuine medicines, expert doctors, and fast doorstep delivery across Odisha. Quality healthcare, simplified.</p>
+                    <p>Your trusted partner for genuine medicines, expert doctors, and fast doorstep delivery across
+                        Odisha. Quality healthcare, simplified.</p>
                     <div class="social-icons">
                         <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
                         <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
@@ -1046,23 +1275,29 @@
                 <div>
                     <h4>Contact Info</h4>
                     <ul style="display: flex; flex-direction: column; gap: 1.5rem;">
-                        <li style="display: flex; gap: 15px; align-items: flex-start; color: rgba(255,255,255,0.7); margin: 0; line-height: 1.6;">
-                            <i class="fa-solid fa-location-dot" style="margin-top: 4px; color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
-                            <span>Avijit Medicare, Soro Square,<br>Baleswar, Odisha 756045</span>
+                        <li
+                            style="display: flex; gap: 15px; align-items: flex-start; color: rgba(255,255,255,0.7); margin: 0; line-height: 1.6;">
+                            <i class="fa-solid fa-location-dot"
+                                style="margin-top: 4px; color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                            <span>Damodar Medicare, Soro Square,<br>Baleswar, Odisha 756045</span>
                         </li>
-                        <li style="display: flex; gap: 15px; align-items: center; color: rgba(255,255,255,0.7); margin: 0;">
-                            <i class="fa-solid fa-phone" style="color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                        <li
+                            style="display: flex; gap: 15px; align-items: center; color: rgba(255,255,255,0.7); margin: 0;">
+                            <i class="fa-solid fa-phone"
+                                style="color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
                             <span>+91 9556532388</span>
                         </li>
-                        <li style="display: flex; gap: 15px; align-items: center; color: rgba(255,255,255,0.7); margin: 0;">
-                            <i class="fa-solid fa-envelope" style="color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
-                            <span>support@avijitmedicare.com</span>
+                        <li
+                            style="display: flex; gap: 15px; align-items: center; color: rgba(255,255,255,0.7); margin: 0;">
+                            <i class="fa-solid fa-envelope"
+                                style="color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                            <span>support@damodarmedicare.com</span>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <div>&copy; 2026 Avijit Medicare. All rights reserved. Made with care in Odisha, India.</div>
+                <div>&copy; 2026 Damodar Medicare. All rights reserved. Made with care in Odisha, India.</div>
                 <div class="footer-links">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Use</a>
@@ -1111,8 +1346,8 @@
                     document.getElementById("welcomeUserMobile").innerText = currentUser.fname + " " + (currentUser.lname || "");
                 }
                 if (document.getElementById("mobileAvatarInitials")) {
-                    const initials = (currentUser.fname ? currentUser.fname.charAt(0).toUpperCase() : "") + 
-                                     (currentUser.lname ? currentUser.lname.charAt(0).toUpperCase() : "");
+                    const initials = (currentUser.fname ? currentUser.fname.charAt(0).toUpperCase() : "") +
+                        (currentUser.lname ? currentUser.lname.charAt(0).toUpperCase() : "");
                     document.getElementById("mobileAvatarInitials").innerText = initials || "U";
                 }
             }
@@ -1122,57 +1357,57 @@
             if (contactForm) {
                 contactForm.addEventListener("submit", function (e) {
                     e.preventDefault();
-                    
+
                     const btn = contactForm.querySelector(".btn-submit");
                     const originalText = btn.innerHTML;
-                    
+
                     // Capture the form data in a JSON object
                     const formData = new FormData(contactForm);
                     const formObject = Object.fromEntries(formData);
-                    
+
                     // Immediately reset all the input fields to blank
                     contactForm.reset();
-                    
+
                     // Reset CSS validation status by removing custom validation cues if any
                     const inputs = contactForm.querySelectorAll(".form-control-custom");
                     inputs.forEach(input => {
                         input.removeAttribute("aria-invalid");
                     });
-                    
+
                     // Immediately show the success toast notification
                     showToast("success", "Message Sent!", "Thank you! Your message has been sent successfully.");
-                    
+
                     // Show a temporary sending indicator on the button
                     btn.disabled = true;
                     btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
-                    
+
                     // Send the data to the secure FormSubmit endpoint in the background
                     fetch("https://formsubmit.co/ajax/nirodchandramohanty34@gmail.com", {
                         method: "POST",
-                        headers: { 
+                        headers: {
                             "Content-Type": "application/json",
                             "Accept": "application/json"
                         },
                         body: JSON.stringify(formObject)
                     })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success === "true" || data.success === true) {
-                            console.log("Form submitted successfully:", data);
-                        } else {
-                            console.warn("FormSubmit response was not successful:", data);
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error submitting form in background:", error);
-                    })
-                    .finally(() => {
-                        // Re-enable the button after 1 second
-                        setTimeout(() => {
-                            btn.disabled = false;
-                            btn.innerHTML = originalText;
-                        }, 1000);
-                    });
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success === "true" || data.success === true) {
+                                console.log("Form submitted successfully:", data);
+                            } else {
+                                console.warn("FormSubmit response was not successful:", data);
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Error submitting form in background:", error);
+                        })
+                        .finally(() => {
+                            // Re-enable the button after 1 second
+                            setTimeout(() => {
+                                btn.disabled = false;
+                                btn.innerHTML = originalText;
+                            }, 1000);
+                        });
                 });
             }
 
@@ -1183,37 +1418,37 @@
             const toastDesc = document.getElementById("toastDesc");
             let toastTimeout;
 
-            window.showToast = function(type, title, message) {
+            window.showToast = function (type, title, message) {
                 clearTimeout(toastTimeout);
-                
+
                 // Reset classes
                 toastNotification.classList.remove("success", "error", "active");
-                
+
                 // Add new type class
                 toastNotification.classList.add(type);
-                
+
                 // Set icons and text
                 if (type === "success") {
                     toastIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
                 } else {
                     toastIcon.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i>';
                 }
-                
+
                 toastTitle.innerText = title;
                 toastDesc.innerText = message;
-                
+
                 // Force layout reflow
                 void toastNotification.offsetWidth;
-                
+
                 toastNotification.classList.add("active");
-                
+
                 // Auto dismiss after 6 seconds
                 toastTimeout = setTimeout(() => {
                     closeToast();
                 }, 6000);
             };
 
-            window.closeToast = function() {
+            window.closeToast = function () {
                 toastNotification.classList.remove("active");
             };
 
@@ -1280,7 +1515,9 @@
             <div class="toast-title" id="toastTitle">Success!</div>
             <div class="toast-desc" id="toastDesc">Your message was sent successfully.</div>
         </div>
-        <button class="toast-close" onclick="closeToast()" aria-label="Close Notification"><i class="fa-solid fa-xmark"></i></button>
+        <button class="toast-close" onclick="closeToast()" aria-label="Close Notification"><i
+                class="fa-solid fa-xmark"></i></button>
     </div>
 </body>
+
 </html>
