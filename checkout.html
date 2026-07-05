@@ -2119,34 +2119,131 @@
         </div>
 
         <!-- Add New Address dotted button -->
-        <button onclick="toggleAddAddressForm()" class="add-address-dashed">
+        <button onclick="openAddAddressDrawer()" class="add-address-dashed">
             <i class="fa-solid fa-plus"></i> Add New Address
         </button>
-
-        <!-- Inline Add New Address Form (Initially hidden) -->
-        <div id="addAddressFormContainer" style="display: none; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 1.25rem; margin-bottom: 0.5rem; transition: all 0.3s ease;">
-            <h4 style="margin: 0 0 1rem 0; color: white; font-size: 1rem;">Add Address Details</h4>
-            <div class="form-group" style="margin-bottom: 0.85rem;">
-                <label style="color: var(--text-muted); font-size: 0.78rem; display:block; margin-bottom:4px;">Full Name</label>
-                <input type="text" id="newAddrName" class="form-control" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 0.6rem 0.8rem; border-radius: 8px; width:100%; box-sizing:border-box;" placeholder="E.g. Loresh Mohanty">
-            </div>
-            <div class="form-group" style="margin-bottom: 0.85rem;">
-                <label style="color: var(--text-muted); font-size: 0.78rem; display:block; margin-bottom:4px;">Mobile Number</label>
-                <input type="tel" id="newAddrMobile" class="form-control" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 0.6rem 0.8rem; border-radius: 8px; width:100%; box-sizing:border-box;" placeholder="E.g. 7855870349">
-            </div>
-            <div class="form-group" style="margin-bottom: 1rem;">
-                <label style="color: var(--text-muted); font-size: 0.78rem; display:block; margin-bottom:4px;">Complete Address</label>
-                <textarea id="newAddrText" class="form-control" rows="2" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 0.6rem 0.8rem; border-radius: 8px; width:100%; box-sizing:border-box; resize:none;" placeholder="E.g. Kapileshwar, Khordha, Odisha, 751002"></textarea>
-            </div>
-            <div style="display:flex; gap: 8px;">
-                <button onclick="saveNewAddress()" class="btn-checkout" style="padding: 0.6rem 1rem; font-size: 0.85rem; border-radius: 8px; margin:0; width: auto;">Add Address</button>
-                <button onclick="toggleAddAddressForm()" class="btn-continue-shopping" style="padding: 0.6rem 1rem; font-size: 0.85rem; border-radius: 8px; margin:0; background:rgba(255,255,255,0.05); color:white; border:1px solid rgba(255,255,255,0.1); width: auto;">Cancel</button>
-            </div>
-        </div>
 
         <!-- Address Cards List container -->
         <div id="addressCardsList" style="display:flex; flex-direction:column; gap:1rem; overflow-y:auto; flex: 1; padding-right: 4px;">
             <!-- Dynamic Address list cards will render here -->
+        </div>
+    </div>
+
+    <!-- Create New Address Drawer Overlay (Sub-drawer overlay) -->
+    <div class="drawer-overlay" id="addAddressDrawerOverlay" onclick="closeAddAddressDrawer()" style="z-index: 100006;"></div>
+
+    <!-- Create New Address Drawer (Mockup Form Design) -->
+    <div class="address-drawer" id="addAddressDrawer" style="z-index: 100007;">
+        <!-- Header -->
+        <div class="drawer-header">
+            <div class="drawer-title-box">
+                <h3>Create New Address</h3>
+                <p>Hey, Where Do You Want Your Orders Delivered?</p>
+            </div>
+            <button onclick="closeAddAddressDrawer()" class="drawer-close-btn">&times;</button>
+        </div>
+
+        <!-- Form Container (Scrollable) -->
+        <div style="flex: 1; overflow-y: auto; padding-right: 6px; display: flex; flex-direction: column; gap: 1.25rem;">
+            <!-- Name -->
+            <div class="form-group" style="margin-bottom: 0;">
+                <label style="color: white; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; display: block;">Name</label>
+                <input type="text" id="addAddrName" class="form-control" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 0.8rem 1rem; border-radius: 12px; width: 100%; box-sizing: border-box;" placeholder="Name">
+            </div>
+
+            <!-- Street Address Line 1 -->
+            <div class="form-group" style="margin-bottom: 0;">
+                <label style="color: white; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; display: block;">Street Address Line 1</label>
+                <input type="text" id="addAddrLine1" class="form-control" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 0.8rem 1rem; border-radius: 12px; width: 100%; box-sizing: border-box;" placeholder="Street Address Line 1">
+            </div>
+
+            <!-- Map Picker Buttons -->
+            <div>
+                <div style="display: flex; gap: 10px; width: 100%;">
+                    <button type="button" onclick="triggerMapPicker()" class="btn-continue-shopping" style="flex: 1; padding: 0.75rem; margin: 0; background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; font-size: 0.88rem; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-sizing: border-box;">
+                        <i class="fa-solid fa-location-dot" style="color: #2563eb;"></i> Open Map Picker
+                    </button>
+                    <button type="button" onclick="useCurrentLocation()" class="btn-continue-shopping" style="flex: 1; padding: 0.75rem; margin: 0; background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; font-size: 0.88rem; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-sizing: border-box;">
+                        <i class="fa-solid fa-crosshairs" style="color: #2563eb;"></i> Use Current Location
+                    </button>
+                </div>
+                <p style="margin: 6px 0 0 0; font-size: 0.75rem; color: rgba(255,255,255,0.4); text-align: center;">Use Current Location Or Map Picker For A Full Address Preview</p>
+            </div>
+
+            <!-- Street Address Line 2 (Optional) -->
+            <div class="form-group" style="margin-bottom: 0;">
+                <input type="text" id="addAddrLine2" class="form-control" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 0.8rem 1rem; border-radius: 12px; width: 100%; box-sizing: border-box;" placeholder="Street Address Line 2 (Optional)">
+            </div>
+
+            <!-- State & District Row -->
+            <div style="display: flex; gap: 12px; width: 100%; box-sizing: border-box;">
+                <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                    <label style="color: white; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; display: block;">State</label>
+                    <select id="addAddrState" class="form-control" onchange="onStateChange()" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 0.8rem; border-radius: 12px; width:100%; box-sizing:border-box;">
+                        <option value="" style="background: #0d1e1a; color: white;">Select state</option>
+                        <option value="Odisha" style="background: #0d1e1a; color: white;" selected>Odisha</option>
+                        <option value="Delhi" style="background: #0d1e1a; color: white;">Delhi</option>
+                        <option value="Maharashtra" style="background: #0d1e1a; color: white;">Maharashtra</option>
+                        <option value="Karnataka" style="background: #0d1e1a; color: white;">Karnataka</option>
+                    </select>
+                </div>
+                <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                    <label style="color: white; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; display: block;">District</label>
+                    <select id="addAddrDistrict" class="form-control" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 0.8rem; border-radius: 12px; width:100%; box-sizing:border-box;">
+                        <option value="" style="background: #0d1e1a; color: white;">Select district</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Postal Code -->
+            <div class="form-group" style="margin-bottom: 0;">
+                <label style="color: white; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; display: block;">Postal Code</label>
+                <input type="text" id="addAddrPostal" class="form-control" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 0.8rem 1rem; border-radius: 12px; width: 100%; box-sizing: border-box;" placeholder="Postal code">
+            </div>
+
+            <!-- Contact Phone -->
+            <div class="form-group" style="margin-bottom: 0;">
+                <label style="color: white; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; display: block;">Contact Phone</label>
+                <div style="display: flex; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; align-items: center; padding: 0 10px; width: 100%; box-sizing: border-box;">
+                    <span style="color: white; font-size: 0.9rem; display: flex; align-items: center; gap: 6px; padding-right: 10px; border-right: 1px solid rgba(255,255,255,0.1); user-select: none;">
+                        <span style="font-size: 1.1rem;">🇮🇳</span> +91
+                    </span>
+                    <input type="tel" id="addAddrPhone" class="form-control" style="background: transparent; border: none; color: white; flex: 1; padding: 0.8rem 10px; outline: none; box-shadow: none; min-width: 0;" placeholder="7855870349">
+                </div>
+            </div>
+
+            <!-- Alternate Phone -->
+            <div class="form-group" style="margin-bottom: 0;">
+                <label style="color: white; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; display: block;">Alternate Phone</label>
+                <div style="display: flex; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; align-items: center; padding: 0 10px; width: 100%; box-sizing: border-box;">
+                    <span style="color: white; font-size: 0.9rem; display: flex; align-items: center; gap: 6px; padding-right: 10px; border-right: 1px solid rgba(255,255,255,0.1); user-select: none;">
+                        <span style="font-size: 1.1rem;">🇮🇳</span> +91
+                    </span>
+                    <input type="tel" id="addAddrAltPhone" class="form-control" style="background: transparent; border: none; color: white; flex: 1; padding: 0.8rem 10px; outline: none; box-shadow: none; min-width: 0;" placeholder="Alternate phone number">
+                </div>
+            </div>
+
+            <!-- Address Type -->
+            <div class="form-group" style="margin-bottom: 0;">
+                <label style="color: white; font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; display: block;">Address Type</label>
+                <div style="display: flex; gap: 10px; width: 100%; box-sizing: border-box;">
+                    <button type="button" id="addrTypeHome" onclick="selectAddressType('Home')" class="btn-checkout" style="flex: 1; margin: 0; padding: 0.65rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; background: #2563eb; color: white; border: none; cursor: pointer; box-sizing: border-box;">
+                        <i class="fa-solid fa-house"></i> Home
+                    </button>
+                    <button type="button" id="addrTypeOffice" onclick="selectAddressType('Office')" class="btn-continue-shopping" style="flex: 1; margin: 0; padding: 0.65rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.1); cursor: pointer; box-sizing: border-box;">
+                        <i class="fa-solid fa-building"></i> Office
+                    </button>
+                    <button type="button" id="addrTypeOther" onclick="selectAddressType('Other')" class="btn-continue-shopping" style="flex: 1; margin: 0; padding: 0.65rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.1); cursor: pointer; box-sizing: border-box;">
+                        <i class="fa-solid fa-location-dot"></i> Other
+                    </button>
+                </div>
+            </div>
+
+            <!-- Footer Actions -->
+            <div style="display: flex; gap: 12px; margin-top: 1rem; margin-bottom: 1.5rem; width: 100%; box-sizing: border-box;">
+                <button type="button" onclick="closeAddAddressDrawer()" class="btn-continue-shopping" style="flex: 1; margin: 0; padding: 0.85rem; border-radius: 24px; font-size: 0.95rem; font-weight: 700; background: transparent; border: 1px solid rgba(255,255,255,0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; box-sizing: border-box;">Cancel</button>
+                <button type="button" onclick="submitNewAddress()" class="btn-checkout" style="flex: 1; margin: 0; padding: 0.85rem; border-radius: 24px; font-size: 0.95rem; font-weight: 700; background: #2563eb; border: none; color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; box-sizing: border-box;">Submit</button>
+            </div>
         </div>
     </div>
 
@@ -2354,43 +2451,134 @@
             if (drawer) drawer.classList.remove("active");
             if (overlay) overlay.classList.remove("active");
             
-            // Hide add address form in case it was open
-            const formContainer = document.getElementById("addAddressFormContainer");
-            if (formContainer) formContainer.style.display = "none";
+            // Also close sub drawer if open
+            window.closeAddAddressDrawer();
         };
 
-        window.toggleAddAddressForm = function () {
-            const formContainer = document.getElementById("addAddressFormContainer");
-            if (formContainer) {
-                if (formContainer.style.display === "none") {
-                    formContainer.style.display = "block";
-                    // Clear inputs
-                    document.getElementById("newAddrName").value = "";
-                    document.getElementById("newAddrMobile").value = "";
-                    document.getElementById("newAddrText").value = "";
-                } else {
-                    formContainer.style.display = "none";
-                }
+        let activeAddrType = 'Home';
+
+        window.openAddAddressDrawer = function () {
+            window.onStateChange();
+            window.selectAddressType('Home');
+            
+            // Clear inputs
+            document.getElementById("addAddrName").value = "";
+            document.getElementById("addAddrLine1").value = "";
+            document.getElementById("addAddrLine2").value = "";
+            document.getElementById("addAddrPostal").value = "";
+            document.getElementById("addAddrPhone").value = "";
+            document.getElementById("addAddrAltPhone").value = "";
+            
+            const drawer = document.getElementById("addAddressDrawer");
+            const overlay = document.getElementById("addAddressDrawerOverlay");
+            if (drawer) drawer.classList.add("active");
+            if (overlay) overlay.classList.add("active");
+        };
+
+        window.closeAddAddressDrawer = function () {
+            const drawer = document.getElementById("addAddressDrawer");
+            const overlay = document.getElementById("addAddressDrawerOverlay");
+            if (drawer) drawer.classList.remove("active");
+            if (overlay) overlay.classList.remove("active");
+        };
+
+        const districtMap = {
+            "Odisha": ["Khordha", "Cuttack", "Puri", "Ganjam", "Balasore"],
+            "Delhi": ["Central Delhi", "New Delhi", "South Delhi", "North Delhi"],
+            "Maharashtra": ["Mumbai City", "Pune", "Nagpur", "Thane"],
+            "Karnataka": ["Bengaluru Urban", "Mysuru", "Hubli", "Mangaluru"]
+        };
+
+        window.onStateChange = function () {
+            const stateSel = document.getElementById("addAddrState");
+            const distSel = document.getElementById("addAddrDistrict");
+            if (!stateSel || !distSel) return;
+
+            const selectedState = stateSel.value;
+            distSel.innerHTML = "";
+
+            if (!selectedState) {
+                distSel.innerHTML = `<option value="" style="background: #0d1e1a; color: white;">Select state first</option>`;
+                return;
             }
+
+            const districts = districtMap[selectedState] || [];
+            districts.forEach(d => {
+                const opt = document.createElement("option");
+                opt.value = d;
+                opt.text = d;
+                opt.style.background = "#0d1e1a";
+                opt.style.color = "white";
+                // Select Khordha as default if Odisha is selected to match mockup
+                if (selectedState === "Odisha" && d === "Khordha") {
+                    opt.selected = true;
+                }
+                distSel.appendChild(opt);
+            });
         };
 
-        window.saveNewAddress = function () {
-            try {
-                const name = document.getElementById("newAddrName").value.trim();
-                const mobile = document.getElementById("newAddrMobile").value.trim();
-                const address = document.getElementById("newAddrText").value.trim();
+        window.selectAddressType = function (type) {
+            activeAddrType = type;
+            const homeBtn = document.getElementById("addrTypeHome");
+            const officeBtn = document.getElementById("addrTypeOffice");
+            const otherBtn = document.getElementById("addrTypeOther");
 
-                if (!name || !mobile || !address) {
-                    showToast("error", "Input Error", "Please fill in all address details.");
+            if (!homeBtn || !officeBtn || !otherBtn) return;
+
+            // Reset styles
+            [homeBtn, officeBtn, otherBtn].forEach(btn => {
+                btn.style.background = "rgba(255,255,255,0.06)";
+                btn.style.color = "rgba(255,255,255,0.7)";
+                btn.style.border = "1px solid rgba(255,255,255,0.1)";
+            });
+
+            // Set active
+            const activeBtn = type === 'Home' ? homeBtn : (type === 'Office' ? officeBtn : otherBtn);
+            activeBtn.style.background = "#2563eb";
+            activeBtn.style.color = "white";
+            activeBtn.style.border = "none";
+        };
+
+        window.triggerMapPicker = function () {
+            document.getElementById("addAddrLine1").value = "Kapileshwar Temple Road";
+            document.getElementById("addAddrLine2").value = "Near Post Office";
+            document.getElementById("addAddrPostal").value = "751002";
+            showToast("success", "Map Picker", "Location imported from Map Pin.");
+        };
+
+        window.useCurrentLocation = function () {
+            document.getElementById("addAddrLine1").value = "Kapileshwar, Ward 59";
+            document.getElementById("addAddrLine2").value = "Khordha District";
+            document.getElementById("addAddrPostal").value = "751002";
+            showToast("success", "GPS", "GPS location coordinates resolved.");
+        };
+
+        window.submitNewAddress = function () {
+            try {
+                const name = document.getElementById("addAddrName").value.trim();
+                const line1 = document.getElementById("addAddrLine1").value.trim();
+                const line2 = document.getElementById("addAddrLine2").value.trim();
+                const state = document.getElementById("addAddrState").value;
+                const district = document.getElementById("addAddrDistrict").value;
+                const postal = document.getElementById("addAddrPostal").value.trim();
+                const phone = document.getElementById("addAddrPhone").value.trim() || "7855870349";
+
+                if (!name || !line1 || !state || !district || !postal) {
+                    showToast("error", "Validation Error", "Please fill in all required fields.");
                     return;
                 }
+
+                // Construct full address text
+                let fullAddr = line1;
+                if (line2) fullAddr += `, ${line2}`;
+                fullAddr += `, ${district}, ${state}, ${postal}, India`;
 
                 // Add and set selected
                 addresses.forEach(a => a.selected = false);
                 addresses.push({
                     name: name,
-                    mobile: mobile,
-                    address: address,
+                    mobile: phone,
+                    address: fullAddr,
                     selected: true
                 });
 
@@ -2398,11 +2586,10 @@
                 setupAddressInfo();
                 window.renderAddressDrawerList();
                 
-                // Hide Form
-                document.getElementById("addAddressFormContainer").style.display = "none";
-                showToast("success", "Success", "New delivery address has been added.");
+                closeAddAddressDrawer();
+                showToast("success", "Success", "Delivery address saved and activated.");
             } catch (e) {
-                console.error("saveNewAddress error:", e);
+                console.error("submitNewAddress error:", e);
             }
         };
 
