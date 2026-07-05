@@ -113,4 +113,67 @@ document.addEventListener('DOMContentLoaded', () => {
     
     updateWishlistCountBadge();
     window.updateWishlistCountBadge = updateWishlistCountBadge;
+
+    // Profile Dropdown Toggle Logic
+    window.toggleProfileDropdown = function(event) {
+        event.stopPropagation();
+        const menu = document.getElementById("profileDropdownMenu");
+        const wrapper = document.querySelector(".profile-dropdown-wrapper");
+        if (menu && wrapper) {
+            menu.classList.toggle("active");
+            wrapper.classList.toggle("active");
+            
+            // Close mobile dropdown if open
+            const mobileMenu = document.getElementById("mobileProfileDropdownMenu");
+            const mobileWrapper = document.querySelector(".mobile-profile-wrapper");
+            if (mobileMenu) {
+                mobileMenu.classList.remove("active");
+                mobileWrapper.classList.remove("active");
+            }
+        }
+    };
+
+    window.toggleMobileProfileDropdown = function(event) {
+        event.stopPropagation();
+        const menu = document.getElementById("mobileProfileDropdownMenu");
+        const wrapper = document.querySelector(".mobile-profile-wrapper");
+        if (menu && wrapper) {
+            menu.classList.toggle("active");
+            wrapper.classList.toggle("active");
+            
+            // Close desktop dropdown if open
+            const desktopMenu = document.getElementById("profileDropdownMenu");
+            const desktopWrapper = document.querySelector(".profile-dropdown-wrapper");
+            if (desktopMenu) {
+                desktopMenu.classList.remove("active");
+                desktopWrapper.classList.remove("active");
+            }
+        }
+    };
+
+    // Close dropdowns when clicking outside
+    document.addEventListener("click", () => {
+        const desktopMenu = document.getElementById("profileDropdownMenu");
+        const desktopWrapper = document.querySelector(".profile-dropdown-wrapper");
+        if (desktopMenu && desktopWrapper) {
+            desktopMenu.classList.remove("active");
+            desktopWrapper.classList.remove("active");
+        }
+
+        const mobileMenu = document.getElementById("mobileProfileDropdownMenu");
+        const mobileWrapper = document.querySelector(".mobile-profile-wrapper");
+        if (mobileMenu && mobileWrapper) {
+            mobileMenu.classList.remove("active");
+            mobileWrapper.classList.remove("active");
+        }
+    });
+
+    // Populate header avatar initials dynamically if user is logged in
+    const currentUser = JSON.parse(localStorage.getItem("avijit_current_user"));
+    if (currentUser && document.getElementById("headerAvatarInitials")) {
+        const initials = (currentUser.fname ? currentUser.fname.charAt(0).toUpperCase() : "") +
+                         (currentUser.lname ? currentUser.lname.charAt(0).toUpperCase() : "");
+        document.getElementById("headerAvatarInitials").innerText = initials || "U";
+    }
 });
+

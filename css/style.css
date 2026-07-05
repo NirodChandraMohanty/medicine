@@ -2799,3 +2799,107 @@ ul {
     }
 }
 
+/* ==========================================================================
+   PROFILE DROPDOWN MENUS (DESKTOP & MOBILE)
+   ========================================================================== */
+.profile-dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-dropdown-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.dropdown-arrow {
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+    color: var(--text-muted);
+}
+
+.profile-dropdown-wrapper.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.profile-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 170px;
+    background: rgba(3, 20, 16, 0.95);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 0.4rem 0;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 255, 204, 0.05);
+    z-index: 2000;
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+    pointer-events: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: top right;
+}
+
+.profile-dropdown-menu.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 1.1rem;
+    color: var(--text-main) !important;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background: rgba(248, 181, 0, 0.08) !important;
+    color: var(--primary-dark) !important;
+}
+
+.dropdown-item.logout-item:hover {
+    background: rgba(239, 68, 68, 0.08) !important;
+    color: #ef4444 !important;
+}
+
+.dropdown-item i {
+    font-size: 0.9rem;
+    width: 16px;
+    text-align: center;
+}
+
+.dropdown-divider {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 0.4rem 0;
+}
+
+/* Mobile dropdown wrapper display constraints */
+.mobile-profile-wrapper {
+    display: none;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .mobile-profile-wrapper {
+        display: block !important;
+    }
+    .mobile-profile-wrapper .profile-dropdown-menu {
+        top: calc(100% + 8px);
+        width: 160px;
+    }
+}
+
+

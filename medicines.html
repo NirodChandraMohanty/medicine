@@ -16,7 +16,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <!-- Global Theme Stylesheet -->
-    <link rel="stylesheet" href="css/style.css?v=52">
+    <link rel="stylesheet" href="css/style.css?v=100">
     <!-- About Page Stylesheet for Hero Section -->
     <link rel="stylesheet" href="css/about.css?v=17">
 
@@ -868,16 +868,37 @@
 
                 <div class="action-links">
                     <span id="welcomeUser" class="register-link"></span>
-                    <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary"
-                        style="border-radius: 4px;">
-                        Logout
-                    </a>
+                    <div class="profile-dropdown-wrapper">
+                        <button class="btn btn-primary profile-dropdown-trigger" onclick="toggleProfileDropdown(event)" style="border-radius: 4px; padding: 0.45rem 1rem;">
+                            <span>Logout</span> <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                        </button>
+                        <div class="profile-dropdown-menu" id="profileDropdownMenu">
+                            <a href="dashboard.html" class="dropdown-item">
+                                <i class="fa-solid fa-circle-user"></i> Profile
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="javascript:void(0)" onclick="logoutUser()" class="dropdown-item logout-item">
+                                <i class="fa-solid fa-right-from-bracket"></i> Logout
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Mobile Logout Icon Button -->
-                <button class="mobile-logout-btn" onclick="logoutUser()" aria-label="Logout">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                </button>
+                <!-- Mobile Logout/Profile Dropdown Wrapper -->
+                <div class="mobile-profile-wrapper" style="display: none; order: 2;">
+                    <button class="mobile-logout-btn" onclick="toggleMobileProfileDropdown(event)" aria-label="Profile Menu">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                    <div class="profile-dropdown-menu" id="mobileProfileDropdownMenu">
+                        <a href="dashboard.html" class="dropdown-item">
+                            <i class="fa-solid fa-circle-user"></i> Profile
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="javascript:void(0)" onclick="logoutUser()" class="dropdown-item logout-item">
+                            <i class="fa-solid fa-right-from-bracket"></i> Logout
+                        </a>
+                    </div>
+                </div>
 
                 <!-- Mobile Menu & Search Toggles -->
                 <button class="mobile-search-toggle" id="mobileSearchToggle" aria-label="Toggle Search">
