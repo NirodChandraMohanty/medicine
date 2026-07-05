@@ -178,6 +178,8 @@ ul {
     padding: 1rem 0;
     background: var(--bg-white);
     backdrop-filter: blur(16px);
+    position: relative;
+    z-index: 1005;
 }
 
 .logo-box {
