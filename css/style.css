@@ -2956,10 +2956,6 @@ ul {
     height: 100%;
 }
 
-.logo-svg-d {
-    fill: url(#d-gradient); /* Linear gradient defined in SVG Defs */
-}
-
 .logo-svg-plus {
     stroke: #00d2ad; /* Teal plus sign */
     stroke-width: 10px;

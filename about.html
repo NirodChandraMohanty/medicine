@@ -213,12 +213,26 @@
         <div class="top-header">
             <div class="container flex justify-between items-center">
 
-                <a href="index.html" class="logo-box">
-                    <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i>
+                <a href="index.html" class="logo-box" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
+                    <div class="logo-icon-svg" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="logo-svg-icon" style="width: 100%; height: 100%;">
+                            <defs>
+                                <linearGradient id="d-gradient-header" x1="0%" y1="100%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#4c1a9c" />
+                                    <stop offset="100%" stop-color="#934df4" />
+                                </linearGradient>
+                                <mask id="checkmark-mask-header">
+                                    <rect x="0" y="0" width="100" height="100" fill="white" />
+                                    <path d="M 30 42 L 48 62 L 70 32" fill="none" stroke="black" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+                                </mask>
+                            </defs>
+                            <path class="logo-svg-d" d="M 20 10 H 60 C 82 10 95 28 95 50 C 95 72 82 90 60 90 H 20 C 15 90 10 85 10 80 V 20 C 10 15 15 10 20 10 Z" mask="url(#checkmark-mask-header)" fill="url(#d-gradient-header)" />
+                            <path class="logo-svg-plus" d="M 75 10 V 26 M 67 18 H 83" fill="none" stroke="#00d2ad" stroke-width="10px" stroke-linecap="round" />
+                        </svg>
                     </div>
-                    <div class="logo-text-group">
-                        <span class="logo-text">Damodara Medicare</span>
-                        <span class="logo-sub">TRUSTED PHARMACY</span>
+                    <div class="logo-text-group-futuristic" style="display: flex; flex-direction: column; justify-content: center;">
+                        <span class="logo-text-line1" style="font-family: 'Outfit', 'Plus Jakarta Sans', 'Inter', sans-serif; font-size: 1.3rem; font-weight: 800; line-height: 0.95; letter-spacing: 0.5px; color: #8b5cf6; text-transform: uppercase;">D&Lambda;MOD&Lambda;R&Lambda;</span>
+                        <span class="logo-text-line2" style="font-family: 'Outfit', 'Plus Jakarta Sans', 'Inter', sans-serif; font-size: 1.1rem; font-weight: 800; line-height: 0.95; letter-spacing: 0.5px; color: #8b5cf6; margin-top: 2px; text-transform: uppercase;">MEDIC&Lambda;RE</span>
                     </div>
                 </a>
 
@@ -803,11 +817,26 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <div class="logo-box" style="margin-bottom: 1rem;">
-                        <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white;"></i></div>
-                        <div class="logo-text-group">
-                            <span class="logo-text" style="color: white;">Damodara Medicare</span>
-                            <span class="logo-sub" style="color: rgba(255,255,255,0.6);">TRUSTED PHARMACY</span>
+                    <div class="logo-box" style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
+                        <div class="logo-icon-svg" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="logo-svg-icon" style="width: 100%; height: 100%;">
+                                <defs>
+                                    <linearGradient id="d-gradient-footer" x1="0%" y1="100%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#4c1a9c" />
+                                        <stop offset="100%" stop-color="#934df4" />
+                                    </linearGradient>
+                                    <mask id="checkmark-mask-footer">
+                                        <rect x="0" y="0" width="100" height="100" fill="white" />
+                                        <path d="M 30 42 L 48 62 L 70 32" fill="none" stroke="black" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+                                    </mask>
+                                </defs>
+                                <path class="logo-svg-d" d="M 20 10 H 60 C 82 10 95 28 95 50 C 95 72 82 90 60 90 H 20 C 15 90 10 85 10 80 V 20 C 10 15 15 10 20 10 Z" mask="url(#checkmark-mask-footer)" fill="url(#d-gradient-footer)" />
+                                <path class="logo-svg-plus" d="M 75 10 V 26 M 67 18 H 83" fill="none" stroke="#00d2ad" stroke-width="10px" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <div class="logo-text-group-futuristic" style="display: flex; flex-direction: column; justify-content: center;">
+                            <span class="logo-text-line1" style="font-family: 'Outfit', 'Plus Jakarta Sans', 'Inter', sans-serif; font-size: 1.3rem; font-weight: 800; line-height: 0.95; letter-spacing: 0.5px; color: #8b5cf6; text-transform: uppercase;">D&Lambda;MOD&Lambda;R&Lambda;</span>
+                            <span class="logo-text-line2" style="font-family: 'Outfit', 'Plus Jakarta Sans', 'Inter', sans-serif; font-size: 1.1rem; font-weight: 800; line-height: 0.95; letter-spacing: 0.5px; color: #8b5cf6; margin-top: 2px; text-transform: uppercase;">MEDIC&Lambda;RE</span>
                         </div>
                     </div>
                     <div class="footer-map-card">
@@ -1023,11 +1052,26 @@
     <!-- MOBILE DRAWER MENU OVERLAY -->
     <div class="mobile-menu-drawer" id="mobileMenuDrawer">
         <div class="drawer-header">
-            <a href="index.html" class="logo-box">
-                <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i></div>
-                <div class="logo-text-group">
-                    <span class="logo-text" style="color: white;">Damodara Medicare</span>
-                    <span class="logo-sub" style="color: var(--text-muted);">TRUSTED PHARMACY</span>
+            <a href="index.html" class="logo-box" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
+                <div class="logo-icon-svg" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="logo-svg-icon" style="width: 100%; height: 100%;">
+                        <defs>
+                            <linearGradient id="d-gradient-drawer" x1="0%" y1="100%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#4c1a9c" />
+                                <stop offset="100%" stop-color="#934df4" />
+                            </linearGradient>
+                            <mask id="checkmark-mask-drawer">
+                                <rect x="0" y="0" width="100" height="100" fill="white" />
+                                <path d="M 30 42 L 48 62 L 70 32" fill="none" stroke="black" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+                            </mask>
+                        </defs>
+                        <path class="logo-svg-d" d="M 20 10 H 60 C 82 10 95 28 95 50 C 95 72 82 90 60 90 H 20 C 15 90 10 85 10 80 V 20 C 10 15 15 10 20 10 Z" mask="url(#checkmark-mask-drawer)" fill="url(#d-gradient-drawer)" />
+                        <path class="logo-svg-plus" d="M 75 10 V 26 M 67 18 H 83" fill="none" stroke="#00d2ad" stroke-width="10px" stroke-linecap="round" />
+                    </svg>
+                </div>
+                <div class="logo-text-group-futuristic" style="display: flex; flex-direction: column; justify-content: center;">
+                    <span class="logo-text-line1" style="font-family: 'Outfit', 'Plus Jakarta Sans', 'Inter', sans-serif; font-size: 1.3rem; font-weight: 800; line-height: 0.95; letter-spacing: 0.5px; color: #8b5cf6; text-transform: uppercase;">D&Lambda;MOD&Lambda;R&Lambda;</span>
+                    <span class="logo-text-line2" style="font-family: 'Outfit', 'Plus Jakarta Sans', 'Inter', sans-serif; font-size: 1.1rem; font-weight: 800; line-height: 0.95; letter-spacing: 0.5px; color: #8b5cf6; margin-top: 2px; text-transform: uppercase;">MEDIC&Lambda;RE</span>
                 </div>
             </a>
             <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i
