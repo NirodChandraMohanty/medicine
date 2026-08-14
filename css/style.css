@@ -2904,4 +2904,80 @@ ul {
     }
 }
 
+/* ==========================================================================
+   FUTURISTIC LOGO SYSTEM (PDF Match)
+   ========================================================================== */
+.logo-box {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+}
+
+.logo-icon-svg {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.logo-text-group-futuristic {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo-text-line1 {
+    font-family: 'Outfit', 'Plus Jakarta Sans', 'Inter', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: 0.5px;
+    color: #8b5cf6; /* Futuristic violet/purple to match PDF */
+    text-transform: uppercase;
+}
+
+.logo-text-line2 {
+    font-family: 'Outfit', 'Plus Jakarta Sans', 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: 0.5px;
+    color: #8b5cf6; /* Futuristic violet/purple to match PDF */
+    margin-top: 2px;
+    text-transform: uppercase;
+}
+
+/* SVG Fill Color responsiveness */
+.logo-svg-icon {
+    width: 100%;
+    height: 100%;
+}
+
+.logo-svg-d {
+    fill: url(#d-gradient); /* Linear gradient defined in SVG Defs */
+}
+
+.logo-svg-plus {
+    stroke: #00d2ad; /* Teal plus sign */
+    stroke-width: 10px;
+}
+
+/* Responsive adjustment for small mobiles */
+@media (max-width: 360px) {
+    .logo-icon-svg {
+        width: 36px;
+        height: 36px;
+    }
+    .logo-text-line1 {
+        font-size: 1.1rem;
+    }
+    .logo-text-line2 {
+        font-size: 0.9rem;
+    }
+}
+
+
 

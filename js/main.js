@@ -173,7 +173,5 @@ document.addEventListener('DOMContentLoaded', () => {
     if (currentUser && document.getElementById("headerAvatarInitials")) {
         const initials = (currentUser.fname ? currentUser.fname.charAt(0).toUpperCase() : "") +
                          (currentUser.lname ? currentUser.lname.charAt(0).toUpperCase() : "");
-        document.getElementById("headerAvatarInitials").innerText = initials || "U";
     }
-});
 
