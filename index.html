@@ -9,35 +9,49 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DAMODAR MEDICARE - Trusted Pharmacy</title>
+    <title>DAMODARA MEDICARE - Trusted Pharmacy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css?v=101">
     <style>
         /* --- STICKY GLASSMORPHISM HEADER --- */
         .site-header {
             position: fixed;
-            top: 0; left: 0; width: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
             z-index: 1000;
             transition: all 0.4s ease;
             background: transparent;
         }
-        body { padding-top: 130px; } /* Prevent layout jump */
+
+        body {
+            padding-top: 130px;
+        }
+
+        /* Prevent layout jump */
 
         .site-header.scrolled {
             background: rgba(2, 20, 15, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             border-bottom: 1px solid rgba(0, 255, 204, 0.2);
         }
+
         .site-header.scrolled .top-header {
-            padding: 5px 0; /* Shrink slightly on scroll */
+            padding: 5px 0;
+            /* Shrink slightly on scroll */
         }
+
         .site-header.scrolled .nav-header {
-            border-top: 1px solid rgba(255,255,255,0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
-        
-            body { padding-top: 80px; } /* Mobile header is shorter */
+
+        body {
+            padding-top: 80px;
+        }
+
+        /* Mobile header is shorter */
         }
 
         /* --- FOOTER REDESIGN OVERRIDES --- */
@@ -45,11 +59,13 @@
             background: linear-gradient(180deg, #020f0c 0%, #010605 100%) !important;
             padding: 5rem 0 2rem !important;
         }
+
         .footer-grid {
             display: grid !important;
             grid-template-columns: 1.5fr 1fr 1.2fr !important;
             gap: 3rem !important;
         }
+
         .footer-map-card {
             position: relative;
             width: 100%;
@@ -62,6 +78,7 @@
             border: 1px solid rgba(0, 255, 204, 0.15);
             background: rgba(5, 34, 28, 0.45);
         }
+
         .footer-map-badge {
             position: absolute;
             top: 10px;
@@ -78,15 +95,17 @@
             align-items: center;
             gap: 6px;
             z-index: 5;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             transition: all 0.3s ease;
             text-decoration: none;
         }
+
         .footer-map-badge:hover {
             background: white;
             color: var(--primary-dark);
             transform: translateY(-2px);
         }
+
         .footer-mini-map {
             width: 100%;
             height: 100%;
@@ -94,10 +113,11 @@
             filter: grayscale(80%) brightness(0.95);
             transition: all 0.5s ease;
         }
+
         .footer-map-card:hover .footer-mini-map {
             filter: grayscale(0%) brightness(1);
         }
-        
+
         .footer p {
             max-width: 100% !important;
             margin-top: 1rem !important;
@@ -110,6 +130,7 @@
             padding-bottom: 0.5rem !important;
             margin-bottom: 1.25rem !important;
         }
+
         .footer h4::after {
             background: var(--primary-dark) !important;
             width: 30px !important;
@@ -122,6 +143,7 @@
             color: rgba(255, 255, 255, 0.6) !important;
             font-weight: 500;
         }
+
         .footer ul li a::before {
             content: '→' !important;
             font-family: inherit !important;
@@ -133,10 +155,12 @@
             margin-right: 0 !important;
             display: inline-block;
         }
+
         .footer ul li a:hover {
             color: var(--primary-dark) !important;
             transform: translateX(5px) !important;
         }
+
         .footer ul li a:hover::before {
             opacity: 1 !important;
         }
@@ -146,21 +170,26 @@
                 grid-template-columns: 1.2fr 1fr !important;
                 gap: 2.5rem !important;
             }
-            .footer-grid > div:last-child {
+
+            .footer-grid>div:last-child {
                 grid-column: span 2;
             }
         }
+
         @media (max-width: 576px) {
             .footer-grid {
                 grid-template-columns: 1fr !important;
                 gap: 2rem !important;
             }
-            .footer-grid > div:last-child {
+
+            .footer-grid>div:last-child {
                 grid-column: span 1;
             }
+
             .footer-map-card {
                 max-width: 100%;
             }
+
             .footer {
                 padding: 4rem 0 2rem !important;
             }
@@ -175,40 +204,61 @@
 <body>
 
     <header id="main-header" class="site-header">
-    <!-- TOP HEADER -->
-    <div class="top-header">
-        <div class="container flex justify-between items-center">
+        <!-- TOP HEADER -->
+        <div class="top-header">
+            <div class="container flex justify-between items-center">
 
-            <a href="index.html" class="logo-box">
-                <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i></div>
-                <div class="logo-text-group">
-                    <span class="logo-text">Damodar Medicare</span>
-                    <span class="logo-sub">TRUSTED PHARMACY</span>
+                <a href="index.html" class="logo-box">
+                    <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i>
+                    </div>
+                    <div class="logo-text-group">
+                        <span class="logo-text">Damodara Medicare</span>
+                        <span class="logo-sub">TRUSTED PHARMACY</span>
+                    </div>
+                </a>
+
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search medicines, doctors, products...">
                 </div>
-            </a>
 
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Search medicines, doctors, products...">
-            </div>
+                <div class="top-actions">
+                    <div class="square-icon"><i class="fa-regular fa-bell"></i></div>
+                    <a href="wishlist.html" class="square-icon" style="position: relative;" title="View Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+                    <a href="cart.html" class="square-icon" style="position: relative;">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span
+                            style="position: absolute; top:-5px; right:-5px; background:red; color:white; font-size:9px; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center;">2</span>
+                    </a>
 
-            <div class="top-actions">
-                <div class="square-icon"><i class="fa-regular fa-bell"></i></div>
-                <a href="wishlist.html" class="square-icon" style="position: relative;" title="View Wishlist">
-                    <i class="fa-regular fa-heart"></i>
-                </a>
-                <a href="cart.html" class="square-icon" style="position: relative;">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <span
-                        style="position: absolute; top:-5px; right:-5px; background:red; color:white; font-size:9px; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center;">2</span>
-                </a>
+                    <div class="action-links">
+                        <span id="welcomeUser" class="register-link"></span>
+                        <div class="profile-dropdown-wrapper">
+                            <button class="btn btn-primary profile-dropdown-trigger"
+                                onclick="toggleProfileDropdown(event)"
+                                style="border-radius: 4px; padding: 0.45rem 1rem;">
+                                <span>Logout</span> <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                            </button>
+                            <div class="profile-dropdown-menu" id="profileDropdownMenu">
+                                <a href="dashboard.html" class="dropdown-item">
+                                    <i class="fa-solid fa-circle-user"></i> Profile
+                                </a>
+                                <hr class="dropdown-divider">
+                                <a href="javascript:void(0)" onclick="logoutUser()" class="dropdown-item logout-item">
+                                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="action-links">
-                    <span id="welcomeUser" class="register-link"></span>
-                    <div class="profile-dropdown-wrapper">
-                        <button class="btn btn-primary profile-dropdown-trigger" onclick="toggleProfileDropdown(event)" style="border-radius: 4px; padding: 0.45rem 1rem;">
-                            <span>Logout</span> <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                    <!-- Mobile Logout/Profile Dropdown Wrapper -->
+                    <div class="mobile-profile-wrapper" style="display: none; order: 2;">
+                        <button class="mobile-logout-btn" onclick="toggleMobileProfileDropdown(event)"
+                            aria-label="Profile Menu">
+                            <i class="fa-solid fa-right-from-bracket"></i>
                         </button>
-                        <div class="profile-dropdown-menu" id="profileDropdownMenu">
+                        <div class="profile-dropdown-menu" id="mobileProfileDropdownMenu">
                             <a href="dashboard.html" class="dropdown-item">
                                 <i class="fa-solid fa-circle-user"></i> Profile
                             </a>
@@ -218,49 +268,32 @@
                             </a>
                         </div>
                     </div>
-                </div>
 
-                <!-- Mobile Logout/Profile Dropdown Wrapper -->
-                <div class="mobile-profile-wrapper" style="display: none; order: 2;">
-                    <button class="mobile-logout-btn" onclick="toggleMobileProfileDropdown(event)" aria-label="Profile Menu">
-                        <i class="fa-solid fa-right-from-bracket"></i>
+                    <!-- Mobile Menu & Search Toggles -->
+                    <button class="mobile-search-toggle" id="mobileSearchToggle" aria-label="Toggle Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
-                    <div class="profile-dropdown-menu" id="mobileProfileDropdownMenu">
-                        <a href="dashboard.html" class="dropdown-item">
-                            <i class="fa-solid fa-circle-user"></i> Profile
-                        </a>
-                        <hr class="dropdown-divider">
-                        <a href="javascript:void(0)" onclick="logoutUser()" class="dropdown-item logout-item">
-                            <i class="fa-solid fa-right-from-bracket"></i> Logout
-                        </a>
-                    </div>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
                 </div>
 
-                <!-- Mobile Menu & Search Toggles -->
-                <button class="mobile-search-toggle" id="mobileSearchToggle" aria-label="Toggle Search">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
             </div>
-
         </div>
-    </div>
 
-    <!-- NAV HEADER -->
-    <div class="nav-header">
-        <div class="container flex justify-between items-center" style="position: relative;">
-            <nav class="nav-links">
-                <a href="index.html" class="nav-link active">Home</a>
-                <a href="about.html" class="nav-link">About Us</a>
-                <a href="medicines.html" class="nav-link">Medicine</a>
-                <a href="doctors.html" class="nav-link">Doctors</a>
-                <a href="track-order.html" class="nav-link">Order</a>
-                <a href="contact.html" class="nav-link">Contact Us</a>
-            </nav>
+        <!-- NAV HEADER -->
+        <div class="nav-header">
+            <div class="container flex justify-between items-center" style="position: relative;">
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link active">Home</a>
+                    <a href="about.html" class="nav-link">About Us</a>
+                    <a href="medicines.html" class="nav-link">Medicine</a>
+                    <a href="doctors.html" class="nav-link">Doctors</a>
+                    <a href="track-order.html" class="nav-link">Order</a>
+                    <a href="contact.html" class="nav-link">Contact Us</a>
+                </nav>
+            </div>
         </div>
-    </div>
     </header>
 
     <!-- HERO SECTION -->
@@ -677,7 +710,7 @@
                 </h4>
 
                 <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 2.5rem;">
-                    At Damodar Medicare, we believe that access to genuine medicine and expert healthcare is a
+                    At Damodara Medicare, we believe that access to genuine medicine and expert healthcare is a
                     fundamental right. With a legacy of over 15 years, we have been serving the community with 100%
                     authentic medicines, superfast delivery, and compassionate care.
                 </p>
@@ -725,7 +758,7 @@
             <div class="about-image-wrapper">
                 <div class="about-img-main"
                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
-                    <img src="images/about_us.png" alt="Damodar Medicare Pharmacy"
+                    <img src="images/about_us.png" alt="Damodara Medicare Pharmacy"
                         style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease;">
                 </div>
 
@@ -1142,7 +1175,7 @@
                                 class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
                                 class="fa-solid fa-star-half-stroke"></i>
                         </div>
-                        <p>"Damodar Medicare offers great discounts on my monthly diabetic medicines. Their radar
+                        <p>"Damodara Medicare offers great discounts on my monthly diabetic medicines. Their radar
                             tracking feature is just amazing and feels so premium!"</p>
                         <div class="test-user">
                             <div class="test-avatar" style="background: var(--accent-yellow);">AP</div>
@@ -1177,7 +1210,7 @@
                                 class="fa-solid fa-star"></i>
                         </div>
                         <p>"The lab tests were done at home smoothly. Excellent staff behavior and prompt reports. I
-                            highly trust Damodar Medicare for my family's health."</p>
+                            highly trust Damodara Medicare for my family's health."</p>
                         <div class="test-user">
                             <div class="test-avatar" style="background: #8b5cf6;">SS</div>
                             <div>
@@ -1199,7 +1232,7 @@
                     <div class="logo-box" style="margin-bottom: 1rem;">
                         <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white;"></i></div>
                         <div class="logo-text-group">
-                            <span class="logo-text" style="color: white;">Damodar Medicare</span>
+                            <span class="logo-text" style="color: white;">Damodara Medicare</span>
                             <span class="logo-sub" style="color: rgba(255,255,255,0.6);">TRUSTED PHARMACY</span>
                         </div>
                     </div>
@@ -1207,9 +1240,13 @@
                         <a href="https://maps.app.goo.gl/o1Wc8WLyqU2G1WzJ7" target="_blank" class="footer-map-badge">
                             <span>Maps</span> <i class="fa-solid fa-up-right-from-square"></i>
                         </a>
-                        <iframe class="footer-mini-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118944.37562851413!2d86.64333934335936!3d21.2662057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1c6a7ab56ebcd7%3A0x6b2b6ab0c99aeb61!2sSoro%2C%20Odisha!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe class="footer-mini-map"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118944.37562851413!2d86.64333934335936!3d21.2662057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1c6a7ab56ebcd7%3A0x6b2b6ab0c99aeb61!2sSoro%2C%20Odisha!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                            style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
-                    <p>Your trusted partner for genuine medicines, expert doctors, and fast doorstep delivery across Odisha. Quality healthcare, simplified.</p>
+                    <p>Your trusted partner for genuine medicines, expert doctors, and fast doorstep delivery across
+                        Odisha. Quality healthcare, simplified.</p>
                     <div class="social-icons">
                         <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
                         <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
@@ -1237,7 +1274,7 @@
                             style="display: flex; gap: 15px; align-items: flex-start; color: rgba(255,255,255,0.7); margin: 0; line-height: 1.6;">
                             <i class="fa-solid fa-location-dot"
                                 style="margin-top: 4px; color: var(--primary-light); font-size: 1.1rem; width: 20px; text-align: center;"></i>
-                            <span>Damodar Medicare, Soro Square,<br>Baleswar, Odisha 756045</span>
+                            <span>Damodara Medicare, Soro Square,<br>Baleswar, Odisha 756045</span>
                         </li>
                         <li
                             style="display: flex; gap: 15px; align-items: center; color: rgba(255,255,255,0.7); margin: 0;">
@@ -1256,7 +1293,7 @@
             </div>
 
             <div class="footer-bottom">
-                <div>&copy; 2026 Damodar Medicare. All rights reserved. Made with care in Odisha, India.</div>
+                <div>&copy; 2026 Damodara Medicare. All rights reserved. Made with care in Odisha, India.</div>
                 <div class="footer-links">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Use</a>
@@ -1499,8 +1536,8 @@
                     document.getElementById("welcomeUserMobile").innerText = storedUser.fname + " " + (storedUser.lname || "");
                 }
                 if (document.getElementById("mobileAvatarInitials")) {
-                    const initials = (storedUser.fname ? storedUser.fname.charAt(0).toUpperCase() : "") + 
-                                     (storedUser.lname ? storedUser.lname.charAt(0).toUpperCase() : "");
+                    const initials = (storedUser.fname ? storedUser.fname.charAt(0).toUpperCase() : "") +
+                        (storedUser.lname ? storedUser.lname.charAt(0).toUpperCase() : "");
                     document.getElementById("mobileAvatarInitials").innerText = initials || "U";
                 }
             }
@@ -1523,21 +1560,25 @@
             <a href="index.html" class="logo-box">
                 <div class="logo-icon"><i class="fa-solid fa-leaf" style="color: white; font-size: 1.2rem;"></i></div>
                 <div class="logo-text-group">
-                    <span class="logo-text" style="color: white;">Damodar Medicare</span>
+                    <span class="logo-text" style="color: white;">Damodara Medicare</span>
                     <span class="logo-sub" style="color: var(--text-muted);">TRUSTED PHARMACY</span>
                 </div>
             </a>
-            <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+            <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i
+                    class="fa-solid fa-xmark"></i></button>
         </div>
 
         <!-- Premium Mobile Profile Banner -->
-        <div class="drawer-profile" style="background: rgba(248, 181, 0, 0.05); padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-            <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary-dark); display: flex; align-items: center; justify-content: center; color: var(--bg-light); font-weight: 700; font-size: 1.1rem; border: 2px solid rgba(248, 181, 0, 0.3);" id="mobileAvatarInitials">
+        <div class="drawer-profile"
+            style="background: rgba(248, 181, 0, 0.05); padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary-dark); display: flex; align-items: center; justify-content: center; color: var(--bg-light); font-weight: 700; font-size: 1.1rem; border: 2px solid rgba(248, 181, 0, 0.3);"
+                id="mobileAvatarInitials">
                 U
             </div>
             <div style="display: flex; flex-direction: column;">
                 <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;">Welcome back,</span>
-                <span id="welcomeUserMobile" style="font-size: 0.95rem; color: white; font-weight: 700; margin-top: 2px;">Guest User</span>
+                <span id="welcomeUserMobile"
+                    style="font-size: 0.95rem; color: white; font-weight: 700; margin-top: 2px;">Guest User</span>
             </div>
         </div>
 
@@ -1550,9 +1591,10 @@
                 <a href="track-order.html" class="drawer-link"><i class="fa-solid fa-truck-fast"></i> Order</a>
                 <a href="contact.html" class="drawer-link"><i class="fa-solid fa-envelope"></i> Contact Us</a>
             </nav>
-            
+
             <div class="drawer-footer">
-                <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary w-full" style="border-radius: 8px;">
+                <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary w-full"
+                    style="border-radius: 8px;">
                     <i class="fa-solid fa-right-from-bracket" style="margin-right: 8px;"></i> Logout
                 </a>
             </div>
@@ -1569,7 +1611,7 @@
         </a>
 
         <!-- WhatsApp Button With Message -->
-        <a href="https://wa.me/919971286110?text=Hello%20Damodar%20Medicare%2C%20I%20need%20help%20with%20medicine%20order."
+        <a href="https://wa.me/919971286110?text=Hello%20Damodara%20Medicare%2C%20I%20need%20help%20with%20medicine%20order."
             target="_blank" class="float-btn wa-float" title="WhatsApp +91 9971286110">
             <i class="fa-brands fa-whatsapp"></i>
         </a>
