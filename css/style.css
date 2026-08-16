@@ -2436,7 +2436,33 @@ ul {
     }
 
     .top-actions {
-        gap: 0.5rem;
+        gap: 0.35rem;
+    }
+
+    /* Prevent mobile header overflow and hamburger menu button cutoff */
+    .top-header .container {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+    .top-actions .square-icon,
+    .top-actions .mobile-menu-toggle,
+    .top-actions .mobile-logout-btn {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 1.05rem !important;
+    }
+    .logo-box {
+        gap: 0.5rem !important;
+    }
+    .logo-icon-svg {
+        width: 36px !important;
+        height: 36px !important;
+    }
+    .logo-text-line1 {
+        font-size: 1.1rem !important;
+    }
+    .logo-text-line2 {
+        font-size: 0.9rem !important;
     }
 
     /* Hero section responsive layout */
