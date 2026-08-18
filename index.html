@@ -16,37 +16,51 @@
         /* Force mobile layout fixes to bypass any cached style.css files */
         @media (max-width: 768px) {
             .top-header .container {
-                padding-left: 0.5rem !important;
-                padding-right: 0.5rem !important;
+                padding-left: 0.4rem !important;
+                padding-right: 0.4rem !important;
             }
             .top-actions {
-                gap: 0.35rem !important;
+                gap: 0.25rem !important;
             }
+            /* Display Wishlist and Logout buttons on mobile header bar as requested */
             .top-actions .mobile-logout-btn,
             .top-actions .square-icon[href="wishlist.html"] {
-                display: none !important;
+                display: flex !important;
             }
             .top-actions .square-icon,
-            .top-actions .mobile-menu-toggle {
-                width: 36px !important;
-                height: 36px !important;
-                font-size: 1.05rem !important;
+            .top-actions .mobile-menu-toggle,
+            .top-actions .mobile-logout-btn {
+                width: 32px !important;
+                height: 32px !important;
+                font-size: 0.95rem !important;
                 display: flex !important;
                 align-items: center !important;
                 justify-content: center !important;
+                border-radius: 6px !important;
+            }
+            /* Adjust cart/wishlist badge positions slightly for smaller button size */
+            .top-actions .square-icon span {
+                top: -6px !important;
+                right: -6px !important;
+                width: 12px !important;
+                height: 12px !important;
+                font-size: 8px !important;
             }
             .logo-box {
-                gap: 0.5rem !important;
+                gap: 0.35rem !important;
             }
             .logo-icon-svg {
-                width: 36px !important;
-                height: 36px !important;
+                width: 28px !important;
+                height: 28px !important;
             }
             .logo-text-line1 {
-                font-size: 1.1rem !important;
+                font-size: 0.95rem !important;
+                letter-spacing: 0.2px !important;
             }
             .logo-text-line2 {
-                font-size: 0.9rem !important;
+                font-size: 0.75rem !important;
+                letter-spacing: 0.2px !important;
+                margin-top: 1px !important;
             }
         }
 
