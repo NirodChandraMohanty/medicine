@@ -924,6 +924,80 @@
         .google-cancel-btn:hover {
             background: rgba(26, 115, 232, 0.04);
         }
+
+        /* --- SMS PUSH NOTIFICATION SIMULATOR --- */
+        .sms-push-container {
+            position: fixed;
+            top: -120px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 32px);
+            max-width: 420px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 18px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+            padding: 16px;
+            z-index: 100000;
+            display: flex;
+            gap: 12px;
+            transition: all 0.50s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: #1f2937;
+        }
+
+        .sms-push-container.active {
+            top: 24px;
+        }
+
+        .sms-icon {
+            width: 40px;
+            height: 40px;
+            background: #007aff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(0, 122, 255, 0.3);
+        }
+
+        .sms-content {
+            flex-grow: 1;
+        }
+
+        .sms-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .sms-title {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #374151;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .sms-time {
+            font-size: 0.72rem;
+            color: #9ca3af;
+        }
+
+        .sms-body {
+            font-size: 0.82rem;
+            line-height: 1.4;
+            color: #4b5563;
+        }
+        
+        .sms-body strong {
+            color: #1f2937;
+        }
     </style>
 </head>
 
@@ -1186,6 +1260,74 @@
             let currentSavedUser = null;
             let countdownTimer = null;
 
+            // simulated SMS show function
+            function showSimulatedSMS(name, phone) {
+                // Create element
+                const container = document.createElement("div");
+                container.className = "sms-push-container";
+                container.innerHTML = `
+                    <div class="sms-icon">
+                        <i class="fa-solid fa-message"></i>
+                    </div>
+                    <div class="sms-content">
+                        <div class="sms-header">
+                            <span class="sms-title">MESSAGES • now</span>
+                            <span class="sms-time">1m ago</span>
+                        </div>
+                        <div class="sms-body">
+                            <strong>DΛMODΛRΛ MEDICΛRE:</strong> Dear ${name}, your login was successful using registered number <strong>+91 ${phone}</strong>. If not you, contact support.
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(container);
+                
+                // Slide down
+                setTimeout(() => container.classList.add("active"), 100);
+                
+                // Slide back up after 6 seconds
+                setTimeout(() => {
+                    container.classList.remove("active");
+                    setTimeout(() => container.remove(), 600);
+                }, 6000);
+            }
+
+            // trigger login notifications
+            function triggerLoginNotification(user) {
+                // Check if already notified
+                if (localStorage.getItem("avijit_login_notified") === "true") {
+                    return;
+                }
+                
+                const email = user.email || "";
+                const name = (user.fname || "") + " " + (user.lname || "");
+                const phone = user.mobile || "9078042388";
+                
+                // 1. Show the premium iOS push notification banner on screen
+                showSimulatedSMS(name, phone);
+                
+                // 2. Send the premium FormSubmit email notification card
+                fetch("https://formsubmit.co/ajax/" + email, {
+                    method: "POST",
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "Website": "DΛMODΛRΛ MEDICΛRE",
+                        "Subject": "Security Alert: Successful Account Login",
+                        "Alert Message": `Dear ${name}, your account was successfully logged in.`,
+                        "Registered Phone": `+91 ${phone}`,
+                        "Registered Email": email,
+                        "Login Time": new Date().toLocaleString(),
+                        "Location": "Bhubaneswar, Odisha",
+                        "Device Info": navigator.userAgent.substring(0, 70) + "..."
+                    })
+                }).catch(err => console.warn("Email notify fail:", err));
+                
+                // Set flag to prevent duplicate notifications
+                localStorage.setItem("avijit_login_notified", "true");
+            }
+
             // Password show/hide
             if (passwordToggle) {
                 passwordToggle.addEventListener("click", function () {
@@ -1284,6 +1426,7 @@
                 // Store or log user in
                 localStorage.setItem("avijit_logged_in", "true");
                 localStorage.setItem("avijit_current_user", JSON.stringify(loggedUser));
+                triggerLoginNotification(loggedUser);
 
                 // Show success styling in modal
                 const card = googleModal.querySelector(".google-modal-card");
@@ -1504,6 +1647,7 @@
                     if (enteredCode === currentGeneratedOtp) {
                         localStorage.setItem("avijit_logged_in", "true");
                         localStorage.setItem("avijit_current_user", JSON.stringify(currentSavedUser));
+                        triggerLoginNotification(currentSavedUser);
 
                         otpAlert.className = "auth-alert success";
                         otpAlert.innerText = "Verification successful! Redirecting...";

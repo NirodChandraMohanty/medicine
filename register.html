@@ -1331,6 +1331,7 @@
 
                         localStorage.setItem("avijit_user", JSON.stringify(userData));
                         localStorage.removeItem("avijit_logged_in");
+                        localStorage.removeItem("avijit_login_notified");
 
                         registerAlert.className = "auth-alert success";
                         registerAlert.innerText = "Registration successful. Redirecting to login...";
@@ -1427,6 +1428,7 @@
                                 // Register user
                                 localStorage.setItem("avijit_user", JSON.stringify(tempOtpUser));
                                 localStorage.removeItem("avijit_logged_in");
+                                localStorage.removeItem("avijit_login_notified");
 
                                 registerAlert.className = "auth-alert success";
                                 registerAlert.innerText = "Verification successful! Account created. Redirecting to login...";
