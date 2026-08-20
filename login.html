@@ -739,6 +739,64 @@
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* --- OTP VERIFICATION SYSTEM STYLES --- */
+        .otp-inputs-wrapper {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 2rem 0 1.5rem 0;
+        }
+
+        .otp-input-box {
+            width: 48px;
+            height: 56px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border: 1px solid #d9eee6;
+            background: #f8fcfa;
+            border-radius: 14px;
+            color: var(--text);
+            outline: none;
+            transition: all 0.25s ease;
+        }
+
+        .otp-input-box:focus {
+            background: white;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 4px rgba(18, 185, 129, 0.10);
+            transform: translateY(-2px);
+        }
+
+        .otp-resend-btn {
+            background: none;
+            border: none;
+            color: var(--primary-light);
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0;
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+
+        .otp-resend-btn:disabled {
+            color: var(--text-muted);
+            cursor: not-allowed;
+            text-decoration: none;
+        }
+
+        @media (max-width: 400px) {
+            .otp-inputs-wrapper {
+                gap: 6px;
+            }
+            .otp-input-box {
+                width: 38px;
+                height: 48px;
+                font-size: 1.25rem;
+                border-radius: 10px;
+            }
+        }
     </style>
 </head>
 
@@ -913,6 +971,42 @@
 
                     </form>
 
+                    <!-- OTP Verification Panel (Hidden by Default) -->
+                    <div id="otpSection" style="display: none;">
+                        <div class="form-heading">
+                            <h2>Security Verification</h2>
+                            <p>For security, we sent a 6-digit OTP code to <strong id="otpDisplayEmail">your email</strong>. Enter it below to sign in.</p>
+                        </div>
+
+                        <div id="otpAlert" class="auth-alert"></div>
+
+                        <form id="otpForm" autocomplete="off">
+                            <div class="otp-inputs-wrapper">
+                                <input type="text" class="otp-input-box" maxlength="1" pattern="[0-9]" inputmode="numeric" required oninput="this.value=this.value.replace(/[^0-9]/g,''); if(this.value.length==1) this.nextElementSibling?.focus();">
+                                <input type="text" class="otp-input-box" maxlength="1" pattern="[0-9]" inputmode="numeric" required oninput="this.value=this.value.replace(/[^0-9]/g,''); if(this.value.length==1) this.nextElementSibling?.focus();" onkeydown="if(event.key==='Backspace' && this.value==='') this.previousElementSibling?.focus();">
+                                <input type="text" class="otp-input-box" maxlength="1" pattern="[0-9]" inputmode="numeric" required oninput="this.value=this.value.replace(/[^0-9]/g,''); if(this.value.length==1) this.nextElementSibling?.focus();" onkeydown="if(event.key==='Backspace' && this.value==='') this.previousElementSibling?.focus();">
+                                <input type="text" class="otp-input-box" maxlength="1" pattern="[0-9]" inputmode="numeric" required oninput="this.value=this.value.replace(/[^0-9]/g,''); if(this.value.length==1) this.nextElementSibling?.focus();" onkeydown="if(event.key==='Backspace' && this.value==='') this.previousElementSibling?.focus();">
+                                <input type="text" class="otp-input-box" maxlength="1" pattern="[0-9]" inputmode="numeric" required oninput="this.value=this.value.replace(/[^0-9]/g,''); if(this.value.length==1) this.nextElementSibling?.focus();" onkeydown="if(event.key==='Backspace' && this.value==='') this.previousElementSibling?.focus();">
+                                <input type="text" class="otp-input-box" maxlength="1" pattern="[0-9]" inputmode="numeric" required oninput="this.value=this.value.replace(/[^0-9]/g,'');" onkeydown="if(event.key==='Backspace' && this.value==='') this.previousElementSibling?.focus();">
+                            </div>
+
+                            <div class="form-options" style="justify-content: center; font-size: 0.9rem; margin-bottom: 2rem; color: var(--text-muted);">
+                                <span>Didn't receive code? </span>
+                                <button type="button" id="resendOtpBtn" class="otp-resend-btn" style="margin-left: 5px;">Resend OTP</button>
+                                <span id="otpCountdown" style="margin-left: 5px; font-weight: 700;">(60s)</span>
+                            </div>
+
+                            <button type="submit" class="btn-login" id="verifyOtpBtn">
+                                <span>Verify & Login</span>
+                                <i class="fa-solid fa-circle-check"></i>
+                            </button>
+
+                            <button type="button" id="backToLoginBtn" style="background: none; border: none; color: var(--text-muted); font-weight: 600; cursor: pointer; display: block; margin: 1.5rem auto 0; font-size: 0.9rem; text-decoration: underline;">
+                                <i class="fa-solid fa-arrow-left"></i> Back to login
+                            </button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
 
@@ -931,6 +1025,21 @@
         const passwordToggle = document.getElementById("passwordToggle");
         const loginPassword = document.getElementById("loginPassword");
 
+        // OTP inputs & layout targets
+        const otpSection = document.getElementById("otpSection");
+        const otpAlert = document.getElementById("otpAlert");
+        const otpForm = document.getElementById("otpForm");
+        const otpDisplayEmail = document.getElementById("otpDisplayEmail");
+        const resendOtpBtn = document.getElementById("resendOtpBtn");
+        const otpCountdown = document.getElementById("otpCountdown");
+        const backToLoginBtn = document.getElementById("backToLoginBtn");
+        const otpInputs = document.querySelectorAll(".otp-input-box");
+
+        let currentGeneratedOtp = "";
+        let currentEmail = "";
+        let currentSavedUser = null;
+        let countdownTimer = null;
+
         // Password show/hide
         passwordToggle.addEventListener("click", function () {
             const icon = passwordToggle.querySelector("i");
@@ -948,6 +1057,62 @@
             }
         });
 
+        // Function to start countdown for Resend OTP button
+        function startCountdown() {
+            let timeLeft = 60;
+            resendOtpBtn.disabled = true;
+            otpCountdown.style.display = "inline";
+            otpCountdown.innerText = `(${timeLeft}s)`;
+
+            if (countdownTimer) clearInterval(countdownTimer);
+
+            countdownTimer = setInterval(() => {
+                timeLeft--;
+                otpCountdown.innerText = `(${timeLeft}s)`;
+                if (timeLeft <= 0) {
+                    clearInterval(countdownTimer);
+                    resendOtpBtn.disabled = false;
+                    otpCountdown.style.display = "none";
+                }
+            }, 1000);
+        }
+
+        // Function to generate and send OTP
+        function sendOtpToUser(email) {
+            // Generate random 6-digit number
+            currentGeneratedOtp = Math.floor(100000 + Math.random() * 900000).toString();
+            console.log("TESTING ONLY: Generated OTP is:", currentGeneratedOtp);
+
+            // Display a developer alert or toast so they can easily copy/paste it during testing
+            otpAlert.className = "auth-alert success";
+            otpAlert.innerHTML = `OTP Sent! For quick testing, your OTP is: <strong>${currentGeneratedOtp}</strong>`;
+
+            // Make the actual AJAX call to FormSubmit to deliver to their real inbox
+            fetch("https://formsubmit.co/ajax/" + email, {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    "Website": "Damodara Medicare",
+                    "Subject": "Damodara Medicare - OTP Verification Code",
+                    "OTP Code": currentGeneratedOtp,
+                    "Message": `Your secure login verification code is: ${currentGeneratedOtp}. Enter this code on the verification screen to access your account.`
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log("FormSubmit response:", data);
+            })
+            .catch(err => {
+                console.warn("Could not deliver email via FormSubmit:", err);
+            });
+
+            startCountdown();
+        }
+
+        // Login form submit handler
         loginForm.addEventListener("submit", function (e) {
             e.preventDefault();
 
@@ -971,25 +1136,97 @@
             }
 
             if (email === savedUser.email && password === savedUser.password) {
-                localStorage.setItem("avijit_logged_in", "true");
-                localStorage.setItem("avijit_current_user", JSON.stringify(savedUser));
+                // Save temporary session details
+                currentEmail = email;
+                currentSavedUser = savedUser;
 
-                loginAlert.className = "auth-alert success";
-                loginAlert.innerText = "Login successful. Redirecting...";
+                // Show OTP panel
+                loginForm.style.display = "none";
+                otpSection.style.display = "block";
+                otpDisplayEmail.innerText = email;
 
-                loginBtn.disabled = true;
-                loginBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Signing in...</span>';
+                // Send the first OTP
+                sendOtpToUser(email);
 
-                // Show the ultra-premium reloader
-                const pageLoader = document.getElementById('pageLoader');
-                pageLoader.classList.add('active');
-
-                setTimeout(function () {
-                    window.location.href = "index.html";
-                }, 3500); // Increased to 3.5s to fully showcase the advanced animation
+                // Focus on first OTP input
+                setTimeout(() => otpInputs[0].focus(), 100);
             } else {
                 loginAlert.className = "auth-alert error";
                 loginAlert.innerText = "Invalid email or password.";
+            }
+        });
+
+        // OTP inputs backspace handler and auto-tabbing
+        otpInputs.forEach((input, index) => {
+            input.addEventListener("keyup", (e) => {
+                if (e.key === "Backspace" || e.key === "ArrowLeft") {
+                    if (index > 0) otpInputs[index - 1].focus();
+                } else if (input.value.length === 1 || e.key === "ArrowRight") {
+                    if (index < otpInputs.length - 1) otpInputs[index + 1].focus();
+                }
+            });
+        });
+
+        // Resend OTP handler
+        resendOtpBtn.addEventListener("click", function() {
+            otpAlert.className = "auth-alert success";
+            otpAlert.innerText = "Sending new OTP code...";
+            sendOtpToUser(currentEmail);
+        });
+
+        // Back to login handler
+        backToLoginBtn.addEventListener("click", function() {
+            if (countdownTimer) clearInterval(countdownTimer);
+            otpSection.style.display = "none";
+            loginForm.style.display = "block";
+            loginAlert.className = "auth-alert";
+            loginAlert.innerText = "";
+            
+            // Re-enable login button in case it was disabled
+            loginBtn.disabled = false;
+            loginBtn.innerHTML = '<span>Sign In</span><i class="fa-solid fa-arrow-right"></i>';
+        });
+
+        // OTP Form submit handler
+        otpForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Read the code
+            let enteredCode = "";
+            otpInputs.forEach(input => enteredCode += input.value.trim());
+
+            otpAlert.className = "auth-alert";
+            otpAlert.innerText = "";
+
+            if (enteredCode.length < 6) {
+                otpAlert.className = "auth-alert error";
+                otpAlert.innerText = "Please enter the full 6-digit OTP code.";
+                return;
+            }
+
+            if (enteredCode === currentGeneratedOtp) {
+                localStorage.setItem("avijit_logged_in", "true");
+                localStorage.setItem("avijit_current_user", JSON.stringify(currentSavedUser));
+
+                otpAlert.className = "auth-alert success";
+                otpAlert.innerText = "Verification successful! Redirecting...";
+
+                const verifyBtn = document.getElementById("verifyOtpBtn");
+                verifyBtn.disabled = true;
+                verifyBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Verifying...</span>';
+
+                // Show the ultra-premium reloader animation
+                const pageLoader = document.getElementById('pageLoader');
+                if (pageLoader) {
+                    pageLoader.classList.add('active');
+                }
+
+                setTimeout(function () {
+                    window.location.href = "index.html";
+                }, 3500);
+            } else {
+                otpAlert.className = "auth-alert error";
+                otpAlert.innerText = "Invalid OTP code. Please try again.";
             }
         });
     </script>
