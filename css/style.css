@@ -2934,7 +2934,7 @@ ul {
     position: relative;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     .mobile-profile-wrapper {
         display: block !important;
     }
