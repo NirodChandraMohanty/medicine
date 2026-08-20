@@ -624,6 +624,191 @@
                 height: 56px;
             }
         }
+
+        /* --- GOOGLE SIMULATOR MODAL STYLES --- */
+        .google-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 16px;
+        }
+
+        .google-modal-card {
+            background: white;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            padding: 24px;
+            border: 1px solid rgba(0,0,0,0.05);
+            color: #1f2937;
+            font-family: 'Outfit', 'Inter', sans-serif;
+        }
+
+        .google-modal-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .google-modal-header svg {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 8px;
+        }
+
+        .google-modal-header h3 {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #202124;
+        }
+
+        .google-modal-header p {
+            margin: 4px 0 0 0;
+            font-size: 0.85rem;
+            color: #5f6368;
+        }
+
+        .google-account-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .google-account-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border: 1px solid #dadce0;
+            border-radius: 12px;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .google-account-item:hover {
+            background: #f8f9fa;
+            border-color: #bdc1c6;
+        }
+
+        .google-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .google-acc-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .google-acc-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #3c4043;
+        }
+
+        .google-acc-email {
+            font-size: 0.78rem;
+            color: #70757a;
+        }
+
+        .google-modal-footer {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .google-cancel-btn {
+            background: none;
+            border: none;
+            color: #1a73e8;
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+
+        .google-cancel-btn:hover {
+            background: rgba(26, 115, 232, 0.04);
+        }
+
+        /* --- OTP VERIFICATION SYSTEM STYLES --- */
+        .otp-inputs-wrapper {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .otp-input-box {
+            width: 44px;
+            height: 52px;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            border: 1px solid #d9eee6;
+            background: #f8fcfa;
+            border-radius: 12px;
+            color: var(--text);
+            outline: none;
+            transition: all 0.25s ease;
+        }
+
+        .otp-input-box:focus {
+            background: white;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 4px rgba(18, 185, 129, 0.10);
+            transform: translateY(-2px);
+        }
+
+        .otp-resend-btn {
+            background: none;
+            border: none;
+            color: var(--primary-light);
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0;
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+
+        .otp-resend-btn:disabled {
+            color: var(--text-muted);
+            cursor: not-allowed;
+            text-decoration: none;
+        }
+
+        @media (max-width: 400px) {
+            .otp-inputs-wrapper {
+                gap: 6px;
+            }
+            .otp-input-box {
+                width: 34px;
+                height: 44px;
+                font-size: 1.15rem;
+                border-radius: 8px;
+            }
+        }
     </style>
 </head>
 
@@ -710,57 +895,105 @@
 
                     <form id="registerForm" autocomplete="off">
 
-                        <div class="form-grid">
-                            <div class="input-group">
-                                <i class="fa-solid fa-user input-icon"></i>
-                                <input type="text" id="fname" placeholder=" " required>
-                                <label for="fname">First Name</label>
+                        <!-- STANDARD EMAIL REGISTER FIELDS -->
+                        <div id="standardFields">
+                            <div class="form-grid">
+                                <div class="input-group">
+                                    <i class="fa-solid fa-user input-icon"></i>
+                                    <input type="text" id="fname" placeholder=" " required>
+                                    <label for="fname">First Name</label>
+                                </div>
+
+                                <div class="input-group">
+                                    <i class="fa-solid fa-user input-icon"></i>
+                                    <input type="text" id="lname" placeholder=" " required>
+                                    <label for="lname">Last Name</label>
+                                </div>
                             </div>
 
                             <div class="input-group">
-                                <i class="fa-solid fa-user input-icon"></i>
-                                <input type="text" id="lname" placeholder=" " required>
-                                <label for="lname">Last Name</label>
+                                <i class="fa-solid fa-mobile-screen-button input-icon"></i>
+                                <input type="tel" id="mobile" placeholder=" " required>
+                                <label for="mobile">Mobile Number</label>
+                            </div>
+
+                            <div class="input-group">
+                                <i class="fa-solid fa-envelope input-icon"></i>
+                                <input type="email" id="email" placeholder=" " required>
+                                <label for="email">Email address</label>
+                            </div>
+
+                            <div class="form-grid">
+                                <div class="input-group">
+                                    <i class="fa-solid fa-lock input-icon"></i>
+                                    <input type="password" id="password" placeholder=" " required>
+                                    <label for="password">Create Password</label>
+
+                                    <button type="button" class="password-toggle" data-target="password"
+                                        aria-label="Show password">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+                                </div>
+
+                                <div class="input-group">
+                                    <i class="fa-solid fa-shield-halved input-icon"></i>
+                                    <input type="password" id="confirmPassword" placeholder=" " required>
+                                    <label for="confirmPassword">Confirm Password</label>
+
+                                    <button type="button" class="password-toggle" data-target="confirmPassword"
+                                        aria-label="Show password">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="input-group">
-                            <i class="fa-solid fa-mobile-screen-button input-icon"></i>
-                            <input type="tel" id="mobile" placeholder=" " required>
-                            <label for="mobile">Mobile Number</label>
-                        </div>
-
-                        <div class="input-group">
-                            <i class="fa-solid fa-envelope input-icon"></i>
-                            <input type="email" id="email" placeholder=" " required>
-                            <label for="email">Email address</label>
-                        </div>
-
-                        <div class="form-grid">
+                        <!-- OTP REGISTER FIELDS (Initially Hidden) -->
+                        <div id="otpRegisterFields" style="display: none;">
+                            <div class="form-grid">
+                                <div class="input-group">
+                                    <i class="fa-solid fa-user input-icon"></i>
+                                    <input type="text" id="otpFname" placeholder=" ">
+                                    <label for="otpFname">First Name</label>
+                                </div>
+                                <div class="input-group">
+                                    <i class="fa-solid fa-user input-icon"></i>
+                                    <input type="text" id="otpLname" placeholder=" ">
+                                    <label for="otpLname">Last Name</label>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <i class="fa-solid fa-envelope input-icon"></i>
+                                <input type="email" id="otpEmail" placeholder=" ">
+                                <label for="otpEmail">Email address</label>
+                            </div>
                             <div class="input-group">
                                 <i class="fa-solid fa-lock input-icon"></i>
-                                <input type="password" id="password" placeholder=" " required>
-                                <label for="password">Create Password</label>
-
-                                <button type="button" class="password-toggle" data-target="password"
-                                    aria-label="Show password">
-                                    <i class="fa-solid fa-eye"></i>
-                                </button>
-                            </div>
-
-                            <div class="input-group">
-                                <i class="fa-solid fa-shield-halved input-icon"></i>
-                                <input type="password" id="confirmPassword" placeholder=" " required>
-                                <label for="confirmPassword">Confirm Password</label>
-
-                                <button type="button" class="password-toggle" data-target="confirmPassword"
+                                <input type="password" id="otpPassword" placeholder=" ">
+                                <label for="otpPassword">Create Password</label>
+                                <button type="button" class="password-toggle" data-target="otpPassword"
                                     aria-label="Show password">
                                     <i class="fa-solid fa-eye"></i>
                                 </button>
                             </div>
                         </div>
 
-                        <label class="terms-row">
+                        <!-- OTP VERIFICATION FIELDS (Initially Hidden) -->
+                        <div id="otpVerifyFields" style="display: none;">
+                            <p style="font-size: 0.88rem; color: var(--text-muted); text-align: center; margin-bottom: 1.5rem;">
+                                We sent a 6-digit OTP verification code. Enter it below to verify.
+                            </p>
+                            <div class="otp-inputs-wrapper">
+                                <input type="text" class="otp-input-box" maxlength="1" pattern="[0-9]" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,''); if(this.value.length==1) this.nextElementSibling?.focus();">
+                                <input type="text" class="otp-input-box" maxlength="1" pattern="[0-9]" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,''); if(this.value.length==1) this.nextElementSibling?.focus();" onkeydown="if(event.key==='Backspace' && this.value==='') this.previousElementSibling?.focus();">
+                                <input type="text" class="otp-input-box" maxlength="1" pattern="[0-9]" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,''); if(this.value.length==1) this.nextElementSibling?.focus();" onkeydown="if(event.key==='Backspace' && this.value==='') this.previousElementSibling?.focus();">
+                                <input type="text" class="otp-input-box" maxlength="1" pattern="[0-9]" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,''); if(this.value.length==1) this.nextElementSibling?.focus();" onkeydown="if(event.key==='Backspace' && this.value==='') this.previousElementSibling?.focus();">
+                                <input type="text" class="otp-input-box" maxlength="1" pattern="[0-9]" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,''); if(this.value.length==1) this.nextElementSibling?.focus();" onkeydown="if(event.key==='Backspace' && this.value==='') this.previousElementSibling?.focus();">
+                                <input type="text" class="otp-input-box" maxlength="1" pattern="[0-9]" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'');" onkeydown="if(event.key==='Backspace' && this.value==='') this.previousElementSibling?.focus();">
+                            </div>
+                        </div>
+
+                        <label class="terms-row" id="termsRow">
                             <input type="checkbox" id="termsCheck">
                             <span>
                                 I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>.
@@ -772,19 +1005,23 @@
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
 
-                        <div class="divider">or register with</div>
+                        <div id="quickDivider" class="divider">or register with</div>
 
-                        <div class="quick-login-grid">
-                            <button type="button" class="quick-btn">
+                        <div id="quickGrid" class="quick-login-grid">
+                            <button type="button" class="quick-btn" id="googleRegBtn">
                                 <i class="fa-brands fa-google"></i>
                                 Google
                             </button>
 
-                            <button type="button" class="quick-btn">
+                            <button type="button" class="quick-btn" id="otpRegToggleBtn">
                                 <i class="fa-solid fa-mobile-screen"></i>
                                 OTP Register
                             </button>
                         </div>
+
+                        <button type="button" id="backToStandardReg" style="display: none; background: none; border: none; color: var(--text-muted); font-weight: 600; cursor: pointer; margin: 1.25rem auto 0; font-size: 0.9rem; text-decoration: underline;">
+                            Register with Email
+                        </button>
 
                         <p class="signin-text">
                             Already have an account?
@@ -808,102 +1045,433 @@
     </main>
 
     <script>
-        // If already logged in, go to home
-        if (localStorage.getItem("avijit_logged_in") === "true") {
-            window.location.href = "index.html";
-        }
+        document.addEventListener("DOMContentLoaded", function () {
+            // If already logged in, go to home
+            if (localStorage.getItem("avijit_logged_in") === "true") {
+                window.location.href = "index.html";
+            }
 
-        const registerForm = document.getElementById("registerForm");
-        const registerAlert = document.getElementById("registerAlert");
-        const registerBtn = document.getElementById("registerBtn");
+            const registerForm = document.getElementById("registerForm");
+            const registerAlert = document.getElementById("registerAlert");
+            const registerBtn = document.getElementById("registerBtn");
 
-        // Password show/hide for password and confirm password
-        document.querySelectorAll(".password-toggle").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-                const targetId = btn.getAttribute("data-target");
-                const input = document.getElementById(targetId);
-                const icon = btn.querySelector("i");
+            // DOM elements for Google & OTP Register toggling
+            const googleModal = document.getElementById("googleModal");
+            const googleRegBtn = document.getElementById("googleRegBtn");
+            const googleCancelBtn = document.getElementById("googleCancelBtn");
+            const otpRegToggleBtn = document.getElementById("otpRegToggleBtn");
+            const backToStandardReg = document.getElementById("backToStandardReg");
+            
+            const standardFields = document.getElementById("standardFields");
+            const otpRegisterFields = document.getElementById("otpRegisterFields");
+            const otpVerifyFields = document.getElementById("otpVerifyFields");
+            
+            const termsRow = document.getElementById("termsRow");
+            const quickDivider = document.getElementById("quickDivider");
+            const quickGrid = document.getElementById("quickGrid");
+            const otpInputs = document.querySelectorAll(".otp-inputs-wrapper input");
 
-                if (input.type === "password") {
-                    input.type = "text";
-                    icon.classList.remove("fa-eye");
-                    icon.classList.add("fa-eye-slash");
-                    btn.setAttribute("aria-label", "Hide password");
-                } else {
-                    input.type = "password";
-                    icon.classList.remove("fa-eye-slash");
-                    icon.classList.add("fa-eye");
-                    btn.setAttribute("aria-label", "Show password");
-                }
+            let isOtpMode = false;
+            let isOtpVerifiedState = false;
+            let generatedRegOtp = "";
+            let tempOtpUser = {};
+
+            // Password show/hide for password and confirm password
+            document.querySelectorAll(".password-toggle").forEach(function (btn) {
+                btn.addEventListener("click", function () {
+                    const targetId = btn.getAttribute("data-target");
+                    const input = document.getElementById(targetId);
+                    const icon = btn.querySelector("i");
+
+                    if (input.type === "password") {
+                        input.type = "text";
+                        icon.classList.remove("fa-eye");
+                        icon.classList.add("fa-eye-slash");
+                        btn.setAttribute("aria-label", "Hide password");
+                    } else {
+                        input.type = "password";
+                        icon.classList.remove("fa-eye-slash");
+                        icon.classList.add("fa-eye");
+                        btn.setAttribute("aria-label", "Show password");
+                    }
+                });
             });
-        });
 
-        registerForm.addEventListener("submit", function (e) {
-            e.preventDefault();
+            // Google Modal trigger
+            if (googleRegBtn) {
+                googleRegBtn.addEventListener("click", function() {
+                    const savedUser = JSON.parse(localStorage.getItem("avijit_user"));
+                    const listContainer = document.getElementById("googleAccountList");
+                    
+                    if (listContainer) {
+                        let html = "";
+                        
+                        // If there is a registered user, show them first!
+                        if (savedUser && savedUser.email) {
+                            const name = (savedUser.fname || "") + " " + (savedUser.lname || "");
+                            html += `
+                                <button class="google-account-item" onclick="handleGoogleRegister('${name}', '${savedUser.email}')">
+                                    <div class="google-avatar" style="background: #8b5cf6;">${(savedUser.fname || "U")[0].toUpperCase()}</div>
+                                    <div class="google-acc-info">
+                                        <span class="google-acc-name">${name} (Registered)</span>
+                                        <span class="google-acc-email">${savedUser.email}</span>
+                                    </div>
+                                </button>
+                            `;
+                        }
+                        
+                        // Standard default Google simulator options
+                        html += `
+                            <button class="google-account-item" onclick="handleGoogleRegister('Avijit Mohanty', 'avijit@gmail.com')">
+                                <div class="google-avatar" style="background: #1a73e8;">A</div>
+                                <div class="google-acc-info">
+                                    <span class="google-acc-name">Avijit Mohanty</span>
+                                    <span class="google-acc-email">avijit@gmail.com</span>
+                                </div>
+                            </button>
 
-            const fname = document.getElementById("fname").value.trim();
-            const lname = document.getElementById("lname").value.trim();
-            const mobile = document.getElementById("mobile").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value.trim();
-            const confirmPassword = document.getElementById("confirmPassword").value.trim();
-            const termsCheck = document.getElementById("termsCheck").checked;
+                            <button class="google-account-item" onclick="handleGoogleRegister('Damodara Guest', 'guest@gmail.com')">
+                                <div class="google-avatar" style="background: #16a34a;">D</div>
+                                <div class="google-acc-info">
+                                    <span class="google-acc-name">Damodara Guest</span>
+                                    <span class="google-acc-email">guest@gmail.com</span>
+                                </div>
+                            </button>
 
-            registerAlert.className = "auth-alert";
-            registerAlert.innerText = "";
-
-            if (!fname || !lname || !mobile || !email || !password || !confirmPassword) {
-                registerAlert.className = "auth-alert error";
-                registerAlert.innerText = "Please fill all fields.";
-                return;
+                            <button class="google-account-item" onclick="handleGoogleRegister('Test User', 'test@gmail.com')">
+                                <div class="google-avatar" style="background: #dc2626;">T</div>
+                                <div class="google-acc-info">
+                                    <span class="google-acc-name">Test User</span>
+                                    <span class="google-acc-email">test@gmail.com</span>
+                                </div>
+                            </button>
+                        `;
+                        
+                        listContainer.innerHTML = html;
+                    }
+                    googleModal.style.display = "flex";
+                });
             }
 
-            if (!/^[0-9]{10}$/.test(mobile)) {
-                registerAlert.className = "auth-alert error";
-                registerAlert.innerText = "Please enter a valid 10-digit mobile number.";
-                return;
+            if (googleCancelBtn) {
+                googleCancelBtn.addEventListener("click", function() {
+                    googleModal.style.display = "none";
+                });
             }
 
-            if (password.length < 6) {
-                registerAlert.className = "auth-alert error";
-                registerAlert.innerText = "Password must be at least 6 characters.";
-                return;
-            }
+            // Handle Google registration select
+            window.handleGoogleRegister = function(fullName, email) {
+                const names = fullName.split(" ");
+                const fname = names[0];
+                const lname = names[1] || "";
 
-            if (password !== confirmPassword) {
-                registerAlert.className = "auth-alert error";
-                registerAlert.innerText = "Password and confirm password do not match.";
-                return;
-            }
+                const googleUser = {
+                    fname: fname,
+                    lname: lname,
+                    mobile: "9078042388",
+                    email: email,
+                    password: "google123"
+                };
 
-            if (!termsCheck) {
-                registerAlert.className = "auth-alert error";
-                registerAlert.innerText = "Please accept Terms & Conditions.";
-                return;
-            }
+                // Register and immediately log user in
+                localStorage.setItem("avijit_user", JSON.stringify(googleUser));
+                localStorage.setItem("avijit_logged_in", "true");
+                localStorage.setItem("avijit_current_user", JSON.stringify(googleUser));
 
-            const userData = {
-                fname: fname,
-                lname: lname,
-                mobile: mobile,
-                email: email,
-                password: password
+                // Show success styling in modal
+                const card = googleModal.querySelector(".google-modal-card");
+                card.innerHTML = `
+                    <div class="google-modal-header">
+                        <i class="fa-solid fa-circle-check" style="font-size: 3rem; color: var(--success); margin-bottom: 12px;"></i>
+                        <h3>Google Sign In Success</h3>
+                        <p>Welcome back, ${fname}! Connecting to your account...</p>
+                    </div>
+                `;
+
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 1500);
             };
 
-            localStorage.setItem("avijit_user", JSON.stringify(userData));
-            localStorage.removeItem("avijit_logged_in");
+            // OTP inputs backspace handler and auto-tabbing
+            otpInputs.forEach((input, index) => {
+                input.addEventListener("keyup", (e) => {
+                    if (e.key === "Backspace" || e.key === "ArrowLeft") {
+                        if (index > 0) otpInputs[index - 1].focus();
+                    } else if (input.value.length === 1 || e.key === "ArrowRight") {
+                        if (index < otpInputs.length - 1) otpInputs[index + 1].focus();
+                    }
+                });
+            });
 
-            registerAlert.className = "auth-alert success";
-            registerAlert.innerText = "Registration successful. Redirecting to login...";
+            // Toggle to OTP Register mode
+            if (otpRegToggleBtn) {
+                otpRegToggleBtn.addEventListener("click", function() {
+                    isOtpMode = true;
+                    isOtpVerifiedState = false;
+                    
+                    standardFields.style.display = "none";
+                    otpRegisterFields.style.display = "block";
+                    otpVerifyFields.style.display = "none";
+                    
+                    quickDivider.style.display = "none";
+                    quickGrid.style.display = "none";
+                    backToStandardReg.style.display = "block";
+                    
+                    registerBtn.querySelector("span").innerText = "Send Verification Code";
+                    
+                    // Adjust validation requirements
+                    document.getElementById("fname").required = false;
+                    document.getElementById("lname").required = false;
+                    document.getElementById("mobile").required = false;
+                    document.getElementById("email").required = false;
+                    document.getElementById("password").required = false;
+                    document.getElementById("confirmPassword").required = false;
+                    
+                    document.getElementById("otpFname").required = true;
+                    document.getElementById("otpLname").required = true;
+                    document.getElementById("otpEmail").required = true;
+                    document.getElementById("otpPassword").required = true;
+                    
+                    registerAlert.className = "auth-alert";
+                    registerAlert.innerText = "";
+                });
+            }
 
-            registerBtn.disabled = true;
-            registerBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Creating account...</span>';
+            // Toggle back to standard Email Register mode
+            if (backToStandardReg) {
+                backToStandardReg.addEventListener("click", function() {
+                    isOtpMode = false;
+                    isOtpVerifiedState = false;
+                    
+                    standardFields.style.display = "block";
+                    otpRegisterFields.style.display = "none";
+                    otpVerifyFields.style.display = "none";
+                    termsRow.style.display = "flex";
+                    
+                    quickDivider.style.display = "block";
+                    quickGrid.style.display = "block";
+                    backToStandardReg.style.display = "none";
+                    
+                    registerBtn.querySelector("span").innerText = "Create Account";
+                    
+                    // Restore validation requirements
+                    document.getElementById("fname").required = true;
+                    document.getElementById("lname").required = true;
+                    document.getElementById("mobile").required = true;
+                    document.getElementById("email").required = true;
+                    document.getElementById("password").required = true;
+                    document.getElementById("confirmPassword").required = true;
+                    
+                    document.getElementById("otpFname").required = false;
+                    document.getElementById("otpLname").required = false;
+                    document.getElementById("otpEmail").required = false;
+                    document.getElementById("otpPassword").required = false;
+                    
+                    registerAlert.className = "auth-alert";
+                    registerAlert.innerText = "";
+                });
+            }
 
-            setTimeout(function () {
-                window.location.href = "login.html";
-            }, 1200);
+            // Master Registration Submit Handler
+            if (registerForm) {
+                registerForm.addEventListener("submit", function (e) {
+                    e.preventDefault();
+
+                    registerAlert.className = "auth-alert";
+                    registerAlert.innerText = "";
+
+                    if (!isOtpMode) {
+                        // 1. STANDARD EMAIL REGISTRATION
+                        const fname = document.getElementById("fname").value.trim();
+                        const lname = document.getElementById("lname").value.trim();
+                        const mobile = document.getElementById("mobile").value.trim();
+                        const email = document.getElementById("email").value.trim();
+                        const password = document.getElementById("password").value.trim();
+                        const confirmPassword = document.getElementById("confirmPassword").value.trim();
+                        const termsCheck = document.getElementById("termsCheck").checked;
+
+                        if (!fname || !lname || !mobile || !email || !password || !confirmPassword) {
+                            registerAlert.className = "auth-alert error";
+                            registerAlert.innerText = "Please fill all fields.";
+                            return;
+                        }
+
+                        if (!/^[0-9]{10}$/.test(mobile)) {
+                            registerAlert.className = "auth-alert error";
+                            registerAlert.innerText = "Please enter a valid 10-digit mobile number.";
+                            return;
+                        }
+
+                        if (password.length < 6) {
+                            registerAlert.className = "auth-alert error";
+                            registerAlert.innerText = "Password must be at least 6 characters.";
+                            return;
+                        }
+
+                        if (password !== confirmPassword) {
+                            registerAlert.className = "auth-alert error";
+                            registerAlert.innerText = "Password and confirm password do not match.";
+                            return;
+                        }
+
+                        if (!termsCheck) {
+                            registerAlert.className = "auth-alert error";
+                            registerAlert.innerText = "Please accept Terms & Conditions.";
+                            return;
+                        }
+
+                        const userData = {
+                            fname: fname,
+                            lname: lname,
+                            mobile: mobile,
+                            email: email,
+                            password: password
+                        };
+
+                        localStorage.setItem("avijit_user", JSON.stringify(userData));
+                        localStorage.removeItem("avijit_logged_in");
+
+                        registerAlert.className = "auth-alert success";
+                        registerAlert.innerText = "Registration successful. Redirecting to login...";
+
+                        registerBtn.disabled = true;
+                        registerBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Creating account...</span>';
+
+                        setTimeout(function () {
+                            window.location.href = "login.html";
+                        }, 1200);
+
+                    } else {
+                        // 2. OTP REGISTRATION FLOW
+                        if (!isOtpVerifiedState) {
+                            // State A: Send OTP Code
+                            const fname = document.getElementById("otpFname").value.trim();
+                            const lname = document.getElementById("otpLname").value.trim();
+                            const email = document.getElementById("otpEmail").value.trim();
+                            const password = document.getElementById("otpPassword").value.trim();
+                            const termsCheck = document.getElementById("termsCheck").checked;
+
+                            if (!fname || !lname || !email || !password) {
+                                registerAlert.className = "auth-alert error";
+                                registerAlert.innerText = "Please fill all fields.";
+                                return;
+                            }
+
+                            if (password.length < 6) {
+                                registerAlert.className = "auth-alert error";
+                                registerAlert.innerText = "Password must be at least 6 characters.";
+                                return;
+                            }
+
+                            if (!termsCheck) {
+                                registerAlert.className = "auth-alert error";
+                                registerAlert.innerText = "Please accept Terms & Conditions.";
+                                return;
+                            }
+
+                            // Save temporary values
+                            tempOtpUser = {
+                                fname: fname,
+                                lname: lname,
+                                mobile: "9078042388", // default placeholder number
+                                email: email,
+                                password: password
+                            };
+
+                            // Generate OTP and simulate send
+                            generatedRegOtp = Math.floor(100000 + Math.random() * 900000).toString();
+                            console.log("OTP REGISTER TEST:", generatedRegOtp);
+
+                            // Deliver email via FormSubmit AJAX
+                            fetch("https://formsubmit.co/ajax/" + email, {
+                                method: "POST",
+                                headers: { 
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    "Website": "Damodara Medicare",
+                                    "Subject": "Damodara Medicare - Registration Verification",
+                                    "OTP Code": generatedRegOtp,
+                                    "Message": `Welcome to Damodara Medicare! Your verification code is: ${generatedRegOtp}. Enter this code on the register screen to complete account creation.`
+                                })
+                            }).catch(err => console.warn("Email deliver warning:", err));
+
+                            // Show OTP fields and verification instructions
+                            otpRegisterFields.style.display = "none";
+                            otpVerifyFields.style.display = "block";
+                            termsRow.style.display = "none";
+                            
+                            registerBtn.querySelector("span").innerText = "Verify & Register";
+                            isOtpVerifiedState = true;
+
+                            registerAlert.className = "auth-alert success";
+                            registerAlert.innerHTML = `OTP Sent to ${email}! For quick testing, your OTP is: <strong>${generatedRegOtp}</strong>`;
+                            
+                            // Focus on first OTP input
+                            setTimeout(() => otpInputs[0].focus(), 100);
+
+                        } else {
+                            // State B: Verify entered OTP
+                            let enteredCode = "";
+                            otpInputs.forEach(input => enteredCode += input.value.trim());
+
+                            if (enteredCode.length < 6) {
+                                registerAlert.className = "auth-alert error";
+                                registerAlert.innerText = "Please enter the full 6-digit OTP code.";
+                                return;
+                            }
+
+                            if (enteredCode === generatedRegOtp) {
+                                // Register user
+                                localStorage.setItem("avijit_user", JSON.stringify(tempOtpUser));
+                                localStorage.removeItem("avijit_logged_in");
+
+                                registerAlert.className = "auth-alert success";
+                                registerAlert.innerText = "Verification successful! Account created. Redirecting to login...";
+
+                                registerBtn.disabled = true;
+                                registerBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Finalizing...</span>';
+
+                                setTimeout(function () {
+                                    window.location.href = "login.html";
+                                }, 1500);
+                            } else {
+                                registerAlert.className = "auth-alert error";
+                                registerAlert.innerText = "Invalid OTP code. Please try again.";
+                            }
+                        }
+                    }
+                });
+            }
         });
     </script>
+
+    <!-- GOOGLE ACCOUNT SIMULATOR MODAL -->
+    <div class="google-modal-overlay" id="googleModal">
+        <div class="google-modal-card">
+            <div class="google-modal-header">
+                <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="matrix(1, 0, 0, 1, 0, 0)">
+                        <path d="M21.35,11.1H12v2.7h5.38c-0.24,1.28 -0.96,2.37 -2.04,3.1v2.58h3.3c1.93,-1.78 3.04,-4.4 3.04,-7.48C21.68,12.02 21.56,11.53 21.35,11.1z" fill="#4285F4" />
+                        <path d="M12,20.8c2.65,0 4.87,-0.88 6.5,-2.38l-3.3,-2.58c-0.9,0.6 -2.06,0.96 -3.2,0.96c-2.46,0 -4.54,-1.66 -5.28,-3.9H3.34v2.68C4.96,18.77 8.27,20.8 12,20.8z" fill="#34A853" />
+                        <path d="M6.72,12.98c-0.18,-0.54 -0.28,-1.12 -0.28,-1.72s0.1,-1.18 0.28,-1.72V6.86H3.34c-0.6,1.2 -0.94,2.56 -0.94,4.02s0.34,2.82 0.94,4.02L6.72,12.98z" fill="#FBBC05" />
+                        <path d="M12,6.34c1.44,0 2.73,0.5 3.75,1.48l2.8,-2.8C16.85,3.31 14.63,2.4 12,2.4C8.27,2.4 4.96,4.43 3.34,7.66l3.38,2.68C7.46,8 9.54,6.34 12,6.34z" fill="#EA4335" />
+                    </g>
+                </svg>
+                <h3>Choose an account</h3>
+                <p>to continue to <strong>Damodara Medicare</strong></p>
+            </div>
+
+            <div class="google-account-list" id="googleAccountList">
+            </div>
+
+            <div class="google-modal-footer">
+                <button class="google-cancel-btn" id="googleCancelBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
 
     <script src="js/main.js"></script>
 </body>
