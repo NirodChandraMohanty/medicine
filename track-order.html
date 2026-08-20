@@ -1839,8 +1839,8 @@
                     <div class="action-links">
                         <span id="welcomeUser" class="register-link"></span>
                         <div class="profile-dropdown-wrapper">
-                            <button class="btn btn-primary profile-dropdown-trigger" onclick="toggleProfileDropdown(event)" style="border-radius: 4px; padding: 0.45rem 1rem;">
-                                <span>Logout</span> <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                            <button class="btn btn-primary profile-dropdown-trigger" onclick="event.stopPropagation(); document.getElementById('profileDropdownMenu').classList.toggle('active');" style="border-radius: 4px; padding: 0.45rem 1rem;">
+                                <span>Account</span> <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
                             </button>
                             <div class="profile-dropdown-menu" id="profileDropdownMenu">
                                 <a href="dashboard.html" class="dropdown-item">
@@ -1856,8 +1856,8 @@
 
                     <!-- Mobile Logout/Profile Dropdown Wrapper -->
                     <div class="mobile-profile-wrapper" style="display: none; order: 2;">
-                        <button class="mobile-logout-btn" onclick="toggleMobileProfileDropdown(event)" aria-label="Profile Menu">
-                            <i class="fa-solid fa-right-from-bracket"></i>
+                        <button class="mobile-logout-btn" onclick="event.stopPropagation(); document.getElementById('mobileProfileDropdownMenu').classList.toggle('active');" aria-label="Profile Menu">
+                            <i class="fa-regular fa-circle-user"></i>
                         </button>
                         <div class="profile-dropdown-menu" id="mobileProfileDropdownMenu">
                             <a href="dashboard.html" class="dropdown-item">
