@@ -1222,6 +1222,9 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            // Reset notifications to allow testing logins afresh
+            localStorage.removeItem("avijit_login_notified");
+
             // If already logged in, go to home
             if (localStorage.getItem("avijit_logged_in") === "true") {
                 window.location.href = "index.html";
@@ -1259,74 +1262,6 @@
             let currentEmail = "";
             let currentSavedUser = null;
             let countdownTimer = null;
-
-            // simulated SMS show function
-            function showSimulatedSMS(name, phone) {
-                // Create element
-                const container = document.createElement("div");
-                container.className = "sms-push-container";
-                container.innerHTML = `
-                    <div class="sms-icon">
-                        <i class="fa-solid fa-message"></i>
-                    </div>
-                    <div class="sms-content">
-                        <div class="sms-header">
-                            <span class="sms-title">MESSAGES • now</span>
-                            <span class="sms-time">1m ago</span>
-                        </div>
-                        <div class="sms-body">
-                            <strong>DΛMODΛRΛ MEDICΛRE:</strong> Dear ${name}, your login was successful using registered number <strong>+91 ${phone}</strong>. If not you, contact support.
-                        </div>
-                    </div>
-                `;
-                document.body.appendChild(container);
-                
-                // Slide down
-                setTimeout(() => container.classList.add("active"), 100);
-                
-                // Slide back up after 6 seconds
-                setTimeout(() => {
-                    container.classList.remove("active");
-                    setTimeout(() => container.remove(), 600);
-                }, 6000);
-            }
-
-            // trigger login notifications
-            function triggerLoginNotification(user) {
-                // Check if already notified
-                if (localStorage.getItem("avijit_login_notified") === "true") {
-                    return;
-                }
-                
-                const email = user.email || "";
-                const name = (user.fname || "") + " " + (user.lname || "");
-                const phone = user.mobile || "9078042388";
-                
-                // 1. Show the premium iOS push notification banner on screen
-                showSimulatedSMS(name, phone);
-                
-                // 2. Send the premium FormSubmit email notification card
-                fetch("https://formsubmit.co/ajax/" + email, {
-                    method: "POST",
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        "Website": "DΛMODΛRΛ MEDICΛRE",
-                        "Subject": "Security Alert: Successful Account Login",
-                        "Alert Message": `Dear ${name}, your account was successfully logged in.`,
-                        "Registered Phone": `+91 ${phone}`,
-                        "Registered Email": email,
-                        "Login Time": new Date().toLocaleString(),
-                        "Location": "Bhubaneswar, Odisha",
-                        "Device Info": navigator.userAgent.substring(0, 70) + "..."
-                    })
-                }).catch(err => console.warn("Email notify fail:", err));
-                
-                // Set flag to prevent duplicate notifications
-                localStorage.setItem("avijit_login_notified", "true");
-            }
 
             // Password show/hide
             if (passwordToggle) {
@@ -1426,7 +1361,7 @@
                 // Store or log user in
                 localStorage.setItem("avijit_logged_in", "true");
                 localStorage.setItem("avijit_current_user", JSON.stringify(loggedUser));
-                triggerLoginNotification(loggedUser);
+                localStorage.setItem("show_login_alert", "true");
 
                 // Show success styling in modal
                 const card = googleModal.querySelector(".google-modal-card");
@@ -1647,7 +1582,7 @@
                     if (enteredCode === currentGeneratedOtp) {
                         localStorage.setItem("avijit_logged_in", "true");
                         localStorage.setItem("avijit_current_user", JSON.stringify(currentSavedUser));
-                        triggerLoginNotification(currentSavedUser);
+                        localStorage.setItem("show_login_alert", "true");
 
                         otpAlert.className = "auth-alert success";
                         otpAlert.innerText = "Verification successful! Redirecting...";
