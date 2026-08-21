@@ -50,7 +50,7 @@
             padding: 0 1rem;
             animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .profile-page-header { flex-direction: column; align-items: flex-start; gap: 10px; }
         }
         .profile-title-group h1 {
@@ -109,7 +109,7 @@
             box-shadow: 0 15px 45px rgba(0, 210, 173, 0.15);
             border-color: rgba(0, 210, 173, 0.4) !important;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .profile-hero-card { flex-direction: column; text-align: center; align-items: center; padding: 1.5rem; }
         }
 
@@ -177,7 +177,7 @@
             gap: 10px;
             margin-bottom: 8px;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .hero-details-header { justify-content: center; }
         }
         .hero-name {
@@ -215,7 +215,7 @@
         .hero-meta-item:hover {
             color: #ffffff !important;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .hero-meta-item { justify-content: center; }
         }
         .hero-meta-item i {
@@ -562,6 +562,54 @@
             animation: slideIn 0.3s ease forwards;
         }
         .alert-toast.active { display: flex; }
+
+        /* --- MOBILE RESPONSIVE OVERRIDES --- */
+        @media (max-width: 992px) {
+            .profile-hero-card {
+                flex-direction: column !important;
+                text-align: center !important;
+                align-items: center !important;
+                padding: 1.25rem !important;
+                gap: 1.25rem !important;
+            }
+            .hero-avatar-wrapper {
+                margin: 0 auto !important;
+            }
+            .hero-meta-grid {
+                grid-template-columns: 1fr !important;
+                text-align: center !important;
+                justify-content: center !important;
+                gap: 8px !important;
+            }
+            .hero-meta-item {
+                justify-content: center !important;
+            }
+            .btn-edit-profile {
+                width: 100% !important;
+                margin-top: 1rem !important;
+                justify-content: center !important;
+            }
+            .info-card {
+                padding: 1.25rem !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .meta-row {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 4px !important;
+                padding: 10px 4px !important;
+            }
+            .meta-value {
+                text-align: left !important;
+                width: 100% !important;
+            }
+            .meta-value span {
+                justify-content: flex-start !important;
+                width: 100% !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -625,6 +673,28 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Mobile Logout/Profile Dropdown Wrapper -->
+                    <div class="mobile-profile-wrapper" style="display: none; order: 2;">
+                        <button class="mobile-logout-btn" onclick="event.stopPropagation(); document.getElementById('mobileProfileDropdownMenu').classList.toggle('active');"
+                            aria-label="Profile Menu">
+                            <i class="fa-regular fa-circle-user"></i>
+                        </button>
+                        <div class="profile-dropdown-menu" id="mobileProfileDropdownMenu">
+                            <a href="profile.html" class="dropdown-item">
+                                <i class="fa-solid fa-circle-user"></i> Profile
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="javascript:void(0)" onclick="logoutUser()" class="dropdown-item logout-item">
+                                <i class="fa-solid fa-right-from-bracket"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Menu Toggle -->
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -1226,6 +1296,48 @@
                     toast.classList.remove("active");
                 }, 3500);
             }
+
+            // Mobile menu drawer functionality
+            const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+            const mobileMenuDrawer = document.getElementById("mobileMenuDrawer");
+            const drawerClose = document.getElementById("drawerClose");
+            const drawerOverlay = document.getElementById("drawerOverlay");
+
+            if (mobileMenuToggle && mobileMenuDrawer && drawerOverlay) {
+                mobileMenuToggle.addEventListener("click", () => {
+                    mobileMenuDrawer.classList.add("active");
+                    drawerOverlay.classList.add("active");
+                    document.body.style.overflow = "hidden";
+                });
+            }
+
+            if (drawerClose && mobileMenuDrawer && drawerOverlay) {
+                drawerClose.addEventListener("click", () => {
+                    mobileMenuDrawer.classList.remove("active");
+                    drawerOverlay.classList.remove("active");
+                    document.body.style.overflow = "";
+                });
+            }
+
+            if (drawerOverlay && mobileMenuDrawer) {
+                drawerOverlay.addEventListener("click", () => {
+                    mobileMenuDrawer.classList.remove("active");
+                    drawerOverlay.classList.remove("active");
+                    document.body.style.overflow = "";
+                });
+            }
+
+            // Welcome user in mobile menu drawer
+            if (currentUser) {
+                if (document.getElementById("welcomeUserMobile")) {
+                    document.getElementById("welcomeUserMobile").innerText = currentUser.fname + " " + (currentUser.lname || "");
+                }
+                if (document.getElementById("mobileAvatarInitials")) {
+                    const initials = (currentUser.fname ? currentUser.fname.charAt(0).toUpperCase() : "") +
+                        (currentUser.lname ? currentUser.lname.charAt(0).toUpperCase() : "");
+                    document.getElementById("mobileAvatarInitials").innerText = initials || "U";
+                }
+            }
         });
 
         function logoutUser() {
@@ -1234,6 +1346,70 @@
             window.location.href = "login.html";
         }
     </script>
+
+    <!-- MOBILE DRAWER MENU OVERLAY -->
+    <div class="mobile-menu-drawer" id="mobileMenuDrawer">
+        <div class="drawer-header">
+            <a href="index.html" class="logo-box" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
+                <div class="logo-icon-svg" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="logo-svg-icon" style="width: 100%; height: 100%;">
+                        <defs>
+                            <linearGradient id="d-gradient-drawer" x1="0%" y1="100%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#4c1a9c" />
+                                <stop offset="100%" stop-color="#934df4" />
+                            </linearGradient>
+                            <mask id="checkmark-mask-drawer">
+                                <rect x="0" y="0" width="100" height="100" fill="white" />
+                                <path d="M 30 42 L 48 62 L 70 32" fill="none" stroke="black" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+                            </mask>
+                        </defs>
+                        <path class="logo-svg-d" d="M 20 10 H 60 C 82 10 95 28 95 50 C 95 72 82 90 60 90 H 20 C 15 90 10 85 10 80 V 20 C 10 15 15 10 20 10 Z" mask="url(#checkmark-mask-drawer)" fill="url(#d-gradient-drawer)" />
+                        <path class="logo-svg-plus" d="M 75 10 V 26 M 67 18 H 83" fill="none" stroke="#00d2ad" stroke-width="10px" stroke-linecap="round" />
+                    </svg>
+                </div>
+                <div class="logo-text-group-futuristic" style="display: flex; flex-direction: column; justify-content: center;">
+                    <span class="logo-text-line1" style="font-family: 'Outfit', 'Plus Jakarta Sans', 'Inter', sans-serif; font-size: 1.3rem; font-weight: 800; line-height: 0.95; letter-spacing: 0.5px; color: #8b5cf6; text-transform: uppercase;">D&Lambda;MOD&Lambda;R&Lambda;</span>
+                    <span class="logo-text-line2" style="font-family: 'Outfit', 'Plus Jakarta Sans', 'Inter', sans-serif; font-size: 1.1rem; font-weight: 800; line-height: 0.95; letter-spacing: 0.5px; color: #8b5cf6; margin-top: 2px; text-transform: uppercase;">MEDIC&Lambda;RE</span>
+                </div>
+            </a>
+            <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <!-- Premium Mobile Profile Banner -->
+        <a href="profile.html" class="drawer-profile"
+            style="background: rgba(248, 181, 0, 0.05); padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.06); text-decoration: none;">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary-dark); display: flex; align-items: center; justify-content: center; color: var(--bg-light); font-weight: 700; font-size: 1.1rem; border: 2px solid rgba(248, 181, 0, 0.3);"
+                id="mobileAvatarInitials">
+                U
+            </div>
+            <div style="display: flex; flex-direction: column;">
+                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;">Welcome back,</span>
+                <span id="welcomeUserMobile"
+                    style="font-size: 0.95rem; color: white; font-weight: 700; margin-top: 2px;">Guest User</span>
+            </div>
+        </a>
+
+        <div class="drawer-body">
+            <nav class="drawer-links">
+                <a href="index.html" class="drawer-link"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="about.html" class="drawer-link"><i class="fa-solid fa-circle-info"></i> About Us</a>
+                <a href="medicines.html" class="drawer-link"><i class="fa-solid fa-pills"></i> Medicine</a>
+                <a href="doctors.html" class="drawer-link"><i class="fa-solid fa-user-doctor"></i> Doctors</a>
+                <a href="track-order.html" class="drawer-link"><i class="fa-solid fa-truck-fast"></i> Order</a>
+                <a href="contact.html" class="drawer-link"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+                <a href="wishlist.html" class="drawer-link"><i class="fa-solid fa-heart"></i> Wishlist</a>
+            </nav>
+
+            <div class="drawer-footer">
+                <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-primary w-full"
+                    style="border-radius: 8px;">
+                    <i class="fa-solid fa-right-from-bracket" style="margin-right: 8px;"></i> Logout
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
     <script src="js/main.js"></script>
 </body>
 </html>
